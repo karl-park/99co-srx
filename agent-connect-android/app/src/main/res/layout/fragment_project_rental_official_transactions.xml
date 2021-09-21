@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.transaction.ProjectRentalOfficialTransactionsViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <include
+                android:id="@+id/layout_loading_fail_error"
+                layout="@layout/layout_loading_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+        <include
+                android:id="@+id/layout_empty"
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/label_transaction_projects_empty)}"
+                app:visibility="@{viewModel.isShowEmpty() ? View.VISIBLE : View.GONE}" />
+
+        <FrameLayout
+                android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <sg.searchhouse.agentconnect.view.widget.common.AppHorizontalScrollView
+                    android:id="@+id/scroll_view_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:isEnabled="@{viewModel.shouldEnableHorizontalScrollView}">
+
+                <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <include
+                            layout="@layout/list_item_project_transaction_bg_official_hdb"
+                            app:scale="@{viewModel.scale}"
+                            app:visibility="@{viewModel.isHdb() == true ? View.VISIBLE : View.GONE}" />
+
+                    <include
+                            layout="@layout/list_item_project_transaction_bg_official"
+                            app:scale="@{viewModel.scale}"
+                            app:visibility="@{viewModel.isHdb() != true ? View.VISIBLE : View.GONE}" />
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <include
+                                layout="@layout/list_item_project_transaction_title_official_hdb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:scale="@{viewModel.scale}"
+                                app:visibility="@{viewModel.isHdb() ? View.VISIBLE : View.GONE}" />
+
+                        <include
+                                layout="@layout/list_item_project_transaction_title_official"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:scale="@{viewModel.scale}"
+                                app:visibility="@{viewModel.isHdb() ? View.GONE : View.VISIBLE}" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/list"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:nestedScrollingEnabled="false" />
+                    </LinearLayout>
+                </FrameLayout>
+            </sg.searchhouse.agentconnect.view.widget.common.AppHorizontalScrollView>
+
+            <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/layout_indicate_swipe"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:lottie_autoPlay="false"
+                    app:lottie_fileName="transactions-indicate-swipe.json"
+                    app:lottie_loop="false" />
+        </FrameLayout>
+    </FrameLayout>
+</layout>

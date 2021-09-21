@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.portal.AutoImportPortalListingsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_m"
+        android:paddingEnd="@dimen/spacing_m">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_m">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Heading1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_import_listings" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_listing_count_label"
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_l"
+                    android:layout_marginBottom="0dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_import_label"
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xxs"
+                    android:layout_marginBottom="0dp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_preview_listings"
+                    style="@style/PrimaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_l"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:text="@string/button_preview_listings" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/tv_do_not_remind_me"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="@dimen/spacing_s"
+                        android:text="@string/label_do_not_remind_me" />
+
+                    <View
+                        android:layout_width="@dimen/list_view_divider"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="@dimen/spacing_s"
+                        android:background="@color/divider_color" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/tv_skip_now"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_skip_now" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+    </LinearLayout>
+</layout>

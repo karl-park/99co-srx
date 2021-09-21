@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO: to check and remove -->
+    <integer name="one">1</integer>
+    <integer name="two">2</integer>
+    <integer name="three">3</integer>
+    <integer name="four">4</integer>
+    <integer name="six">6</integer>
+
+    <integer name="max_line_1">@integer/one</integer>
+    <integer name="weight_1">@integer/one</integer>
+    <integer name="weight_3">@integer/three</integer>
+
+    <integer name="anim_time">@android:integer/config_mediumAnimTime</integer>
+    <integer name="anim_time_fast">@android:integer/config_shortAnimTime</integer>
+
+    <integer name="anim_time_dismiss_featured_prompt">300</integer>
+
+    <integer name="font_weight_semi_bold">600</integer>
+</resources>

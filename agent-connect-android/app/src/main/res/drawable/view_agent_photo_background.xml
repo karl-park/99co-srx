@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--Show gray border for profile photo-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/white_invertible" />
+            <corners android:radius="@dimen/radius_agent_profile_photo" />
+            <stroke android:width="@dimen/profile_icon_border" android:color="@color/light_gray" />
+        </shape>
+    </item>
+</selector>

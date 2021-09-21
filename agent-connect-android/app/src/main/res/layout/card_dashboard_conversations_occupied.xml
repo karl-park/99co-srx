@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/ll_view_all_conversations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/spacing_m">
+
+            <include
+                android:id="@+id/layout_conversation_unread_count"
+                layout="@layout/layout_conversation_unread_count" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_new_messages"
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/layout_conversation_unread_count" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/btn_view_new_messages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/tv_new_messages"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/button_view" />
+        </RelativeLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager_new_messages"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/incoming_message_view_pager_height"
+            android:overScrollMode="never" />
+    </LinearLayout>
+</layout>

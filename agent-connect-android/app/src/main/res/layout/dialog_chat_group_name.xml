@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/spacing_m">
+
+    <TextView
+            style="@style/Heading2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/label_group_name" />
+
+    <EditText
+            android:id="@+id/et_group_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_m"
+            android:background="@drawable/view_gray_border_white_background"
+            android:paddingStart="@dimen/spacing_xs"
+            android:paddingTop="@dimen/margin_5"
+            android:paddingEnd="@dimen/spacing_xs"
+            android:paddingBottom="@dimen/margin_5"
+            android:singleLine="true" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_view_divider"
+            android:background="@color/divider_color" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_40"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+        <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                android:id="@+id/btn_cancel"
+                style="@style/Body"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="@integer/weight_1"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/label_cancel"
+                android:textAllCaps="true"
+                android:textColor="@color/cyan" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@color/divider_color" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                android:id="@+id/btn_done"
+                style="@style/Body"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="@integer/weight_1"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/label_done"
+                android:textAllCaps="true"
+                android:textColor="@color/cyan" />
+
+    </LinearLayout>
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_view_divider"
+            android:background="@color/divider_color" />
+
+</LinearLayout>

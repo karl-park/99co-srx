@@ -1,0 +1,29 @@
+package sg.searchhouse.agentconnect.view.activity.(PACKAGE_NAME)
+
+import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
+import sg.searchhouse.agentconnect.R
+import sg.searchhouse.agentconnect.view.activity.base.ViewModelActivity
+
+class (ACTIVITY_NAME) : ViewModelActivity<(VIEW_MODEL_NAME), (BINDING_NAME)>() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // TODO
+    }
+
+    override fun getLayoutResId(): Int {
+        return R.layout.activity_(LAYOUT_NAME)
+    }
+
+    override fun getViewModelClass(): Class<(VIEW_MODEL_NAME)> {
+        return (VIEW_MODEL_NAME)::class.java
+    }
+
+    override fun bindViewModelXml() {
+        binding.viewModel = viewModel
+    }
+
+    override fun getToolbar(): Toolbar? {
+        return toolbar
+    }
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.auth.MobileVerificationViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_invertible"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_verification_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginBottom="@dimen/spacing_xl"
+            android:theme="@style/ToolbarTheme"
+            app:navigationIcon="@drawable/ic_clear" />
+
+        <TextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/size_40"
+            android:layout_marginRight="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_xl"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/tv_line_spacing"
+            android:text="@string/msg_otp_screen" />
+
+        <!-- OTP Pin View -->
+        <com.mukesh.OtpView
+            android:id="@+id/otp_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:itemBackground="@color/light_gray"
+            android:textColor="@color/black"
+            app:itemCount="6"
+            app:itemHeight="@dimen/tv_otp_item_height"
+            app:itemSpacing="@dimen/tv_otp_item_spacing"
+            app:itemWidth="@dimen/tv_otp_item_with"
+            app:lineColor="@color/light_gray"
+            app:viewType="rectangle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_l"
+            android:orientation="horizontal">
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/tv_resend_otp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.resendOTP()}"
+                android:text="@string/label_resend_otp" />
+
+            <TextView
+                android:id="@+id/tv_count_down_timer"
+                style="@style/SmallBodyCyan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_5"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardUserListingsViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:animateLayoutChanges="true"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp">
+
+            <include
+                layout="@layout/card_dashboard_user_listings_occupied"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:viewModel="@{viewModel}" />
+
+            <sg.searchhouse.agentconnect.view.widget.main.dashboard.userlisting.DashboardUserListingsEmpty
+                android:id="@+id/card_user_listings_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isShowEmpty() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_loading_fail_error_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_m"
+                app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                app:isShowOccupied="@{viewModel.isShowOccupied()}"
+                app:mainStatus="@{viewModel.mainStatus}" />
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

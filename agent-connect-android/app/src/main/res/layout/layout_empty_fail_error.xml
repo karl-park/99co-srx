@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="mainStatus"
+            type="StatusKey" />
+
+        <variable
+            name="isShowEmpty"
+            type="Boolean" />
+
+        <variable
+            name="emptyTitle"
+            type="String" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="@{mainStatus == StatusKey.LOADING ? View.GONE : View.VISIBLE}">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@{emptyTitle}"
+            android:visibility="@{safeUnbox(isShowEmpty) ? View.VISIBLE : View.GONE}" />
+
+        <include
+            layout="@layout/layout_load_list_fail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:title="@{String.valueOf(@string/fail_generic_contact_srx)}"
+            app:visibility="@{mainStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+        <include
+            layout="@layout/layout_load_list_fail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:title="@{String.valueOf(@string/error_generic_contact_srx)}"
+            app:visibility="@{mainStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+    </FrameLayout>
+</layout>

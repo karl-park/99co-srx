@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="visibility"
+                type="Integer" />
+    </data>
+
+    <FrameLayout
+            android:visibility="@{visibility}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentPaddingBottom="@dimen/spacing_m"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp">
+
+            <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/text_box_calculator_monthly_fixed_income"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                            android:id="@+id/et_max_purchase_price_monthly_fixed_income"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/text_box_calculator_monthly_debt_expenses"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                            android:id="@+id/et_max_purchase_price_monthly_debt_expenses"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/text_box_calculator_down_payment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                            android:id="@+id/et_max_purchase_price_down_payment"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/margin_bottom_affordability_go_advanced" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

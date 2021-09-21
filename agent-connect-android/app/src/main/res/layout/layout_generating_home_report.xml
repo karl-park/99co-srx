@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="visibility"
+                type="Integer" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+            android:visibility="@{visibility}"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_m"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:indeterminateTint="@color/purple"
+                android:layout_width="@dimen/loading_progress_bar_size_large"
+                android:layout_height="@dimen/loading_progress_bar_size_large" />
+
+        <TextView
+                style="@style/Body"
+                android:textAlignment="textStart"
+                android:text="@string/layout_description_generating_home_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

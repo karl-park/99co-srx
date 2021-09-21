@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.agent.cv.CvEditGeneralInfoFragmentViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_general_info"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ToolbarTheme"
+                app:navigationIcon="@drawable/ic_clear">
+
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_general_info_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/spacing_s"
+                    android:text="@string/label_save"
+                    android:textSize="@dimen/text_size_16" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/spacing_xl">
+
+                <TextView
+                        android:id="@+id/tv_general_info"
+                        style="@style/Heading1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:text="@string/label_general_info" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_s"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="1000">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_general_info"
+                            style="@style/RoundedEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/height_general_info"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:gravity="top"
+                            android:importantForAutofill="no"
+                            android:inputType="textMultiLine"
+                            android:maxLength="1000"
+                            android:paddingTop="@dimen/spacing_xs"
+                            android:paddingBottom="@dimen/spacing_xs"
+                            android:text="@={viewModel.agentCv.aboutMe}"
+                            tools:ignore="LabelFor"
+                            tools:targetApi="O" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

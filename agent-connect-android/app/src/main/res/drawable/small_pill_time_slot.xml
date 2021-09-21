@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--pressed-->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/cyan" />
+            <stroke android:width="@dimen/button_border" android:color="@color/cyan" />
+            <corners android:radius="@dimen/pill_radius" />
+        </shape>
+    </item>
+
+    <!--selected-->
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/cyan" />
+            <stroke android:width="@dimen/button_border" android:color="@color/cyan" />
+            <corners android:radius="@dimen/pill_radius" />
+        </shape>
+    </item>
+
+    <!--default-->
+    <item>
+        <shape>
+            <solid android:color="@color/white_invertible" />
+            <stroke android:width="@dimen/button_border" android:color="@color/text_box_border" />
+            <corners android:radius="@dimen/pill_radius" />
+        </shape>
+    </item>
+
+</selector>

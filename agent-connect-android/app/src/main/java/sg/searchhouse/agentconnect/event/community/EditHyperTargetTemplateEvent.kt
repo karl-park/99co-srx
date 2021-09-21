@@ -1,0 +1,5 @@
+package sg.searchhouse.agentconnect.event.community
+
+import sg.searchhouse.agentconnect.model.api.community.CommunityHyperTargetTemplatePO
+
+class EditHyperTargetTemplateEvent(val hyperTargetTemplatePO: CommunityHyperTargetTemplatePO)

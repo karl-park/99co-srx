@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="homeReportTransaction"
+                type="sg.searchhouse.agentconnect.model.api.xvalue.HomeReportTransaction" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/layout_end"
+                    android:orientation="vertical">
+
+                <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:textOrDash="@{homeReportTransaction.address}" />
+
+                <TextView
+                        style="@style/SmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:textOrDash="@{homeReportTransaction.sizeAndPsf}" />
+
+                <TextView
+                        style="@style/SmallBodyBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:textOrDash="@{homeReportTransaction.price}" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/layout_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:gravity="end"
+                    android:orientation="vertical">
+
+                <TextView
+                        style="@style/SmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{homeReportTransaction.dateSold}" />
+
+                <TextView
+                        style="@style/SmallBodyColorBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{homeReportTransaction.proprietarySource}"
+                        android:visibility="@{homeReportTransaction.sourceAvailable ? View.VISIBLE : View.GONE}" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:background="@color/divider_color" />
+    </LinearLayout>
+</layout>

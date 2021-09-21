@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.SellingCalculatorTab" />
+
+        <variable
+                name="selectedSellingCalculatorTab"
+                type="SellingCalculatorTab" />
+    </data>
+
+    <LinearLayout
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <sg.searchhouse.agentconnect.view.widget.common.TabLeftButton
+                android:id="@+id/btn_tab_lookup_property"
+                android:text="@{SellingCalculatorTab.LOOK_UP_PROPERTY.label}"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isSelected="@{selectedSellingCalculatorTab == SellingCalculatorTab.LOOK_UP_PROPERTY}" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.TabRightButton
+                android:id="@+id/btn_tab_enter_details"
+                android:text="@{SellingCalculatorTab.ENTER_DETAILS.label}"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:isSelected="@{selectedSellingCalculatorTab == SellingCalculatorTab.ENTER_DETAILS}" />
+    </LinearLayout>
+</layout>

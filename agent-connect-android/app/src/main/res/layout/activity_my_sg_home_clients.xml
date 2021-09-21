@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.agent.client.MySgHomeClientsViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray_invertible">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/card_header"
+                layout="@layout/card_my_sg_home_clients_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/spacing_m_minus"
+                android:layout_marginBottom="@dimen/spacing_m"
+                app:viewModel="@{viewModel}" />
+
+            <include
+                android:id="@+id/card_content"
+                android:layout_marginBottom="@dimen/card_border_radius_minus"
+                layout="@layout/card_my_sg_home_clients_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/layout_bottom_bar"
+                android:layout_below="@id/card_header"
+                app:viewModel="@{viewModel}" />
+
+            <include
+                android:id="@+id/layout_bottom_bar"
+                layout="@layout/layout_bottom_action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:btnLabel="@{@string/action_send_message}"
+                app:description="@{viewModel.selectedClientsLabel}"
+                app:isBtnEnabled="@{true}"
+                app:showActionBar="@{viewModel.selectedClients.size() > 0}" />
+
+        </RelativeLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

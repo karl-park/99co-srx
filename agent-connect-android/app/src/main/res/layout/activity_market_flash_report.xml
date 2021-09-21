@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.report.flashreport.MarketFlashReportFullListViewModel" />
+
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white_invertible">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    android:background="@color/white_invertible"
+                    android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/collapsingToolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_collapsing_toolbar_height"
+                        app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                        app:expandedTitleMarginEnd="@dimen/spacing_m"
+                        app:expandedTitleMarginStart="@dimen/spacing_m"
+                        app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            style="@style/ClassicActionBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:contentInsetLeft="0dp"
+                            app:contentInsetStart="0dp"
+                            app:contentInsetStartWithNavigation="0dp"
+                            app:layout_collapseMode="pin"
+                            app:navigationIcon="@drawable/ic_arrow_left"
+                            app:title="@string/title_dashboard_flash_report" />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="@dimen/spacing_s"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                            style="@style/SmallBodyGray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:text="@{viewModel.flashReportCountLabel}"
+                            android:visibility="@{TextUtils.isEmpty(viewModel.flashReportCountLabel)? View.GONE : View.VISIBLE}" />
+
+                    <TextView
+                            style="@style/SmallBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/spacing_xs"
+                            android:layout_toStartOf="@+id/btn_sort"
+                            android:text="@string/label_sort_by" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_sort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="@{viewModel.orderCriteria.label}" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_flash_reports"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginBottom="0dp"
+                        android:overScrollMode="never"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}" />
+
+                <include
+                        layout="@layout/layout_load_market_flash_reports"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+                <include
+                        layout="@layout/layout_empty_fail_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:emptyTitle="@{String.valueOf(@string/msg_no_flash_reports)}"
+                        app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                        app:mainStatus="@{viewModel.mainStatus}" />
+
+            </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

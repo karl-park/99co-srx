@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isAgentCurrentUser"
+            type="Boolean" />
+
+        <variable
+            name="agentPO"
+            type="sg.searchhouse.agentconnect.model.api.agent.AgentPO" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_enquire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="@{agentPO != null &amp;&amp; !isAgentCurrentUser ? View.VISIBLE : View.GONE}"
+        app:cardBackgroundColor="@color/white_invertible"
+        app:cardCornerRadius="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/view_divider_horizontal" />
+
+            <RelativeLayout
+                android:id="@+id/layout_agent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ProfileIconLayout
+                    android:id="@+id/image_agent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    app:imageUrl="@{agentPO.photo}"
+                    app:nameForInitial="@{agentPO.name}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_toStartOf="@id/btn_enquire"
+                    android:layout_toEndOf="@id/image_agent"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{agentPO.name}" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_enquire"
+                    style="@style/PrimaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/button_enquire_now" />
+            </RelativeLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

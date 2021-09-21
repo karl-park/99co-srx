@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="appCardViewStyle" format="reference" />
+
+    <attr name="pillStyle" format="reference" />
+
+    <attr name="clickableTextStyle" format="reference" />
+
+    <attr name="searchButtonStyle" format="reference" />
+
+    <attr name="smallPillStyle" format="reference" />
+
+    <attr name="tabButtonCenterStyle" format="reference" />
+    <attr name="tabLeftButtonStyle" format="reference" />
+    <attr name="tabRightButtonStyle" format="reference" />
+
+    <attr name="subFloatingActionButtonStyle" format="reference" />
+
+    <!--Circle Image View-->
+    <declare-styleable name="CircleImageView">
+        <attr name="url" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ListingQualityBar">
+        <attr name="quality" format="string" />
+        <attr name="showLabel" format="boolean" />
+    </declare-styleable>
+
+</resources>

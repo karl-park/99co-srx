@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/purple" />
+            <stroke android:width="@dimen/button_border" android:color="@color/purple" />
+            <corners android:bottomLeftRadius="0dp" android:bottomRightRadius="@dimen/radius_cover_listing_photo_indicator" android:topLeftRadius="0dp" android:topRightRadius="@dimen/radius_cover_listing_photo_indicator" />
+        </shape>
+    </item>
+</selector>

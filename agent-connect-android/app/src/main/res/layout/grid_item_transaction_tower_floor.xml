@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+
+		<variable
+				name="floor"
+				type="String" />
+	</data>
+
+	<FrameLayout
+			android:layout_width="@dimen/tower_floor_title_width"
+			android:layout_height="@dimen/tower_unit_height">
+
+		<TextView
+				style="@style/Title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="top|center_horizontal"
+				android:layout_margin="@dimen/spacing_xs"
+				android:gravity="center"
+				android:text="@{floor}" />
+
+		<include
+				layout="@layout/view_divider_vertical"
+				android:layout_width="@dimen/list_view_divider"
+				android:layout_height="match_parent"
+				android:layout_gravity="end" />
+
+		<include
+				layout="@layout/view_divider_horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/list_view_divider"
+				android:layout_gravity="bottom" />
+	</FrameLayout>
+</layout>

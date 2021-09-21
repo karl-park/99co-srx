@@ -1,0 +1,24 @@
+package sg.searchhouse.agentconnect.viewmodel.activity.(PACKAGE_NAME)
+
+import android.app.Application
+import android.content.Context
+import sg.searchhouse.agentconnect.viewmodel.base.ApiBaseViewModel
+import javax.inject.Inject
+
+class (ACTIVITY_NAME)ViewModel constructor(application: Application) : ApiBaseViewModel<Any>(application) {
+
+// TODO
+//    @Inject
+//    lateinit var yourRepository: YourRepository
+
+    @Inject
+    lateinit var applicationContext: Context
+
+    init {
+        viewModelComponent.inject(this)
+    }
+
+    override fun shouldResponseBeOccupied(response: Any): Boolean {
+        return true
+    }
+}

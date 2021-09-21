@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="srxIndexPO"
+                type="sg.searchhouse.agentconnect.model.api.propertyindex.LoadMarketWatchIndicesResponse.SrxIndexPO" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_market_watch_item">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBody"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:layout_toStartOf="@id/tv_increase"
+                android:text="@{title}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_increase"
+                style="@style/SmallBody"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical|end"
+                android:layout_width="@dimen/width_column_market_data_price"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/drawable_padding_market_index"
+                android:drawableEnd="@{srxIndexPO.getIncreaseArrow(context)}"
+                android:ellipsize="end"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/padding_end_column_market_data"
+                android:lines="1"
+                android:layout_toStartOf="@id/tv_blank"
+                android:text="@{srxIndexPO.increaseLabel}" />
+
+        <View
+                android:id="@+id/tv_blank"
+                android:layout_toStartOf="@id/tv_month"
+                android:layout_width="@dimen/width_column_market_data_volume"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_month"
+                style="@style/SmallBody"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/width_column_market_data_month"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end|center_vertical"
+                android:lines="1"
+                android:text="@{srxIndexPO.formattedDate}" />
+    </RelativeLayout>
+</layout>

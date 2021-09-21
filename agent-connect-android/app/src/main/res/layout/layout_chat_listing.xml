@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Listing on top of some sent and received chat bubble-->
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.ListingStatus" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="listingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+        <variable
+            name="background"
+            type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <merge>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{listingPO.liveInd == true ? View.VISIBLE : View.GONE}">
+
+            <include
+                android:id="@+id/layout_chat_listing_default"
+                layout="@layout/layout_chat_listing_default"
+                app:background="@{background}"
+                app:listingPO="@{listingPO}" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{listingPO.liveInd != true &amp;&amp; listingPO.listingStatus != ListingStatus.TRANSACTED ? View.VISIBLE : View.GONE}">
+
+            <include
+                android:id="@+id/layout_chat_listing_expired"
+                layout="@layout/layout_chat_listing_expired"
+                app:background="@{background}"
+                app:listingPO="@{listingPO}" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{listingPO.liveInd != true &amp;&amp; listingPO.listingStatus == ListingStatus.TRANSACTED ? View.VISIBLE : View.GONE}">
+
+            <include
+                android:id="@+id/layout_chat_listing_sold"
+                layout="@layout/layout_chat_listing_sold"
+                app:background="@{background}"
+                app:listingPO="@{listingPO}" />
+        </FrameLayout>
+    </merge>
+</layout>

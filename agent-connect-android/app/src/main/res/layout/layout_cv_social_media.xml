@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.cv.AgentCvViewModel" />
+        
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xs">
+
+            <TextView
+                    android:id="@+id/tv_social_media"
+                    style="@style/Heading2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_social_media" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_social_media"
+                    style="@style/Switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_toEndOf="@+id/tv_social_media"
+                    android:visibility="@{viewModel.isOwnCv == true? View.VISIBLE : View.GONE}" />
+
+        </RelativeLayout>
+
+        <TextView
+                style="@style/SmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/msg_social_media"
+                android:textColor="@color/gray" />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:orientation="horizontal">
+
+            <ImageView
+                    android:layout_width="@dimen/size_45"
+                    android:layout_height="@dimen/size_45"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:contentDescription="@string/content_description_facebook"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_fb_selected" />
+
+            <ImageView
+                    android:layout_width="@dimen/size_45"
+                    android:layout_height="@dimen/size_45"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:contentDescription="@string/content_description_twitter"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_twitter_selected" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

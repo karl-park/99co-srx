@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <variable
+            name="dateTime"
+            type="sg.searchhouse.agentconnect.model.app.AppointmentDateTime" />
+    </data>
+    
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_time_slot"
+        style="@style/TimeSlotPill"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pill_height"
+        android:text="@{dateTime.getFormattedTime()}"
+        app:isSelected="@{isSelected}" />
+
+</layout>

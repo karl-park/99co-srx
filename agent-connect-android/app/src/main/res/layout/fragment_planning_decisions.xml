@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.project.PlanningDecisionsViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <!--Alt states of @id/list_planning_decision, here for vertical center align-->
+        <FrameLayout
+                android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <include
+                    layout="@layout/layout_loading_fail_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:mainStatus="@{viewModel.decisionsStatus}" />
+
+            <include
+                    layout="@layout/layout_load_list_fail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    app:title="@{@string/empty_planning_decisions}"
+                    app:visibility="@{viewModel.isShowDecisionsEmpty() ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+
+        <!--Main-->
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <!--Horizontal list of planning decision types-->
+            <FrameLayout
+                    android:id="@+id/layout_decision_types"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <include
+                        layout="@layout/layout_loading_fail_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:mainStatus="@{viewModel.mainStatus}" />
+
+                <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        app:title="@string/empty_planning_decision_types"
+                        app:visibility="@{viewModel.isShowEmpty() ? View.VISIBLE : View.GONE}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_planning_decision_type"
+                        android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="@dimen/spacing_l" />
+            </FrameLayout>
+
+            <!--Date filter-->
+            <LinearLayout
+                    android:id="@+id/layout_filter"
+                    android:layout_below="@id/layout_decision_types"
+                    android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="end|center_vertical"
+                    android:orientation="horizontal">
+
+                <TextView
+                        style="@style/SmallBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        android:text="@string/label_filter_decision_date" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.decisionDate.label}" />
+
+            </LinearLayout>
+
+            <!--Content (scroll top for layout of other states)-->
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_planning_decision"
+                    android:layout_below="@id/layout_filter"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:visibility="@{viewModel.isShowOccupied() &amp;&amp; viewModel.isShowDecisionsOccupied() ? View.VISIBLE : View.GONE}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+        </RelativeLayout>
+    </FrameLayout>
+</layout>

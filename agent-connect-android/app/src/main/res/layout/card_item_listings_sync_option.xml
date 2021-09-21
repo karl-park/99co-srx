@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="label"
+                type="String" />
+
+        <variable
+                name="isSelected"
+                type="Boolean" />
+    </data>
+
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:id="@+id/card_sync_option"
+            android:layout_width="@dimen/width_portal_import_sync_mode"
+            android:layout_height="@dimen/height_portal_import_sync_mode"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp"
+            app:strokeColor="@{isSelected == true ? @color/cyan : @color/card_border}">
+
+        <TextView
+                style="@style/SelectedPortalSyncModeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{label}"
+                android:visibility="@{isSelected == true ? View.VISIBLE : View.GONE}"
+                tools:targetApi="o" />
+
+        <TextView
+                style="@style/NormalPortalSyncModeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{label}"
+                android:textColor="@{isSelected == null ? @color/black : @color/gray}"
+                android:visibility="@{isSelected == true ? View.GONE : View.VISIBLE}"
+                tools:targetApi="o" />
+
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+
+</layout>

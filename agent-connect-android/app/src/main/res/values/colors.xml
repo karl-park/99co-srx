@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/cyan</color>
+    <color name="colorPrimaryDark">@color/cyan_dark</color>
+    <color name="colorAccent">@color/purple</color>
+
+    <!--following colors are from SRX design color guidelines-->
+    <!--for main header-->
+    <color name="purple">#483387</color>
+    <!--for text link-->
+    <color name="cyan">#58c3c4</color>
+    <!--for text link focused-->
+    <color name="cyan_dark">#00888A</color>
+    <!--for secondary button focused-->
+    <color name="cyan_light">#8ad5d6</color>
+    <!--for feedback messages-->
+    <color name="feedback_messages">#def3f3</color>
+    <!--for placeholder and icon with text-->
+    <color name="light_gray">#cacccf</color>
+    <color name="light_gray_invertible">@color/light_gray</color>
+    <!--Accordion background, input field-->
+    <color name="accordion_background">#FAFAFA</color>
+    <color name="accordion_background_invertible">@color/accordion_background</color>
+    <!--body text,label and icon -->
+    <color name="black">#25282b</color>
+    <color name="black_invertible">@color/black</color>
+    <color name="black_translucent">#8825282b</color>
+    <!-- for primary button -->
+    <color name="btn_yellow">#ffba00</color>
+    <color name="btn_yellow_disabled">#88ffba00</color>
+    <!-- for primary color for focus state -->
+    <color name="btn_focus_background">#FFAD33</color>
+    <!-- for currency green -->
+    <color name="currency">@color/purple</color>
+    <!-- for error messages-->
+    <color name="red">#ff0000</color>
+    <!-- for error messages background-->
+    <color name="error_background">#ffe4e6</color>
+    <!-- for success messages background-->
+    <color name="success_background">#ecf5db</color>
+    <!--Sub Text -->
+    <color name="gray">#858585</color>
+    <color name="gray_invertible">@color/gray</color>
+    <!-- for menu -->
+    <color name="white">#FFFFFF</color>
+    <color name="white_invertible">@color/white</color>
+    <color name="white_translucent">#88FFFFFF</color>
+    <!-- Chat Bubble sender -->
+    <color name="chat_bubble_sender">#DAD5E7</color>
+    <!-- success background border-->
+    <color name="success_background_border">#31B057</color>
+    <!-- selected item highlight -->
+    <color name="selected">@color/cyan</color>
+    <color name="selected_background">#2058c3c4</color>
+
+    <color name="light_gainsboro">#DDDDDD</color>
+    <color name="light_gainsboro_invertible">@color/light_gainsboro</color>
+
+    <!-- self defined colors -->
+    <color name="light_blue">#B7E9F7</color>
+    <color name="blue">#619dfd</color>
+    <color name="dark_blue">#003ea3</color>
+
+    <color name="orange">#ff9900</color>
+    <color name="orange_light">#ff8600</color>
+    <color name="orange_light_invertible">@color/orange_light</color>
+    <color name="green">#4caf50</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="yellow">#FAE842</color>
+    <color name="white_smoke">#F8F8F8</color>
+    <color name="white_smoke_invertible">@color/white_smoke</color>
+    <color name="light_green">#F0FFEA</color>
+
+    <color name="light_purple">#EFE8FD</color>
+
+    <!--Text link-->
+    <color name="text_link">@color/cyan</color>
+    <color name="text_link_focus">@color/cyan_dark</color>
+
+    <!--Text box-->
+    <color name="text_box_border_focused">@color/cyan</color>
+    <color name="text_box_border">@color/light_gray_invertible</color>
+    <color name="text_box_hint">@color/hint</color>
+    <color name="text_box_background">#fafbfc</color>
+    <color name="text_box_background_invertible">@color/text_box_background</color>
+    <color name="text_box_disabled_background_invertible">@color/light_gray_invertible
+    </color>
+
+    <!--Pill button-->
+    <color name="pill_background_selected">#f5f5f5</color>
+    <color name="pill_background_selected_invertible">@color/pill_background_selected</color>
+
+    <color name="tag_background_selected">@color/profile_color_1</color>
+
+    <!--Overlay of sub floating action buttons from the bottom bar of main activity-->
+    <color name="fab_group_overlay">#ccffffff</color>
+    <color name="fab_group_overlay_invertible">@color/fab_group_overlay</color>
+    <color name="fab_my_listings_overlay">#e6ffffff</color>
+
+    <color name="selected_my_listing_foreground">#80ffffff</color>
+    <color name="transacted_listing_foreground">@color/fab_group_overlay</color>
+
+
+    <!--Card-->
+    <color name="card_border">@color/light_gray_invertible</color>
+    <color name="divider_color">@color/light_gray_invertible</color>
+
+    <!--View mode toggle-->
+    <color name="view_mode_toggle_background">#616161</color>
+    <color name="view_mode_toggle_background_clicked">#616161</color>
+    <color name="view_mode_toggle_border">#525252</color>
+
+    <!--Colors for profile icon placeholder-->
+    <color name="profile_color_0">#483387</color>
+    <color name="profile_color_1">#6d5c9f</color>
+    <color name="profile_color_2">#9185b7</color>
+    <color name="profile_color_3">#3f8f90</color>
+    <color name="profile_color_4">#4aa8b2</color>
+    <color name="profile_color_5">#58c3c4</color>
+    <color name="profile_color_6">#ce8900</color>
+    <color name="profile_color_7">#f1a600</color>
+    <color name="profile_color_8">#ffba00</color>
+    <color name="profile_color_9">#a0a4a8</color>
+    <color name="profile_color_10">#52575c</color>
+    <color name="profile_color_11">#a0cd4b</color>
+    <color name="profile_color_12">#ff7881</color>
+
+    <!-- color for quality listing-->
+    <color name="quality_listing_filled_color">@color/cyan</color>
+
+    <!--Listings search result-->
+    <color name="listing_action_bar_background">#42212121</color>
+    <color name="listing_card_stroke_color">@color/light_gray_invertible</color>
+    <color name="background_x_value_box_bottom">#FFEAEAEA</color>
+    <color name="background_x_value_box_bottom_invertible">@color/background_x_value_box_bottom
+    </color>
+    <color name="new_indicator_background">#FE7881</color>
+    <color name="green_indicator_up">#429541</color>
+
+    <color name="post_listing_appeal_text">#FF3B30</color>
+    <color name="non_quality_tooltip_background">#FFE1BF</color>
+
+    <!--Notification-->
+    <!--TODO Merge to black_invertible-->
+    <color name="notification_home_report_content_invertible">@color/black</color>
+    <!--TODO Merge to gray_invertible-->
+    <color name="notification_home_report_title_invertible">@color/gray</color>
+
+    <!--TODO Make invertible-->
+    <color name="background_preview_chat_listing">#f9f9f9</color>
+
+    <color name="background_home_report_stats">#FAF7FF</color>
+
+    <color name="body_divider_sponsor">#4A2F8D</color>
+</resources>

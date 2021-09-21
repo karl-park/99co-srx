@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="searchText"
+            type="String" />
+
+        <variable
+            name="showDefaultView"
+            type="Boolean" />
+
+        <variable
+            name="isFilterEnabled"
+            type="Boolean" />
+
+        <variable
+            name="orderCriteriaLabel"
+            type="Integer" />
+
+        <variable
+            name="showCloseIcon"
+            type="Boolean" />
+
+        <variable
+            name="hintText"
+            type="String" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_invertible"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_m"
+        tools:ignore="KeyboardInaccessibleWidget">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/content_description_dismiss"
+                android:src="@drawable/ic_arrow_left"
+                android:tint="@color/black_invertible" />
+
+            <RelativeLayout
+                style="@style/SearchButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ic_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_action_search"
+                    android:tint="@color/white_invertible" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn_search"
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:layout_toStartOf="@+id/btn_clear"
+                    android:layout_toEndOf="@+id/ic_search"
+                    android:ellipsize="end"
+                    android:hint="@{hintText}"
+                    android:lines="1"
+                    android:text="@{searchText}"
+                    android:textColor="@color/white_invertible"
+                    android:textColorHint="@color/white_invertible" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_cancel"
+                    android:tint="@color/white_invertible"
+                    android:visibility="@{safeUnbox(showCloseIcon)? View.VISIBLE : View.GONE}" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:visibility="@{safeUnbox(showDefaultView)? View.GONE : View.VISIBLE}">
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/btn_filter_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawableStart="@drawable/ic_filter"
+                android:drawableTint="@color/black_invertible"
+                android:enabled="@{isFilterEnabled}"
+                android:text="@string/button_filter_result" />
+
+            <TextView
+                style="@style/SubText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_toStartOf="@+id/tv_selected_sort_option"
+                android:text="@string/label_sort_by"
+                android:visibility="@{safeUnbox(showDefaultView)? View.GONE : View.VISIBLE}" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/tv_selected_sort_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@{orderCriteriaLabel}"
+                android:visibility="@{safeUnbox(showDefaultView)? View.GONE : View.VISIBLE}" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.activity.listing.MyListingsActivity">
+
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.view.adapter.listing.user.MyListingsPagerAdapter.MyListingsTab" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.MyListingsViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum.ListingDraftMode" />
+
+    </data>
+
+    <!-- Mock-up: https://projects.invisionapp.com/d/main#/console/16960254/417070084/inspect -->
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout_header">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_invertible"
+                    android:stateListAnimator="@null">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+
+                        <include
+                            android:id="@+id/layout_smart_filter"
+                            layout="@layout/layout_my_listings_smart_filter"
+                            app:viewModel="@{viewModel}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_xxs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_xxs"
+                            android:text="@string/msg_my_listings_add_value_services"
+                            android:visibility="@{viewModel.draftMode == ListingDraftMode.CEA_FORMS ? View.GONE : View.VISIBLE }" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white_invertible"
+                    android:orientation="vertical"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:visibility="@{viewModel.isSelectionApplicable() == true &amp;&amp; viewModel.selectedTab != MyListingsTab.TRANSACTION ? View.VISIBLE : View.INVISIBLE}">
+
+                        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_select_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@id/layout_sort"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/button_select_all" />
+
+                        <LinearLayout
+                            android:id="@+id/layout_sort"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:orientation="horizontal"
+                            android:visibility="@{viewModel.draftMode == ListingDraftMode.CEA_FORMS ? View.GONE : View.VISIBLE }">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_label_sort_by"
+                                style="@style/SmallBody"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_xs"
+                                android:text="@string/label_sort_by" />
+
+                            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                                android:id="@+id/btn_sort"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_xs"
+                                android:text="@{viewModel.orderCriteriaLabel}" />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/ib_sort"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="?selectableItemBackground"
+                                android:contentDescription="@string/content_description_sort"
+                                android:src="@{ContextCompat.getDrawable(context, viewModel.orderCriteriaIcon)}"
+                                android:visibility="@{viewModel.isOrderCriteriaNeutral() ? View.GONE : View.VISIBLE}" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never" />
+
+                </LinearLayout>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_collapsing_toolbar_height_my_listings"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/ClassicActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    app:contentInsetStartWithNavigation="0dp"
+                    app:navigationIcon="@drawable/ic_arrow_left" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExpandedAppBarTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:text="@string/title_my_listings" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_collapsing_toolbar_height_my_listings"
+                android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout_listing_group"
+                    style="@style/ChatTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabPaddingEnd="@dimen/spacing_xs"
+                    app:tabPaddingStart="@dimen/spacing_xxs_minus"
+                    app:tabSelectedTextColor="@color/black_invertible"
+                    app:tabTextColor="@color/gray_invertible" />
+
+                <FrameLayout
+                    android:id="@+id/layout_search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="0dp"
+                    android:visibility="@{safeUnbox(viewModel.showSearchBarLayout)? View.VISIBLE : View.GONE}">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.WhiteSearchEditText
+                        android:id="@+id/et_active_listings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.draftMode != ListingDraftMode.CEA_FORMS &amp;&amp; viewModel.showSearchEditText == true ? View.VISIBLE : View.GONE }"
+                        app:hint="@{viewModel.searchEditTextHint}" />
+                </FrameLayout>
+
+                <sg.searchhouse.agentconnect.view.widget.listing.MyListingsDraftModeTabLayout
+                    android:id="@+id/tab_layout_draft"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="0dp"
+                    android:visibility="@{viewModel.selectedTab == MyListingsTab.DRAFT ? View.VISIBLE : View.GONE}"
+                    app:draftMode="@{viewModel.draftMode}" />
+
+                <!-- Note : this owner ship layout for listings -->
+                <sg.searchhouse.agentconnect.view.widget.listing.MyListingsOwnershipRadioGroup
+                    android:id="@+id/radio_group_listings_ownership"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:visibility="@{viewModel.draftMode == ListingDraftMode.CEA_FORMS ? View.GONE : View.VISIBLE }"
+                    app:ownershipType="@{viewModel.ownershipType}" />
+
+                <sg.searchhouse.agentconnect.view.widget.listing.MyListingsOwnershipRadioGroup
+                    android:id="@+id/radio_group_cea_ownership"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:visibility="@{viewModel.draftMode == ListingDraftMode.CEA_FORMS ? View.VISIBLE : View.GONE }"
+                    app:ownershipType="@{viewModel.ceaOwnershipType}" />
+
+            </LinearLayout>
+
+            <sg.searchhouse.agentconnect.view.widget.listing.MyListingsFabAddOn
+                android:id="@+id/layout_my_listing_add_on"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{safeUnbox(viewModel.showAddOn) ? View.VISIBLE : View.GONE}" />
+
+        </RelativeLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

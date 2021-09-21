@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="contactName"
+            type="String" />
+
+        <variable
+            name="conversation"
+            type="sg.searchhouse.agentconnect.model.api.chat.SsmConversationPO" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="showCheckBox"
+            type="Boolean" />
+
+        <variable
+            name="showEnquiryIndicator"
+            type="Boolean" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_invertible"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingBottom="@dimen/spacing_xs">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_chat_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/CheckBox"
+                android:visibility="@{safeUnbox(showCheckBox)? View.VISIBLE : View.GONE}" />
+
+            <include
+                android:id="@+id/layout_profile"
+                layout="@layout/layout_ssm_profile"
+                app:conversationType="@{conversation.getSsmConversationType()}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:orientation="vertical">
+
+                <!-- Contact, Online indicator, message count and Date and arrow left layout -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical">
+
+                    <!--Contact Name-->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_contact_name"
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/layout_unread_indicator"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@{contactName}" />
+
+                    <FrameLayout
+                        android:id="@+id/layout_unread_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_5"
+                        android:layout_toStartOf="@+id/tv_last_date_sent"
+                        android:visibility="@{conversation.unreadCount > 0 ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_new_enquiry"
+                            style="@style/Badge"
+                            android:layout_width="@dimen/size_40"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/label_capital_new"
+                            android:visibility="@{safeUnbox(showEnquiryIndicator) ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_unread_msg_count"
+                            style="@style/Badge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/badge_height"
+                            android:gravity="center"
+                            android:text="@{String.valueOf(conversation.unreadCount)}"
+                            android:visibility="@{safeUnbox(showEnquiryIndicator) ? View.GONE : View.VISIBLE}" />
+
+                    </FrameLayout>
+
+                    <!-- last date send -->
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_last_date_sent"
+                        style="@style/SubText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_4"
+                        android:layout_toStartOf="@+id/iv_arrow_right"
+                        android:text="@{conversation.getFormattedDate(context)}"
+                        android:textColor="@{conversation.unreadCount > 0 ? @color/black_invertible : @color/gray_invertible}" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_arrow_right"
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
+                        android:layout_alignParentEnd="true"
+                        android:contentDescription="@string/content_description_arrow_right"
+                        android:src="@drawable/ic_arrow_right"
+                        android:tint="@color/gray" />
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_address"
+                    style="@style/SubText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_message"
+                    style="@style/ExtraSmallBodyGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="@integer/two"
+                    android:text="@{conversation.message}"
+                    android:textColor="@{conversation.unreadCount > 0 ? @color/black_invertible : @color/gray_invertible}"
+                    android:visibility="@{!TextUtils.isEmpty(conversation.message)? View.VISIBLE: View.INVISIBLE}" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/view_divider_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_view_divider"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m" />
+
+    </LinearLayout>
+</layout>

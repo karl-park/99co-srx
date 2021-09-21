@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="onlineCommunicationPO"
+            type="sg.searchhouse.agentconnect.model.api.propertynews.OnlineCommunicationPO" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_m"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:layout_marginEnd="@dimen/spacing_m"
+        android:layout_marginBottom="@dimen/spacing_xs"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:id="@+id/layout_property_news"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_news_photo"
+                android:layout_width="@dimen/news_item_photo_width"
+                android:layout_height="@dimen/news_item_photo_height"
+                android:contentDescription="@string/content_description_news_photo"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_square_image_placeholder"
+                app:imageUrl="@{onlineCommunicationPO.imageUrlSmall}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_s"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/BodyBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_s"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{onlineCommunicationPO.title}" />
+
+                <TextView
+                    android:id="@+id/tv_news_date"
+                    style="@style/SmallBodyGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:drawablePadding="@dimen/spacing_xs"
+                    android:gravity="center"
+                    android:text="@{onlineCommunicationPO.datePosted}" />
+
+                <TextView
+                    android:id="@+id/tv_news_source"
+                    style="@style/SmallBodyGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@{onlineCommunicationPO.source}" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>
+

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.CobrokeSmsTemplate" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.SmsBlastViewModel" />
+
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.propertyAvailableStatus != StatusKey.SUCCESS &amp;&amp; viewModel.scheduleViewingStatus != StatusKey.SUCCESS ? View.VISIBLE : View.GONE}">
+
+                <!-- Expand and Collapsible app bar layout -->
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    android:background="@color/white_invertible"
+                    android:fitsSystemWindows="true">
+
+                    <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/collapsingToolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_collapsing_toolbar_height"
+                        android:fitsSystemWindows="true"
+                        app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                        app:expandedTitleMarginEnd="@dimen/spacing_m"
+                        app:expandedTitleMarginStart="60dp"
+                        app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                        <!--By design requirement, add image beside title-->
+                        <!--TODO: revamp this one in future if they don't like showing image and title in this way-->
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/title_icon"
+                            android:layout_width="@dimen/title_icon_size"
+                            android:layout_height="@dimen/title_icon_size"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="?attr/actionBarSize"
+                            android:src="@drawable/ic_cobroke"
+                            android:visibility="@{safeUnbox(viewModel.showTitleIcon)? View.VISIBLE : View.GONE}" />
+
+                        <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            style="@style/ClassicActionBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:contentInsetLeft="0dp"
+                            app:contentInsetStart="0dp"
+                            app:contentInsetStartWithNavigation="0dp"
+                            app:layout_collapseMode="pin"
+                            app:navigationIcon="@drawable/ic_cancel"
+                            app:title="@string/title_activity_sms_blast">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/toolbar_icon"
+                                android:layout_width="@dimen/icon_size_big"
+                                android:layout_height="@dimen/icon_size_big"
+                                android:src="@drawable/ic_cobroke"
+                                android:visibility="@{safeUnbox(viewModel.showTitleIcon)? View.GONE : View.VISIBLE}" />
+
+                        </androidx.appcompat.widget.Toolbar>
+
+                    </com.google.android.material.appbar.CollapsingToolbarLayout>
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <!--Content-->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}">
+
+                        <LinearLayout
+                            android:id="@+id/layout_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <include
+                                android:id="@+id/layout_sms_blast_available"
+                                layout="@layout/layout_sms_blast_available"
+                                app:isExpand="@{viewModel.selectedTemplate == CobrokeSmsTemplate.PROPERTY_AVAILABLE}"
+                                app:isSubmitting="@{viewModel.propertyAvailableStatus == StatusKey.LOADING}"
+                                app:template="@{viewModel.propertyAvailableTemplate}" />
+
+                            <include
+                                android:id="@+id/layout_sms_blast_schedule_viewing"
+                                layout="@layout/layout_sms_blast_schedule_viewing"
+                                app:isExpand="@{viewModel.selectedTemplate == CobrokeSmsTemplate.SCHEDULE_VIEWING}"
+                                app:isSubmitting="@{viewModel.scheduleViewingStatus == StatusKey.LOADING}"
+                                app:template="@{viewModel.scheduleViewingTemplate}" />
+                        </LinearLayout>
+                    </androidx.core.widget.NestedScrollView>
+
+                    <include
+                        layout="@layout/layout_load_list_fail"
+                        app:title="@{@string/empty_cobroke_sms_templates}"
+                        app:visibility="@{viewModel.isShowEmpty() ? View.VISIBLE : View.GONE}" />
+
+                    <include
+                        layout="@layout/layout_loading_fail_error"
+                        app:mainStatus="@{viewModel.mainStatus}" />
+                </FrameLayout>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <include
+                layout="@layout/layout_action_success"
+                app:buttonLabel="@{@string/button_sms_blast_back}"
+                app:content="@{viewModel.successMessage}"
+                app:visibility="@{viewModel.propertyAvailableStatus == StatusKey.SUCCESS || viewModel.scheduleViewingStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="setting_labels">
+        <item>@string/setting_item_my_profile</item>
+        <item>@string/setting_item_my_listings</item>
+        <item>@string/setting_item_news</item>
+        <item>@string/setting_item_calculators</item>
+        <item>@string/setting_item_find_agent</item>
+        <item>@string/setting_item_loan_referral</item>
+        <item>@string/setting_item_training</item>
+        <item>@string/setting_item_help_and_support</item>
+        <item>@string/setting_item_invite_agents</item>
+        <item>@string/setting_item_feedback</item>
+        <item>@string/setting_item_privacy_statement</item>
+        <item>@string/setting_item_terms_of_use</item>
+        <item>@string/setting_item_terms_of_sale</item>
+        <item>@string/setting_item_sign_out</item>
+    </string-array>
+
+    <integer-array name="setting_icons">
+        <item>0</item>
+        <item>@drawable/ic_layout</item>
+        <item>@drawable/ic_file_text</item>
+        <item>@drawable/ic_divide</item>
+        <item>@drawable/ic_agent</item>
+        <item>@drawable/ic_handshake</item>
+        <item>@drawable/ic_teach</item>
+        <item>@drawable/ic_help_circle</item>
+        <item>@drawable/ic_user_plus</item>
+        <item>@drawable/ic_edit</item>
+        <item>@drawable/ic_shield</item>
+        <item>@drawable/ic_file</item>
+        <item>@drawable/ic_tag</item>
+        <item>@drawable/ic_power</item>
+    </integer-array>
+
+    <string-array name="calendar_month_labels">
+        <item>@string/initial_letter_monday</item>
+        <item>@string/initial_letter_tuesday</item>
+        <item>@string/initial_letter_wednesday</item>
+        <item>@string/initial_letter_thursday</item>
+        <item>@string/initial_letter_friday</item>
+        <item>@string/initial_letter_saturday</item>
+        <item>@string/initial_letter_sunday</item>
+    </string-array>
+
+</resources>

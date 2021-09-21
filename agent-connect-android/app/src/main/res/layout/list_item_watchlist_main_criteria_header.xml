@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="watchlistHeader"
+                type="sg.searchhouse.agentconnect.model.app.WatchlistHeader" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_margin="@dimen/spacing_m"
+                android:text="@{watchlistHeader.getLabel(context)}"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content" />
+
+    </FrameLayout>
+</layout>

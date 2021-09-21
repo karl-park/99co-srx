@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="contactName"
+                type="String" />
+
+        <variable
+                name="message"
+                type="String" />
+
+        <variable
+                name="date"
+                type="String" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_xs">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m">
+
+            <TextView
+                    android:id="@+id/tv_contact_name"
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="@dimen/margin_5"
+                    android:layout_toEndOf="@+id/tv_last_date_sent"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{contactName}" />
+
+            <TextView
+                    android:id="@+id/tv_last_date_sent"
+                    style="@style/SubText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@{date}" />
+
+        </RelativeLayout>
+
+        <TextView
+                android:id="@+id/tv_message"
+                style="@style/ExtraSmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:lines="@integer/max_line_1"
+                android:text="@{message}" />
+
+        <include
+                layout="@layout/view_divider_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.WatchlistEnum.BathroomCount" />
+
+        <variable
+                name="bathroomSelector"
+                type="sg.searchhouse.agentconnect.view.widget.property.BathroomSelector" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="7">
+
+        <include
+                android:id="@+id/btn_bathroom_count_any"
+                layout="@layout/button_filter_bathroom_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_group_rounded_start}"
+                app:bathroomCount="@{BathroomCount.ANY}"
+                app:bathroomSelector="@{bathroomSelector}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{bathroomSelector.bathroomCounts.contains(BathroomCount.ANY) || bathroomSelector.bathroomCounts.contains(BathroomCount.ONE) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bathroom_count_one"
+                layout="@layout/button_filter_bathroom_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bathroomCount="@{BathroomCount.ONE}"
+                app:bathroomSelector="@{bathroomSelector}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{bathroomSelector.bathroomCounts.contains(BathroomCount.ONE) || bathroomSelector.bathroomCounts.contains(BathroomCount.TWO) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bathroom_count_two"
+                layout="@layout/button_filter_bathroom_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bathroomCount="@{BathroomCount.TWO}"
+                app:bathroomSelector="@{bathroomSelector}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{bathroomSelector.bathroomCounts.contains(BathroomCount.TWO) || bathroomSelector.bathroomCounts.contains(BathroomCount.THREE) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bathroom_count_three"
+                layout="@layout/button_filter_bathroom_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bathroomCount="@{BathroomCount.THREE}"
+                app:bathroomSelector="@{bathroomSelector}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{bathroomSelector.bathroomCounts.contains(BathroomCount.THREE) || bathroomSelector.bathroomCounts.contains(BathroomCount.FOUR) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bathroom_count_four"
+                layout="@layout/button_filter_bathroom_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bathroomCount="@{BathroomCount.FOUR}"
+                app:bathroomSelector="@{bathroomSelector}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{bathroomSelector.bathroomCounts.contains(BathroomCount.FOUR) || bathroomSelector.bathroomCounts.contains(BathroomCount.FIVE) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bathroom_count_five"
+                layout="@layout/button_filter_bathroom_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bathroomCount="@{BathroomCount.FIVE}"
+                app:bathroomSelector="@{bathroomSelector}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{bathroomSelector.bathroomCounts.contains(BathroomCount.FIVE) || bathroomSelector.bathroomCounts.contains(BathroomCount.SIX_AND_ABOVE) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bathroom_count_six_and_above"
+                layout="@layout/button_filter_bathroom_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_group_rounded_end}"
+                app:bathroomCount="@{BathroomCount.SIX_AND_ABOVE}"
+                app:bathroomSelector="@{bathroomSelector}" />
+    </LinearLayout>
+</layout>

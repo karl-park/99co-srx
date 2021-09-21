@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="(VIEW_MODEL_PATH)" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <!--TODO Set title-->
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="REPLACE THIS" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}">
+
+                        <!--TODO-->
+                </FrameLayout>
+
+                <include
+                        layout="@layout/layout_loading_fail_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:mainStatus="@{viewModel.mainStatus}" />
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

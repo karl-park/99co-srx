@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.cv.CvListingsViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white_invertible"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_arrow_left">
+
+                    <TextView
+                            style="@style/BodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@{viewModel.title}" />
+                </androidx.appcompat.widget.Toolbar>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.totalProperties)?View.GONE : View.VISIBLE}">
+
+                    <include layout="@layout/view_divider_horizontal" />
+
+                    <TextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:gravity="center"
+                            android:text="@{viewModel.totalProperties}" />
+
+                    <include layout="@layout/view_divider_horizontal" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_listings"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied())? View.VISIBLE : View.GONE}"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+                <include
+                        android:id="@+id/layout_loading_fail_error"
+                        layout="@layout/layout_loading_fail_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:mainStatus="@{viewModel.mainStatus}" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="@{safeUnbox(viewModel.isOwnCv()) ? View.GONE : View.VISIBLE}">
+
+                <include
+                        android:id="@+id/layout_action_listings"
+                        layout="@layout/layout_action_listings"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:selectMode="@{viewModel.selectedMode}"
+                        app:selectedListItemsSize="@{viewModel.selectedListItemsSize}" />
+            </LinearLayout>
+        </RelativeLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

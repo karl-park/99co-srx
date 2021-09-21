@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.util.NumberUtil" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel.SelectMode" />
+
+        <variable
+            name="selectedListItemsSize"
+            type="Integer" />
+
+        <variable
+            name="selectMode"
+            type="SelectMode" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white_invertible"
+        android:orientation="vertical"
+        android:visibility="@{selectMode != null ? View.VISIBLE : View.GONE}">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_view_divider"
+            android:background="@color/divider_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_listings_count"
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/layout_buttons"
+                android:text="@{@plurals/label_selected_listings(selectedListItemsSize, NumberUtil.formatThousand(selectedListItemsSize))}" />
+
+            <LinearLayout
+                android:id="@+id/layout_buttons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_submit_export"
+                    style="@style/PrimaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="@{selectedListItemsSize > 0}"
+                    android:text="@{@plurals/button_export_listings(selectedListItemsSize)}"
+                    android:visibility="@{selectMode == SelectMode.EXPORT_LISTINGS ? View.VISIBLE : View.GONE}" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_submit_cobroke"
+                    style="@style/PrimaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_cobroke"
+                    android:drawablePadding="@dimen/spacing_xs"
+                    android:enabled="@{selectedListItemsSize > 0}"
+                    android:text="@string/button_co_broke"
+                    android:visibility="@{selectMode == SelectMode.COBROKE ? View.VISIBLE : View.GONE}" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

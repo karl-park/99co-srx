@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum.SrxCreditMainType" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.user.FeaturesCreditApplicationViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_collapsing_toolbar_height"
+                android:background="@color/white_invertible"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                    app:expandedTitleMarginEnd="@dimen/spacing_m"
+                    app:expandedTitleMarginStart="@dimen/spacing_m"
+                    app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_clear">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="@dimen/spacing_s">
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/ib_wallet"
+                                android:layout_width="@dimen/icon_size_big"
+                                android:layout_height="@dimen/icon_size_big"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/white_invertible"
+                                android:clickable="true"
+                                android:contentDescription="@string/content_description_wallet"
+                                android:focusable="true"
+                                android:foreground="?selectableItemBackgroundBorderless"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/ic_wallet" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                style="@style/Badge"
+                                android:layout_width="@dimen/size_top_up_credit"
+                                android:layout_height="@dimen/size_top_up_credit"
+                                android:layout_gravity="center|start"
+                                android:layout_marginBottom="@dimen/spacing_xxs"
+                                android:contentDescription="@string/content_description_bullet"
+                                android:paddingTop="@dimen/spacing_xxs"
+                                android:paddingBottom="@dimen/spacing_xxs"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_arrow_down_2"
+                                android:tint="@color/white" />
+                        </FrameLayout>
+
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{safeUnbox(viewModel.isShowOccupied) ? View.VISIBLE : View.GONE}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_xxs"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_s"
+                        android:lineSpacingExtra="@dimen/tv_line_spacing"
+                        android:text="@{viewModel.creditType.description}" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/tv_download_valuation_sample"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_s"
+                        android:drawableStart="@drawable/ic_download"
+                        android:drawableTint="@color/gray_invertible"
+                        android:text="@string/label_sample_report"
+                        android:visibility="@{viewModel.creditType == SrxCreditMainType.VALUATION ? View.VISIBLE : View.GONE}"
+                        tools:ignore="RtlHardcoded" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:orientation="horizontal"
+                        android:visibility="@{viewModel.creditType == SrxCreditMainType.FEATURED_LISTING ? View.VISIBLE : View.GONE}"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="@dimen/spacing_xxs"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:lineSpacingExtra="@dimen/tv_line_spacing"
+                            android:text="@string/instruction_choose_featured_listing" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/btn_help"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/content_description_help"
+                            android:src="@drawable/ic_help_circle"
+                            android:tint="@color/gray_invertible" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_selected_listings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyOrange"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@{viewModel.creditSummaryPO.flExpiryMsg}"
+                            android:visibility="@{TextUtils.isEmpty(viewModel.creditSummaryPO.flExpiryMsg) ? View.GONE: View.VISIBLE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:text="@string/label_credit_summary" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Body"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/label_credit_deductible" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Body"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:text="@{viewModel.deductibleCredits}" />
+
+                        </RelativeLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_wallet"
+                            style="@style/BodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:drawableEnd="@drawable/ic_wallet"
+                            android:drawablePadding="@dimen/spacing_xs"
+                            android:drawableTint="@color/black_invertible"
+                            android:gravity="center"
+                            android:text="@string/label_wallet" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:background="@drawable/view_gray_border_white_background"
+                            android:paddingStart="@dimen/spacing_m"
+                            android:paddingTop="@dimen/spacing_xs"
+                            android:paddingEnd="@dimen/spacing_m"
+                            android:paddingBottom="@dimen/spacing_xs">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Body"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@+id/tv_credits"
+                                android:ellipsize="end"
+                                android:maxLines="2"
+                                android:text="@{viewModel.creditType.availableCreditLabel}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_credits"
+                                style="@style/Body"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/spacing_xxs"
+                                android:layout_toStartOf="@+id/ib_top_up_credits"
+                                android:text="@{viewModel.availableCredits}" />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/ib_top_up_credits"
+                                android:layout_width="@dimen/icon_size_big"
+                                android:layout_height="@dimen/icon_size_big"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/spacing_xs"
+                                android:background="@drawable/view_circle_yellow_background"
+                                android:clickable="true"
+                                android:contentDescription="@string/content_description_dismiss"
+                                android:focusable="true"
+                                android:padding="@dimen/margin_3"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_action_plus"
+                                android:tint="@color/white_invertible" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatCheckBox
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="@{viewModel.isCheckAgreement()}"
+                                android:onCheckedChanged="@{viewModel::onCheckedChanged}" />
+
+                            <sg.searchhouse.agentconnect.view.widget.agent.profile.SaleAgreement
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_confirm"
+                            style="@style/PrimaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:enabled="@{viewModel.isConfirmButtonEnabled()}"
+                            android:text="@{viewModel.actionBtnLabel}" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <include
+                layout="@layout/layout_loading_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="@dimen/size_collapsing_toolbar_height"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

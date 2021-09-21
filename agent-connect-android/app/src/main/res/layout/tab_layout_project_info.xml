@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_m"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <sg.searchhouse.agentconnect.view.widget.common.TabLeftButton
+            android:id="@+id/btn_tab_project_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/tab_project_info_project_info" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.TabRightButton
+            android:id="@+id/btn_tab_planning_decisions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/tab_project_info_planning_decisions" />
+    </LinearLayout>
+</layout>

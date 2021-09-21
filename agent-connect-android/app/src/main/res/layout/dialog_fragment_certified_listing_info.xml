@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_invertible"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_certified_listings"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ToolbarTheme"
+            app:navigationIcon="@drawable/ic_clear" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Heading1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:text="@string/title_certified_listings" />
+
+            <TextView
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_m"
+                android:lineSpacingExtra="@dimen/tv_line_spacing"
+                android:text="@string/msg_certified_listing" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_l"
+                app:cardCornerRadius="@dimen/spacing_xs"
+                app:cardElevation="@dimen/spacing_xs"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_xl"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_xl">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/spacing_xl"
+                            android:layout_height="@dimen/spacing_xl"
+                            android:src="@drawable/ic_property_type_condo" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/spacing_m"
+                            android:layout_height="@dimen/spacing_m"
+                            android:src="@drawable/ic_certified"
+                            android:tint="@color/purple" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:text="@string/label_certified_listing" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_l"
+                        android:drawableStart="@drawable/ic_certified"
+                        android:drawablePadding="@dimen/spacing_m"
+                        android:drawableTint="@color/purple"
+                        android:text="@string/label_boost_listing_rank" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_l"
+                        android:drawableStart="@drawable/ic_certified"
+                        android:drawablePadding="@dimen/spacing_m"
+                        android:drawableTint="@color/purple"
+                        android:text="@string/label_get_more_leads" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

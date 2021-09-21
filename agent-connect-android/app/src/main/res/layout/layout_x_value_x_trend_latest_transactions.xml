@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.xvalue.XValueViewModel" />
+    </data>
+
+    <LinearLayout
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:id="@+id/layout_x_trend_header"
+                android:background="?selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_header"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/btn_expand"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@{viewModel.xTrendSectionTitle}" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_expand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="end"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_chevron"
+                    android:src="@{viewModel.isExpandXTrend() ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                    android:tint="@color/gray" />
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingBottom="@dimen/spacing_l"
+                android:visibility="@{viewModel.isExpandXTrend() ? View.VISIBLE : View.GONE}">
+
+            <include
+                    layout="@layout/layout_x_value_x_trend"
+                    app:viewModel="@{viewModel}" />
+
+            <include
+                    layout="@layout/layout_x_value_latest_transactions"
+                    app:viewModel="@{viewModel}" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

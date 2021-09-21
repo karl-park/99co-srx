@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="shortcutLabel"
+            type="String" />
+
+        <variable
+            name="drawableIcon"
+            type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <merge>
+
+        <FrameLayout
+            android:id="@+id/layout_info_shortcut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:background="@drawable/small_pill"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/spacing_xs"
+            android:paddingTop="@dimen/spacing_s"
+            android:paddingEnd="@dimen/spacing_xs"
+            android:paddingBottom="@dimen/spacing_s">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@{drawableIcon}"
+                android:drawablePadding="@dimen/spacing_xs"
+                android:maxWidth="@dimen/max_width_info_shortcut"
+                android:text="@{shortcutLabel}"
+                android:textAlignment="center" />
+
+        </FrameLayout>
+    </merge>
+</layout>

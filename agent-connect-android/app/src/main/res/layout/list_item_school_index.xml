@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+	<data>
+		<variable name="index"
+		          type="String"/>
+	</data>
+
+	<LinearLayout
+			android:clickable="false"
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+		<androidx.appcompat.widget.AppCompatTextView
+				android:layout_marginTop="@dimen/spacing_m"
+				android:layout_marginBottom="@dimen/spacing_xs"
+				android:layout_marginStart="@dimen/spacing_m"
+				android:layout_marginEnd="@dimen/spacing_m"
+				style="@style/Title"
+				android:id="@+id/tv_title"
+				android:text="@{index}"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+
+		<View
+				android:layout_marginStart="@dimen/spacing_m"
+				android:layout_marginEnd="@dimen/spacing_m"
+				android:background="@color/divider_color"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/list_view_divider"/>
+	</LinearLayout>
+</layout>

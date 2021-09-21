@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="agentPO"
+                type="sg.searchhouse.agentconnect.model.api.agent.AgentPO" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="@dimen/size_agent_card_item_width"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m">
+
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <sg.searchhouse.agentconnect.view.widget.common.CircleImageView
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:background="@drawable/profile_icon_background"
+                    android:padding="@dimen/button_border"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_agent_photo_placeholder"
+                    app:url="@{agentPO.photo}" />
+
+            <ImageButton
+                    android:id="@+id/ib_remove_agent"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_gravity="top|end"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/content_description_remove_agent"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/margin_5"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_remove"
+                    android:tint="@color/black" />
+        </FrameLayout>
+
+        <TextView
+                style="@style/SmallBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4"
+                android:ellipsize="end"
+                android:lineHeight="@dimen/text_size_18"
+                android:maxLines="@integer/max_line_1"
+                android:text="@{agentPO.name}"
+                tools:targetApi="p" />
+        
+    </LinearLayout>
+</layout>

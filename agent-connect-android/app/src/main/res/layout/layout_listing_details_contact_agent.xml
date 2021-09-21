@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="fullListingPO"
+                type="sg.searchhouse.agentconnect.model.api.listing.FullListingPO" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+
+        <variable
+                name="isCurrentUser"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{isCurrentUser ? View.GONE : View.VISIBLE}">
+
+        <RelativeLayout
+                android:id="@+id/layout_contact_agent_header"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_header"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/btn_expand_contact_agent"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/title_listing_details_contact_agent" />
+
+            <ImageButton
+                    android:id="@+id/btn_expand_contact_agent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="end"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_chevron"
+                    android:src="@{isExpand == true ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                    android:tint="@color/gray" />
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingEnd="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_l"
+                android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_weight="1"
+                        android:text="@{fullListingPO.agentPO.name}" />
+
+                <LinearLayout
+                        android:id="@+id/layout_agency"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_agency_name"
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{fullListingPO.agentPO.agencyName}"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/gray" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{@string/listing_details_agent_cea_number(fullListingPO.agentPO.ceaRegNumberFormatted(context))}"
+                            android:textAlignment="textEnd"
+                            android:textColor="@color/gray" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_view_agent_cv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:drawableEnd="@drawable/ic_external_link"
+                    android:drawableTint="@color/tv_clickable_text_color"
+                    android:text="@string/button_view_agent_cv" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

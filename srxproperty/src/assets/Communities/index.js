@@ -1,0 +1,26 @@
+import {connect} from 'react-redux';
+
+export const Communities_Alert = require('./bell_purple.png');
+export const Communities_Icon_All_Residents = require('./Communities_All_Residents.png');
+export const Communities_Button_Call = require('./Communities_Call.png');
+export const Communities_Button_SMS = require('./Communities_SMS.png');
+export const Communities_Button_Whatsapp = require('./Communities_Whatsapp.png');
+export const Communities_EmptyComment_Icon = require('./Communities_Empty_Comment.png');
+export const Communities_EmptyList_Icon = require('./empty.png');
+export const Communities_Icon_Condo = require('./Communities_Condo.png');
+export const Communities_Icon_GRC_Addresses = require('./Communities_GRC_Addresses.png');
+export const Communities_Icon_Hdb = require('./Communities_Hdb.png');
+export const Communities_Icon_Landed = require('./Communities_Landed.png');
+export const Communities_Icon_New = require('./Communities_New.png');
+export const Communities_Intro_Main = require('./Communities_Intro_Main.png');
+export const Communities_Intro_Main_Android = require('./Communities_Intro_Main_Android.jpg');
+export const Communities_Intro_Slide1 = require('./Communities_Intro_Slide1.png');
+export const Communities_Intro_Slide2 = require('./Communities_Intro_Slide2.png');
+export const Communities_Intro_Slide3 = require('./Communities_Intro_Slide3.png');
+export const Communities_MyPropertyIcon = require('./Communities_MyPropertyIcon.png');
+export const Communities_MyPropertyIcon_iOS = require('./Communities_MyPropertyIcon_iOS.png');
+export const Communities_Search = require('./search_purple.png');
+export const Communities_Transparent_Image = require('./transparentMarker.png');
+export const Communities_Welcome = require('./welcome_community.png');
+export const GRC_Empty_Icon = require('./GRC_Empty_Icon.png');
+export const GRC_Coming_Soon = require('./comingsoon.png');

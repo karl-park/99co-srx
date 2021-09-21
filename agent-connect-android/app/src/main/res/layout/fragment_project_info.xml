@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.project.ProjectInfoFragmentViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}">
+
+            <LinearLayout
+                    android:id="@+id/layout_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_m">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_disclaimer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:text="@string/msg_project_info_disclaimer_collapsed"
+                        android:textColor="@color/orange"
+                        android:textColorLink="@color/cyan" />
+
+                <include
+                        android:id="@+id/layout_project_info_key_info"
+                        layout="@layout/layout_project_info_section_main"
+                        app:isExpand="@{viewModel.isExpandKeyInfo()}"
+                        app:isVisible="@{true}"
+                        app:title="@{@string/title_project_info_key_info}"
+                        app:viewModel="@{viewModel}" />
+
+                <include
+                        android:id="@+id/layout_project_info_unit_details"
+                        layout="@layout/layout_project_info_section"
+                        app:isExpand="@{viewModel.isExpandUnitDetails()}"
+                        app:isVisible="@{viewModel.isShowUnitDetails()}"
+                        app:title="@{@string/title_project_info_unit_details}"
+                        app:viewModel="@{viewModel}" />
+
+                <include
+                        android:id="@+id/layout_project_info_fixture_details"
+                        layout="@layout/layout_project_info_section"
+                        app:isExpand="@{viewModel.isExpandFixtures()}"
+                        app:isVisible="@{viewModel.isShowFixtures()}"
+                        app:title="@{@string/title_project_info_fixture_details}"
+                        app:viewModel="@{viewModel}" />
+
+                <include
+                        android:id="@+id/layout_project_info_facilities"
+                        layout="@layout/layout_project_info_section"
+                        app:isExpand="@{viewModel.isExpandFacilities()}"
+                        app:isVisible="@{viewModel.isShowFacilities()}"
+                        app:title="@{@string/title_project_info_facilities}"
+                        app:viewModel="@{viewModel}" />
+
+                <include
+                        android:id="@+id/layout_project_info_site_map"
+                        layout="@layout/layout_project_info_section_site_map"
+                        app:isExpand="@{viewModel.isExpandSiteMap()}"
+                        app:isVisible="@{viewModel.isShowSiteMap()}"
+                        app:title="@{@string/title_project_info_site_map}"
+                        app:viewModel="@{viewModel}" />
+
+                <LinearLayout
+                        android:id="@+id/layout_amenity_groups"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+                layout="@layout/layout_loading_fail_error"
+                app:mainStatus="@{viewModel.mainStatus}" />
+    </FrameLayout>
+</layout>

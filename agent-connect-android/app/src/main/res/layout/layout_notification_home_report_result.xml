@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:padding="@dimen/spacing_m"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+    <include layout="@layout/layout_notification_home_report_core" />
+
+    <Button
+            android:id="@+id/btn_view"
+            style="@style/ClickableText"
+            android:layout_marginStart="@dimen/spacing_l"
+            android:text="@string/button_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+</LinearLayout>

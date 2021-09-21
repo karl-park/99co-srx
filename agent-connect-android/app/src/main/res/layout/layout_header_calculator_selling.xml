@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.AffordabilityCalculatorOption" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.SellingCalculatorViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:animateLayoutChanges="true"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp"
+                app:strokeWidth="0dp">
+
+            <LinearLayout
+                    android:id="@+id/layout_affordability_header"
+                    android:animateLayoutChanges="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <RelativeLayout
+                        android:layout_margin="@dimen/spacing_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/label_ssd"
+                            style="@style/BodyBold"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/label_calculator_selling_payable_ssd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Heading2Color"
+                            android:text="@{viewModel.sellerStampDuty}"
+                            android:layout_alignEnd="@id/label_ssd"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/label_capital_gain"
+                            style="@style/BodyBold"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/label_calculator_selling_annual_capital_gain"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Heading2Color"
+                            android:text="@{viewModel.capitalGain}"
+                            android:layout_alignEnd="@id/label_capital_gain"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_description_2"
+                            style="@style/ExtraSmallBodyGray"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/spacing_xxs"
+                            android:text="@string/footer_stamp_duty_hint_calculation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_amend"
+                            android:textSize="@dimen/text_size_12"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/button_amend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

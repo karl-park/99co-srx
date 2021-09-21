@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+
+        <variable
+                name="isSubmitting"
+                type="Boolean" />
+
+        <variable
+                name="template"
+                type="sg.searchhouse.agentconnect.model.api.cobrokesms.GetSmsTemplatesResponse.TemplatesItem" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <include
+                    android:id="@+id/layout_header"
+                    layout="@layout/layout_header_sms_blast"
+                    app:isExpand="@{isExpand}"
+                    app:title="@{template.title}" />
+
+            <LinearLayout
+                    android:visibility="@{isExpand ? View.VISIBLE : View.GONE}"
+                    android:layout_marginBottom="@dimen/spacing_l"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <FrameLayout
+                        android:background="@drawable/bg_blast_content_dotted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBody"
+                            android:text="@{template.message}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </FrameLayout>
+
+                <sg.searchhouse.agentconnect.view.widget.common.DateTimePicker
+                        android:id="@+id/date_time_picker"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_submit"
+                        style="@style/PrimaryButton"
+                        android:enabled="@{!isSubmitting}"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{isSubmitting ? @string/button_submitting_blast : @string/button_submit_blast}" />
+            </LinearLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Disabled state-->
+    <item android:state_enabled="false">
+        <shape>
+            <stroke android:width="@dimen/button_border" android:color="@color/cyan_light" />
+            <solid android:color="@color/white_invertible" />
+            <corners android:radius="@dimen/button_radius" />
+            <padding android:left="@dimen/btn_padding_horizontal_8" android:right="@dimen/btn_padding_horizontal_8" />
+        </shape>
+    </item>
+    <!-- pressed state -->
+    <item android:state_pressed="true" android:state_enabled="true">
+        <shape>
+            <stroke android:width="@dimen/button_border" android:color="@color/cyan_light" />
+            <solid android:color="@color/white_invertible" />
+            <corners android:radius="@dimen/button_radius" />
+            <padding android:left="@dimen/btn_padding_horizontal_8" android:right="@dimen/btn_padding_horizontal_8" />
+        </shape>
+    </item>
+    <!-- normal states -->
+    <item>
+        <shape>
+            <stroke android:width="@dimen/button_border" android:color="@color/cyan" />
+            <solid android:color="@color/white_invertible" />
+            <corners android:radius="@dimen/button_radius" />
+            <padding android:left="@dimen/btn_padding_horizontal_8" android:right="@dimen/btn_padding_horizontal_8" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.AdvancedAffordabilityDetailsViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@string/activity_affordability_details" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.core.widget.NestedScrollView
+                        android:visibility="@{viewModel.affordAdvancedPO != null ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            android:padding="@dimen/spacing_m"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_bold_color"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedMaxPurchasePrice}"
+                                app:name="@{@string/entry_affordability_advanced_max_purchase_price}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_bold_color"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedMaxLoan}"
+                                app:name="@{@string/entry_affordability_advanced_max_loan_amount}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedTotalMonthlyIncome}"
+                                app:name="@{@string/entry_affordability_advanced_total_monthly_income}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedTotalMonthlyCommitment}"
+                                app:name="@{@string/entry_affordability_advanced_total_monthly_commitments}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedMortgageService}"
+                                app:name="@{@string/entry_affordability_advanced_based_on_msr}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedTotalDebtService}"
+                                app:name="@{@string/entry_affordability_advanced_based_on_tdsr}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal_color"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedMonthlyLoan}"
+                                app:name="@{@string/entry_affordability_advanced_monthly_loan_payment}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal_color"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedDownpayment}"
+                                app:name="@{@string/entry_affordability_advanced_downpayment}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedLtv}"
+                                app:name="@{@string/entry_affordability_advanced_ltv}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedBsd}"
+                                app:name="@{@string/entry_affordability_advanced_bsd}" />
+
+                        <include
+                                layout="@layout/layout_affordability_details_entry_normal"
+                                app:amountString="@{viewModel.affordAdvancedPO.formattedAbsd}"
+                                app:name="@{@string/entry_affordability_advanced_absd}" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_share_to_client"
+                                style="@style/SecondaryButton"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                android:layout_gravity="center_horizontal"
+                                android:text="@string/button_share_calculation_to_client"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+
+                <include
+                        layout="@layout/layout_loading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:visibility="@{viewModel.affordAdvancedPO == null ? View.VISIBLE : View.GONE}" />
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

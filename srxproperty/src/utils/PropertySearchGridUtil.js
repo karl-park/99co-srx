@@ -1,0 +1,17 @@
+function chunkArray(array = [], size) {
+  if (array === []) return [];
+  return array.reduce((acc, val) => {
+    if (acc.length === 0) acc.push([]);
+    const last = acc[acc.length - 1];
+    if (last.length < size) {
+      last.push(val);
+    } else {
+      acc.push([val]);
+    }
+    return acc;
+  }, []);
+}
+
+export const PropertySearchGridUtil = {
+  chunkArray
+};

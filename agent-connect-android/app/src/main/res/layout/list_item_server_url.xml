@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="server"
+                type="sg.searchhouse.agentconnect.view.fragment.main.menu.SwitchServerDialogFragment.SRXServer" />
+    </data>
+
+    <LinearLayout
+            android:id="@+id/layout_server"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:background="@drawable/view_gray_border_white_background"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_s">
+
+        <TextView
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{server.serverName}" />
+
+        <TextView
+                style="@style/SmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{server.serverUrl}" />
+
+    </LinearLayout>
+</layout>

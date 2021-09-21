@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_gray_invertible">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_search"
+            android:name="sg.searchhouse.agentconnect.view.fragment.main.dashboard.DashboardSearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m_minus"
+            android:elevation="@dimen/elevation_above_card_view" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_top_dashboard_scrollbar"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:id="@+id/layout_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/padding_top_dashboard_scrollbar"
+                android:paddingBottom="@dimen/padding_bottom_dashboard_scrollbar">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_conversations"
+                    android:name="sg.searchhouse.agentconnect.view.fragment.main.dashboard.DashboardConversationsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_user_listings"
+                    android:name="sg.searchhouse.agentconnect.view.fragment.main.dashboard.DashboardUserListingsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_market_data"
+                    android:name="sg.searchhouse.agentconnect.view.fragment.main.dashboard.DashboardMarketDataFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.shouldShowMarketWatch ? View.VISIBLE : View.GONE}" />
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_flash_report"
+                    android:name="sg.searchhouse.agentconnect.view.fragment.main.dashboard.DashboardMarketFlashReportFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.shouldShowWatchList ? View.VISIBLE : View.GONE}">
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fragment_watch_list_transactions"
+                        android:name="sg.searchhouse.agentconnect.view.fragment.main.dashboard.DashboardWatchlistTransactionsFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fragment_watch_list_listings"
+                        android:name="sg.searchhouse.agentconnect.view.fragment.main.dashboard.DashboardWatchlistListingsFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_property_news"
+                    android:name="sg.searchhouse.agentconnect.view.fragment.main.dashboard.DashboardPropertyNewsFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

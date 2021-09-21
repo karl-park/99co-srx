@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="client"
+                type="sg.searchhouse.agentconnect.model.api.agent.SRXPropertyUserPO" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:id="@+id/card_agent_client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackgroundBorderless"
+                app:cardCornerRadius="@dimen/small_card_border_radius"
+                app:contentPaddingBottom="@dimen/spacing_m"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp"
+                app:contentPaddingTop="0dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <!--Last seen-->
+                <LinearLayout
+                        android:visibility="@{client.isLastSeenApplicable() ? View.VISIBLE: View.GONE}"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyGray"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{client.getLastSeenLabel(context)}" />
+
+                    <include layout="@layout/view_divider_horizontal" />
+                </LinearLayout>
+
+                <!--Header-->
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_s"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginEnd="@dimen/spacing_m">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/checkbox_client"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="@dimen/spacing_xxs"
+                            android:theme="@style/CheckBox" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="start"
+                            android:layout_toStartOf="@id/btn_call"
+                            android:layout_toEndOf="@+id/checkbox_client"
+                            android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:textOrDash="@{client.name}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/ExtraSmallBody"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:textOrDash="@{client.fullAddressTrimmed}" />
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/btn_call"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_phone" />
+                </RelativeLayout>
+
+                <include layout="@layout/view_divider_horizontal" />
+
+                <!--Content-->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingTop="@dimen/spacing_xs"
+                        android:paddingEnd="@dimen/spacing_m">
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start|top"
+                            android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/ExtraSmallBody"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/agent_client_list_item_sale_x_value" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/SmallBodyBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/purple"
+                                app:textOrDash="@{client.formattedCapitalGainXValue}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start|top"
+                            android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/ExtraSmallBody"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/agent_client_list_item_sale_capital_gain" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/SmallBodyBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@{client.getCapitalGainQuantumTextColor(context)}"
+                                app:textOrDash="@{client.formattedCapitalGainQuantumPercent}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start|top"
+                            android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/ExtraSmallBody"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/agent_client_list_item_sale_rental_yield" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/SmallBodyBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:textOrDash="@{client.formattedRentalYield}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:text="@{client.getMySgHomeClientItemFooter(context)}"
+                        android:visibility="@{client.isCapitalGainApplicable() ? View.VISIBLE: View.GONE}" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

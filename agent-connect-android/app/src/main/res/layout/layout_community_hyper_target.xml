@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Mock-up: https://projects.invisionapp.com/d/main?origin=v7#/console/20119097/435289733/preview -->
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.SponsorListingViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.mainStatus != StatusKey.LOADING_NEXT_LIST_ITEM ? View.VISIBLE : View.INVISIBLE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_xl"
+                android:text="@string/description_community_hyper_target" />
+
+            <!-- No draft, no templates -->
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/btn_create_hyper_target"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:drawableStart="@drawable/ic_plus_square"
+                android:drawableTint="@color/cyan"
+                android:text="@string/button_community_create_new_target"
+                android:textSize="@dimen/text_size_16"
+                android:visibility="@{viewModel.isShowNoTemplateCreateNewTargetButton ? View.VISIBLE : View.GONE}" />
+
+            <!-- New draft -->
+            <include
+                layout="@layout/layout_community_hyper_target_draft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:visibility="@{viewModel.newHyperTargetTemplatePO != null ? View.VISIBLE : View.GONE}"
+                app:viewModel="@{viewModel}" />
+
+            <!-- Existing hyper target -->
+            <include
+                layout="@layout/layout_community_hyper_target_existing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:visibility="@{viewModel.existingHyperTargetTemplatePO != null ? View.VISIBLE : View.GONE}"
+                app:hyperTargetTemplatePO="@{viewModel.existingHyperTargetTemplatePO}" />
+
+            <!--No draft, got templates-->
+            <include
+                layout="@layout/layout_community_hyper_target_templates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:viewModel="@{viewModel}" />
+        </LinearLayout>
+
+        <include
+            layout="@layout/layout_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibility="@{viewModel.mainStatus == StatusKey.LOADING_NEXT_LIST_ITEM ? View.VISIBLE : View.INVISIBLE}" />
+    </FrameLayout>
+</layout>

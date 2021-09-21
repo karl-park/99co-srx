@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- pressed state -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/white_smoke_invertible" />
+            <stroke android:color="@color/card_border" android:width="@dimen/button_border" />
+            <corners android:radius="@dimen/card_border_radius" />
+        </shape>
+    </item>
+    <!-- selected states -->
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/white_invertible" />
+            <stroke android:color="@color/selected" android:width="@dimen/button_border" />
+            <corners android:radius="@dimen/card_border_radius" />
+        </shape>
+    </item>
+    <!-- normal states -->
+    <item>
+        <shape>
+            <solid android:color="@color/white_invertible" />
+            <stroke android:color="@color/card_border" android:width="@dimen/button_border" />
+            <corners android:radius="@dimen/card_border_radius" />
+        </shape>
+    </item>
+</selector>

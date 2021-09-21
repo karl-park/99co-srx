@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.XValueEnum.TimeScale" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingDetailsViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+        <include
+                layout="@layout/button_listing_x_trend_time_scale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_group_square_solid_start}"
+                app:timeScale="@{TimeScale.TEN_YEARS}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.selectedTimeScale == TimeScale.TEN_YEARS || viewModel.selectedTimeScale == TimeScale.FIVE_YEARS ? @color/cyan : @color/divider_color}" />
+
+        <include
+                layout="@layout/button_listing_x_trend_time_scale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_solid_horizontal}"
+                app:timeScale="@{TimeScale.FIVE_YEARS}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.selectedTimeScale == TimeScale.FIVE_YEARS || viewModel.selectedTimeScale == TimeScale.THREE_YEARS ? @color/cyan : @color/divider_color}" />
+
+        <include
+                layout="@layout/button_listing_x_trend_time_scale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_solid_horizontal}"
+                app:timeScale="@{TimeScale.THREE_YEARS}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.selectedTimeScale == TimeScale.THREE_YEARS || viewModel.selectedTimeScale == TimeScale.ONE_YEAR ? @color/cyan : @color/divider_color}" />
+
+        <include
+                layout="@layout/button_listing_x_trend_time_scale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_group_square_solid_end}"
+                app:timeScale="@{TimeScale.ONE_YEAR}"
+                app:viewModel="@{viewModel}" />
+    </LinearLayout>
+</layout>

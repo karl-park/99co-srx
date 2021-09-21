@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.community.SearchPlanningAreasViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <!-- Mock up: https://projects.invisionapp.com/d/main/#/console/20119097/432674166/preview -->
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/ClassicActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:title="@string/activity_search_planning_area" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/margin_top_list_search_planning_area">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_empty_query"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:nestedScrollingEnabled="false"
+                            android:visibility="@{viewModel.hasQuery ? View.GONE : View.VISIBLE}" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:nestedScrollingEnabled="false"
+                            android:visibility="@{viewModel.hasQuery ? View.VISIBLE : View.GONE}" />
+                    </FrameLayout>
+                </androidx.core.widget.NestedScrollView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.WhiteSearchEditText
+                        android:id="@+id/et_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="@dimen/spacing_m"
+                        app:hint="@{@string/hint_search_planning_area}" />
+
+                    <include
+                        layout="@layout/layout_loading_fail_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/et_search"
+                        android:layout_alignParentBottom="true"
+                        app:mainStatus="@{viewModel.mainStatus}" />
+                </RelativeLayout>
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

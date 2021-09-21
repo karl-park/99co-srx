@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.CalculatorEnum.ApplicationType" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.BuyerStampDutyCalculatorViewModel" />
+
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_marginBottom="@dimen/card_border_radius_minus"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:id="@+id/layout_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:text="@string/title_section_calculator_buyer_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_application_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <include
+                        layout="@layout/tab_layout_stamp_duty_application_type"
+                        app:selectedApplicationType="@{viewModel.selectedApplicationType}" />
+
+                <include
+                        android:id="@+id/layout_buyer_one"
+                        layout="@layout/layout_stamp_duty_buyer_person"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:buyerProfileTitle="@{@string/text_box_calculator_citizenship}"
+                        app:ownedPropertyNumber="@{viewModel.ownedPropertyNumber}"
+                        app:selectedBuyerProfileLabel="@{viewModel.selectedBuyerProfile.label}" />
+
+                <!--Stub to ensure that the margin between share button and its view above is `spacing_xxl`-->
+                <View
+                        android:visibility="@{viewModel.selectedApplicationType == ApplicationType.JOINT_APPLICANT ? View.GONE : View.VISIBLE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_m" />
+
+                <FrameLayout
+                        android:layout_marginBottom="@dimen/spacing_xxl"
+                        android:visibility="@{viewModel.selectedApplicationType == ApplicationType.JOINT_APPLICANT ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <include
+                            android:id="@+id/layout_buyer_two"
+                            layout="@layout/layout_stamp_duty_buyer_person"
+                            app:buyerProfileTitle="@{@string/text_box_calculator_citizenship_2}"
+                            app:ownedPropertyNumber="@{viewModel.ownedPropertyNumber2}"
+                            app:selectedBuyerProfileLabel="@{viewModel.selectedBuyerProfile2.label}" />
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_share_to_client"
+                        style="@style/SecondaryButton"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:enabled="@{viewModel.shouldEnableShareButton == true}"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/button_share_calculation_to_client"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

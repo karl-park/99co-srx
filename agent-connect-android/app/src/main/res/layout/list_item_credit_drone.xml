@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="srxCreditListingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.listingmanagement.ActivateSrxCreditListingsResponse.ActivateSrxCreditListingSummaryPO.ActivateSrxCreditListingPO" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_m"
+        android:paddingEnd="@dimen/spacing_m">
+
+        <ImageButton
+            android:id="@+id/ib_remove_selected_listing"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_gravity="top|end"
+            android:background="@drawable/view_circle_teal_background"
+            android:contentDescription="@string/label_remove_photo"
+            android:elevation="@dimen/margin_5"
+            android:padding="@dimen/margin_5"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_clear"
+            android:tint="@color/white"
+            android:visibility="@{safeUnbox(srxCreditListingPO.srxCreditActivationAvailability) ? View.VISIBLE : View.GONE}" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:id="@+id/card_selected_my_listing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_2"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:foreground="@{srxCreditListingPO.srxCreditActivationAvailability == true ? @color/transparent : @color/selected_my_listing_foreground}"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_s"
+                android:paddingBottom="@dimen/spacing_s">
+
+                <include
+                    layout="@layout/list_item_credit_selected_listing"
+                    app:srxCreditListingPO="@{srxCreditListingPO}" />
+
+                <!-- Remark -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBodyOrange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:maxLines="2"
+                    android:text="@{srxCreditListingPO.srxCreditActivationRemark}"
+                    android:visibility="@{TextUtils.isEmpty(srxCreditListingPO.srxCreditActivationRemark) ? View.GONE : View.VISIBLE}" />
+
+            </LinearLayout>
+
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+    </FrameLayout>
+</layout>

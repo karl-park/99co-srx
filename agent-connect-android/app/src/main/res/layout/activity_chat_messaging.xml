@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.chat.ChatMessagingViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ChatEnum.ConversationType" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+    </data>
+
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible"
+            android:orientation="vertical">
+
+            <sg.searchhouse.agentconnect.view.widget.main.chat.ChatMessagingActionBar
+                android:id="@+id/layout_messaging_action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentInsetStart="0dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBodyError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_xxs"
+                android:layout_marginBottom="@dimen/spacing_xxs"
+                android:text="@string/label_no_internet_connection"
+                android:visibility="@{safeUnbox(viewModel.isNetworkConnected()) ? View.GONE : View.VISIBLE}" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.conversation.getSsmConversationType() == ConversationType.BLAST_NEW_TYPE ? View.GONE : View.VISIBLE}">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_messages"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@id/layout_chat_sender"
+                        android:overScrollMode="never"
+                        android:stateListAnimator="@null" />
+
+                    <sg.searchhouse.agentconnect.view.widget.main.chat.ChatMessagingSender
+                        android:id="@+id/layout_chat_sender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:visibility="@{viewModel.conversation.getSsmConversationType() == ConversationType.SRX_ANNOUNCEMENTS ? View.GONE : View.VISIBLE}" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_listings"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:overScrollMode="never"
+                    android:stateListAnimator="@null"
+                    android:visibility="@{viewModel.conversation.getSsmConversationType() == ConversationType.BLAST_NEW_TYPE ? View.VISIBLE : View.GONE}" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

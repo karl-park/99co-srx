@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.agent.profile.AgentProfileViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_invertible"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/spacing_m"
+        android:paddingBottom="@dimen/spacing_m">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_wallet"
+            style="@style/Heading2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:drawablePadding="@dimen/spacing_xs"
+            android:text="@string/label_wallet"
+            app:drawableEndCompat="@drawable/ic_wallet"
+            app:drawableTint="@color/black_invertible" />
+
+        <include
+            android:id="@+id/card_shared_wallet"
+            layout="@layout/card_shared_wallet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:visibility="@{viewModel.hasGroupSubscription ? View.VISIBLE : View.GONE, default=gone}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_credits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never" />
+    </LinearLayout>
+
+</layout>

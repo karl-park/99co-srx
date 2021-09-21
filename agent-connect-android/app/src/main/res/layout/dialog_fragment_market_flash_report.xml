@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.MarketFlashReportViewModel" />
+
+    </data>
+
+    <LinearLayout
+            android:id="@+id/layout_container"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <View
+                android:id="@+id/view_blank"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
+
+        <FrameLayout
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+            <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/spacing_l_minus"
+                    app:cardCornerRadius="@dimen/border_radius_market_flash_report_fragment"
+                    app:contentPaddingLeft="0dp"
+                    app:contentPaddingRight="0dp"
+                    app:contentPaddingTop="0dp"
+                    app:strokeWidth="0dp">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <RelativeLayout
+                            android:id="@+id/layout_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_s">
+
+                        <RelativeLayout
+                                android:id="@+id/layout_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_s"
+                                android:layout_toStartOf="@+id/btn_dismiss">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/img_flash_report"
+                                    android:layout_width="@dimen/width_flash_report_icon"
+                                    android:layout_height="@dimen/height_flash_report_icon"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/content_description_download"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/ic_flash_report" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_title"
+                                    style="@style/Body"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="@dimen/spacing_xs"
+                                    android:layout_marginEnd="@dimen/spacing_xs"
+                                    android:layout_toEndOf="@+id/img_flash_report"
+                                    android:ellipsize="end"
+                                    android:maxWidth="@dimen/width_flash_report_title"
+                                    android:maxLines="2"
+                                    android:text="@{viewModel.marketingFlashReportPO.title}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_download_full_report"
+                                    style="@style/Menu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toEndOf="@+id/tv_title"
+                                    android:drawableStart="@drawable/ic_pdf"
+                                    android:gravity="center"
+                                    android:text="@string/label_flash_report_pdf"
+                                    android:textColor="@color/cyan" />
+
+                        </RelativeLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/btn_dismiss"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:background="?selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/content_description_dismiss"
+                                android:src="@drawable/ic_remove"
+                                android:tint="@color/gray" />
+
+                    </RelativeLayout>
+
+                    <include
+                            layout="@layout/view_divider_horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m" />
+
+                    <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <sg.searchhouse.agentconnect.view.widget.common.HiddenSwipeRefreshLayout
+                                android:id="@+id/layout_swipe_refresh"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <androidx.core.widget.NestedScrollView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:overScrollMode="never">
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginStart="@dimen/spacing_m"
+                                        android:layout_marginEnd="@dimen/spacing_m"
+                                        android:orientation="vertical"
+                                        android:paddingTop="@dimen/spacing_xxs"
+                                        android:paddingBottom="0dp">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                            android:id="@+id/tv_headline"
+                                            style="@style/BodyBold"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@{viewModel.marketingFlashReportPO.headline}" />
+
+                                    <WebView
+                                            android:id="@+id/web_view_content"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:focusableInTouchMode="false"
+                                            android:overScrollMode="never"
+                                            android:scrollbars="none" />
+
+                                </LinearLayout>
+                            </androidx.core.widget.NestedScrollView>
+                        </sg.searchhouse.agentconnect.view.widget.common.HiddenSwipeRefreshLayout>
+
+                        <!--To block the scrollable web view behind so can scroll globally-->
+                        <sg.searchhouse.agentconnect.view.widget.common.SwipeDetectorView
+                                android:id="@+id/view_global_scroll"
+                                android:focusable="true"
+                                android:clickable="true"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                    </FrameLayout>
+                </LinearLayout>
+            </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+        </FrameLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="comparable"
+                type="sg.searchhouse.agentconnect.model.api.xvalue.GetValuationDetailResponse.Data.Comparable" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp"
+            app:strokeColor="@color/listing_card_stroke_color"
+            app:strokeWidth="@dimen/card_stroke_width">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_xs"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_xs">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_date"
+                        style="@style/ExtraSmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/tv_srx"
+                        android:text="@{comparable.formattedDate}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_srx"
+                        style="@style/SmallBodyColorBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_x_value_comparable_source_srx"
+                        android:visibility="@{comparable.isSourceSrx() ? View.VISIBLE : View.GONE}" />
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:background="@color/listing_card_stroke_color" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_xs"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_xs">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_title"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_xxs"
+                        android:text="@{comparable.address}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_size"
+                        style="@style/BodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@{comparable.getFormattedSize(context)}" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
+                        android:weightSum="7">
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/SmallBodyGray"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/spacing_xxs"
+                                android:text="@string/label_x_value_comparable_transacted_price" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BodyColorBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{comparable.getFormattedTransactedPrice(context)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/SmallBodyGray"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/spacing_xxs"
+                                android:text="@string/label_x_value_comparable_psf" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BodyColorBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{comparable.getFormattedPsf(context)}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/SmallBodyGray"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/spacing_xxs"
+                                android:text="@string/label_x_value_comparable_adj_psf" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/BodyColorBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{comparable.getFormattedValuerPsf(context)}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:background="@color/listing_card_stroke_color" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_xs"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_xs"
+                    android:weightSum="@{comparable.isHdb() ? 4 : 3}">
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:visibility="@{comparable.isHdb() ? View.VISIBLE : View.GONE}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyGray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_x_value_comparable_lease" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@{comparable.stdAdjustments.getLeaseColor(context)}"
+                            app:textOrDash="@{comparable.stdAdjustments.getFormattedLease(context)}" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyGray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_x_value_comparable_date" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@{comparable.stdAdjustments.getDateColor(context)}"
+                            app:textOrDash="@{comparable.stdAdjustments.getFormattedDate(context)}" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyGray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_x_value_comparable_floor" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@{comparable.stdAdjustments.getFloorColor(context)}"
+                            app:textOrDash="@{comparable.stdAdjustments.getFormattedFloor(context)}" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyGray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_x_value_comparable_size" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@{comparable.stdAdjustments.getSizeColor(context)}"
+                            app:textOrDash="@{comparable.stdAdjustments.getFormattedSize(context)}" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

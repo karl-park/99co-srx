@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="block"
+                type="sg.searchhouse.agentconnect.model.api.transaction.TowerViewForLastSoldTransactionResponse.BlocksItem" />
+
+        <variable
+                name="isSelected"
+                type="Boolean" />
+
+        <variable
+                name="isLast"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button"
+                style="@style/SmallPill.Accent"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small_pill_height"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:text="@{block.block}"
+                app:isSelected="@{isSelected}" />
+
+        <View
+                android:layout_width="@dimen/spacing_m"
+                android:layout_height="match_parent"
+                android:visibility="@{isLast ? View.VISIBLE : View.GONE}" />
+    </LinearLayout>
+</layout>

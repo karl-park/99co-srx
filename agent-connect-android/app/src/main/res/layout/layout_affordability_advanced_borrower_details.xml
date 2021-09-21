@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.CalculatorEnum.ApplicationType" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.AdvancedAffordabilityCalculatorViewModel" />
+
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_marginBottom="@dimen/card_border_radius_minus"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:id="@+id/layout_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:text="@string/title_section_calculator_borrower_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_application_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <include
+                        layout="@layout/tab_layout_stamp_duty_application_type"
+                        app:selectedApplicationType="@{viewModel.selectedApplicationType}" />
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false">
+
+                    <include
+                            android:id="@+id/layout_borrower_one"
+                            layout="@layout/layout_affordability_advanced_borrower_person"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:isFullWidth="@{viewModel.selectedApplicationType != ApplicationType.JOINT_APPLICANT}"
+                            app:isShowAgeError="@{viewModel.isShowAgeError()}"
+                            app:ownedPropertyNumber="@{viewModel.ownedPropertyNumber}"
+                            app:propertyLoanNumber="@{viewModel.propertyLoan}"
+                            app:selectedBuyerProfile="@{viewModel.selectedBorrowerProfile}"
+                            app:title="@{@string/text_box_calculator_title_borrower}" />
+
+                    <FrameLayout
+                            android:visibility="@{viewModel.selectedApplicationType == ApplicationType.JOINT_APPLICANT ? View.VISIBLE : View.GONE}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                        <include
+                                layout="@layout/view_divider_vertical"
+                                android:layout_marginStart="@dimen/spacing_s"
+                                android:layout_marginEnd="@dimen/spacing_s"
+                                android:layout_width="@dimen/list_view_divider"
+                                android:layout_height="match_parent" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                            android:layout_weight="1"
+                            android:visibility="@{viewModel.selectedApplicationType == ApplicationType.JOINT_APPLICANT ? View.VISIBLE : View.GONE}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+
+                        <include
+                                android:id="@+id/layout_borrower_two"
+                                layout="@layout/layout_affordability_advanced_borrower_person"
+                                app:isShowAgeError="@{viewModel.isShowAgeError2()}"
+                                app:ownedPropertyNumber="@{viewModel.ownedPropertyNumber2}"
+                                app:propertyLoanNumber="@{viewModel.propertyLoan2}"
+                                app:selectedBuyerProfile="@{viewModel.selectedBorrowerProfile2}"
+                                app:title="@{@string/text_box_calculator_title_borrower_2}" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_calculate"
+                        style="@style/PrimaryButton"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:enabled="@{viewModel.isEnableSubmitButton() == true}"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/button_calculate_affordability"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

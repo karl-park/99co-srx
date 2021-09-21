@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <inset android:insetRight="-2dp">
+            <shape>
+                <solid android:color="@color/white_invertible" />
+                <stroke android:width="@dimen/button_border" android:color="@color/card_border" />
+                <corners android:bottomLeftRadius="@dimen/button_radius" android:bottomRightRadius="0dp" android:topLeftRadius="@dimen/button_radius" android:topRightRadius="0dp" />
+            </shape>
+        </inset>
+    </item>
+</selector>
+

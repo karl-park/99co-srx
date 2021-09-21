@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="credit"
+            type="sg.searchhouse.agentconnect.model.api.agent.UserCreditPO" />
+
+        <variable
+            name="showDivider"
+            type="Boolean" />
+
+        <variable
+            name="showLearnMore"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/spacing_s"
+            android:paddingBottom="@dimen/spacing_s">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/tv_post_listing_credits"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{credit.name}"
+                    tools:text="Post Listing" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xxs"
+                    android:text="@string/label_wallet_post_listing_top_up_99"
+                    android:visibility="@{credit.postListing ? View.VISIBLE : View.GONE, default=gone}"
+                    tools:text="Top up on 99.co app" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_learn_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_learn_more"
+                    android:visibility="@{showLearnMore ? View.VISIBLE : View.GONE}" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_post_listing_credits"
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/ib_top_up_credits"
+                android:text="@{credit.getCredits(context)}" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ib_top_up_credits"
+                android:layout_width="@dimen/icon_size_big"
+                android:layout_height="@dimen/icon_size_big"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/spacing_l"
+                android:background="@drawable/view_circle_yellow_background"
+                android:clickable="true"
+                android:contentDescription="@string/content_description_dismiss"
+                android:focusable="true"
+                android:src="@drawable/ic_action_plus"
+                android:tint="@color/white_invertible" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_view_divider"
+            android:background="@color/divider_color"
+            android:visibility="@{showDivider == true? View.VISIBLE: View.GONE}" />
+
+    </LinearLayout>
+</layout>

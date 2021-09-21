@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.chat.ChatMessagingInfoViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white_invertible"
+                android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_invertible"
+                    app:elevation="0dp">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/tv_add_agents"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:enabled="@{!viewModel.editTitle}"
+                            android:text="@string/label_add_agents"
+                            android:visibility="@{safeUnbox(viewModel.showGroupName)? View.VISIBLE : View.GONE}" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_m"
+                        android:visibility="@{safeUnbox(viewModel.showGroupName)? View.VISIBLE : View.GONE}">
+
+                    <EditText
+                            android:id="@+id/et_group_name"
+                            style="@style/Heading2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toStartOf="@+id/tv_edit"
+                            android:afterTextChanged="@{viewModel::afterTextChangeGroupName}"
+                            android:background="@{safeUnbox(viewModel.editTitle)? @drawable/et_rounded_gray_background_with_border : null}"
+                            android:enabled="@{viewModel.editTitle}"
+                            android:hint="@string/hint_group_name"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:paddingStart="@{safeUnbox(viewModel.editTitle)? @dimen/spacing_m : @dimen/spacing_xs}"
+                            android:paddingEnd="@{safeUnbox(viewModel.editTitle)? @dimen/spacing_m : @dimen/spacing_xs}"
+                            android:text="@={viewModel.groupName}"
+                            android:textColorHint="@color/black"
+                            android:textSize="@{safeUnbox(viewModel.editTitle)? @dimen/text_size_16 : @dimen/text_size_18}"
+                            app:isBold="@{safeUnbox(viewModel.editTitle)? false : true }"
+                            tools:ignore="LabelFor"
+                            tools:targetApi="O" />
+
+                    <TextView
+                            style="@style/Menu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/et_group_name"
+                            android:layout_marginTop="@dimen/margin_2"
+                            android:text="@{viewModel.errorGroupName}"
+                            android:textColor="@color/red"
+                            android:visibility="@{TextUtils.isEmpty(viewModel.errorGroupName)? View.GONE : View.VISIBLE}" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/tv_edit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:padding="@dimen/spacing_xs"
+                            android:text="@{safeUnbox(viewModel.editTitle)? @string/label_save : @string/label_edit}" />
+
+                </RelativeLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_members"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+            <include
+                    layout="@layout/layout_loading_fail_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                    app:mainStatus="@{viewModel.mainStatus}" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

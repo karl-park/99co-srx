@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<import type="sg.searchhouse.agentconnect.enumeration.api.LocationEnum.TravelMode" />
+
+		<variable
+				name="selectedTravelMode"
+				type="sg.searchhouse.agentconnect.enumeration.api.LocationEnum.TravelMode" />
+
+		<variable
+				name="walkingDuration"
+				type="String" />
+
+		<variable
+				name="transitDuration"
+				type="String" />
+
+		<variable
+				name="drivingDuration"
+				type="String" />
+	</data>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:baselineAligned="false"
+			android:orientation="horizontal"
+			android:paddingStart="@dimen/spacing_m"
+			android:paddingEnd="@dimen/spacing_xs"
+			android:paddingBottom="@dimen/spacing_xs"
+			android:weightSum="3">
+
+		<include
+				android:id="@+id/btn_transport_bus_mrt"
+				layout="@layout/card_travel_mode"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="@dimen/spacing_xs"
+				android:layout_weight="1"
+				app:duration="@{transitDuration}"
+				app:isSelected="@{selectedTravelMode == TravelMode.TRANSIT}"
+				app:travelMode="@{TravelMode.TRANSIT}" />
+
+		<include
+				android:id="@+id/btn_transport_drive"
+				layout="@layout/card_travel_mode"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="@dimen/spacing_xs"
+				android:layout_weight="1"
+				app:duration="@{drivingDuration}"
+				app:isSelected="@{selectedTravelMode == TravelMode.DRIVING}"
+				app:travelMode="@{TravelMode.DRIVING}" />
+
+		<include
+				android:id="@+id/btn_transport_walk"
+				layout="@layout/card_travel_mode"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="@dimen/spacing_xs"
+				android:layout_weight="1"
+				app:duration="@{walkingDuration}"
+				app:isSelected="@{selectedTravelMode == TravelMode.WALKING}"
+				app:travelMode="@{TravelMode.WALKING}" />
+	</LinearLayout>
+</layout>

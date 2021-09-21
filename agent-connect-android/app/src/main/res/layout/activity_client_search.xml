@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.client.SearchClientViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_m">
+
+                <sg.searchhouse.agentconnect.view.widget.common.WhiteSearchEditText
+                        android:id="@+id/et_search"
+                        android:layout_marginEnd="@dimen/spacing_s"
+                        android:layout_toStartOf="@+id/btn_cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hint="@{@string/hint_search_client}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:text="@string/label_cancel" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn_current_location"
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_s"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginTop="0dp"
+                    android:drawableStart="@drawable/ic_map_pin"
+                    android:drawablePadding="@dimen/spacing_xs"
+                    android:drawableTint="@color/black_invertible"
+                    android:text="@{viewModel.isSearchingLocation() ? @string/label_current_location_is_searching : @string/label_current_location}"
+                    android:textColor="@color/clickable_text" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

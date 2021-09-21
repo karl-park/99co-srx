@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ToolbarTheme"
+                app:navigationIcon="@drawable/ic_clear">
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_save_new_term"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/spacing_s"
+                    android:text="@string/label_save"
+                    android:textSize="@dimen/text_size_16" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/spacing_xl">
+
+                <TextView
+                        style="@style/Heading1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:text="@string/title_cea_self_defined_terms" />
+
+                <EditText
+                        android:id="@+id/et_term"
+                        style="@style/RoundedEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_self_defined_term"
+                        android:layout_margin="@dimen/spacing_m"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="top"
+                        android:importantForAutofill="no"
+                        android:inputType="textMultiLine"
+                        android:padding="@dimen/spacing_xs"
+                        tools:ignore="LabelFor"
+                        tools:targetApi="O" />
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</layout>

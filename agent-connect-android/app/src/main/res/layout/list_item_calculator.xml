@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="calculatorType"
+                type="sg.searchhouse.agentconnect.enumeration.app.CalculatorAppEnum.CalculatorType" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:id="@+id/layout_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_l"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            app:contentPaddingBottom="@dimen/spacing_m">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="start"
+                android:text="@{calculatorType.label}" />
+
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.report.newlaunches.NewLaunchesReportsViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/layout_download_and_send"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/top_margin_listings_sub_app_bar"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/app_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white_invertible"
+                    android:fitsSystemWindows="true"
+                    android:stateListAnimator="@null">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_s"
+                            android:background="@color/divider_color" />
+
+                        <TextView
+                            style="@style/Heading2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:text="@string/title_new_launches_reports"
+                            android:textAlignment="textStart"
+                            android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}" />
+
+                        <TextView
+                            style="@style/SubText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:text="@string/sub_title_new_launches_reports"
+                            android:textAlignment="textStart"
+                            android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}" />
+                    </LinearLayout>
+
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white_invertible"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/spacing_xs"
+                    android:paddingBottom="@dimen/spacing_xs"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <include
+                        layout="@layout/layout_load_new_launches_reports"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_projects"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}" />
+
+                    <include
+                        layout="@layout/layout_empty_fail_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:emptyTitle="@{String.valueOf(@string/msg_no_new_launches_report)}"
+                        app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                        app:mainStatus="@{viewModel.mainStatus}" />
+                </LinearLayout>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <include
+                layout="@layout/layout_bottom_action_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                app:btnLabel="@{@string/btn_download_and_send}"
+                app:description="@{viewModel.selectedProjectLabel}"
+                app:isBtnEnabled="@{true}"
+                app:showActionBar="@{viewModel.selectedReports.size() > 0}" />
+
+        </RelativeLayout>
+
+        <!--TODO: will populate later-->
+        <include
+            android:id="@+id/layout_header"
+            layout="@layout/card_project_search_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_l"
+            app:hintText="@{viewModel.hintText}"
+            app:isFilterEnabled="@{true}"
+            app:orderCriteriaLabel="@{viewModel.orderCriteria.label}"
+            app:searchText="@{viewModel.searchText}"
+            app:showCloseIcon="@{viewModel.showCloseBtn}"
+            app:showDefaultView="@{viewModel.showDefaultView}" />
+
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

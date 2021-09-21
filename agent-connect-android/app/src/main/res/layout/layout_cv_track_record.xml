@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.cv.AgentCvViewModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="hdbSaleTransactions"
+                type="String" />
+
+        <variable
+                name="hdbRentedTransactions"
+                type="String" />
+
+        <variable
+                name="privateSaleTransactions"
+                type="String" />
+
+        <variable
+                name="privateRentedTransactions"
+                type="String" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/tv_track_record"
+                    style="@style/Heading2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_track_record" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/tv_track_record"
+                    android:visibility="@{safeUnbox(viewModel.isOwnCv()) ? View.VISIBLE : View.GONE}">
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_track_record"
+                        style="@style/Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:checked="@{viewModel.agentCvPO.showTransactions}"
+                        android:visibility="@{safeUnbox(viewModel.showTrackRecordPlaceholder)? View.GONE : View.VISIBLE}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/tv_view_all_track_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/switch_track_record"
+                        android:gravity="end"
+                        android:text="@string/button_view_all"
+                        android:visibility="@{safeUnbox(viewModel.showTrackRecordPlaceholder)? View.GONE : View.VISIBLE}" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="@{safeUnbox(viewModel.showTrackRecordPlaceholder)? View.GONE : View.VISIBLE}">
+
+            <TextView
+                    style="@style/BodyBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/property_type_hdb" />
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:orientation="horizontal">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                        android:id="@+id/tab_hdb_sold"
+                        style="@style/TabButton"
+                        android:layout_width="@dimen/width_track_record"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_tab_gray_border_white_background_start"
+                        android:clickable="true"
+                        android:enabled="@{viewModel.agentPO.transactionSummary != null? viewModel.agentPO.transactionSummary.saleHdbTotal > 0: false}"
+                        android:focusable="true"
+                        android:text="@{hdbSaleTransactions}"
+                        android:textColor="@drawable/btn_tab_text" />
+
+                <View
+                        android:layout_width="@dimen/list_view_divider"
+                        android:layout_height="match_parent"
+                        android:background="@color/card_border" />
+
+
+                <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                        android:id="@+id/tab_hdb_rented"
+                        style="@style/TabButton"
+                        android:layout_width="@dimen/width_track_record"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_tab_gray_border_white_background_end"
+                        android:clickable="true"
+                        android:enabled="@{viewModel.agentPO.transactionSummary != null? viewModel.agentPO.transactionSummary.rentHdbTotal > 0: false}"
+                        android:focusable="true"
+                        android:text="@{hdbRentedTransactions}"
+                        android:textColor="@drawable/btn_tab_text" />
+
+            </LinearLayout>
+
+            <include layout="@layout/view_divider_horizontal" />
+
+            <TextView
+                    style="@style/BodyBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/label_private" />
+
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                        android:id="@+id/tab_private_sold"
+                        style="@style/TabButton"
+                        android:layout_width="@dimen/width_track_record"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_tab_gray_border_white_background_start"
+                        android:clickable="true"
+                        android:enabled="@{viewModel.agentPO.transactionSummary != null? viewModel.agentPO.transactionSummary.salePrivateTotal > 0: false}"
+                        android:focusable="true"
+                        android:text="@{privateSaleTransactions}"
+                        android:textColor="@drawable/btn_tab_text" />
+
+                <View
+                        android:layout_width="@dimen/list_view_divider"
+                        android:layout_height="match_parent"
+                        android:background="@color/card_border" />
+
+
+                <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                        android:id="@+id/tab_private_rented"
+                        style="@style/TabButton"
+                        android:layout_width="@dimen/width_track_record"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_tab_gray_border_white_background_end"
+                        android:clickable="true"
+                        android:enabled="@{viewModel.agentPO.transactionSummary != null? viewModel.agentPO.transactionSummary.rentPrivateTotal > 0: false}"
+                        android:focusable="true"
+                        android:text="@{privateRentedTransactions}"
+                        android:textColor="@drawable/btn_tab_text" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_m"
+                android:visibility="@{safeUnbox(viewModel.showTrackRecordPlaceholder)? View.VISIBLE : View.GONE}">
+
+            <TextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_no_transaction_placeholder"
+                    android:textColor="@color/gray" />
+
+            <Button
+                    android:id="@+id/btn_create_listing"
+                    style="@style/SecondaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:stateListAnimator="@null"
+                    android:text="@string/action_create_new_listing" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

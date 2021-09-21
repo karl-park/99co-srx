@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<variable
+				name="viewModel"
+				type="sg.searchhouse.agentconnect.viewmodel.activity.listing.FilterListingViewModel" />
+
+		<variable
+				name="propertySubType"
+				type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertySubType" />
+	</data>
+
+	<androidx.appcompat.widget.AppCompatButton
+			android:id="@+id/button"
+			style="@style/ListingFilterPill"
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/pill_height"
+			android:text="@{propertySubType.label}"
+			app:isSelected="@{viewModel.hasPropertySubType(propertySubType)}" />
+</layout>

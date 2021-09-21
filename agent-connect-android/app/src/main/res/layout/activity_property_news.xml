@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.propertynews.PropertyNewsViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white_invertible"
+                android:orientation="vertical">
+
+            <!-- Back Button with property news -->
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@string/title_property_news" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingEnd="@dimen/spacing_m">
+
+                <TextView
+                        android:id="@+id/tab_categories"
+                        style="@style/TabButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_tab_gray_border_white_background_start"
+                        android:clickable="true"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:focusable="true"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_xxs"
+                        android:text="@{viewModel.categoriesName}"
+                        android:textColor="@drawable/btn_tab_text" />
+
+                <include layout="@layout/view_divider_vertical" />
+
+                <EditText
+                        android:id="@+id/et_search_news"
+                        style="@style/TabButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_tab_gray_border_white_background_end"
+                        android:gravity="center_vertical"
+                        android:hint="@string/hint_property_news_search"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/spacing_xs"
+                        android:paddingEnd="@dimen/spacing_s"
+                        android:singleLine="true" />
+            </LinearLayout>
+
+            <!--Show if has property news-->
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_property_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:visibility="@{safeUnbox(viewModel.isShowOccupied) ? View.VISIBLE : View.GONE}" />
+
+            <!-- Show if no property news-->
+            <TextView
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/msg_no_property_news"
+                    android:visibility="@{safeUnbox(viewModel.isShowEmpty()) ? View.VISIBLE : View.GONE}" />
+
+            <!-- show them loading, error and fail state.. -->
+            <include
+                    layout="@layout/layout_loading_fail_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:mainStatus="@{viewModel.mainStatus}" />
+
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

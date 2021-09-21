@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.projectinfo.ProjectDirectoryViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/top_margin_listings_sub_app_bar"
+                    android:fitsSystemWindows="true">
+
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/app_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white_invertible"
+                        android:fitsSystemWindows="true"
+                        android:stateListAnimator="@null"
+                        android:visibility="@{safeUnbox(viewModel.showDefaultView)? View.GONE : View.VISIBLE}">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_s"
+                            android:background="@color/divider_color"
+                            app:layout_scrollFlags="scroll|enterAlwaysCollapsed" />
+
+                    </com.google.android.material.appbar.AppBarLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white_invertible"
+                        android:orientation="vertical"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_scrollFlags="scroll|enterAlways">
+
+                        <TextView
+                            style="@style/Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:gravity="center"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="@dimen/size_50"
+                            android:text="@string/msg_project_empty_view"
+                            android:visibility="@{safeUnbox(viewModel.showDefaultView)? View.VISIBLE : View.GONE}" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="@{safeUnbox(viewModel.showDefaultView)? View.GONE : View.VISIBLE}">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/list_projects"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:overScrollMode="never"
+                                android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}" />
+
+                            <include
+                                layout="@layout/layout_load_project_directory_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_xxs"
+                                android:layout_marginBottom="0dp"
+                                app:visibility="@{viewModel.mainStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+                            <include
+                                layout="@layout/layout_empty_fail_error"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:emptyTitle="@{String.valueOf(@string/msg_no_project_list)}"
+                                app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                                app:mainStatus="@{viewModel.mainStatus}" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            </RelativeLayout>
+
+            <include
+                android:id="@+id/layout_header"
+                layout="@layout/card_project_search_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_l"
+                app:hintText="@{viewModel.hintText}"
+                app:isFilterEnabled="@{viewModel.isFilterEnabled()}"
+                app:orderCriteriaLabel="@{viewModel.orderCriteria.label}"
+                app:searchText="@{viewModel.searchText}"
+                app:showCloseIcon="@{false}"
+                app:showDefaultView="@{viewModel.showDefaultView}" />
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

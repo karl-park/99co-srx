@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--TODO Replace widget `OwnershipRadioGroup`-->
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <variable
+                name="ownershipType"
+                type="OwnershipType" />
+    </data>
+
+    <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rb_sale"
+                style="@style/RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_l"
+                android:background="@color/transparent"
+                android:text="@string/label_sale"
+                android:checked="@{ownershipType == OwnershipType.SALE}" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rb_rent"
+                style="@style/RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:text="@string/label_rent"
+                android:checked="@{ownershipType == OwnershipType.RENT}" />
+    </RadioGroup>
+</layout>

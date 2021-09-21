@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showNonQualityInfo"
+            type="Boolean" />
+
+        <variable
+            name="listingEditPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingEditPO" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingTop="@dimen/spacing_s"
+            android:paddingEnd="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_s">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_photos" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:visibility="@{safeUnbox(showNonQualityInfo)? View.VISIBLE : View.GONE }"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:flexDirection="row"
+                app:flexWrap="wrap">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/SmallBodyCyan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="@dimen/spacing_xxs"
+                    android:text="@string/label_vet_listing_what_is" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/SmallBodyOrange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="@dimen/spacing_xxs"
+                    android:text="@string/label_vet_listing_non_quality" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/SmallBodyCyan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:text="@string/label_vet_listing_picture" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_non_quality_photo_info"
+                    android:layout_width="@dimen/size_help_icon"
+                    android:layout_height="@dimen/size_help_icon"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_help_circle"
+                    app:layout_alignSelf="center" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_listing_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:overScrollMode="never" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:text="@string/label_floor_plan" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_floor_plan_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:overScrollMode="never" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:text="@string/label_youtube_video" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_video_url"
+                style="@style/RoundedEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:hint="@string/hint_enter_url"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:singleLine="true"
+                android:text="@{listingEditPO.getVideoUrl()}"
+                tools:ignore="LabelFor"
+                tools:targetApi="O" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_video_viewing"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_video_viewing" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/size_video_viewing_icon"
+                        android:layout_height="@dimen/size_video_viewing_icon"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/spacing_xxs"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/tv_video_viewing"
+                        android:paddingTop="@dimen/spacing_xxs"
+                        android:paddingBottom="0dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_listing_video" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_video_viewing"
+                        style="@style/Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:checked="@{listingEditPO.getVideoViewingIndicator()}" />
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBody"
+                    android:layout_width="@dimen/width_msg_post_listing_video_viewing"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="0dp"
+                    android:text="@string/msg_listing_video_viewing" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="hyperTargetTemplate"
+            type="sg.searchhouse.agentconnect.model.api.community.CommunityHyperTargetTemplatePO" />
+
+        <variable
+            name="memberCountLabel"
+            type="String" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            app:contentPaddingBottom="@dimen/spacing_m"
+            app:contentPaddingLeft="@dimen/spacing_m"
+            app:contentPaddingRight="@dimen/spacing_m"
+            app:contentPaddingTop="@dimen/spacing_m">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/BodyBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/layout_address_count"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@{hyperTargetTemplate.name}" />
+
+                <FrameLayout
+                    android:id="@+id/layout_address_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xs">
+
+                    <androidx.core.widget.ContentLoadingProgressBar
+                        style="@style/Widget.AppCompat.ProgressBar"
+                        android:layout_width="@dimen/loading_progress_bar_size"
+                        android:layout_height="@dimen/loading_progress_bar_size"
+                        android:layout_gravity="center_vertical|end"
+                        android:visibility="@{memberCountLabel == null ? View.VISIBLE : View.INVISIBLE}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_address_count"
+                        style="@style/ExtraSmallBodyPurple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_address"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="@dimen/spacing_xxs"
+                        android:text="@{memberCountLabel}"
+                        android:visibility="@{memberCountLabel != null ? View.VISIBLE : View.INVISIBLE}" />
+                </FrameLayout>
+            </RelativeLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

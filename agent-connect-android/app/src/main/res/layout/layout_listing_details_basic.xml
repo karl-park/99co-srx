@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="listingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_m">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_header"
+            android:tag="main_title"
+            style="@style/Heading2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{listingPO.getListingDetailTitle(context)}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/SubText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{listingPO.address}"
+            android:visibility="@{!TextUtils.isEmpty(listingPO.address) ? View.VISIBLE : View.GONE}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:text="@{listingPO.listingHeader}"
+            android:visibility="@{!TextUtils.isEmpty(listingPO.listingHeader) ? View.VISIBLE : View.GONE}" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_display_size"
+                style="@style/SubText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/layout_rooms"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="@{listingPO.displaySizePsf}"
+                android:visibility="@{!TextUtils.isEmpty(listingPO.displaySizePsf) ? View.VISIBLE : View.GONE}" />
+
+            <LinearLayout
+                android:id="@+id/layout_rooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_rooms"
+                    style="@style/ListingIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="0dp"
+                    android:drawableStart="@drawable/ic_bed"
+                    android:text="@{listingPO.roomsNumber}"
+                    android:visibility="@{TextUtils.isEmpty(listingPO.roomsNumber) ? View.GONE : View.VISIBLE}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_bathrooms"
+                    style="@style/ListingIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="0dp"
+                    android:drawableStart="@drawable/ic_bath_tub"
+                    android:text="@{listingPO.bathroom}"
+                    android:visibility="@{TextUtils.isEmpty(listingPO.bathroom) ? View.GONE : View.VISIBLE}" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_price"
+            style="@style/Heading2Color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{listingPO.askingPriceLabel()}"
+            android:textColor="@color/purple"
+            android:visibility="@{!TextUtils.isEmpty(listingPO.askingPriceLabel()) ? View.VISIBLE : View.GONE}" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_alignStart="@id/quality_bar"
+                android:layout_alignParentStart="true"
+                android:text="@string/title_filter_listing_x_listing_price"
+                android:textColor="@color/purple"
+                android:visibility="@{listingPO.xListingInd ? View.VISIBLE : View.GONE}" />
+
+            <sg.searchhouse.agentconnect.view.widget.listing.create.ListingQualityBar
+                android:id="@+id/quality_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/size_height_quality_listing"
+                android:layout_alignParentEnd="true"
+                app:quality="@{listingPO.quality}"
+                app:showLabel="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginBottom="0dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SubText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tv_certified_listing"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:text="@string/label_also_on_classifieds"
+                android:visibility="@{listingPO.hasClassified() ? View.VISIBLE : View.GONE}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_certified_listing"
+                style="@style/CertifiedListingTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:drawableStart="@drawable/ic_certified"
+                android:text="@string/label_certified_listing"
+                android:visibility="@{listingPO.ownerCertifiedInd ? View.VISIBLE : View.GONE}" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginBottom="0dp"
+            android:visibility="@{safeUnbox(listingPO.allowVideoViewing()) ? View.VISIBLE : View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBodyPurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_toStartOf="@+id/iv_video_viewing"
+                android:text="@string/listing_video_viewing_available" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_video_viewing"
+                android:layout_width="@dimen/size_video_viewing_icon"
+                android:layout_height="@dimen/size_video_viewing_icon"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_listing_video" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

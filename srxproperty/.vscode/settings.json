@@ -1,0 +1,6 @@
+{
+    "search.usePCRE2": true,
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "git.ignoreLimitWarning": true,
+    "editor.tabSize": 2
+}

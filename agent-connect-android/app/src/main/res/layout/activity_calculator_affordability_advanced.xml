@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.AdvancedAffordabilityCalculatorViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:background="@color/light_gray_invertible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@string/activity_calculator_affordability_advanced" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.core.widget.NestedScrollView
+                        android:layout_marginTop="@dimen/height_layout_header_calculator_affordability_advanced"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            android:id="@+id/layout_container"
+                            android:paddingTop="@dimen/margin_top_layout_child_calculator_stamp_duty_buyer"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <include
+                                layout="@layout/layout_affordability_advanced_property_details"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                app:viewModel="@{viewModel}" />
+
+                        <include
+                                layout="@layout/layout_affordability_advanced_borrower_details"
+                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                app:viewModel="@{viewModel}" />
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+
+                <include
+                        android:id="@+id/layout_header_calculator_affordability_advanced"
+                        layout="@layout/layout_header_calculator_affordability_advanced"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/spacing_m_minus"
+                        app:viewModel="@{viewModel}" />
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="UselessLeaf" />
+    <!--    <data>-->
+
+    <!--        <import type="android.view.View" />-->
+
+    <!--        <variable-->
+    <!--            name="viewModel"-->
+    <!--            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.create.PostListingViewModel" />-->
+
+    <!--        <import type="sg.searchhouse.agentconnect.model.status.ButtonState" />-->
+
+    <!--    </data>-->
+
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical">-->
+
+    <!--        <TextView-->
+    <!--            style="@style/Title"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="@string/label_youtube_video" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/et_video_url"-->
+    <!--            style="@style/RoundedEditText"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="@dimen/spacing_s"-->
+    <!--            android:hint="@string/hint_enter_url"-->
+    <!--            android:importantForAutofill="no"-->
+    <!--            android:inputType="textUri"-->
+    <!--            android:singleLine="true"-->
+    <!--            android:text="@{viewModel.listingEditPO.getVideoUrl()}"-->
+    <!--            tools:ignore="LabelFor"-->
+    <!--            tools:targetApi="O" />-->
+
+    <!--        &lt;!&ndash;If more than one videos in future -> change with recycler view &ndash;&gt;-->
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/ll_add_videos"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="@dimen/spacing_s"-->
+    <!--            android:orientation="vertical" />-->
+    <!--    </LinearLayout>-->
+</layout>

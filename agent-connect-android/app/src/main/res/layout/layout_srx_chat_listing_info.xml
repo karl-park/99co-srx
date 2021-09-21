@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showDivider"
+            type="Boolean" />
+
+        <variable
+            name="listingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingEnd="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_xs">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_project_name"
+                style="@style/BodyBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/tv_currency"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{listingPO.getListingName()}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_currency"
+                style="@style/Heading2Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/spacing_xxs"
+                android:layout_marginEnd="0dp"
+                android:text="@{listingPO.askingPriceLabel()}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_project_name"
+                android:layout_marginTop="@dimen/spacing_xxs"
+                android:layout_marginBottom="0dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{listingPO.getListingDescription(context)}" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_view_divider"
+            android:foreground="@color/divider_color"
+            android:visibility="@{safeUnbox(showDivider)? View.VISIBLE : View.GONE}" />
+
+    </LinearLayout>
+</layout>

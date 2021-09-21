@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="agent"
+                type="sg.searchhouse.agentconnect.model.api.agent.AgentPO" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <LinearLayout
+            android:id="@+id/ll_srx_agent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_agent_item_height"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <!-- check box for agent item -->
+            <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cb_agent_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:theme="@style/CheckBox" />
+
+            <!-- agent photo -->
+            <sg.searchhouse.agentconnect.view.widget.common.CircleImageView
+                    android:id="@+id/iv_agent_photo"
+                    android:layout_width="@dimen/profile_icon_size"
+                    android:layout_height="@dimen/profile_icon_size"
+                    android:background="@drawable/profile_icon_background"
+                    android:padding="@dimen/button_border"
+                    android:scaleType="centerInside"
+                    app:url="@{agent.photo}" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_xs">
+
+                <!-- AgentPO Name -->
+                <TextView
+                        android:id="@+id/tv_agent_name"
+                        style="@style/Body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toStartOf="@+id/ll_agency_log_and_analyzer"
+                        android:ellipsize="end"
+                        android:lineHeight="@dimen/text_size_18"
+                        android:maxLines="@integer/max_line_1"
+                        android:text="@{agent.name}"
+                        tools:targetApi="p" />
+
+                <LinearLayout
+                        android:id="@+id/ll_agency_log_and_analyzer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:orientation="horizontal">
+
+                    <!-- agency logo -->
+                    <ImageView
+                            android:id="@+id/iv_agency_logo"
+                            android:layout_width="@dimen/size_logo_size"
+                            android:layout_height="@dimen/size_logo_size"
+                            android:layout_marginEnd="@dimen/spacing_xs"
+                            android:contentDescription="@string/content_description_agency_logo"
+                            android:visibility="@{!TextUtils.isEmpty(agent.agencyLogo)? View.VISIBLE : View.GONE}"
+                            app:imageUrl="@{agent.agencyLogo}" />
+
+                    <!-- expert analyzer -->
+                    <ImageView
+                            android:id="@+id/iv_expert_analyzer"
+                            android:layout_width="@dimen/size_logo_size"
+                            android:layout_height="@dimen/size_logo_size"
+                            android:contentDescription="@string/content_description_expert_analyzer"
+                            android:src="@drawable/ic_analyzer_expert"
+                            android:visibility="@{safeUnbox(agent.isExpertAnalyzer())? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
+
+                <!-- Cea and Agency number -->
+                <TextView
+                        android:id="@+id/tv_cea_and_agency_no"
+                        style="@style/ExtraSmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_agent_name"
+                        android:text="@{agent.getCeaNoAndLicenseNumber()}" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:background="@color/divider_color" />
+
+    </LinearLayout>
+
+</layout>

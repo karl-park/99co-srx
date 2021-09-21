@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.certifiedlisting.HomeOwnerDetailViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ButtonState" />
+    </data>
+
+    <merge>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                style="@style/BodyBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:text="@string/label_sponsor_listing" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ic_wallet"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_toEndOf="@id/tv_title"
+                android:background="?selectableItemBackgroundBorderless"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_wallet" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ListingTag.New"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/ic_wallet"
+                android:text="@string/label_capital_new" />
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_l"
+            android:text="@string/msg_advertise_listing" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_enter_sponsor"
+            style="@style/SecondaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacing_l"
+            android:text="@string/label_enter_sponsor" />
+    </merge>
+</layout>

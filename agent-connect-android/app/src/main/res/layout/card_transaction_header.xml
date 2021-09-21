@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.TransactionsDisplayMode" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.TransactionEnum.ActivityType" />
+
+        <variable
+                name="activityType"
+                type="ActivityType" />
+
+        <variable
+                name="displayMode"
+                type="TransactionsDisplayMode" />
+
+        <variable
+                name="queryLabel"
+                type="String" />
+
+        <variable
+                name="showFilter"
+                type="Boolean" />
+
+        <variable
+                name="canExport"
+                type="Boolean" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentPaddingBottom="0dp">
+
+        <LinearLayout
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_transaction_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start|center_vertical"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:contentDescription="@string/content_description_dismiss"
+                        android:focusable="true"
+                        android:src="@drawable/ic_arrow_left"
+                        android:tint="@color/black_invertible" />
+
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.SearchButton
+                            android:id="@+id/btn_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_toStartOf="@id/layout_mode"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="@{queryLabel}" />
+
+                    <FrameLayout
+                            android:id="@+id/layout_mode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/spacing_xs"
+                            android:layout_marginEnd="0dp"
+                            android:visibility="gone">
+
+                        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                                android:id="@+id/btn_map"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_globe"
+                                android:drawablePadding="@dimen/spacing_xs"
+                                android:text="@string/button_map"
+                                android:textAlignment="textEnd"
+                                android:visibility="@{displayMode == TransactionsDisplayMode.MAP ? View.INVISIBLE : View.VISIBLE}" />
+
+                        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                                android:id="@+id/btn_list"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_list"
+                                android:drawablePadding="@dimen/spacing_xs"
+                                android:text="@string/button_list"
+                                android:textAlignment="textEnd"
+                                android:visibility="@{displayMode == TransactionsDisplayMode.LIST ? View.INVISIBLE : View.VISIBLE}" />
+                    </FrameLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_filter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:drawableStart="@drawable/ic_filter"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:drawableTint="@color/black_invertible"
+                        android:text="@string/button_filter_results"
+                        android:visibility="@{showFilter ? View.VISIBLE : View.GONE}"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/btn_export_transactions"
+                        android:textAlignment="textStart" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_export_transactions"
+                        android:visibility="@{canExport ? View.VISIBLE : View.GONE}"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_file_plus"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:drawableTint="@color/black_invertible"
+                        android:text="@string/button_export_transactions"
+                        android:textAlignment="textStart" />
+            </RelativeLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

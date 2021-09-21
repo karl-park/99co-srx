@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingBottom="@dimen/spacing_xs"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBodyBold"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_weight="1.2"
+                android:text="@string/column_watchlist_transaction_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBodyBold"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_weight="2"
+                android:text="@string/column_watchlist_transaction_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBodyBold"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_weight="1"
+                android:text="@string/column_watchlist_transaction_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBodyBold"
+                android:layout_weight="1"
+                android:text="@string/column_watchlist_transaction_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

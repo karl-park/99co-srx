@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Mock-up: https://projects.invisionapp.com/d/main?origin=v7#/console/20119097/435289734/preview?scrollOffset=900 -->
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.SponsorListingViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="@{viewModel.isShowHyperTargetTemplates() ? View.VISIBLE : View.GONE}">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_l"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_xxxxl"
+            android:text="@string/instruction_create_or_select_template" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_l">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_toStartOf="@id/btn_create_hyper_target_2"
+                android:text="@string/label_saved_targets" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/btn_create_hyper_target_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:drawableStart="@drawable/ic_plus_square"
+                android:drawableTint="@color/cyan"
+                android:text="@string/button_community_create_new_target"
+                android:textSize="@dimen/text_size_16" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_hyper_target_templates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+            android:id="@+id/btn_more_hyper_target_templates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:text="@{viewModel.showMoreHyperTemplatesButtonText}"
+            android:textSize="@dimen/text_size_16"
+            android:visibility="@{viewModel.isShowMoreHyperTemplatesButton ? View.VISIBLE : View.GONE}" />
+    </LinearLayout>
+</layout>

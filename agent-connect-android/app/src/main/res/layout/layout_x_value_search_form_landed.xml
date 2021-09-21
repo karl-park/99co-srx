@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.XValueEnum.PropertyType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertySubType" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchXValueViewModel" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/spacing_l"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.getShouldShowLandedForm() ? View.VISIBLE : View.GONE}">
+
+        <!--Area type-->
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_area_type"
+                style="@style/RoundedEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_rounded_gray_background_with_border"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:focusable="true"
+                android:hint="@string/hint_area_type"
+                app:resourceText="@{viewModel.areaType.label}"
+                app:background="@{viewModel.isAreaTypeValidated() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}" />
+
+        <TextView
+                style="@style/ExtraSmallBodyError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/error_required_field"
+                android:visibility="@{viewModel.isAreaTypeValidated() ? View.GONE : View.VISIBLE}" />
+
+        <!--Tenure-->
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btn_tenure"
+                style="@style/RoundedEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:background="@{viewModel.isTenureValidated() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:focusable="true"
+                android:hint="@string/hint_tenure"
+                app:resourceText="@{viewModel.tenure.label}" />
+
+        <TextView
+                style="@style/ExtraSmallBodyError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/error_required_field"
+                android:visibility="@{viewModel.isTenureValidated() ? View.GONE : View.VISIBLE}" />
+
+        <!--GFA Area-->
+        <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                android:id="@+id/et_area_gfa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_l" />
+
+        <!--Built year-->
+        <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                android:id="@+id/et_built_year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_l"
+                app:background="@{viewModel.isBuiltYearValidated() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}" />
+
+        <TextView
+                style="@style/ExtraSmallBodyError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/error_required_field"
+                android:visibility="@{viewModel.isTenureValidated() ? View.GONE : View.VISIBLE}" />
+    </LinearLayout>
+</layout>

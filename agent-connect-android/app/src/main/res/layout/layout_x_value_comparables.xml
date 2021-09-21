@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="averageComparablePsf"
+            type="String" />
+
+        <variable
+            name="getValuationDetailStatus"
+            type="StatusKey" />
+
+        <variable
+            name="isShowComparablesEmpty"
+            type="Boolean" />
+
+        <variable
+            name="isExpand"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_comparables_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_header"
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/btn_expand"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="@string/title_x_value_comparables" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_expand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="end"
+                android:background="@color/transparent"
+                android:clickable="false"
+                android:contentDescription="@string/content_description_chevron"
+                android:src="@{isExpand == true ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                android:tint="@color/gray" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_xs"
+            android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_m"
+                android:visibility="@{!TextUtils.isEmpty(averageComparablePsf) ? View.VISIBLE : View.GONE}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:text="@string/average_comparable_psf" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/BodyColorBold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{averageComparablePsf}" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_comparables"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+
+                <include
+                    layout="@layout/layout_load_list_fail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:title="@{String.valueOf(@string/label_x_value_comparables_empty)}"
+                    app:visibility="@{isShowComparablesEmpty ? View.VISIBLE : View.GONE}" />
+
+                <include
+                    layout="@layout/layout_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:visibility="@{getValuationDetailStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+                <include
+                    layout="@layout/layout_load_list_fail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:title="@{String.valueOf(@string/fail_generic_contact_srx)}"
+                    app:visibility="@{getValuationDetailStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+                <include
+                    layout="@layout/layout_load_list_fail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:title="@{String.valueOf(@string/error_generic_contact_srx)}"
+                    app:visibility="@{getValuationDetailStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingEnd="@dimen/spacing_m">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_view_latest_transactions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_comparables_view_latest_transactions"
+                        android:textSize="@dimen/text_size_16" />
+                </FrameLayout>
+
+                <include layout="@layout/view_divider_vertical" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingEnd="@dimen/spacing_m">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_view_nearby_listings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_m"
+                        android:text="@string/button_comparables_view_nearby_listings"
+                        android:textSize="@dimen/text_size_16" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.transaction.GroupTransactionsViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.SearchEntryType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.TransactionsDisplayMode" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.TransactionEnum.ActivityType" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/light_gray_invertible">
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.displayMode == TransactionsDisplayMode.MAP ? View.VISIBLE : View.GONE}">
+
+                <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fragment_map"
+                        android:name="sg.searchhouse.agentconnect.view.fragment.transaction.base.TransactionMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <ScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:id="@+id/layout_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical">
+
+                    <include
+                            android:id="@+id/card_transaction_header"
+                            layout="@layout/card_transaction_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_m_minus"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            app:activityType="@{ActivityType.BY_GROUP}"
+                            app:canExport="@{viewModel.isShowExportButton()}"
+                            app:displayMode="@{viewModel.displayMode}"
+                            app:queryLabel="@{viewModel.queryLabel}"
+                            app:showFilter="@{true}" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.displayMode == TransactionsDisplayMode.LIST ? View.VISIBLE : View.GONE}">
+
+                        <include
+                                android:id="@+id/layout_group_transactions_summary"
+                                layout="@layout/layout_group_transactions_summary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                android:visibility="@{viewModel.isLockScrollView() == true ? View.GONE : View.VISIBLE}"
+                                app:viewModel="@{viewModel}" />
+
+                        <include
+                                android:id="@+id/layout_group_transactions_lists"
+                                layout="@layout/layout_group_transactions_lists"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:isShowProjects="@{viewModel.isShowProjects()}"
+                                app:isShowTabs="@{true}" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

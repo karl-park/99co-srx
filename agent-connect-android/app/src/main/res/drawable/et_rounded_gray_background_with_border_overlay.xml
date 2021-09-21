@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- on Focused State -->
+    <item android:state_focused="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/text_input_rounded_border"/>
+            <solid android:color="@color/transparent"/>
+            <stroke android:width="1dp" android:color="@color/text_box_border_focused"/>
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/text_input_rounded_border"/>
+            <solid android:color="@color/transparent"/>
+            <stroke android:width="1dp" android:color="@color/text_box_border_focused"/>
+        </shape>
+    </item>
+
+    <!-- Normal states -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/text_input_rounded_border"/>
+            <solid android:color="@color/transparent"/>
+            <stroke android:width="1dp" android:color="@color/text_box_border"/>
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="testimonial"
+                type="sg.searchhouse.agentconnect.model.api.agent.AgentCvPO.Testimonial" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/width_testimonial_item"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/spacing_xs"
+            app:cardElevation="@dimen/spacing_xs"
+            app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/spacing_l">
+
+            <ImageView
+                    android:id="@+id/img_testimonial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:contentDescription="@string/content_description_agent_cv"
+                    android:src="@drawable/ic_quote" />
+
+            <TextView
+                    android:id="@+id/tv_testimonial"
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_testimonial_description"
+                    android:layout_below="@+id/img_testimonial"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:ellipsize="end"
+                    android:lineSpacingExtra="@dimen/tv_line_spacing"
+                    android:maxLines="4" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_read_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_testimonial"
+                    android:layout_marginBottom="@dimen/spacing_l"
+                    android:text="@string/label_read_more" />
+
+            <TextView
+                    android:id="@+id/tv_client_name"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_read_more"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="@{testimonial.clientName}" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

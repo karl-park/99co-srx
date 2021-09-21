@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<import type="android.view.View" />
+
+		<import type="android.text.TextUtils" />
+
+		<import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+		<variable
+				name="listingPO"
+				type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+		<variable
+				name="listingDetailPO"
+				type="sg.searchhouse.agentconnect.model.api.listing.ListingDetailPO" />
+
+		<variable
+				name="isExpand"
+				type="Boolean" />
+	</data>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="@dimen/spacing_m">
+
+		<TextView
+				android:id="@+id/tv_header"
+				style="@style/Title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/spacing_m"
+				android:text="@string/title_listing_details_key_information" />
+
+		<include
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				layout="@layout/layout_listing_details_key_info_sale"
+				app:isVisible="@{listingPO.ownershipType == OwnershipType.SALE}"
+				app:listingPO="@{listingPO}" />
+
+		<include
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				layout="@layout/layout_listing_details_key_info_rent"
+				app:isVisible="@{listingPO.ownershipType == OwnershipType.RENT}"
+				app:listingPO="@{listingPO}" />
+
+		<include
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				app:listingDetailPO="@{listingDetailPO}"
+				layout="@layout/layout_listing_details_key_info_extra"
+				app:isVisible="@{isExpand == true}"
+				app:listingPO="@{listingPO}" />
+
+		<sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+				android:id="@+id/btn_expand_key_info"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:drawableEnd="@drawable/ic_chevron_down"
+				android:drawableTint="@color/cyan"
+				android:text="@string/button_show_more"
+				android:visibility="@{isExpand == false ? View.VISIBLE : View.GONE}" />
+
+		<sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+				android:id="@+id/btn_collapse_key_info"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:drawableEnd="@drawable/ic_chevron_up"
+				android:drawableTint="@color/cyan"
+				android:text="@string/button_close"
+				android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}" />
+	</LinearLayout>
+</layout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<import type="android.view.View" />
+
+		<import type="sg.searchhouse.agentconnect.enumeration.api.LocationEnum.TravelMode" />
+
+		<variable
+				name="amenity"
+				type="sg.searchhouse.agentconnect.model.api.listing.AmenitiesPO" />
+
+		<variable
+				name="isExpand"
+				type="Boolean" />
+
+		<variable
+				name="selectedTravelMode"
+				type="TravelMode" />
+
+		<variable
+				name="walkingDuration"
+				type="String" />
+
+		<variable
+				name="transitDuration"
+				type="String" />
+
+		<variable
+				name="drivingDuration"
+				type="String" />
+	</data>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+
+		<RelativeLayout
+				android:id="@+id/layout_header"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:clickable="true"
+				android:focusable="true"
+				android:padding="@dimen/spacing_m">
+
+			<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/tv_header"
+					style="@style/Title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_toStartOf="@id/layout_expand"
+					android:layout_alignParentStart="true"
+					android:layout_centerVertical="true"
+					android:layout_marginEnd="@dimen/spacing_xs"
+					android:ellipsize="end"
+					android:maxLines="3"
+					android:text="@{amenity.name}" />
+
+			<LinearLayout
+					android:id="@+id/layout_expand"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentEnd="true"
+					android:layout_centerVertical="true"
+					android:gravity="center_vertical"
+					android:orientation="horizontal">
+
+				<androidx.appcompat.widget.AppCompatTextView
+						android:id="@+id/tv_distance"
+						style="@style/SubText"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginEnd="@dimen/spacing_xs"
+						android:text="@{amenity.distance}" />
+
+				<androidx.appcompat.widget.AppCompatImageButton
+						android:id="@+id/btn_expand"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:background="@color/transparent"
+						android:clickable="false"
+						android:contentDescription="@string/content_description_chevron"
+						android:padding="0dp"
+						android:src="@{isExpand == true ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+						android:tint="@color/black_invertible" />
+			</LinearLayout>
+		</RelativeLayout>
+
+		<FrameLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}">
+
+			<include
+					android:id="@+id/layout_select_transport"
+					layout="@layout/layout_select_travel_mode"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					app:drivingDuration="@{drivingDuration}"
+					app:selectedTravelMode="@{selectedTravelMode}"
+					app:transitDuration="@{transitDuration}"
+					app:walkingDuration="@{walkingDuration}" />
+		</FrameLayout>
+
+		<include layout="@layout/view_divider_horizontal" />
+	</LinearLayout>
+</layout>

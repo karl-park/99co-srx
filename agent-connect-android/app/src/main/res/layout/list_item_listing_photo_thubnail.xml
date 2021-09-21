@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+		<variable
+				name="position"
+				type="Integer" />
+		<variable
+				name="selectedPosition"
+				type="Integer" />
+		<variable
+				name="listingMedia"
+				type="sg.searchhouse.agentconnect.model.api.listing.ListingMedia" />
+	</data>
+
+	<FrameLayout
+			android:padding="@dimen/picker_item_padding"
+			android:background="@{position == selectedPosition ? @color/cyan : @color/transparent}"
+			android:layout_width="@dimen/listing_photo_picker_size"
+			android:layout_height="@dimen/listing_photo_picker_size">
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/image_view"
+				android:layout_width="@dimen/listing_photo_picker_size"
+				android:layout_height="@dimen/listing_photo_picker_size"
+				android:scaleType="centerCrop"
+				app:imageUrl="@{listingMedia.mediaThumbnailUrl}" />
+	</FrameLayout>
+</layout>

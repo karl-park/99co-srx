@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Reference: https://www.figma.com/file/9idVFfMHu4YAT7FHJ33040/%5BWIP%5D-Shared-Wallet (iOS) -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_s">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/SmallBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:text="@string/description_shared_wallet"
+            app:lineHeight="@dimen/line_height_22" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+            android:id="@+id/btn_top_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/button_top_up_shared_wallet"
+            android:textSize="@dimen/text_size_16" />
+    </LinearLayout>
+</layout>

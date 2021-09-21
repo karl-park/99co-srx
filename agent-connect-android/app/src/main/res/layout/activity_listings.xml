@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel.DisplayMode" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel.ListMode" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel.SelectMode" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/layout_action_listings"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/top_margin_listings_sub_app_bar"
+                    android:fitsSystemWindows="true">
+
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/app_bar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white_invertible"
+                        android:fitsSystemWindows="true"
+                        android:stateListAnimator="@null"
+                        android:visibility="@{viewModel.displayMode != DisplayMode.MAP ? View.VISIBLE : View.GONE}">
+
+                        <!--Customise property types-->
+                        <include
+                            android:id="@+id/layout_sub_header"
+                            layout="@layout/card_listings_sub_header"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/margin_bottom_listings_sub_header"
+                            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                            app:viewModel="@{viewModel}" />
+
+                    </com.google.android.material.appbar.AppBarLayout>
+
+                    <!--List and grid-->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_scrollFlags="scroll|enterAlways">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"
+                            android:visibility="@{viewModel.displayMode == DisplayMode.LIST ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/grid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"
+                            android:visibility="@{viewModel.displayMode == DisplayMode.GRID ? View.VISIBLE : View.GONE}" />
+                    </FrameLayout>
+
+                    <!--Empty layout-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/layout_main"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="@{safeUnbox(viewModel.isShowEmpty()) ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:text="@string/title_listings_empty" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:text="@string/description_listings_empty" />
+
+                        <!--TODO: Back to this later, enable reset search-->
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_reset_search"
+                            style="@style/SecondaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/button_reset_search"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <include
+                        layout="@layout/layout_load_listings"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/layout_main"
+                        android:layout_alignParentBottom="true"
+                        app:displayMode="@{viewModel.displayMode}"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+                    <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/layout_main"
+                        android:layout_alignParentBottom="true"
+                        app:title="@string/label_load_listings_fail"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+                    <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/layout_main"
+                        android:layout_alignParentBottom="true"
+                        app:title="@string/label_load_listings_error"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                <!--Multi select action layout-->
+                <include
+                    android:id="@+id/layout_action_listings"
+                    layout="@layout/layout_action_listings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    app:selectMode="@{viewModel.selectMode}"
+                    app:selectedListItemsSize="@{viewModel.selectedListItemsSize}" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!--Search header, filter and sort-->
+                <include
+                    android:id="@+id/layout_search"
+                    layout="@layout/card_listings_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/spacing_l"
+                    app:viewModel="@{viewModel}" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/layout_search"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="@{viewModel.displayMode == DisplayMode.MAP ? View.VISIBLE : View.GONE}">
+
+                    <fragment
+                        android:id="@+id/map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <include
+                android:id="@+id/layout_view_mode_toggle"
+                layout="@layout/layout_display_mode_toggle"
+                app:displayMode="@{viewModel.displayMode}"
+                app:isVisible="@{viewModel.selectMode == null}" />
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

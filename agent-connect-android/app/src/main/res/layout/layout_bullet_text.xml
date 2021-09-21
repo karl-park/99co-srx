@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="text"
+                type="String" />
+
+    </data>
+
+    <!--Because `drawableStart` of `TextView` cannot align top for multi-line text-->
+    <LinearLayout
+            android:gravity="top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:src="@drawable/ic_bullet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:contentDescription="@string/content_description_bullet" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBody"
+                android:gravity="top"
+                android:layout_gravity="top"
+                android:text="@{text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>

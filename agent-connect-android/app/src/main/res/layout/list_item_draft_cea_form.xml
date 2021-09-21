@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="ceaForm"
+            type="sg.searchhouse.agentconnect.model.api.listing.UnsubmittedCeaFormPO" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:id="@+id/card_draft_cea_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_m"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:layout_marginEnd="@dimen/spacing_m"
+        android:layout_marginBottom="@dimen/spacing_xs"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Date created -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingEnd="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_xs">
+
+                <TextView
+                    style="@style/ExtraSmallBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/tv_date_created"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@{ceaForm.getFormTypeAndPropertyTypeFullLabel(context)}" />
+
+                <TextView
+                    android:id="@+id/tv_date_created"
+                    style="@style/ExtraSmallBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@{ceaForm.getCreatedDate()}" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_divider_horizontal" />
+
+            <!-- Address -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/check_box_draft_cea_form"
+                    style="@style/CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/listing_item_checkbox_start_padding"
+                    android:checked="@{isSelected}" />
+
+                <TextView
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@{ceaForm.propertyString}" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingEnd="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_s">
+
+                <include
+                    android:id="@+id/layout_photo"
+                    layout="@layout/layout_no_photo_template" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_s"
+                    android:layout_marginEnd="0dp"
+                    android:layout_toEndOf="@id/layout_photo"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_expected_label"
+                            style="@style/SmallBody"
+                            android:layout_width="@dimen/width_cea_item_label"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/label_cea_item_expected" />
+
+                        <TextView
+                            style="@style/Heading2Color"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/tv_expected_label"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="@{ceaForm.getExpectedPrice(context)}" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xxs"
+                        android:layout_marginBottom="0dp">
+
+                        <TextView
+                            android:id="@+id/tv_asking_label"
+                            style="@style/SmallBody"
+                            android:layout_width="@dimen/width_cea_item_label"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/label_cea_item_asking" />
+
+                        <TextView
+                            style="@style/Heading2Color"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/tv_asking_label"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="@{ceaForm.getAskingPrice(context)}" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xxs"
+                        android:layout_marginBottom="0dp">
+
+                        <TextView
+                            android:id="@+id/tv_validity_label"
+                            style="@style/SmallBody"
+                            android:layout_width="@dimen/width_cea_item_label"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="@string/label_cea_item_validity" />
+
+                        <TextView
+                            style="@style/Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/tv_validity_label"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="@{ceaForm.getValidityDate(context)}" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

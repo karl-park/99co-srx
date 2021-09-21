@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardUserListingsViewModel" />
+
+        <variable
+                name="breakdown"
+                type="sg.searchhouse.agentconnect.model.api.listing.ListingsSummaryResponse.Breakdown" />
+
+        <variable
+                name="ownershipType"
+                type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <variable
+                name="background"
+                type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{background}"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.onClickBreakdown(breakdown, ownershipType)}"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m">
+
+        <TextView
+                android:id="@+id/tv_count"
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:lines="1"
+                app:textOrDash="@{breakdown.totalString}" />
+
+        <TextView
+                android:id="@+id/tv_property_type"
+                style="@style/ExtraSmallBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                app:textOrDash="@{breakdown.description}" />
+    </LinearLayout>
+</layout>

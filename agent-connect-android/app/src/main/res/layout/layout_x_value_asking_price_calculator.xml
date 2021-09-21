@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.xvalue.XValueViewModel" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:id="@+id/layout_asking_price_calculator_header"
+                android:background="?selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_header"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/btn_expand"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/title_x_value_asking_price_calculator" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_expand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="end"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_chevron"
+                    android:src="@{isExpand == true ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                    android:tint="@color/gray" />
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_m"
+                android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:gravity="top">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        android:layout_toStartOf="@id/layout_renovation_end"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_title_renovation"
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="@dimen/spacing_xs"
+                            android:text="@string/label_x_value_renovation"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/select_renovation_year"
+                            style="@style/RoundedEditText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/et_rounded_gray_background_with_border"
+                            android:clickable="true"
+                            android:drawableEnd="@drawable/ic_arrow_down"
+                            android:focusable="true"
+                            android:hint="@string/hint_renovation_year"
+                            android:text="@{viewModel.renovationYear.toString()}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_title_renovation" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                            android:id="@+id/et_renovation_cost"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/spacing_xs"
+                            android:paddingEnd="0dp"
+                            android:visibility="@{viewModel.renovationYear != null ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintLeft_toRightOf="@id/select_renovation_year"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintWidth_default="spread"
+                            app:layout_constraintWidth_max="@dimen/width_et_renovation_price" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                        android:id="@+id/layout_renovation_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyGray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/label_asking_price" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/TitleColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:textOrDash="@{viewModel.xValuePlusLabel}" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top">
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        android:layout_toStartOf="@id/layout_good_will_end"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/label_x_value_adjust_good_will" />
+
+                    <FrameLayout
+                            android:layout_width="@dimen/width_select_good_will"
+                            android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/RoundedEditText"
+                                android:layout_width="@dimen/width_select_good_will"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/spacing_xs"
+                                android:background="@drawable/et_rounded_gray_background_with_border"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:text="@{viewModel.goodWillLabel}" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_add_goodwill"
+                                android:layout_width="@dimen/size_30"
+                                android:layout_height="@dimen/size_21"
+                                android:layout_gravity="end|top"
+                                android:background="@drawable/et_rounded_gray_background_with_border_overlay_top_end"
+                                android:gravity="center"
+                                android:text="@string/plus" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_minus_goodwill"
+                                android:layout_width="@dimen/size_30"
+                                android:layout_height="@dimen/size_20"
+                                android:layout_gravity="end|bottom"
+                                android:background="@drawable/et_rounded_gray_background_with_border_overlay_bottom_end"
+                                android:gravity="center"
+                                android:text="@string/minus" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:id="@+id/layout_good_will_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBodyGray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/label_asking_price" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/TitleColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:textOrDash="@{viewModel.xListingPriceLabel}" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

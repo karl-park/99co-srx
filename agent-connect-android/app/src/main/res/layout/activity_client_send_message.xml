@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.agent.client.ClientSendMessageViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.ClientModeOption" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:visibility="@{viewModel.sendMessageStatus == StatusKey.SUCCESS ? View.GONE : View.VISIBLE}">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    android:background="@color/white_invertible"
+                    android:fitsSystemWindows="true">
+
+                    <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/collapsingToolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_collapsing_toolbar_height"
+                        app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                        app:expandedTitleMarginEnd="@dimen/spacing_m"
+                        app:expandedTitleMarginStart="@dimen/spacing_m"
+                        app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                        <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            style="@style/ClassicActionBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:contentInsetLeft="0dp"
+                            app:contentInsetStart="0dp"
+                            app:contentInsetStartWithNavigation="0dp"
+                            app:layout_collapseMode="pin" />
+
+                    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_m">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_title_to" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/RoundedEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/light_gainsboro_invertible"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{viewModel.clientNames}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginBottom="0dp"
+                            android:text="@string/label_subject" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:background="@drawable/bg_normal_rounded_gray_border"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Body"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="@dimen/spacing_s"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_xs"
+                                android:text="@string/label_temp_client_name" />
+
+                            <include layout="@layout/view_divider_horizontal" />
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/et_message"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_client_message_area"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="@dimen/spacing_s"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_xs"
+                                android:afterTextChanged="@{viewModel::afterTextChangedMessage}"
+                                android:background="@color/text_box_background_invertible"
+                                android:gravity="top"
+                                android:hint="@string/hint_type_your_message_here"
+                                android:text="@={viewModel.message}" />
+
+                            <include layout="@layout/view_divider_horizontal" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Body"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="@dimen/spacing_xs"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_s"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:text="@{viewModel.senderName}" />
+
+                        </LinearLayout>
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_xs"
+                            android:layout_marginTop="@dimen/spacing_xxs"
+                            android:layout_marginEnd="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:gravity="center"
+                            android:text="@{viewModel.errorMessage}"
+                            android:visibility="@{TextUtils.isEmpty(viewModel.errorMessage)? View.GONE : View.VISIBLE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginBottom="0dp"
+                            android:text="@string/label_attachments"
+                            android:visibility="@{viewModel.mode == ClientModeOption.SMS ? View.GONE : View.VISIBLE}" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:orientation="horizontal"
+                            android:visibility="@{viewModel.mode == ClientModeOption.SMS ? View.GONE : View.VISIBLE}">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/btn_link"
+                                style="@style/CyanSmallPill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/pill_height"
+                                android:drawableStart="@drawable/ic_link_chain"
+                                android:drawablePadding="@dimen/spacing_xs"
+                                android:text="@string/label_link"
+                                app:isSelected="@{viewModel.isLinkShowed}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/btn_photo"
+                                style="@style/CyanSmallPill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/pill_height"
+                                android:drawableStart="@drawable/ic_camera"
+                                android:drawablePadding="@dimen/spacing_xs"
+                                android:text="@string/label_add_photos"
+                                app:isSelected="@{viewModel.isAttachedPhotosShowed}" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{viewModel.isLinkShowed() ? View.VISIBLE : View.GONE}"
+                            app:endIconMode="none"
+                            app:error="@{viewModel.errorLink}"
+                            app:errorEnabled="true"
+                            app:errorTextColor="@color/red"
+                            app:hintEnabled="false">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:afterTextChanged="@{viewModel::afterTextChangedLink}"
+                                android:hint="@string/hint_paste_your_link_here"
+                                android:singleLine="true"
+                                android:text="@={viewModel.link}"
+                                android:theme="@style/EditText" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_images"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"
+                            android:visibility="@{safeUnbox(viewModel.isAttachedPhotosShowed) ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xxs"
+                            android:layout_marginBottom="0dp"
+                            android:gravity="center"
+                            android:text="@{viewModel.maxPhotosError}"
+                            android:visibility="@{TextUtils.isEmpty(viewModel.maxPhotosError)? View.GONE : View.VISIBLE}" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_send_message"
+                            style="@style/PrimaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/spacing_xl"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            android:enabled="@{viewModel.isBtnEnabled()}"
+                            android:onClick="@{() -> viewModel.onSendMessageButtonClicked()}"
+                            android:text="@{viewModel.btnTextLabel}" />
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <include
+                layout="@layout/layout_action_success"
+                app:buttonLabel="@{@string/action_back_to_clients}"
+                app:content="@{viewModel.successMessage}"
+                app:visibility="@{viewModel.sendMessageStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}" />
+
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

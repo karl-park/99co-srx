@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Mock-up: https://projects.invisionapp.com/d/main?origin=v7#/console/20119097/435289731/preview?scrollOffset=900 -->
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.SponsorListingViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:text="@string/label_hyper_target_estimated_reach" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Heading2Color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:drawableStart="@drawable/ic_address"
+            android:drawablePadding="@dimen/spacing_xs"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.newHyperTargetSelectedAddressCountLabel}" />
+
+        <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="@{viewModel.newHyperTargetAddressesPercentage}"
+            android:progressTint="@color/purple"
+            android:visibility="@{viewModel.newHyperTargetTotalAvailableAddressCount > 0 ? View.VISIBLE : View.GONE}" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.newHyperTargetTotalAvailableAddressCount > 0 ? View.VISIBLE : View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_audience_number_start"
+                style="@style/ExtraSmallBodyPurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:text="@{Integer.toString(0)}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBodyPurple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/tv_audience_number_start"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:text="@{viewModel.newHyperTargetTotalAvailableAddressCountLabel}" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

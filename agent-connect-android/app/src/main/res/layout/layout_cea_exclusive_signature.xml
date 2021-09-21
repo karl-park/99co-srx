@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="imageBitmap"
+            type="android.graphics.Bitmap" />
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="isAddedSignature"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{title}"
+            android:visibility="@{TextUtils.isEmpty(title)? View.GONE : View.VISIBLE}" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_cea_signature"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            app:cardCornerRadius="@dimen/spacing_s"
+            app:cardElevation="0dp">
+
+            <RelativeLayout
+                android:id="@+id/layout_signature"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_rounded_gray_dotted_border"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackgroundBorderless">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_add_signature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/label_cea_add_signature"
+                    android:visibility="@{safeUnbox(isAddedSignature)? View.GONE : View.VISIBLE}" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="@dimen/spacing_xs"
+                    android:contentDescription="@string/content_description_info"
+                    android:visibility="@{safeUnbox(isAddedSignature)? View.VISIBLE : View.GONE}"
+                    bind:imageBitmap="@{imageBitmap}" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</layout>

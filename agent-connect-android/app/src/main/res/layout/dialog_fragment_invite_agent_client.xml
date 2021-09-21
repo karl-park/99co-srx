@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.PropertyIndexEnum.Indicator" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.client.InviteAgentClientsViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_marginTop="@dimen/spacing_m"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp"
+                app:contentPaddingTop="0dp"
+                app:strokeWidth="0dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:id="@+id/layout_header"
+                        android:layout_alignParentTop="true"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m">
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/btn_dismiss"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:background="?selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/content_description_dismiss"
+                                android:src="@drawable/ic_cancel"
+                                android:tint="@color/gray" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="@string/title_dialog_invite_client" />
+                    </RelativeLayout>
+
+                    <include layout="@layout/view_divider_horizontal" />
+                </LinearLayout>
+
+                <FrameLayout
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@id/layout_header"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <include
+                            layout="@layout/layout_loading_fail_error"
+                            app:mainStatus="@{viewModel.mainStatus}" />
+
+                    <androidx.core.widget.NestedScrollView
+                            android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                    android:layout_marginStart="@dimen/spacing_m"
+                                    android:layout_marginEnd="@dimen/spacing_m"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        style="@style/Title"
+                                        android:layout_marginTop="@dimen/spacing_m"
+                                        android:layout_marginBottom="@dimen/spacing_m"
+                                        android:text="@string/title_invite_client_your_message"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                        style="@style/SmallBody"
+                                        android:padding="@dimen/spacing_s"
+                                        android:background="@drawable/layout_rounded_gray_dotted_border"
+                                        android:layout_marginBottom="@dimen/spacing_m"
+                                        android:text="@{viewModel.inviteMessage}"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                            <include
+                                    android:id="@+id/list_item_invite_client_app"
+                                    layout="@layout/list_item_invite_client"
+                                    app:icon="@{@drawable/ic_external_link}"
+                                    app:title="@{String.valueOf(@string/list_item_invite_client_app)}" />
+
+                            <include
+                                    android:id="@+id/list_item_invite_client_copy_link"
+                                    layout="@layout/list_item_invite_client"
+                                    app:icon="@{@drawable/ic_link_chain}"
+                                    app:title="@{String.valueOf(@string/list_item_invite_client_copy_link)}" />
+
+                            <include
+                                    android:id="@+id/list_item_invite_client_qr_code"
+                                    layout="@layout/list_item_invite_client"
+                                    app:icon="@{@drawable/ic_qr_code}"
+                                    app:title="@{String.valueOf(@string/list_item_invite_client_qr_code)}" />
+
+                        </LinearLayout>
+                    </androidx.core.widget.NestedScrollView>
+                </FrameLayout>
+            </RelativeLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/border_radius_market_watch_graph_fragment"
+                android:layout_gravity="bottom"
+                android:background="@color/white_invertible"
+                android:elevation="@dimen/elevation_card_front_transaction"
+                android:outlineProvider="none" />
+    </FrameLayout>
+</layout>

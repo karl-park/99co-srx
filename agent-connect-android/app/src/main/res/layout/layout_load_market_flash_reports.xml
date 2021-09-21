@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="visibility"
+            type="int" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="@{visibility}">
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+        <include layout="@layout/list_item_market_flash_report_loading" />
+
+    </LinearLayout>
+
+</layout>

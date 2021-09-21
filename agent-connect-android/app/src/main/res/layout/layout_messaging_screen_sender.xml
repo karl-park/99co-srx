@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="isSendButtonEnabled"
+            type="Boolean" />
+
+        <!--TODO Rename as `previewListingStatus`-->
+        <variable
+            name="previewStatus"
+            type="StatusKey" />
+
+        <variable
+            name="listingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{previewStatus != null ? View.VISIBLE : View.GONE}">
+
+            <include layout="@layout/view_divider_horizontal" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{previewStatus != null ? View.VISIBLE : View.GONE}">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:visibility="@{previewStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}">
+
+                <include layout="@layout/loading_indicator" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{listingPO != null ? View.VISIBLE : View.GONE}">
+
+                <include
+                    layout="@layout/layout_chat_listing_preview"
+                    app:listingPO="@{listingPO}" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <include layout="@layout/view_divider_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingEnd="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_xs">
+
+            <!--TODO Generalize show hide camera button-->
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/ib_messaging_upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="@string/content_description_camera"
+                android:padding="@dimen/spacing_xs"
+                android:src="@drawable/ic_camera"
+                android:tint="@color/black_invertible"
+                android:visibility="@{previewStatus == null ? View.VISIBLE : View.GONE}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="0dp"
+                android:layout_toEndOf="@id/ib_messaging_upload"
+                android:background="@drawable/et_rounded_gray_background_with_border"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_messaging_text"
+                    style="@style/RoundedMessagingEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:hint="@string/hint_leave_a_comment"
+                    android:inputType="textMultiLine" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/ib_messaging_sender"
+                    style="@style/PrimaryButton"
+                    android:layout_width="@dimen/width_send_button"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_send"
+                    android:enabled="@{isSendButtonEnabled}"
+                    android:tint="@color/black_invertible" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

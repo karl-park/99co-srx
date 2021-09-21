@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="url"
+                type="String" />
+
+        <variable
+                name="caption"
+                type="String" />
+
+        <variable
+                name="isHideCaption"
+                type="Boolean" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                    app:navigationIcon="@drawable/ic_cancel" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <FrameLayout
+                android:id="@+id/layout_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.github.chrisbanes.photoview.PhotoView
+                    android:id="@+id/iv_full_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/content_description_compose_image"
+                    android:scaleType="fitCenter"
+                    app:imageUrl="@{url}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:visibility="@{isHideCaption ? View.GONE : View.VISIBLE}"
+                    android:layout_gravity="bottom"
+                    android:gravity="start|center_vertical"
+                    android:text="@{caption}"
+                    android:textColor="@color/white"
+                    android:background="@color/black_translucent"
+                    android:padding="@dimen/spacing_m"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
+

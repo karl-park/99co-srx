@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".view.activity.auth.SignInActivity">
+
+    <data>
+
+        <variable
+                name="signUp"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.auth.SignInViewModel" />
+
+        <variable
+                name="buttonState"
+                type="sg.searchhouse.agentconnect.enumeration.status.ButtonState" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- CEA No. -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_layout_cea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/ic_clear"
+                app:endIconMode="clear_text"
+                app:error="@{signUp.errorCeaNo}"
+                app:errorEnabled="true"
+                app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_cea_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:afterTextChanged="@{signUp::afterTextChangedCeaNo}"
+                    android:hint="@string/label_cea_no"
+                    android:singleLine="true"
+                    android:text="@={signUp.ceaNo}"
+                    android:theme="@style/EditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Mobile -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_layout_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                app:endIconDrawable="@drawable/ic_clear"
+                app:endIconMode="clear_text"
+                app:error="@{signUp.errorMobile}"
+                app:errorEnabled="true"
+                app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:afterTextChanged="@{signUp::afterTextChangedMobile}"
+                    android:hint="@string/label_mobile"
+                    android:inputType="phone"
+                    android:singleLine="true"
+                    android:text="@={signUp.mobile}"
+                    android:theme="@style/EditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardMarketDataViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:animateLayoutChanges="true"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp">
+
+            <LinearLayout
+                android:id="@+id/layout_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.mainStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:text="@string/title_dashboard_market_data" />
+
+                <include layout="@layout/layout_market_watch_header" />
+
+                <include
+                    android:id="@+id/card_dashboard_market_watch_index_condo_resale"
+                    layout="@layout/card_dashboard_market_watch_index_condo"
+                    app:isExpand="@{viewModel.isExpandCondoResale()}"
+                    app:mainIndexPO="@{viewModel.mainResponse.nonLandedPrivate}"
+                    app:subIndices="@{viewModel.mainResponse.nonLandedPrivateSubIndexes}"
+                    app:title="@{@string/title_market_watch_condo_resale}" />
+
+                <include
+                    android:id="@+id/card_dashboard_market_watch_index_condo_rental"
+                    layout="@layout/card_dashboard_market_watch_index_condo"
+                    app:isExpand="@{viewModel.isExpandCondoRent()}"
+                    app:mainIndexPO="@{viewModel.mainResponse.nonLandedPrivateRent}"
+                    app:subIndices="@{viewModel.mainResponse.nonLandedPrivateRentalSubIndexes}"
+                    app:title="@{@string/title_market_watch_condo_rental}" />
+
+                <include
+                    android:id="@+id/card_dashboard_market_watch_index_hdb_resale"
+                    layout="@layout/card_dashboard_market_watch_index_hdb"
+                    app:isExpand="@{viewModel.isExpandHdbResale()}"
+                    app:mainIndexPO="@{viewModel.mainResponse.hdb}"
+                    app:subIndices="@{viewModel.mainResponse.hdbSubIndexes}"
+                    app:title="@{@string/title_market_watch_hdb_resale}" />
+
+                <include
+                    android:id="@+id/card_dashboard_market_watch_index_hdb_rental"
+                    layout="@layout/card_dashboard_market_watch_index_hdb"
+                    app:isExpand="@{viewModel.isExpandHdbRent()}"
+                    app:mainIndexPO="@{viewModel.mainResponse.hdbRent}"
+                    app:subIndices="@{viewModel.mainResponse.hdbRentalSubIndexes}"
+                    app:title="@{@string/title_market_watch_hdb_rental}" />
+            </LinearLayout>
+
+            <include
+                layout="@layout/layout_loading_fail_error_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                app:isShowOccupied="@{viewModel.isShowOccupied()}"
+                app:mainStatus="@{viewModel.mainStatus}" />
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

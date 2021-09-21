@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke
+            android:width="@dimen/list_view_divider"
+            android:color="@color/light_gray_invertible"
+            android:dashWidth="@dimen/dash_width_sms_blast"
+            android:dashGap="@dimen/dash_gap_sms_blast" />
+
+    <corners android:radius="@dimen/card_border_radius" />
+
+</shape>

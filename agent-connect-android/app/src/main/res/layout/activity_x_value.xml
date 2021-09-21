@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.XValueEnum.OwnershipType" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.xvalue.XValueViewModel" />
+    </data>
+
+    <!-- Mock-up: https://projects.invisionapp.com/d/main#/console/16960254/391457744/preview -->
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_invertible"
+        tools:context=".view.activity.xvalue.XValueActivity">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Expand and Collapsible app bar layout -->
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_collapsing_toolbar_height_x_value"
+                android:background="@color/white_invertible"
+                android:fitsSystemWindows="true"
+                app:expanded="false">
+
+                <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height_x_value"
+                    android:fitsSystemWindows="true"
+                    app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                    app:expandedTitleMarginBottom="0dp"
+                    app:expandedTitleMarginEnd="@dimen/spacing_m"
+                    app:expandedTitleMarginStart="@dimen/spacing_m"
+                    app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:maxLines="3"
+                    app:title="@{viewModel.title}">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_arrow_left" />
+                </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.calculateStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}">
+
+                    <androidx.core.widget.NestedScrollView
+                        android:id="@+id/scroll_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never"
+                        android:visibility="@{viewModel.mainXValue != null ? View.VISIBLE : View.GONE}">
+
+                        <LinearLayout
+                            android:id="@+id/layout_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/SmallBodyGray"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                app:textOrDash="@{viewModel.mainXValue.description}" />
+
+                            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                                android:id="@+id/btn_download_report"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                android:drawableStart="@drawable/ic_file_pdf"
+                                android:drawableTint="@color/gray"
+                                android:text="@string/btn_x_value_download_home_report" />
+
+                            <include
+                                layout="@layout/card_x_value_summary"
+                                app:viewModel="@{viewModel}" />
+
+                            <!--Comparable-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="@{viewModel.shouldDisplayComparableSection ? View.VISIBLE : View.GONE}">
+
+                                <include
+                                    layout="@layout/layout_x_value_comparables"
+                                    app:averageComparablePsf="@{viewModel.averageComparablePsf}"
+                                    app:getValuationDetailStatus="@{viewModel.getValuationDetailStatus}"
+                                    app:isExpand="@{viewModel.isExpandComparables()}"
+                                    app:isShowComparablesEmpty="@{viewModel.isShowComparablesEmpty()}" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/list_view_divider"
+                                    android:background="@color/divider_color" />
+                            </LinearLayout>
+
+                            <!--X-Trend and latest transactions-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <include
+                                    layout="@layout/layout_x_value_x_trend_latest_transactions"
+                                    app:viewModel="@{viewModel}" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/list_view_divider"
+                                    android:background="@color/divider_color" />
+                            </LinearLayout>
+
+                            <!--Asking price calculator-->
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="@{viewModel.xValueOwnershipType != OwnershipType.RENT ? View.VISIBLE : View.GONE}">
+
+                                <include
+                                    layout="@layout/layout_x_value_asking_price_calculator"
+                                    app:isExpand="@{viewModel.isExpandAskingPriceCalculator()}"
+                                    app:viewModel="@{viewModel}" />
+                            </FrameLayout>
+
+                            <!--Foot note-->
+                            <include layout="@layout/layout_x_value_foot_note" />
+                        </LinearLayout>
+                    </androidx.core.widget.NestedScrollView>
+
+                    <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        app:title="@{@string/notification_generate_x_value_report_fail_insufficient_data}"
+                        app:visibility="@{viewModel.mainXValue == null ? View.VISIBLE : View.GONE}" />
+                </FrameLayout>
+
+                <include
+                    layout="@layout/layout_loading_fail_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:failText="@{viewModel.calculateFailText}"
+                    app:mainStatus="@{viewModel.calculateStatus}" />
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

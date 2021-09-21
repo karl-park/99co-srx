@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="community"
+            type="sg.searchhouse.agentconnect.model.api.community.CommunityTopDownPO" />
+
+        <variable
+            name="isStart"
+            type="Boolean" />
+
+        <variable
+            name="isEnd"
+            type="Boolean" />
+
+        <variable
+            name="canRemoveItem"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/spacing_s"
+            android:layout_height="match_parent"
+            android:visibility="@{isStart ? View.VISIBLE : View.GONE}" />
+
+        <RelativeLayout
+            style="@style/CyanSmallPill"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/small_pill_height"
+            android:layout_marginStart="@dimen/spacing_xxs"
+            android:layout_marginEnd="@dimen/spacing_xxs"
+            android:clickable="false"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_xxs">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small_pill_height"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:gravity="center_vertical"
+                android:text="@{community.community.name}"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_remove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/text"
+                android:background="?selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_remove"
+                android:tint="@color/cyan"
+                android:visibility="@{canRemoveItem ? View.VISIBLE : View.GONE}" />
+
+            <View
+                android:layout_width="@dimen/spacing_xxs"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/text"
+                android:visibility="@{!canRemoveItem ? View.VISIBLE : View.GONE}" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="@dimen/spacing_s"
+            android:layout_height="match_parent"
+            android:visibility="@{isEnd ? View.VISIBLE : View.GONE}" />
+    </LinearLayout>
+</layout>

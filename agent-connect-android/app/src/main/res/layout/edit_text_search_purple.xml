@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_text"
+                style="@style/SearchButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_clear"
+                android:visibility="gone"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:tint="@color/white"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_gravity="end|center_vertical"
+                android:src="@drawable/ic_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </FrameLayout>
+</layout>

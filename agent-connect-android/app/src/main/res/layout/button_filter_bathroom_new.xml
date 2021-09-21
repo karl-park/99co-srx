@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="bathroomSelector"
+                type="sg.searchhouse.agentconnect.view.widget.property.BathroomSelector" />
+
+        <variable
+                name="bathroomCount"
+                type="sg.searchhouse.agentconnect.enumeration.app.WatchlistEnum.BathroomCount" />
+
+        <variable
+                name="background"
+                type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            style="@style/RoundedGroupButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_group_rounded_height"
+            android:background="@{background}"
+            android:text="@{bathroomCount.label}"
+            app:isSelected="@{bathroomSelector.bathroomCounts.contains(bathroomCount)}" />
+</layout>

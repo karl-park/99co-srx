@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Variation of `layout_loading_fail_error` where loading layout is shown-->
+    <!--before the `isShowOccupied` and `isShowEmpty` of `ApiBaseViewModel` were computed-->
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="mainStatus"
+            type="StatusKey" />
+
+        <variable
+            name="isShowOccupied"
+            type="Boolean" />
+
+        <variable
+            name="isShowEmpty"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/layout_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:visibility="@{(mainStatus == StatusKey.SUCCESS &amp;&amp; (!isShowOccupied &amp;&amp; !isShowEmpty)) || mainStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+        <include
+            layout="@layout/layout_load_list_fail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:title="@{String.valueOf(@string/fail_generic_contact_srx)}"
+            app:visibility="@{mainStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+        <include
+            layout="@layout/layout_load_list_fail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:title="@{String.valueOf(@string/error_generic_contact_srx)}"
+            app:visibility="@{mainStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+    </FrameLayout>
+</layout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="listingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_preview_chat_listing"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/spacing_m">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view"
+            android:layout_width="@dimen/width_chat_listing_image_preview"
+            android:layout_height="@dimen/height_chat_listing_image_preview"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{listingPO.listingPhoto}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:layout_toStartOf="@id/btn_cancel"
+            android:layout_toEndOf="@id/image_view"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBodyBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xxs"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{listingPO.name}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xxs"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{listingPO.displaySizePsf}" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_rooms"
+                    style="@style/ListingIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="@dimen/spacing_s"
+                    android:drawableStart="@drawable/ic_bed"
+                    android:text="@{listingPO.roomsNumber}"
+                    android:visibility="@{TextUtils.isEmpty(listingPO.roomsNumber) ? View.GONE : View.VISIBLE}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_bathrooms"
+                    style="@style/ListingIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toEndOf="@+id/tv_rooms"
+                    android:drawableStart="@drawable/ic_bath_tub"
+                    android:text="@{listingPO.bathroomNumber}"
+                    android:visibility="@{TextUtils.isEmpty(listingPO.bathroomNumber) ? View.INVISIBLE : View.VISIBLE}" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_cancel"
+            android:tint="@color/cyan" />
+    </RelativeLayout>
+</layout>

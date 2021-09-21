@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.MyListingsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="@{safeUnbox(viewModel.isShowSmartFilter()) ? View.VISIBLE : View.GONE}">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            android:visibility="@{safeUnbox(viewModel.isUpdatingFilterListingsCount()) ? View.INVISIBLE : View.VISIBLE}">
+
+            <LinearLayout
+                android:id="@+id/layout_property_types"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/smart_filter_height"
+                android:gravity="start|center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="0dp">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_smart_filter_clear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:text="@string/label_clear"
+                    android:visibility="@{viewModel.propertyMainType != null ? View.VISIBLE : View.GONE}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn_smart_filter_label"
+                    style="@style/PropertyTypeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@{viewModel.propertyMainType != null ? ContextCompat.getDrawable(context, viewModel.propertyMainType.iconResId) : null}"
+                    android:text="@{viewModel.propertyTypeFilterLabel}"
+                    android:textColor="@color/black_invertible"
+                    android:visibility="@{viewModel.propertyMainType != null ? View.VISIBLE : View.GONE}" />
+
+                <LinearLayout
+                    android:id="@+id/layout_filter_option_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="start|center_vertical"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <include layout="@layout/view_divider_horizontal" />
+    </LinearLayout>
+
+</layout>

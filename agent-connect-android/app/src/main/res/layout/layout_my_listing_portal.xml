@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="portalListingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.listingmanagement.PortalListingPO" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum.PortalType" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="@{portalListingPO != null ? View.VISIBLE : View.GONE}">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingEnd="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_xs">
+
+            <FrameLayout
+                android:id="@+id/layout_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_99_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/spacing_m"
+                    android:layout_gravity="center_vertical"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/logo_99"
+                    android:visibility="@{portalListingPO.getPortalTypeEnum() == PortalType.NINETY_NINE_CO ? View.VISIBLE : View.INVISIBLE}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_pg_id"
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@{portalListingPO.idLabel}"
+                    android:visibility="@{portalListingPO.getPortalTypeEnum() == PortalType.PROPERTY_GURU ? View.VISIBLE : View.INVISIBLE}" />
+            </FrameLayout>
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/btn_view_portal_listing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/layout_title"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="@string/label_view_in_pg" />
+        </RelativeLayout>
+
+        <include layout="@layout/view_divider_horizontal" />
+    </LinearLayout>
+</layout>

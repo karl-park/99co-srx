@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+
+		<import type="android.text.TextUtils" />
+
+		<import type="android.view.View" />
+
+		<variable
+				name="unit"
+				type="sg.searchhouse.agentconnect.model.api.transaction.TowerViewForLastSoldTransactionResponse.UnitsItem" />
+	</data>
+
+	<FrameLayout
+			android:layout_width="@dimen/tower_unit_width"
+			android:layout_height="@dimen/tower_unit_height"
+			android:clickable="true"
+			android:focusable="true"
+			android:foreground="?selectableItemBackground">
+
+		<View
+				android:layout_width="@dimen/tower_unit_width"
+				android:layout_height="@dimen/tower_unit_height" />
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:padding="@dimen/spacing_xs">
+
+			<TextView
+					style="@style/Title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:ellipsize="end"
+					android:gravity="start"
+					android:lines="1"
+					android:text="@{unit.lastSoldContractDate}" />
+
+			<RelativeLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
+
+
+				<TextView
+						style="@style/SubText"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentStart="true"
+						android:layout_centerVertical="true"
+						android:layout_marginEnd="@dimen/spacing_xs"
+						android:layout_toStartOf="@id/tv_bedrooms"
+						android:ellipsize="end"
+						android:lines="1"
+						android:text="@{unit.formattedLastSoldPrice}"
+						android:textColor="@color/purple" />
+
+				<TextView
+						android:id="@+id/tv_bedrooms"
+						style="@style/ListingIcon"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_alignParentEnd="true"
+						android:layout_centerVertical="true"
+						android:drawableStart="@drawable/ic_bed"
+						android:text="@{unit.bedrooms}"
+						android:visibility="@{TextUtils.isEmpty(unit.bedrooms) ? View.GONE : View.VISIBLE}" />
+			</RelativeLayout>
+
+			<TextView
+					style="@style/SubText"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="@dimen/spacing_xs"
+					android:ellipsize="end"
+					android:gravity="start"
+					android:lines="1"
+					android:text="@{unit.sqftPsf}"
+					android:textColor="@color/black" />
+
+			<TextView
+					style="@style/SubText"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginEnd="@dimen/spacing_xs"
+					android:ellipsize="end"
+					android:gravity="start"
+					android:lines="1"
+					android:text="@{unit.getCaveatsLodged(context)}"
+					android:textColor="@color/cyan" />
+		</LinearLayout>
+
+		<include
+				layout="@layout/view_divider_vertical"
+				android:layout_width="@dimen/list_view_divider"
+				android:layout_height="match_parent"
+				android:layout_gravity="end" />
+
+		<include
+				layout="@layout/view_divider_horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/list_view_divider"
+				android:layout_gravity="bottom" />
+	</FrameLayout>
+</layout>

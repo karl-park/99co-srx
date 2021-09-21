@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="station"
+                  type="sg.searchhouse.agentconnect.model.api.lookup.LookupMrtsResponse.TrainLine.Station"/>
+        <variable name="isSelected" type="Boolean"/>
+    </data>
+
+    <LinearLayout
+            android:background="@color/white_invertible"
+            android:clickable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true">
+
+        <RelativeLayout
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingBottom="@dimen/spacing_xs"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_xs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    style="@style/Body"
+                    android:id="@+id/tv_title"
+                    android:text="@{station.stationName}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/check_box"
+                    style="@style/CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/tv_title"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:focusable="false"
+                    android:clickable="false"
+                    android:background="@android:color/transparent"
+                    android:checked="@{safeUnbox(isSelected)}"/>
+        </RelativeLayout>
+
+        <View
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:background="@color/divider_color"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"/>
+    </LinearLayout>
+</layout>

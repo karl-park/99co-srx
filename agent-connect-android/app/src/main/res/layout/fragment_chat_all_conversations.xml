@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.chat.AllConversationListViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible"
+            android:orientation="vertical">
+
+        <sg.searchhouse.agentconnect.view.widget.common.CustomSwipeRefreshLayout
+                android:id="@+id/srl_conversation_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isListOccupied()? View.VISIBLE : View.GONE}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_all_conversations"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingBottom="@dimen/rv_padding_bottom" />
+
+        </sg.searchhouse.agentconnect.view.widget.common.CustomSwipeRefreshLayout>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingBottom="@dimen/rv_padding_bottom"
+                android:text="@string/msg_no_conversation_history"
+                android:visibility="@{viewModel.isShowEmpty()? View.VISIBLE : View.GONE}" />
+
+        <!-- show them loading, error and fail state.. -->
+        <include
+                layout="@layout/layout_loading_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:mainStatus="@{viewModel.status}" />
+
+    </LinearLayout>
+</layout>

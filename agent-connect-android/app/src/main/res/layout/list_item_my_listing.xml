@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum" />
+
+        <variable
+            name="listingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <!--Consider convert to enum if more tab related customization comes in-->
+        <variable
+            name="isActive"
+            type="Boolean" />
+
+        <variable
+            name="disableSelection"
+            type="Boolean" />
+    </data>
+
+    <!-- Mock-up: https://projects.invisionapp.com/d/main#/console/16960254/417070084/inspect -->
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_m"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:layout_marginEnd="@dimen/spacing_m"
+        android:layout_marginBottom="@dimen/spacing_xs"
+        android:foreground="?selectableItemBackground"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/layout_ninety_nine"
+                    layout="@layout/layout_my_listing_portal"
+                    app:portalListingPO="@{listingPO.getNinetyNineListing()}" />
+
+                <include
+                    android:id="@+id/layout_pg"
+                    layout="@layout/layout_my_listing_portal"
+                    app:portalListingPO="@{listingPO.getPGListing()}" />
+
+                <include
+                    android:id="@+id/layout_preview_info"
+                    layout="@layout/list_item_my_listing_preview_info"
+                    app:disableSelection="@{disableSelection}"
+                    app:isSelected="@{isSelected}"
+                    app:listingPO="@{listingPO}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBodyPurple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@{listingPO.sponsored.getEndDateReminder(context)}"
+                    android:visibility="@{listingPO.sponsored != null ? View.VISIBLE : View.GONE}" />
+
+                <!--TODO Only show if active listing-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{isActive ? View.VISIBLE : View.GONE}">
+
+                    <include layout="@layout/view_divider_horizontal" />
+
+                    <!--Expiry and last posted date-->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingTop="@dimen/spacing_xs"
+                        android:paddingEnd="@dimen/spacing_m"
+                        android:paddingBottom="@dimen/spacing_xs">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@id/tv_reposted_date"
+                            android:text="@{listingPO.getDateExpMyListingFooterLabel(context)}"
+                            android:textColor="@color/orange_light" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_reposted_date"
+                            style="@style/SmallBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="@{listingPO.getDateExpMyListingPostedDateLabel(context)}" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--Boost listing footer-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingTop="0dp"
+                android:paddingEnd="@dimen/spacing_m"
+                android:paddingBottom="0dp"
+                android:visibility="@{listingPO.isFLSlotAvailable ? View.VISIBLE : View.GONE}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/SmallBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/layout_action"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/label_boost_my_listing_rank"
+                    android:textColor="@color/white"
+                    android:textStyle="italic" />
+
+                <FrameLayout
+                    android:id="@+id/layout_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="@string/content_description_top_tip"
+                        android:src="@drawable/ic_triangle_top" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_add_featured"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/button_add_featured" />
+                </FrameLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+</layout>

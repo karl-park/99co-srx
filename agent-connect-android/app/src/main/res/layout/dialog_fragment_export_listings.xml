@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.ExportOption" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.search.ExportListingsDialogViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_m"
+            app:cardCornerRadius="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/ib_close"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/dialog_title_export_listings_options" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/ib_close"
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/content_description_dismiss"
+                        android:src="@drawable/ic_cancel" />
+                </RelativeLayout>
+
+                <include
+                    android:id="@+id/tab_layout_export_listings"
+                    layout="@layout/tab_layout_export_listings"
+                    app:exportOption="@{viewModel.exportOption}" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_l"
+                    android:layout_marginBottom="@dimen/spacing_l"
+                    android:orientation="horizontal"
+                    android:visibility="@{viewModel.exportOption == ExportOption.PDF ? View.VISIBLE : View.INVISIBLE}">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cb_agent_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        android:text="@string/listings_export_option_agent_contact" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cb_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="@{viewModel.isExportListingDetailsChecked()}"
+                        android:text="@string/listings_export_option_photo" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/btn_download"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@{@string/hint_export_listings_max(viewModel.maxLimit)}" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_download"
+                        style="@style/PrimaryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="end"
+                        android:enabled="@{viewModel.isEnableSubmitButton()}"
+                        android:text="@{viewModel.exportOption == ExportOption.PDF ? @string/button_download_pdf : @string/button_download_excel}" />
+                </RelativeLayout>
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

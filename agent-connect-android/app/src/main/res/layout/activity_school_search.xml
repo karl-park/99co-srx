@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".view.activity.searchoption.SchoolSearchActivity">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.searchoption.SchoolSearchViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@string/activity_school_search" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}"
+                        android:overScrollMode="never"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_school"
+                        android:background="@color/white_smoke_invertible"
+                        android:visibility="@{safeUnbox(viewModel.isShowSchool) ? View.VISIBLE : View.GONE}"
+                        android:overScrollMode="never"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                <include
+                        layout="@layout/layout_loading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+                <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:title="@string/label_load_schools_fail"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+                <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:title="@string/label_load_schools_error"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

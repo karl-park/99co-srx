@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isVisible"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top|center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/spacing_m"
+        android:visibility="@{isVisible == true ? View.VISIBLE : View.GONE}">
+
+        <TextView
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:text="@string/draft_cea_empty_title"
+            tools:targetApi="o" />
+
+        <TextView
+            style="@style/SubText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:text="@string/draft_cea_empty_description"
+            tools:targetApi="o" />
+
+        <Button
+            android:id="@+id/btn_create_cea_exclusive"
+            style="@style/PrimaryButtonWithIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/btn_height"
+            android:layout_gravity="center_horizontal"
+            android:drawableStart="@drawable/ic_action_plus"
+            android:drawablePadding="@dimen/spacing_xs"
+            android:text="@string/button_create_cea_exclusive" />
+    </LinearLayout>
+</layout>

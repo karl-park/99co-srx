@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><!--Append `_invertible` to every night mode colors-->
+<resources>
+    <!--TODO Enable when feature available-->
+    <!--    <color name="white_invertible">#000000</color>-->
+    <!--    <color name="black_invertible">#FFFFFF</color>-->
+    <!--    <color name="light_gray_invertible">#353330</color>-->
+    <!--    <color name="white_smoke_invertible">#070707</color>-->
+    <!--    <color name="accordion_background_invertible">#050505</color>-->
+    <!--    <color name="gray_invertible">#7A7A7A</color>-->
+    <!--    <color name="fab_group_overlay_invertible">#cc000000</color>-->
+    <!--    <color name="background_x_value_box_bottom_invertible">#FF151515</color>-->
+    <!--    <color name="text_box_background_invertible">#050403</color>-->
+    <!--    <color name="pill_background_selected_invertible">#0A0A0A</color>-->
+    <!--    <color name="light_gainsboro_invertible">#353330</color>-->
+    <!--    <color name="orange_light_invertible">#FF8C00</color>-->
+
+    <!--TODO Merge to black_invertible-->
+    <color name="notification_home_report_content_invertible">#FFFFFF</color>
+    <!--TODO Merge to gray_invertible-->
+    <color name="notification_home_report_title_invertible">#7A7A7A</color>
+</resources>

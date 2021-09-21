@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchCommonViewModel.DisplayMode" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.report.homereport.HomeReportViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_collapsing_toolbar_height"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    android:background="@color/white_invertible"
+                    android:fitsSystemWindows="true"
+                    app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                    app:expandedTitleMarginEnd="@dimen/spacing_m"
+                    app:expandedTitleMarginStart="@dimen/spacing_m"
+                    app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_arrow_left"
+                        app:title="@string/activity_home_report" />
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/spacing_m">
+
+                    <LinearLayout
+                        android:id="@+id/layout_generate_report"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_m">
+
+                        <!--Mock button to show search bar-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            android:orientation="vertical">
+
+                            <Button
+                                android:id="@+id/btn_search"
+                                style="@style/SearchEditText.Pseudo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@{viewModel.isPropertyTypeValidated() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                                android:ellipsize="end"
+                                android:hint="@string/hint_search_address_postal_code"
+                                android:maxLines="2"
+                                android:text="@{viewModel.displayAddress}"
+                                android:textAlignment="textStart" />
+
+                            <TextView
+                                style="@style/ExtraSmallBodyError"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_xs"
+                                android:text="@string/error_home_report_invalid_property_type"
+                                android:visibility="@{viewModel.isPropertyTypeValidated() ? View.GONE : View.VISIBLE}" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.property != null &amp;&amp; viewModel.isPropertyTypeValidated() ? View.VISIBLE : View.GONE}">
+
+                            <include
+                                layout="@layout/layout_home_value_search_form"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:viewModel="@{viewModel}" />
+                        </LinearLayout>
+
+                        <include
+                            layout="@layout/layout_home_report_usage_stats"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            app:getHomeReportUsageResponse="@{viewModel.getHomeReportUsageResponse}" />
+
+                        <Button
+                            android:id="@+id/btn_get_home_report"
+                            style="@style/PrimaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:enabled="@{viewModel.property != null &amp;&amp; viewModel.isPropertyTypeValidated()}"
+                            android:text="@string/btn_get_home_report" />
+
+                        <TextView
+                            style="@style/ExtraSmallBodyPurple"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            android:gravity="center_horizontal"
+                            android:text="@string/description_home_report"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

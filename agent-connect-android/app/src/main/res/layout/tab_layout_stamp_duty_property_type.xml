@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.CalculatorEnum.PropertyType" />
+
+        <variable
+                name="selectedPropertyType"
+                type="PropertyType" />
+    </data>
+
+    <LinearLayout
+            android:layout_marginBottom="@dimen/spacing_l"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <sg.searchhouse.agentconnect.view.widget.common.TabLeftButton
+                android:id="@+id/btn_tab_residential"
+                android:text="@string/property_type_residential"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isSelected="@{selectedPropertyType == PropertyType.RESIDENTIAL}" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.TabRightButton
+                android:id="@+id/btn_tab_commercial"
+                android:text="@string/property_type_commercial"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:isSelected="@{selectedPropertyType == PropertyType.COMMERCIAL}" />
+    </LinearLayout>
+</layout>

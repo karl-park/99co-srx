@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.xvalue.XValueSearchViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                    android:id="@+id/search_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_s">
+
+                <EditText
+                        android:id="@+id/et_search"
+                        style="@style/SearchButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/spacing_s"
+                        android:layout_toStartOf="@+id/tv_cancel"
+                        android:afterTextChanged="@{viewModel::afterSearchTextChanged}"
+                        android:hint="@string/label_search_x_value_hint"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:text="@={viewModel.searchText}"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        tools:targetApi="o" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/tv_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:text="@string/label_cancel" />
+
+            </RelativeLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/search_bar"
+                    android:layout_alignParentBottom="true">
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}" />
+
+                <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        app:title="@{String.valueOf(@string/fail_generic_contact_srx)}"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+                <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        app:title="@{String.valueOf(@string/error_generic_contact_srx)}"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+            </FrameLayout>
+        </RelativeLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

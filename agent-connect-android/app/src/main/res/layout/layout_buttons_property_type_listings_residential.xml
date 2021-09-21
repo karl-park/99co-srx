@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+    </data>
+
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:columnCount="4"
+            android:orientation="horizontal">
+
+        <include
+                android:id="@+id/btn_property_type_all_residential"
+                layout="@layout/button_search_property_main_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertyMainType="@{PropertyMainType.RESIDENTIAL}" />
+
+        <include
+                android:id="@+id/btn_property_type_hdb"
+                layout="@layout/button_search_property_main_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertyMainType="@{PropertyMainType.HDB}" />
+
+        <include
+                android:id="@+id/btn_property_type_condo"
+                layout="@layout/button_search_property_main_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertyMainType="@{PropertyMainType.CONDO}" />
+
+        <include
+                android:id="@+id/btn_property_type_landed"
+                layout="@layout/button_search_property_main_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertyMainType="@{PropertyMainType.LANDED}" />
+    </GridLayout>
+</layout>

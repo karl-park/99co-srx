@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.certifiedlisting.HomeOwnerDetailViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ButtonState" />
+    </data>
+
+    <merge>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_certified_listing"
+                style="@style/BodyBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:text="@string/label_certified_listing" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ListingTag"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/tv_certified_listing"
+                android:text="@string/label_free" />
+
+        </RelativeLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_m"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
+            app:flexDirection="row"
+            app:flexWrap="wrap">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/msg_get_certified_listing_home_owner" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/tv_learn_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_learn_more" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            style="@style/RoundedEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:afterTextChanged="@{viewModel::afterTextChangedMobileNum}"
+            android:background="@{viewModel.sendInviteButtonState == ButtonState.ERROR? @drawable/et_error_background : @drawable/et_rounded_gray_background_with_border}"
+            android:hint="@string/hint_enter_home_owner_mobile"
+            android:inputType="number"
+            android:text="@={viewModel.mobileNum}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_send_invite"
+            style="@style/SecondaryButton"
+            android:layout_width="@dimen/width_post_listing"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_xl"
+            android:enabled="@{viewModel.isSendInviteButtonEnabled}"
+            android:onClick="@{()->viewModel.requestOwnerCertification()}"
+            android:text="@{viewModel.sendInviteButtonState == ButtonState.SUBMITTING? @string/action_sending_invite : @string/action_send_invite}" />
+    </merge>
+</layout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.chat.ChatImageCaptionViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ListingDetailsActionBarStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                        app:navigationIcon="@drawable/ic_cancel"
+                        app:title="@string/activity_chat_image_caption" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <com.github.chrisbanes.photoview.PhotoView
+                            android:id="@+id/image_view"
+                            android:layout_alignParentTop="true"
+                            android:layout_above="@id/layout_send"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter" />
+
+                    <RelativeLayout
+                            android:id="@+id/layout_send"
+                            android:layout_alignParentBottom="true"
+                            android:padding="@dimen/spacing_m"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/et_caption"
+                                style="@style/RoundedEditText"
+                                android:lines="1"
+                                android:layout_marginEnd="@dimen/spacing_s"
+                                android:hint="@string/hint_add_caption"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_toStartOf="@id/btn_send"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/btn_send"
+                                style="@style/PrimaryButton"
+                                android:src="@drawable/ic_send"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btn_rotate"
+                        android:tint="@color/white"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:layout_margin="@dimen/spacing_xs"
+                        android:src="@drawable/ic_rotate_right"
+                        android:layout_gravity="end|top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

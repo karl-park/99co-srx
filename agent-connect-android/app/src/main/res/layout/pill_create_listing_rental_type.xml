@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="rentalType"
+            type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum.RentalType" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.create.PostListingViewModel" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_rental_type"
+        style="@style/ListingFilterPill"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pill_height"
+        app:isSelected="@{viewModel.isRentalTypeSelected(rentalType)}"
+        app:resourceText="@{rentalType.label}" />
+</layout>

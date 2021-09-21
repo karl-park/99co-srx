@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--TODO: combine to image view layout to one in future after 1.9-->
+    <data>
+
+        <variable
+            name="showImage"
+            type="Boolean" />
+
+        <variable
+            name="showCircleImage"
+            type="Boolean" />
+
+        <variable
+            name="normalImageUrl"
+            type="String" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="@dimen/profile_icon_size"
+        android:layout_height="@dimen/profile_icon_size"
+        android:background="@drawable/setting_profile_background">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white_invertible"
+            android:textSize="@dimen/text_size_24"
+            android:visibility="@{safeUnbox(showImage) ? View.GONE : View.VISIBLE}" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{safeUnbox(showImage) ? View.VISIBLE : View.GONE}">
+
+            <sg.searchhouse.agentconnect.view.widget.common.CircleImageView
+                android:id="@+id/iv_circle_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_icon_background"
+                android:padding="@dimen/button_border"
+                android:visibility="@{safeUnbox(showCircleImage) ? View.VISIBLE : View.GONE}" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_normal_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_icon_background"
+                android:padding="@dimen/spacing_xs"
+                android:scaleType="center"
+                android:visibility="@{safeUnbox(showCircleImage) ? View.GONE : View.VISIBLE}"
+                app:imageUrl="@{normalImageUrl}" />
+        </FrameLayout>
+
+
+    </FrameLayout>
+</layout>

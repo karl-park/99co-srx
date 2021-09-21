@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.transaction.ProjectTransactionsViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/light_gray">
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.ownershipType == OwnershipType.SALE ? View.VISIBLE : View.GONE}">
+
+            <include
+                    android:id="@+id/layout_sale_transactions_lists"
+                    layout="@layout/layout_project_sale_transactions_lists"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:isShowTabs="@{false}"
+                    app:isShowTower="@{viewModel.isShowTower()}" />
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.ownershipType == OwnershipType.RENT ? View.VISIBLE : View.GONE}">
+
+            <include
+                    app:isShowTabs="@{false}"
+                    android:id="@+id/layout_rent_transactions_lists"
+                    layout="@layout/layout_project_rent_transactions_lists"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

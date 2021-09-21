@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingMediaViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                tools:context=".view.activity.listing.ListingMediaActivity">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <!--TODO: Handle text of loading state-->
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ListingDetailsActionBarStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                        android:title="@{@string/title_activity_listing_medias(viewModel.position + 1, viewModel.listingMedias.size())}"
+                        app:navigationIcon="@drawable/ic_cancel" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <include
+                        layout="@layout/layout_loading"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+                <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:title="@string/label_load_mrts_fail"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+                <include
+                        layout="@layout/layout_load_list_fail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:title="@string/label_load_mrts_error"
+                        app:visibility="@{viewModel.mainStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}">
+
+                    <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@id/list_picker"
+                            android:layout_alignParentTop="true"
+                            android:overScrollMode="never" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_picker"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/listing_photo_picker_size"
+                            android:layout_alignParentBottom="true" />
+
+                </RelativeLayout>
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

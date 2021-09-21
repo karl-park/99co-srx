@@ -1,0 +1,72 @@
+//the object in the array, “key” should act as the "title", “value“ should be the "id"
+const CATEGORY_TYPE_ALL = "";
+const CATEGORY_TYPE_TITLE_ALL = "All Categories";
+
+const CATEGORY_TYPE_PRICING = "1";
+const CATEGORY_TYPE_TITLE_PRICING = "Pricing";
+
+const CATEGORY_TYPE_HDB_RESALE = "2";
+const CATEGORY_TYPE_TITLE_HDB_RESALE = "HDB Resale";
+
+const CATEGORY_TYPE_PRIVATE_RESALE = "3";
+const CATEGORY_TYPE_TITLE_PRIVATE_RESALE = "Private Resale";
+
+const CATEGORY_TYPE_NEW_LAUNCHES = "4";
+const CATEGORY_TYPE_TITLE_NEW_LAUNCHES = "New Launches";
+
+const CATEGORY_TYPE_HDB_RENT = "5";
+const CATEGORY_TYPE_TITLE_HDB_RENT = "HDB Rent";
+
+const CATEGORY_TYPE_PRIVATE_RENT = "6";
+const CATEGORY_TYPE_TITLE_PRIVATE_RENT = "Private Rent";
+
+export const CategoryTypeValue = {
+  all: CATEGORY_TYPE_ALL,
+  pricing: CATEGORY_TYPE_PRICING,
+  hdbResale: CATEGORY_TYPE_HDB_RESALE,
+  privateResale: CATEGORY_TYPE_PRIVATE_RESALE,
+  newLaunches: CATEGORY_TYPE_NEW_LAUNCHES,
+  hdbRent: CATEGORY_TYPE_HDB_RENT,
+  privateRent: CATEGORY_TYPE_PRIVATE_RENT
+};
+
+export const CategoryTypeDescription = {
+  all: CATEGORY_TYPE_TITLE_ALL,
+  pricing: CATEGORY_TYPE_TITLE_PRICING,
+  hdbResale: CATEGORY_TYPE_TITLE_HDB_RESALE,
+  privateResale: CATEGORY_TYPE_TITLE_PRIVATE_RESALE,
+  newLaunches: CATEGORY_TYPE_TITLE_NEW_LAUNCHES,
+  hdbRent: CATEGORY_TYPE_TITLE_HDB_RENT,
+  privateRent: CATEGORY_TYPE_TITLE_PRIVATE_RENT
+};
+
+export const CATEGORY_TYPE_ARRAY = [
+  {
+    key: CATEGORY_TYPE_TITLE_ALL,
+    value: CATEGORY_TYPE_ALL
+  },
+  {
+    key: CATEGORY_TYPE_TITLE_PRICING,
+    value: CATEGORY_TYPE_PRICING
+  },
+  {
+    key: CATEGORY_TYPE_TITLE_HDB_RESALE,
+    value: CATEGORY_TYPE_HDB_RESALE
+  },
+  {
+    key: CATEGORY_TYPE_TITLE_PRIVATE_RESALE,
+    value: CATEGORY_TYPE_PRIVATE_RESALE
+  },
+  {
+    key: CATEGORY_TYPE_TITLE_NEW_LAUNCHES,
+    value: CATEGORY_TYPE_NEW_LAUNCHES
+  },
+  {
+    key: CATEGORY_TYPE_TITLE_HDB_RENT,
+    value: CATEGORY_TYPE_HDB_RENT
+  },
+  {
+    key: CATEGORY_TYPE_TITLE_PRIVATE_RENT,
+    value: CATEGORY_TYPE_PRIVATE_RENT
+  }
+];

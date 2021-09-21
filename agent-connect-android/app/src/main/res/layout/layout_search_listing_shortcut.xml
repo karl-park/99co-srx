@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchCommonViewModel.DisplayMode" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchCommonViewModel.SearchResultType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyPurpose" />
+
+        <variable
+            name="displayMode"
+            type="DisplayMode" />
+
+        <variable
+            name="searchResultType"
+            type="SearchResultType" />
+
+        <variable
+            name="visibility"
+            type="int" />
+
+        <variable
+            name="isSearchingLocation"
+            type="Boolean" />
+
+        <variable
+            name="propertyPurpose"
+            type="PropertyPurpose" />
+    </data>
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="@{visibility}">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/btn_current_location"
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:drawableStart="@drawable/ic_map_pin"
+                android:drawablePadding="@dimen/spacing_xs"
+                android:drawableTint="@color/black_invertible"
+                android:text="@{isSearchingLocation ? @string/label_current_location_is_searching : @string/label_current_location}"
+                android:textColor="@color/clickable_text" />
+
+            <!-- Hide Mrt and school for project search result type -->
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="space_between">
+
+                <sg.searchhouse.agentconnect.view.widget.common.SmallPill
+                    android:id="@+id/btn_search_by_mrt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/small_pill_height"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/listing_option_mrt"
+                    android:visibility="@{searchResultType == SearchResultType.PROJECTS || searchResultType == SearchResultType.NEW_LAUNCHES_REPORTS? View.GONE : View.VISIBLE}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.SmallPill
+                    android:id="@+id/btn_search_by_districts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/small_pill_height"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/listing_option_districts" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.SmallPill
+                    android:id="@+id/btn_search_by_areas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/small_pill_height"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/listing_option_areas" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.SmallPill
+                    android:id="@+id/btn_search_by_schools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/small_pill_height"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/listing_option_schools"
+                    android:visibility="@{searchResultType == SearchResultType.PROJECTS || searchResultType == SearchResultType.NEW_LAUNCHES_REPORTS ? View.INVISIBLE : View.VISIBLE}" />
+
+                <!-- add space view for project search -->
+                <!-- TODO: in future find a better way to fix UI issues-->
+                <View
+                    android:layout_width="@dimen/size_70"
+                    android:layout_height="@dimen/small_pill_height"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{searchResultType == SearchResultType.PROJECTS ? View.INVISIBLE : View.GONE}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.SmallPill
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/small_pill_height"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/listing_option_travel_time"
+                    android:visibility="gone" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{searchResultType == SearchResultType.LISTINGS &amp;&amp; displayMode == DisplayMode.DEFAULT ? View.VISIBLE : View.GONE}">
+
+                <TextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:text="@string/label_jump_to_listings" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{propertyPurpose == PropertyPurpose.RESIDENTIAL ? View.VISIBLE : View.GONE}">
+
+                    <include
+                        android:id="@+id/layout_buttons_property_type_listings_residential"
+                        layout="@layout/layout_buttons_property_type_listings_residential" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{propertyPurpose == PropertyPurpose.COMMERCIAL ? View.VISIBLE : View.GONE}">
+
+                    <include
+                        android:id="@+id/layout_buttons_property_type_listings_commercial"
+                        layout="@layout/layout_buttons_property_type_listings_commercial" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{searchResultType == SearchResultType.TRANSACTIONS &amp;&amp; propertyPurpose == PropertyPurpose.COMMERCIAL &amp;&amp; displayMode == DisplayMode.DEFAULT ? View.VISIBLE : View.GONE}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:text="@string/label_jump_to_transactions" />
+
+                <include
+                    android:id="@+id/layout_buttons_property_type_transactions"
+                    layout="@layout/layout_buttons_property_type_transactions_commercial" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{displayMode == DisplayMode.DEFAULT ? View.VISIBLE : View.GONE}">
+
+                <TextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:text="@string/label_information" />
+
+                <include
+                    layout="@layout/layout_project_directory_shortcut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:drawableIcon="@{@drawable/ic_property_type_condo}"
+                    app:shortcutLabel="@{@string/label_project_info}" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_search_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{displayMode == DisplayMode.SEARCH ? View.VISIBLE : View.GONE}" />
+    </LinearLayout>
+</layout>

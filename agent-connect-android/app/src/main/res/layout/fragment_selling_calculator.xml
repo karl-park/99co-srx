@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.CalculatorAppEnum.SellingCalculatorEntryType" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.calculator.SellingCalculatorFragmentViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:visibility="@{viewModel.entryType == SellingCalculatorEntryType.SELLING ? View.VISIBLE : View.GONE}"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_selling_property_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_property_details"
+                        style="@style/SearchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:text="@{viewModel.address}"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_m"
+                        android:ellipsize="end"
+                        android:drawableStart="@null"
+                        android:hint="@string/hint_calculator_selling_property_details"
+                        android:maxLines="2"
+                        android:textAlignment="textStart" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/text_box_calculator_selling_est_selling_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_selling_price"
+                    android:layout_marginBottom="@dimen/spacing_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/text_box_calculator_selling_sale_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_sale_date"
+                    style="@style/RoundedEditText"
+                    android:layout_marginBottom="@dimen/spacing_l"
+                    android:hint="@string/hint_calculator_date"
+                    android:text="@{viewModel.saleDateLabel}"
+                    android:drawableTint="@color/gray_invertible"
+                    android:drawablePadding="@dimen/spacing_xs"
+                    android:stateListAnimator="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@{viewModel.isShowDateError() ? @drawable/et_error_background : @drawable/et_rounded_gray_background_with_border}"
+                    android:drawableEnd="@drawable/ic_arrow_down" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/text_box_calculator_selling_purchase_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_purchase_date"
+                    style="@style/RoundedEditText"
+                    android:text="@{viewModel.purchaseDateLabel}"
+                    android:hint="@string/hint_calculator_date"
+                    android:drawableTint="@color/gray_invertible"
+                    android:drawablePadding="@dimen/spacing_xs"
+                    android:stateListAnimator="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@{viewModel.isShowDateError() ? @drawable/et_error_background : @drawable/et_rounded_gray_background_with_border}"
+                    android:drawableEnd="@drawable/ic_arrow_down" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBodyError"
+                    android:visibility="@{viewModel.isShowDateError() ? View.VISIBLE : View.GONE}"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:text="@string/error_calculator_sale_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_l" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/text_box_calculator_selling_est_purchase_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_purchase_price"
+                    android:layout_marginBottom="@dimen/spacing_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/text_box_calculator_selling_bsd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_buyer_stamp_duty"
+                    android:layout_marginBottom="@dimen/spacing_xl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_share_to_client"
+                    style="@style/SecondaryButton"
+                    android:enabled="@{viewModel.shouldEnableShareButton == true}"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/button_share_calculation_to_client"
+                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_xl"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

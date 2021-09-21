@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="subIndices"
+                type="sg.searchhouse.agentconnect.model.api.propertyindex.LoadMarketWatchIndicesResponse.NonLandedPrivateSubIndexes" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <include
+                layout="@layout/layout_market_watch_sub_index"
+                app:srxIndexPO="@{subIndices.ccr}"
+                app:title="@{@string/title_market_watch_condo_ccr}" />
+
+        <include
+                layout="@layout/layout_market_watch_sub_index"
+                app:srxIndexPO="@{subIndices.ocr}"
+                app:title="@{@string/title_market_watch_condo_ocr}" />
+
+        <include
+                layout="@layout/layout_market_watch_sub_index"
+                app:srxIndexPO="@{subIndices.rcr}"
+                app:title="@{@string/title_market_watch_condo_rcr}" />
+    </LinearLayout>
+</layout>

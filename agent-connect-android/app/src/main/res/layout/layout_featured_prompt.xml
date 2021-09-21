@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="featuredPrompt"
+            type="sg.searchhouse.agentconnect.model.api.common.NameValuePO" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.HiddenSwipeRefreshLayout
+        android:id="@+id/layout_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="always">
+
+        <LinearLayout
+            android:id="@+id/layout_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_xl"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_xl"
+            android:paddingBottom="0dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_prompt"
+                style="@style/FeaturePromptText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:ellipsize="end"
+                android:lines="3"
+                android:text="@{featuredPrompt.value}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_add_now"
+                    style="@style/PrimaryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:text="@string/button_add_now" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.HiddenSwipeRefreshLayout>
+</layout>

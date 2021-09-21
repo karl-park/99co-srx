@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.user.BookAppointmentViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_m"
+            app:contentPaddingBottom="@dimen/spacing_m"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_m">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/BodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_toStartOf="@+id/ib_close"
+                            android:text="@string/label_select_preferred_date" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ib_close"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_alignParentEnd="true"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/content_description_dismiss"
+                            android:src="@drawable/ic_cancel" />
+                    </RelativeLayout>
+
+                    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                        android:id="@+id/calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_s"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="0dp"
+                        app:mcv_dateTextAppearance="@style/CalendarDateTextAppearance"
+                        app:mcv_headerTextAppearance="@style/Title"
+                        app:mcv_selectionMode="single"
+                        app:mcv_weekDayLabels="@array/calendar_month_labels" />
+
+                    <include layout="@layout/view_divider_horizontal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/BodyBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_m"
+                        android:text="@string/label_preferred_timing" />
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/layout_available_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:visibility="@{safeUnbox(viewModel.isTimeAvailable()) ? View.VISIBLE : View.GONE}"
+                        app:alignContent="flex_start"
+                        app:alignItems="flex_start"
+                        app:flexDirection="row"
+                        app:flexWrap="wrap" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/ExtraSmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:text="@string/msg_no_time_slots_for_selected_date"
+                        android:visibility="@{safeUnbox(viewModel.isTimeAvailable()) ? View.GONE : View.VISIBLE}" />
+
+                    <include layout="@layout/view_divider_horizontal" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/tv_done"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginBottom="0dp"
+                        android:text="@string/label_done"
+                        android:textSize="@dimen/text_size_16" />
+
+                </LinearLayout>
+            </ScrollView>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

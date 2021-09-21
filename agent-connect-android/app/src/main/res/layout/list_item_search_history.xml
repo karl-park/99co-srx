@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="@dimen/spacing_m"
+            android:drawableStart="@drawable/ic_clock"
+            android:drawablePadding="@dimen/spacing_xs"
+            android:ellipsize="end"
+            android:lines="1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_view_divider"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:background="@color/divider_color" />
+    </LinearLayout>
+</layout>

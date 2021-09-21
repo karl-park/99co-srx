@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertySubType" />
+    </data>
+
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:columnCount="4"
+            android:orientation="horizontal">
+
+        <include
+                android:id="@+id/btn_listings_sub_type_all_commercial"
+                layout="@layout/button_search_property_sub_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertySubType="@{PropertySubType.ALL_COMMERCIAL}" />
+
+        <include
+                android:id="@+id/btn_listings_sub_type_retail"
+                layout="@layout/button_search_property_sub_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertySubType="@{PropertySubType.RETAIL}" />
+
+        <include
+                android:id="@+id/btn_listings_sub_type_office"
+                layout="@layout/button_search_property_sub_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertySubType="@{PropertySubType.OFFICE}" />
+
+        <include
+                android:id="@+id/btn_listings_sub_type_factory"
+                layout="@layout/button_search_property_sub_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertySubType="@{PropertySubType.FACTORY}" />
+
+        <include
+                android:id="@+id/btn_listings_sub_type_warehouse"
+                layout="@layout/button_search_property_sub_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertySubType="@{PropertySubType.WAREHOUSE}" />
+
+        <include
+                android:id="@+id/btn_listings_sub_type_land"
+                layout="@layout/button_search_property_sub_type"
+                android:layout_width="0dp"
+                android:layout_columnWeight="1"
+                android:layout_height="wrap_content"
+                app:propertySubType="@{PropertySubType.LAND}" />
+
+        <include
+                android:id="@+id/btn_listings_sub_type_hdb_shop_house"
+                layout="@layout/button_search_property_sub_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertySubType="@{PropertySubType.HDB_SHOP_HOUSE}" />
+
+        <include
+                android:id="@+id/btn_listings_sub_type_shop_house"
+                layout="@layout/button_search_property_sub_type"
+                android:layout_columnWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:propertySubType="@{PropertySubType.SHOP_HOUSE}" />
+    </GridLayout>
+</layout>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyPurpose" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ProjectEnum.Completion" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.projectinfo.FilterProjectViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white_invertible"
+                tools:context=".view.activity.project.FilterProjectActivity">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:navigationIcon="@drawable/ic_clear" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <ScrollView
+                        android:id="@+id/scroll_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@id/layout_action"
+                        android:layout_alignParentTop="true">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <!-- Reuse from transaction main type -> since search project is under transaction  -->
+                        <include
+                                android:id="@+id/layout_residential_main_property_types"
+                                layout="@layout/layout_filter_project_residential_property_main_types"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                app:isVisible="@{viewModel.propertyPurpose == PropertyPurpose.RESIDENTIAL}"
+                                app:selectedPropertyMainType="@{viewModel.propertyMainType}" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                                android:id="@+id/layout_property_sub_types"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                app:alignContent="flex_start"
+                                app:alignItems="flex_start"
+                                app:flexDirection="row"
+                                app:flexWrap="wrap"
+                                app:justifyContent="flex_start" />
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                        <TextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/project_filter_radius"
+                                android:visibility="@{safeUnbox(viewModel.showRadiusOption)? View.VISIBLE : View.GONE }" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                                android:id="@+id/layout_radius"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                android:visibility="@{safeUnbox(viewModel.showRadiusOption)? View.VISIBLE : View.GONE }"
+                                app:alignContent="flex_start"
+                                app:alignItems="flex_start"
+                                app:flexDirection="row"
+                                app:flexWrap="wrap"
+                                app:justifyContent="flex_start" />
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color"
+                                android:visibility="@{safeUnbox(viewModel.showRadiusOption)? View.VISIBLE : View.GONE }" />
+
+                        <TextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/project_filter_tenure" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                                android:id="@+id/layout_tenure"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                app:alignContent="flex_start"
+                                app:alignItems="flex_start"
+                                app:flexDirection="row"
+                                app:flexWrap="wrap"
+                                app:justifyContent="flex_start" />
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                        <TextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/project_filter_type_of_area" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                                android:id="@+id/layout_type_of_area"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                app:alignContent="flex_start"
+                                app:alignItems="flex_start"
+                                app:flexDirection="row"
+                                app:flexWrap="wrap"
+                                app:justifyContent="flex_start" />
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                        <TextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/project_filter_completion" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                                android:id="@+id/layout_completion"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                app:alignContent="flex_start"
+                                app:alignItems="flex_start"
+                                app:flexDirection="row"
+                                app:flexWrap="wrap"
+                                app:justifyContent="flex_start" />
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                        <TextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="@dimen/spacing_m"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="0dp"
+                                android:alpha="@{viewModel.selectedCompletion == Completion.ANY ? 1f : 0.5f }"
+                                android:text="@string/project_filter_age" />
+
+                        <include
+                                android:id="@+id/layout_age"
+                                layout="@layout/layout_range_number_boxes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:alpha="@{viewModel.selectedCompletion == Completion.ANY ? 1f : 0.5f }" />
+
+                    </LinearLayout>
+                </ScrollView>
+
+                <LinearLayout
+                        android:id="@+id/layout_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/white_invertible"
+                        android:orientation="vertical">
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_m">
+
+                        <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                                android:id="@+id/btn_submit"
+                                style="@style/PrimaryButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center"
+                                android:text="@string/button_apply_filters" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

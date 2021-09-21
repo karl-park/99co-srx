@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="locationEntryPO"
+                  type="sg.searchhouse.agentconnect.model.api.location.LocationEntryPO"/>
+        <variable
+                name="isLast"
+                type="Boolean" />
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:textColor="@color/gray"
+                android:lines="1"
+                android:text="@{locationEntryPO.displayText}"
+                android:ellipsize="end"
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_margin="@dimen/spacing_m" />
+
+        <View
+                android:visibility="@{isLast ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:background="@color/divider_color" />
+
+        <View
+                android:visibility="@{!isLast ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="0dp"
+                android:background="@color/divider_color" />
+    </LinearLayout>
+</layout>

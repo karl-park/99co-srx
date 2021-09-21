@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="nameValuePO"
+                type="sg.searchhouse.agentconnect.model.api.common.NameValuePO" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_check"
+            android:drawablePadding="@dimen/spacing_xs"
+            android:drawableTint="@color/black_invertible"
+            android:gravity="center_vertical|start"
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingBottom="@dimen/spacing_m"
+            android:text="@{nameValuePO.name}" />
+</layout>

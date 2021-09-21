@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">demo1.srxtrainer.com</domain>
+        <domain includeSubdomains="true">demo2.srxtrainer.com</domain>
+        <domain includeSubdomains="true">demo3.srxtrainer.com</domain>
+        <domain includeSubdomains="true">demo4.srxtrainer.com</domain>
+        <domain includeSubdomains="true">demo5.srxtrainer.com</domain>
+        <domain includeSubdomains="true">demo6.srxtrainer.com</domain>
+        <domain includeSubdomains="true">10.10.0.138</domain>
+        <domain includeSubdomains="true">192.168.1.83</domain>
+        <domain includeSubdomains="true">192.168.1.121</domain>
+        <domain includeSubdomains="true">serverfive.chickenkiller.com</domain>
+        <domain includeSubdomains="true">srxtrainer.com</domain>
+        <domain includeSubdomains="true">srx.com.sg</domain>
+        <domain includeSubdomains="true">static.streetsine.s3-website-ap-southeast-1.amazonaws.com
+        </domain>
+        <domain includeSubdomains="true">straitstimes.com</domain>
+    </domain-config>
+</network-security-config>

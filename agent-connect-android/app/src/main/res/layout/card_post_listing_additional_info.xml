@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="listingEditPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingEditPO" />
+
+        <variable
+            name="bedRoomDescription"
+            type="String" />
+
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingTop="@dimen/spacing_s"
+            android:paddingEnd="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_s">
+
+            <!-- Bedrooms -->
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_bedrooms"
+                android:visibility="@{safeUnbox(listingEditPO.isCommercial()) ? View.GONE : View.VISIBLE}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dropdown_bedrooms"
+                style="@style/RoundedEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:focusable="true"
+                android:hint="@string/label_bedrooms"
+                android:text="@{bedRoomDescription}"
+                android:visibility="@{safeUnbox(listingEditPO.isCommercial()) ? View.GONE : View.VISIBLE}" />
+
+            <!-- Bathroom -->
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:text="@{safeUnbox(listingEditPO.isCommercial()) ? @string/label_rest_rooms : @string/label_bathrooms}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dropdown_bathrooms"
+                style="@style/RoundedEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                android:focusable="true"
+                android:hint="@string/label_bathrooms"
+                android:text="@{listingEditPO.getBathroomString(context)}" />
+
+            <!-- Owner type (Commercial) -->
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:text="@string/label_owner_type"
+                android:visibility="@{safeUnbox(listingEditPO.isCommercial())? View.VISIBLE : View.GONE}" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_owner_types"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:visibility="@{safeUnbox(listingEditPO.isCommercial())? View.VISIBLE : View.GONE}"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start" />
+
+            <!--Furnished Except Commercial-->
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:text="@string/label_furnished"
+                android:visibility="@{safeUnbox(listingEditPO.isCommercial()) ? View.GONE : View.VISIBLE}" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_layout_furnished"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:visibility="@{safeUnbox(listingEditPO.isCommercial()) ? View.GONE : View.VISIBLE}"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start" />
+
+            <!--Condition Furnish Level-->
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:text="@string/label_condition"
+                android:visibility="@{safeUnbox(listingEditPO.isCommercial()) ? View.VISIBLE : View.GONE}" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_furnish_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:visibility="@{safeUnbox(listingEditPO.isCommercial()) ? View.VISIBLE : View.GONE}"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start" />
+
+            <!-- Floor Location -->
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                android:text="@string/label_floor_location" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex_box_layout_floor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="0dp"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start" />
+
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

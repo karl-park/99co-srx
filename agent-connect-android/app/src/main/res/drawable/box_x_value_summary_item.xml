@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient android:endColor="@color/background_x_value_box_bottom_invertible" android:startColor="@color/white_invertible" android:type="linear" />
+            <stroke android:width="@dimen/button_border" android:color="@color/card_border" />
+        </shape>
+    </item>
+</selector>

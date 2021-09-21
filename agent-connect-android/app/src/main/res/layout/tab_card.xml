@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="isSelected"
+                type="Boolean" />
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="icon"
+                type="android.graphics.drawable.Drawable" />
+
+        <variable
+                name="background"
+                type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <LinearLayout
+            android:background="@{background}"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="@dimen/spacing_xs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isSelected="@{isSelected}">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_icon"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:src="@{icon}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:textAllCaps="false"
+                android:text="@{title}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

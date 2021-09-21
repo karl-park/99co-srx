@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <variable
+                name="selectedPropertyType"
+                type="PropertyMainType" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:weightSum="3"
+            android:padding="@dimen/spacing_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+        <include
+                android:id="@+id/btn_tab_hdb"
+                layout="@layout/tab_card"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:background="@{@drawable/selectable_small_card_start}"
+                app:icon="@{context.getDrawable(PropertyMainType.HDB.iconResId)}"
+                app:isSelected="@{selectedPropertyType == PropertyMainType.HDB}"
+                app:title="@{context.getString(PropertyMainType.HDB.label)}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{selectedPropertyType == PropertyMainType.HDB || selectedPropertyType == PropertyMainType.CONDO ? @color/cyan : @color/card_border}" />
+
+        <include
+                android:id="@+id/btn_tab_condo"
+                layout="@layout/tab_card"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:background="@{@drawable/selectable_small_card_center}"
+                app:icon="@{context.getDrawable(PropertyMainType.CONDO.iconResId)}"
+                app:isSelected="@{selectedPropertyType == PropertyMainType.CONDO}"
+                app:title="@{context.getString(PropertyMainType.CONDO.label)}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{selectedPropertyType == PropertyMainType.CONDO || selectedPropertyType == PropertyMainType.LANDED ? @color/cyan : @color/card_border}" />
+
+        <include
+                android:id="@+id/btn_tab_landed"
+                layout="@layout/tab_card"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:background="@{@drawable/selectable_small_card_end}"
+                app:icon="@{context.getDrawable(PropertyMainType.LANDED.iconResId)}"
+                app:isSelected="@{selectedPropertyType == PropertyMainType.LANDED}"
+                app:title="@{context.getString(PropertyMainType.LANDED.label)}" />
+    </LinearLayout>
+</layout>

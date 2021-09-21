@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.client.MySgHomeClientsViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentPaddingBottom="@dimen/card_border_radius"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                        android:id="@+id/layout_title"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Heading2"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@{viewModel.contentTitle}"
+                            android:layout_alignStart="@id/btn_invite_clients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_invite_clients"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            android:text="@string/button_invite_clients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <sg.searchhouse.agentconnect.view.widget.common.CustomSwipeRefreshLayout
+                        android:id="@+id/layout_swipe_refresh"
+                        android:layout_below="@id/layout_title"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <include
+                                layout="@layout/layout_loading_fail_error"
+                                app:mainStatus="@{viewModel.mainStatus}" />
+
+                        <include
+                                layout="@layout/layout_load_list_fail"
+                                app:title="@{@string/layout_my_sg_home_clients_empty}"
+                                app:visibility="@{viewModel.isShowEmpty() ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/list"
+                                android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                    </FrameLayout>
+                </sg.searchhouse.agentconnect.view.widget.common.CustomSwipeRefreshLayout>
+            </RelativeLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

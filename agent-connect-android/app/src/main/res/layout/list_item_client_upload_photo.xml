@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <FrameLayout
+        android:id="@+id/fl_photo_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_xs"
+        android:layout_marginBottom="@dimen/spacing_xs">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_marginEnd="@dimen/margin_5"
+            android:background="@drawable/layout_photo_picker_dotted_border"
+            android:orientation="vertical"
+            app:cardCornerRadius="@dimen/spacing_s"
+            app:cardElevation="0dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_uploaded_photo"
+                android:layout_width="@dimen/width_template_photo_picker"
+                android:layout_height="@dimen/height_template_photo_picker"
+                android:contentDescription="@string/label_remove_photo"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_square_image_placeholder" />
+
+            <!--                app:imageUrl="@{photo.thumbnailUrl}"-->
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/ib_remove_photo"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_gravity="top|end"
+            android:background="@drawable/view_circle_teal_background"
+            android:clickable="true"
+            android:contentDescription="@string/label_remove_photo"
+            android:focusable="true"
+            android:padding="@dimen/margin_5"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_clear"
+            android:tint="@color/white_invertible" />
+
+    </FrameLayout>
+</layout>

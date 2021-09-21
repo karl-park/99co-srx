@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchCommonViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_search"
+            style="@style/SearchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/spacing_m"
+            android:hint="@string/hint_search_listings"
+            android:imeOptions="actionSearch"
+            android:importantForAutofill="no"
+            android:inputType="textPostalAddress"
+            tools:ignore="LabelFor"
+            tools:targetApi="o" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/et_search"
+            android:layout_alignParentBottom="true">
+
+            <include
+                layout="@layout/layout_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:isShowOccupied="@{safeUnbox(viewModel.isShowOccupied())}"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+            <sg.searchhouse.agentconnect.view.widget.search.SearchListingShortcutLayout
+                android:id="@+id/layout_search_listing_shortcut"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:visibility="@{safeUnbox(viewModel.isShowEmpty()) ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+    </RelativeLayout>
+</layout>

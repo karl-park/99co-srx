@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.portal.PGImportDialogViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum.AppPortalType" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_invertible">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_collapsing_toolbar_height"
+            android:background="@color/white_invertible"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                app:expandedTitleMarginEnd="@dimen/spacing_m"
+                app:expandedTitleMarginStart="@dimen/spacing_m"
+                app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/ClassicActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    app:contentInsetStartWithNavigation="0dp"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/ic_clear"
+                    app:title="@string/title_import_and_sync_listings" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/ListingFilterPill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/pill_height"
+                        android:layout_marginEnd="@dimen/spacing_s"
+                        android:onClick="@{()->viewModel.onChangePortalType(AppPortalType.PROPERTY_GURU)}"
+                        android:text="@string/label_property_guru"
+                        app:isSelected="@{viewModel.portalType == AppPortalType.PROPERTY_GURU}" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/ListingFilterPill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/pill_height"
+                        android:layout_marginEnd="@dimen/spacing_s"
+                        android:onClick="@{()->viewModel.onChangePortalType(AppPortalType.PORTAL)}"
+                        android:text="@string/label_portal"
+                        app:isSelected="@{viewModel.portalType == AppPortalType.PORTAL}" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/ListingFilterPill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/pill_height"
+                        android:layout_marginEnd="@dimen/spacing_s"
+                        android:onClick="@{()->viewModel.onChangePortalType(AppPortalType.AGENCY)}"
+                        android:text="@string/label_agency"
+                        app:isSelected="@{viewModel.portalType == AppPortalType.AGENCY}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.portalType == AppPortalType.PROPERTY_GURU ? View.VISIBLE : View.GONE}">
+
+                    <TextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:lineSpacingExtra="@dimen/tv_line_spacing"
+                        android:text="@string/msg_certified_listing" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        app:error="@{viewModel.errorEmail}"
+                        app:errorEnabled="true"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_email_address"
+                            style="@style/RoundedEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:afterTextChanged="@{viewModel::afterTextChangedEmail}"
+                            android:background="@drawable/et_search"
+                            android:hint="@string/hint_email_address"
+                            android:singleLine="true"
+                            android:text="@={viewModel.email}"
+                            tools:ignore="LabelFor"
+                            tools:targetApi="o" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_s"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        app:error="@{viewModel.errorPassword}"
+                        app:errorEnabled="true"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_password"
+                            style="@style/RoundedEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:afterTextChanged="@{viewModel::afterTextChangedPassword}"
+                            android:background="@drawable/et_search"
+                            android:hint="@string/hint_password"
+                            android:inputType="textPassword"
+                            android:singleLine="true"
+                            android:text="@={viewModel.password}"
+                            tools:ignore="LabelFor"
+                            tools:targetApi="o" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cb_remember_me"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:background="@android:color/transparent"
+                        android:checked="@{viewModel.isRememberMeChecked}"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:onCheckedChanged="@{viewModel::onCheckedChanged}"
+                        android:text="@string/label_remember_me"
+                        android:theme="@style/CheckBox" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                        android:id="@+id/btn_connect"
+                        style="@style/PrimaryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="@dimen/spacing_m"
+                        android:enabled="@{viewModel.isConnectBtnEnabled}"
+                        android:gravity="center"
+                        android:onClick="@{()->viewModel.loginWithPG()}"
+                        android:text="@{viewModel.connectBtnText}" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/BodyBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="@dimen/spacing_l"
+                    android:text="@string/label_small_coming_soon"
+                    android:visibility="@{viewModel.portalType == AppPortalType.PROPERTY_GURU? View.GONE : View.VISIBLE}" />
+
+                <TextView
+                    style="@style/SmallBodyGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_m"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:text="@string/msg_portal_login_disclaimer"
+                    android:visibility="@{viewModel.portalType == AppPortalType.PROPERTY_GURU? View.VISIBLE : View.GONE}" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

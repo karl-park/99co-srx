@@ -1,0 +1,3 @@
+package sg.searchhouse.agentconnect.event.amenity
+
+class RequestActivityTransportEvent

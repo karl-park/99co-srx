@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardUserListingsViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_l"
+            android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_active_sale_listings"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:layout_toStartOf="@id/btn_view_all_active_sale_listings"
+                    android:text="@{viewModel.activeSaleListingsTitle}" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_view_all_active_sale_listings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/btn_view_all_active_sale_listings"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/button_view_all" />
+        </RelativeLayout>
+
+        <include
+                layout="@layout/layout_user_listing_counts_sale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m"
+                app:viewModel="@{viewModel}" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_active_rent_listings"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:layout_toStartOf="@id/btn_view_all_active_rent_listings"
+                    android:text="@{viewModel.activeRentListingsTitle}" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_view_all_active_rent_listings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/button_view_all" />
+        </RelativeLayout>
+
+        <include
+                layout="@layout/layout_user_listing_counts_rent"
+                app:viewModel="@{viewModel}" />
+    </LinearLayout>
+</layout>

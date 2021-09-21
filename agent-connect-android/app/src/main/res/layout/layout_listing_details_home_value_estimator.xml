@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingDetailsViewModel" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:id="@+id/layout_home_value_estimator_header"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_header"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/btn_expand_home_value_estimator"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/title_listing_details_home_value_estimator" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_expand_home_value_estimator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="end"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_chevron"
+                    android:src="@{isExpand == true ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                    android:tint="@color/gray" />
+        </RelativeLayout>
+
+        <LinearLayout
+                android:id="@+id/layout_home_value_estimator_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingBottom="@dimen/spacing_m"
+                android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}">
+
+            <include
+                    layout="@layout/layout_listing_details_home_value_estimator_summary"
+                    app:viewModel="@{viewModel}" />
+
+            <include
+                    layout="@layout/view_divider_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:layout_marginBottom="@dimen/spacing_m" />
+
+            <include
+                    layout="@layout/layout_listing_details_home_value_estimator_x_trend"
+                    app:viewModel="@{viewModel}" />
+
+            <include
+                    layout="@layout/layout_listing_details_home_value_estimator_transactions"
+                    app:viewModel="@{viewModel}" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

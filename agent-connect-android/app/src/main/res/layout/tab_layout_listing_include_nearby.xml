@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="isIncludeNearBy"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tab_include_nearby"
+                style="@style/TabButtonLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m"
+                android:text="@string/tab_listings_include_nearby"
+                app:isSelected="@{isIncludeNearBy == true}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tab_project_only"
+                style="@style/TabButtonRight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m"
+                android:text="@string/tab_listings_project_only"
+                app:isSelected="@{isIncludeNearBy == false}" />
+    </LinearLayout>
+</layout>

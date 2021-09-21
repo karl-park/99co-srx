@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.util.ArrayList" />
+
+        <import type="android.view.View" />
+
+        <import type="android.graphics.Color" />
+
+        <variable
+                name="trainLine"
+                type="sg.searchhouse.agentconnect.model.api.lookup.LookupMrtsResponse.TrainLine" />
+
+        <variable
+                name="position"
+                type="int" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@{position % 2 == 0 ? @color/white_invertible : @color/white_smoke_invertible}"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_m"
+                tools:ignore="UseCompoundDrawables">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/content_description_setting_item_icon"
+                    android:src="@drawable/ic_mrt"
+                    android:tint="@{Color.parseColor(trainLine.hexColor)}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_title"
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_toEndOf="@id/iv_icon"
+                    android:text="@{trainLine.lineName}" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/tv_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/content_description_setting_item_icon"
+                    android:src="@{safeUnbox(isExpand) ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                    android:tint="@color/black_invertible" />
+        </RelativeLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:background="@color/divider_color" />
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_stations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+    </LinearLayout>
+</layout>

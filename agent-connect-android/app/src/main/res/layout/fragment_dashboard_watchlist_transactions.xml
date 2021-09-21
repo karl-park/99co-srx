@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardWatchlistTransactionsViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:animateLayoutChanges="true"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp">
+
+            <LinearLayout
+                    android:id="@+id/layout_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.mainStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}">
+
+                <!--Header-->
+                <RelativeLayout
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_title"
+                            style="@style/Title"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="0dp"
+                            android:text="@string/title_dashboard_watchlist_transactions" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_view_all"
+                            android:visibility="@{viewModel.isShowOccupied ? View.VISIBLE : View.GONE}"
+                            android:layout_alignEnd="@id/tv_title"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_xs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:text="@string/button_view_all" />
+                </RelativeLayout>
+
+                <LinearLayout
+                        android:visibility="@{viewModel.isShowOccupied ? View.VISIBLE : View.GONE}"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list"
+                            android:nestedScrollingEnabled="false"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_manage_watchlists"
+                            android:drawableStart="@drawable/ic_setting"
+                            android:drawableTint="@color/black_invertible"
+                            android:text="@string/button_manage_watchlists"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <FrameLayout
+                        android:visibility="@{viewModel.isShowEmpty ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <include layout="@layout/layout_dashboard_watchlist_transactions_empty" />
+
+                </FrameLayout>
+            </LinearLayout>
+
+            <include
+                    layout="@layout/layout_loading_fail_error_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                    app:isShowOccupied="@{viewModel.isShowOccupied()}"
+                    app:mainStatus="@{viewModel.mainStatus}" />
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

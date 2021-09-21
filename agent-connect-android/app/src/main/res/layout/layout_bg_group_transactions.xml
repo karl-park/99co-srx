@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <variable
+                name="propertyMainType"
+                type="PropertyMainType" />
+
+        <variable
+                name="ownershipType"
+                type="OwnershipType" />
+
+        <variable
+                name="scale"
+                type="Float" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ScalableFrameLayout
+            app:scale="@{scale}"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+
+        <include
+                layout="@layout/list_item_group_transaction_bg_hdb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:visibility="@{propertyMainType == PropertyMainType.HDB ? View.VISIBLE : View.GONE}" />
+
+        <include
+                layout="@layout/list_item_group_transaction_bg_nlp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:visibility="@{propertyMainType == PropertyMainType.CONDO ? View.VISIBLE : View.GONE}" />
+
+        <include
+                layout="@layout/list_item_group_transaction_bg_landed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:visibility="@{propertyMainType == PropertyMainType.LANDED ? View.VISIBLE : View.GONE}" />
+
+        <include
+                layout="@layout/list_item_group_transaction_bg_commercial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:visibility="@{propertyMainType == PropertyMainType.COMMERCIAL ? View.VISIBLE : View.GONE}" />
+    </sg.searchhouse.agentconnect.view.widget.common.ScalableFrameLayout>
+</layout>

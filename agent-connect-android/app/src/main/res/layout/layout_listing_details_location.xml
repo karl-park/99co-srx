@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="listingPO"
+                type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:id="@+id/layout_location_header"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_header"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/btn_expand_location"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/title_listing_details_location" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_expand_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="end"
+                    android:background="@color/transparent"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_chevron"
+                    android:src="@{isExpand == true ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                    android:tint="@color/gray" />
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <FrameLayout
+                    android:id="@+id/layout_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <fragment
+                        android:id="@+id/fragment_map"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/listing_details_map_height" />
+
+                <View
+                        android:id="@+id/view_map"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/listing_details_map_height"
+                        android:clickable="true"
+                        android:focusable="true" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

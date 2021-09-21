@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.SrxChatViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_blast_content_dotted"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/width_srx_chat_image_template"
+                android:layout_height="@dimen/height_srx_chat_image_template"
+                android:background="@color/light_gray_invertible" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_s"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/spacing_xxs"
+                    android:layout_marginTop="@dimen/spacing_xxs"
+                    android:layout_marginBottom="@dimen/spacing_xxs"
+                    android:background="@color/light_gray_invertible" />
+
+                <TextView
+                    android:layout_width="@dimen/width_srx_text"
+                    android:layout_height="@dimen/spacing_xxs"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:background="@color/light_gray_invertible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/size_20"
+                        android:layout_height="@dimen/spacing_xxs"
+                        android:background="@color/light_gray_invertible" />
+
+                    <TextView
+                        android:layout_width="@dimen/size_20"
+                        android:layout_height="@dimen/spacing_xxs"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:background="@color/light_gray_invertible" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            style="@style/SmallBody"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/bg_blast_content_dotted"
+            android:padding="@dimen/spacing_m"
+            android:text="@={viewModel.message}" />
+        
+    </LinearLayout>
+</layout>

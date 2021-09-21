@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.model.api.listing.FeaturedPO.Category" />
+
+        <variable
+                name="isExclusive"
+                type="Boolean" />
+
+        <variable
+                name="hasDroneView"
+                type="Boolean" />
+
+        <variable
+                name="hasVirtualTour"
+                type="Boolean" />
+
+        <variable
+                name="isFeatured"
+                type="Boolean" />
+
+        <variable
+                name="isMultiline"
+                type="Boolean" />
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start"
+            app:layout_height="@{isMultiline ? @dimen/height_listing_tags_two_lines : @dimen/height_listing_tags_one_line}">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ListingTag"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:text="@string/label_listing_exclusive"
+                android:visibility="@{isExclusive? View.VISIBLE : View.GONE}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ListingTag"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:text="@string/label_listing_drone"
+                android:visibility="@{hasDroneView? View.VISIBLE : View.GONE}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ListingTag"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:text="@string/label_listing_full_view"
+                android:visibility="@{hasVirtualTour? View.VISIBLE :View.GONE}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ListingTagFilled"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:text="@string/label_listing_featured"
+                android:visibility="@{isFeatured ? View.VISIBLE : View.GONE}" />
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>

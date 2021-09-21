@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="criteria"
+                type="sg.searchhouse.agentconnect.model.api.watchlist.WatchlistPropertyCriteriaPO" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/small_card_border_radius"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp">
+
+        <RelativeLayout
+                android:id="@+id/layout_criteria_header"
+                android:paddingStart="@dimen/spacing_xs"
+                android:paddingEnd="@dimen/spacing_m"
+                android:paddingTop="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_m"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_enter"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_chevron_left"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size" />
+
+            <LinearLayout
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/iv_enter"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_title"
+                        style="@style/Title"
+                        android:layout_weight="2"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:text="@{criteria.name}"
+                        android:lines="1"
+                        android:ellipsize="end"
+                        android:layout_width="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_count"
+                        style="@style/ExtraSmallBody"
+                        android:lines="1"
+                        android:gravity="end"
+                        android:ellipsize="end"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="@{criteria.getNumRecentItemsLabel(context)}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

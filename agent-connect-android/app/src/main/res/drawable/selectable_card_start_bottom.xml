@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- pressed state -->
+	<item android:state_pressed="true">
+		<inset android:insetTop="-2dp" android:insetRight="-2dp">
+			<shape>
+				<solid android:color="@color/white_smoke_invertible" />
+				<stroke android:width="@dimen/button_border" android:color="@color/card_border" />
+				<corners android:bottomLeftRadius="@dimen/card_border_radius" android:bottomRightRadius="0dp" android:topLeftRadius="0dp" android:topRightRadius="0dp" />
+			</shape>
+		</inset>
+	</item>
+	<!-- selected states -->
+	<item android:state_selected="true">
+		<inset android:insetTop="-2dp" android:insetRight="-2dp">
+			<shape>
+				<solid android:color="@color/selected_background" />
+				<stroke android:width="@dimen/button_border" android:color="@color/selected" />
+				<corners android:bottomLeftRadius="@dimen/card_border_radius" android:bottomRightRadius="0dp" android:topLeftRadius="0dp" android:topRightRadius="0dp" />
+			</shape>
+		</inset>
+	</item>
+	<!-- normal states -->
+	<item>
+		<inset android:insetTop="-2dp" android:insetRight="-2dp">
+			<shape>
+				<solid android:color="@color/white_invertible" />
+				<stroke android:width="@dimen/button_border" android:color="@color/card_border" />
+				<corners android:bottomLeftRadius="@dimen/card_border_radius" android:bottomRightRadius="0dp" android:topLeftRadius="0dp" android:topRightRadius="0dp" />
+			</shape>
+		</inset>
+	</item>
+</selector>

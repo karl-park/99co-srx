@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum" />
+
+        <variable
+            name="listingEditPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingEditPO" />
+
+        <variable
+            name="isExpandPriceOptions"
+            type="Boolean" />
+
+        <variable
+            name="isExpandRoomType"
+            type="Boolean" />
+
+        <variable
+            name="isExpandTenancyStatus"
+            type="Boolean" />
+
+        <variable
+            name="isExpandAssignmentType"
+            type="Boolean" />
+
+        <variable
+            name="isExpandLeaseTerm"
+            type="Boolean" />
+
+        <variable
+            name="isExpandRentalType"
+            type="Boolean" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_s"
+            android:paddingBottom="@dimen/spacing_s">
+
+            <!-- X Value -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:orientation="vertical"
+                android:visibility="@{safeUnbox(listingEditPO.hasXValue())? View.VISIBLE : View.GONE}">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/tv_x_value"
+                        android:text="@string/label_srx_x_value" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_x_value"
+                        style="@style/RoundedEditText"
+                        android:layout_width="@dimen/width_x_value_text_input"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:backgroundTint="@color/light_gray_invertible"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="@{listingEditPO.getFormattedXValue()}"
+                        android:textColor="@color/purple" />
+
+                </RelativeLayout>
+
+                <include layout="@layout/view_divider_horizontal" />
+
+            </LinearLayout>
+
+            <!-- Asking Price  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/et_asking_price"
+                        android:text="@string/label_asking_price" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                        android:id="@+id/et_asking_price"
+                        android:layout_width="@dimen/width_x_value_text_input"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+
+                <include layout="@layout/view_divider_horizontal" />
+
+            </LinearLayout>
+
+            <!-- Price Options -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_price_options_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_s"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_price_option_label"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_price_options" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toStartOf="@+id/tv_price_model"
+                        android:layout_toEndOf="@id/tv_price_option_label"
+                        android:text="@string/label_optional" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_price_model"
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@{safeUnbox(isExpandPriceOptions)? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:text='@{safeUnbox(isExpandPriceOptions)? "" : listingEditPO.getSelectedPriceModel()}' />
+
+                </RelativeLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex_box_layout_price_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{safeUnbox(isExpandPriceOptions)? View.VISIBLE : View.GONE}"
+                    app:alignContent="flex_start"
+                    app:alignItems="flex_start"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:foreground="@color/divider_color" />
+
+            </LinearLayout>
+
+            <!-- Tenancy Status SALE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{listingEditPO.isSale() ? View.VISIBLE : View.GONE}">
+
+                <RelativeLayout
+                    android:id="@+id/rl_tenancy_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_s"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_tenancy_status_label"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_tenancy_status" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_tenancy_status_optional"
+                        style="@style/SmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:layout_toEndOf="@id/tv_tenancy_status_label"
+                        android:text="@string/label_optional" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/tv_tenancy_status_optional"
+                        android:drawableEnd="@{safeUnbox(isExpandTenancyStatus)? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:ellipsize="end"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text='@{safeUnbox(isExpandTenancyStatus)? "" : listingEditPO.getSelectedTenancyAmount(context)}' />
+
+
+                </RelativeLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex_box_layout_tenancy_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{safeUnbox(isExpandTenancyStatus) ? View.VISIBLE : View.GONE}"
+                    app:alignContent="flex_start"
+                    app:alignItems="flex_start"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_tenancy_amount"
+                    android:layout_width="@dimen/width_tenancy_amount_text_input"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{listingEditPO.isShowTenantedAmount(isExpandTenancyStatus)? View.VISIBLE : View.GONE}" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:foreground="@color/divider_color" />
+
+            </LinearLayout>
+
+            <!-- Room Type -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{listingEditPO.isRoomRental() &amp;&amp; !listingEditPO.isCommercial()? View.VISIBLE : View.GONE}">
+
+                <RelativeLayout
+                    android:id="@+id/rl_room_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_s"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/tv_room_type"
+                        android:text="@string/label_room_type" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_room_type"
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@{safeUnbox(isExpandRoomType)? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:text='@{safeUnbox(isExpandRoomType)? "" : listingEditPO.getRoomTypeDescription(context)}' />
+
+                </RelativeLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex_box_room_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{safeUnbox(isExpandRoomType)? View.VISIBLE : View.GONE}"
+                    app:alignContent="flex_start"
+                    app:alignItems="flex_start"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:foreground="@color/divider_color" />
+
+            </LinearLayout>
+
+            <!-- Rental Type For Commercial -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{safeUnbox(listingEditPO.showRentalType())? View.VISIBLE : View.GONE}">
+
+                <RelativeLayout
+                    android:id="@+id/rl_rental_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_s"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/tv_room_type_desc"
+                        android:text="@string/label_rental_type" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_room_type_desc"
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@{safeUnbox(isExpandRentalType)? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:text='@{safeUnbox(isExpandRentalType)? "" : listingEditPO.getRentalTypeDescription(context)}' />
+
+                </RelativeLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex_box_rental_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{safeUnbox(isExpandRentalType)? View.VISIBLE : View.GONE}"
+                    app:alignContent="flex_start"
+                    app:alignItems="flex_start"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:foreground="@color/divider_color" />
+
+            </LinearLayout>
+
+            <!-- Available Date Rent -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:orientation="vertical"
+                android:visibility="@{listingEditPO.isSale() ? View.GONE : View.VISIBLE}">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/tv_available_date"
+                        android:text="@string/label_available_from" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_available_date"
+                        style="@style/RoundedEditText"
+                        android:layout_width="@dimen/width_x_value_text_input"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:hint="@string/hint_available_from"
+                        android:text="@{listingEditPO.getFormattedAvailableDate(context)}" />
+
+                </RelativeLayout>
+
+                <include layout="@layout/view_divider_horizontal" />
+
+            </LinearLayout>
+
+            <!-- Lease Term  Rent-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{listingEditPO.isSale() ? View.GONE : View.VISIBLE}">
+
+                <RelativeLayout
+                    android:id="@+id/rl_lease_terms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_s"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/tv_lease_term"
+                        android:text="@string/label_lease_term" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_lease_term"
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:drawableEnd="@{safeUnbox(isExpandLeaseTerm)? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:text='@{safeUnbox(isExpandLeaseTerm)? "" : listingEditPO.getLeaseTermDescription(context)}' />
+
+                </RelativeLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex_box_lease_terms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{safeUnbox(isExpandLeaseTerm)? View.VISIBLE : View.GONE}"
+                    app:alignContent="flex_start"
+                    app:alignItems="flex_start"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:foreground="@color/divider_color" />
+
+            </LinearLayout>
+
+            <!-- Assignment type Rent-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{listingEditPO.isSale() ? View.GONE : View.VISIBLE}">
+
+                <RelativeLayout
+                    android:id="@+id/rl_assignment_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_s"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_assignment_type_label"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_assignment_type" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_assignment_type_optional"
+                        style="@style/SmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@id/tv_assignment_type_label"
+                        android:text="@string/label_optional" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/spacing_s"
+                        android:layout_marginEnd="0dp"
+                        android:layout_toEndOf="@+id/tv_assignment_type_optional"
+                        android:drawableEnd="@{safeUnbox(isExpandAssignmentType)? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:ellipsize="end"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text='@{safeUnbox(isExpandAssignmentType)? "" : listingEditPO.getSelectedTakeoverAmount(context)}' />
+
+                </RelativeLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flex_box_assignment_types"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{safeUnbox(isExpandAssignmentType)? View.VISIBLE : View.GONE}"
+                    app:alignContent="flex_start"
+                    app:alignItems="flex_start"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_assignment_type_amount"
+                    android:layout_width="@dimen/width_tenancy_amount_text_input"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:visibility="@{listingEditPO.isShowTakeOverAmount(isExpandAssignmentType)? View.VISIBLE : View.GONE}" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:foreground="@color/divider_color" />
+
+            </LinearLayout>
+
+            <!-- Utilities amount -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:orientation="vertical"
+                android:visibility="@{listingEditPO.isSale() ? View.GONE : View.VISIBLE}">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginBottom="@dimen/spacing_s">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_utilities_label"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_utilities_amount" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:layout_toStartOf="@+id/et_utilities_amount"
+                        android:layout_toEndOf="@id/tv_utilities_label"
+                        android:text="@string/label_optional" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                        android:id="@+id/et_utilities_amount"
+                        android:layout_width="@dimen/width_x_value_text_input"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true" />
+
+                </RelativeLayout>
+
+                <include layout="@layout/view_divider_horizontal" />
+
+            </LinearLayout>
+
+            <!-- Show X Value in listing search-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="0dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/switch_show_x_value"
+                    android:text="@string/label_show_x_value" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_show_x_value"
+                    style="@style/Switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:checked="@{listingEditPO.showXValueInSearch()}" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

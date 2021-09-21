@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardMarketFlashReportViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:animateLayoutChanges="true"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.mainStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m">
+
+                    <TextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/tv_view_all"
+                            android:text="@string/title_dashboard_flash_report" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/tv_view_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/button_view_all" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_reports"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginBottom="0dp"
+                        android:overScrollMode="never"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied())? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                        android:id="@+id/tv_no_flash_report"
+                        style="@style/Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/spacing_m"
+                        android:gravity="center"
+                        android:text="@string/msg_no_flash_reports"
+                        android:visibility="@{safeUnbox(viewModel.isShowEmpty()) ? View.VISIBLE : View.GONE}" />
+
+            </LinearLayout>
+
+            <include
+                    layout="@layout/layout_loading_fail_error_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                    app:isShowOccupied="@{viewModel.isShowOccupied()}"
+                    app:mainStatus="@{viewModel.mainStatus}" />
+
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

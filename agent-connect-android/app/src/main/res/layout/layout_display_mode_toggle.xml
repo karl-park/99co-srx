@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel.DisplayMode" />
+
+        <variable
+                name="isVisible"
+                type="Boolean" />
+
+        <variable
+                name="displayMode"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel.DisplayMode" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="@dimen/margin_end_view_mode_toggle"
+            android:layout_marginBottom="@dimen/margin_bottom_view_toggle"
+            android:background="@drawable/view_mode_toggle"
+            android:orientation="horizontal"
+            android:visibility="@{isVisible ? View.VISIBLE : View.GONE}">
+
+        <Button
+                android:id="@+id/btn_view_mode_list"
+                style="@style/ListingDisplayModeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_burger"
+                android:text="@string/view_mode_list"
+                android:visibility="@{displayMode != DisplayMode.LIST ? View.VISIBLE : View.GONE}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_mode_toggle_border"
+                android:visibility="@{displayMode != DisplayMode.LIST ? View.VISIBLE : View.GONE}" />
+
+        <Button
+                android:id="@+id/btn_view_mode_grid"
+                style="@style/ListingDisplayModeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_grid"
+                android:text="@string/view_mode_grid"
+                android:visibility="@{displayMode != DisplayMode.GRID ? View.VISIBLE : View.GONE}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@color/view_mode_toggle_border"
+                android:visibility="@{displayMode == DisplayMode.LIST ? View.VISIBLE : View.GONE}" />
+
+        <!--TODO: Display when map section available-->
+        <Button
+                android:id="@+id/btn_view_mode_map"
+                style="@style/ListingDisplayModeToggle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_map_pin"
+                android:text="@string/view_mode_map"
+                android:visibility="gone" />
+    </LinearLayout>
+</layout>

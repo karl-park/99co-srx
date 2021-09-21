@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="isShowError"
+                type="Boolean" />
+    </data>
+
+    <!--TODO Replace old `layout_range_number_boxes`-->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_min"
+                    android:background="@{!isShowError ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_toStartOf="@id/tv_to" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_to"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/label_to" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_max"
+                    android:background="@{!isShowError ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_toEndOf="@id/tv_to" />
+        </RelativeLayout>
+
+        <View
+                android:visibility="@{isShowError ? View.GONE : View.VISIBLE}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xl" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBodyError"
+                android:visibility="@{isShowError ? View.VISIBLE : View.GONE}"
+                android:layout_gravity="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginBottom="@dimen/spacing_xl"
+                android:text="@string/error_min_max" />
+    </LinearLayout>
+</layout>

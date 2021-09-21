@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="client"
+            type="sg.searchhouse.agentconnect.model.api.cea.CeaFormClientPO" />
+
+        <variable
+            name="isSignatureAdded"
+            type="Boolean" />
+
+        <variable
+            name="signatureBitmap"
+            type="android.graphics.Bitmap" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_s"
+        android:layout_marginBottom="@dimen/spacing_s"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layout_client_info"
+            layout="@layout/layout_cea_exclusive_agent_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            app:agency="@{client.partyNric}"
+            app:ceaNo="@{client.partyType}"
+            app:imageUrl="@{client.photoUrl}"
+            app:name="@{client.partyName}" />
+
+        <include
+            android:id="@+id/layout_add_signature"
+            layout="@layout/layout_cea_exclusive_signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            app:imageBitmap="@{signatureBitmap}"
+            app:isAddedSignature="@{isSignatureAdded}"
+            app:title="@{client.getClientSignatureLabel(context)}" />
+
+    </LinearLayout>
+</layout>

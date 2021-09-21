@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.SellingCalculatorViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:background="@color/light_gray_invertible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/ClassicActionBar"
+                    android:elevation="@dimen/elevation_above_card_view"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:title="@string/activity_calculator_selling" />
+
+            <include
+                    android:id="@+id/layout_header"
+                    layout="@layout/layout_header_calculator_selling"
+                    android:layout_below="@id/toolbar"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/spacing_m_minus"
+                    app:viewModel="@{viewModel}" />
+
+            <include
+                    android:id="@+id/layout_inputs"
+                    layout="@layout/layout_selling_calculator_inputs"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/card_border_radius_minus"
+                    android:layout_below="@id/layout_header"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    app:selectedSellingCalculatorTab="@{viewModel.selectedSellingCalculatorTab}" />
+        </RelativeLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

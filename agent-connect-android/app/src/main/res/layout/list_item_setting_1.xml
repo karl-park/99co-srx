@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="isShowFullDivider"
+                type="Boolean" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_invertible"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:contentDescription="@string/content_description_setting_item_icon"
+                    android:padding="@dimen/spacing_m"
+                    android:tint="@color/black_invertible" />
+
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/iv_icon"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_title"
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:paddingTop="@dimen/spacing_m"
+                        android:paddingBottom="@dimen/spacing_m" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/divider_color"
+                        android:visibility="@{isShowFullDivider ? View.GONE : View.VISIBLE}" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:background="@color/divider_color"
+                android:visibility="@{isShowFullDivider ? View.VISIBLE : View.GONE}" />
+    </LinearLayout>
+</layout>

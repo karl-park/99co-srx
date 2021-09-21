@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.main.chat.SRXAgentsDialogViewModel" />
+
+        <variable
+            name="source"
+            type="sg.searchhouse.agentconnect.view.fragment.main.chat.SRXAgentsDialogFragment.SRXAgentsSource" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_invertible"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ToolbarTheme"
+            app:navigationIcon="@drawable/ic_clear">
+
+            <TextView
+                style="@style/BodyBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/title_srx_agent" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/tv_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:enabled="@{viewModel.selectedAgents.size == 0 ? false : true}"
+                android:text="@{viewModel.selectedAgents.size &lt;= 1? @string/label_chat : @string/label_group}"
+                android:textSize="@dimen/text_size_16"
+                android:visibility="@{viewModel.source == source.SOURCE_CHAT_MAIN? View.VISIBLE: View.GONE}" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/tv_add_agent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:enabled="@{viewModel.selectedAgents.size == 0 ? false : true}"
+                android:text="@string/label_add"
+                android:textSize="@dimen/text_size_16"
+                android:visibility="@{viewModel.source == source.SOURCE_MESSAGING_SCREEN? View.VISIBLE: View.GONE}" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_s">
+
+            <!-- Search Bar for find agents -->
+            <EditText
+                android:id="@+id/et_search_agent"
+                style="@style/SearchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:hint="@string/hint_search"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="LabelFor"
+                tools:targetApi="O" />
+
+            <sg.searchhouse.agentconnect.view.widget.main.chat.ChatSelectedAgentList
+                android:id="@+id/layout_chat_selected_agents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:visibility="@{viewModel.selectedAgents.size() > 0 ? View.VISIBLE : View.GONE}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_srx_agents"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{safeUnbox(viewModel.isShowOccupied())? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_agent_item_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:visibility="@{viewModel.mainStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_empty_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:emptyTitle="@{String.valueOf(@string/msg_no_agent_list)}"
+                app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

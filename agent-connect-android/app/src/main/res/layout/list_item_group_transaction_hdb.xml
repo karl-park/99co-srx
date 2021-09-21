@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <variable
+                name="ownershipType"
+                type="OwnershipType" />
+
+        <variable
+                name="transaction"
+                type="sg.searchhouse.agentconnect.model.api.transaction.TableListResponse.Transactions.Result" />
+
+        <variable
+                name="scale"
+                type="Float" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ScalableLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:scale="@{scale}">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:layout_width="@dimen/column_width_transaction_date_sold"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingBottom="@dimen/spacing_xs"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_xs"
+                android:textAlignment="textStart"
+                app:textOrDash="@{transaction.formattedContractDate}" />
+
+        <LinearLayout
+                android:layout_width="@dimen/column_width_transaction_address"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_xs">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBody"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{transaction.formattedMainAddress}"
+                    android:textAlignment="textStart"
+                    android:visibility="@{!TextUtils.isEmpty(transaction.formattedMainAddress) ? View.VISIBLE : View.GONE}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBody"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{transaction.getPropertyTypeName(context)}"
+                    android:textAlignment="textStart"
+                    android:visibility="@{!TextUtils.isEmpty(transaction.getPropertyTypeName(context)) ? View.VISIBLE : View.GONE}" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:layout_width="@dimen/column_width_transaction_unit"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="2"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingBottom="@dimen/spacing_xs"
+                android:paddingStart="@dimen/spacing_xs"
+                android:paddingEnd="0dp"
+                android:textAlignment="textStart"
+                app:textOrDash="@{transaction.formattedUnit}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:layout_width="@dimen/column_width_transaction_price"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
+                android:padding="@dimen/spacing_xs"
+                android:visibility="@{ownershipType == OwnershipType.SALE ? View.VISIBLE : View.GONE}"
+                android:textAlignment="textStart"
+                app:textOrDash="@{transaction.formattedSalePrice}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:layout_width="@dimen/column_width_transaction_price"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
+                android:padding="@dimen/spacing_xs"
+                android:textAlignment="textStart"
+                android:visibility="@{ownershipType == OwnershipType.RENT ? View.VISIBLE : View.GONE}"
+                app:textOrDash="@{transaction.formattedPrice}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:layout_width="@dimen/column_width_transaction_size_sqft"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
+                android:padding="@dimen/spacing_xs"
+                android:textAlignment="textStart"
+                app:textOrDash="@{transaction.formattedSqm}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:visibility="@{ownershipType == OwnershipType.SALE ? View.VISIBLE : View.GONE}"
+                android:layout_width="@dimen/column_width_transaction_psf"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
+                android:padding="@dimen/spacing_xs"
+                android:textAlignment="textStart"
+                app:textOrDash="@{transaction.formattedPsfSale}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:visibility="@{ownershipType == OwnershipType.RENT ? View.VISIBLE : View.GONE}"
+                android:layout_width="@dimen/column_width_transaction_psf"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:ellipsize="end"
+                android:padding="@dimen/spacing_xs"
+                android:textAlignment="textStart"
+                app:textOrDash="@{transaction.formattedPsfRental}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:layout_width="@dimen/column_width_transaction_built_year"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:padding="@dimen/spacing_xs"
+                android:textAlignment="textStart"
+                app:textOrDash="@{transaction.formattedBuiltYear}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBody"
+                android:layout_width="@dimen/column_width_transaction_cov"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:padding="@dimen/spacing_xs"
+                android:textAlignment="textStart"
+                app:textOrDash="@{transaction.formattedCov}" />
+    </sg.searchhouse.agentconnect.view.widget.common.ScalableLinearLayout>
+</layout>

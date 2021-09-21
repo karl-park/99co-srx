@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_my_clients"
+                    style="@style/Heading2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/tv_view_all"
+                    android:text="@string/label_my_clients" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_view_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="end"
+                    android:text="@string/button_view_all" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+            <sg.searchhouse.agentconnect.view.widget.common.TabLeftButton
+                    android:id="@+id/btn_tab_clients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_most_recent"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_size_16" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.TabRightButton
+                    android:id="@+id/btn_tab_adviser_clients"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/label_adviser_clients"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/text_size_16" />
+        </LinearLayout>
+
+        <!--TODO: recyclerview list will be here after integration with api-->
+
+
+
+        <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                android:id="@+id/btn_invite_clients"
+                style="@style/SecondaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:gravity="center"
+                android:text="@string/action_invite_clients" />
+
+    </LinearLayout>
+</layout>

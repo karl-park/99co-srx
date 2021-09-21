@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="isSelectAll"
+            type="Boolean" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_5"
+        android:paddingBottom="@dimen/margin_5">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/tv_select_state"
+            android:text="@{title}" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+            android:id="@+id/tv_select_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@{safeUnbox(isSelectAll)? @string/label_unselect_all : @string/label_select_all}" />
+
+    </RelativeLayout>
+
+
+</layout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.user.MyListingsFragmentViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{safeUnbox(viewModel.showDraftCeaForms)? View.GONE : View.VISIBLE }">
+
+            <!--Empty-->
+            <include
+                android:id="@+id/layout_empty"
+                layout="@layout/layout_my_listings_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:isVisible="@{viewModel.isShowEmpty()}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{safeUnbox(viewModel.showDraftCeaForms)? View.VISIBLE : View.GONE }">
+
+            <!--Empty-->
+            <include
+                android:id="@+id/layout_cea_forms_empty"
+                layout="@layout/layout_draft_cea_forms_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:isVisible="@{viewModel.isDraftCeaFormsEmpty()}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_draft_cea_forms"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:visibility="@{safeUnbox(viewModel.isDraftCeaFormsOccupied())? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+
+        <!--Other states-->
+        <include
+            android:id="@+id/layout_list"
+            layout="@layout/layout_loading_fail_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mainStatus="@{viewModel.mainStatus}" />
+
+    </FrameLayout>
+</layout>

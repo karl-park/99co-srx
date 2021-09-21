@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="listingEditPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingEditPO" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingTop="@dimen/spacing_l"
+            android:paddingEnd="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_s"
+            android:visibility="@{listingEditPO == null ? View.GONE : View.VISIBLE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{listingEditPO != null? listingEditPO.getListingName() : ""}' />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xxs"
+                android:layout_marginBottom="0dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text='@{listingEditPO != null? listingEditPO.getListingInformation(context) : ""}' />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xxs"
+                android:layout_marginBottom="0dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_size"
+                    style="@style/SmallBodyGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text='@{listingEditPO != null? listingEditPO.getSize() : ""}' />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ib_edit_listing"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_alignEnd="@+id/tv_size"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="true"
+                    android:contentDescription="@string/content_description_compose_image"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_compose_msg" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="@dimen/spacing_l"
+            android:paddingBottom="@dimen/spacing_l"
+            android:visibility="@{listingEditPO == null ? View.VISIBLE : View.GONE}">
+
+            <include layout="@layout/loading_indicator" />
+
+        </LinearLayout>
+
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

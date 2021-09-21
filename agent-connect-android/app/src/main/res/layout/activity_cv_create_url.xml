@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ButtonState" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.agent.cv.CvCreateUrlViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_collapsing_toolbar_height"
+                android:background="@color/white_invertible"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                    app:expandedTitleMarginEnd="@dimen/spacing_m"
+                    app:expandedTitleMarginStart="@dimen/spacing_m"
+                    app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:layout_collapseMode="pin"
+                        app:title="@string/label_website_url" />
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <RelativeLayout
+                    style="@style/RoundedEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_base_url"
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.baseUrl}" />
+
+                    <EditText
+                        android:id="@+id/et_cv_url"
+                        style="@style/Body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/tv_base_url"
+                        android:afterTextChanged="@{viewModel::afterTextChangedURL}"
+                        android:background="@color/transparent"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="@string/hint_cv_url"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={viewModel.cvUrl}"
+                        tools:ignore="LabelFor,TextFields"
+                        tools:targetApi="O" />
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/ExtraSmallBodyError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_l"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_l"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:drawableStart="@drawable/ic_small_clear"
+                    android:drawablePadding="@dimen/spacing_xxs"
+                    android:drawableTint="@color/red"
+                    android:gravity="center"
+                    android:text="@string/label_unavailable"
+                    android:visibility="@{safeUnbox(viewModel.showUnavailableError)? View.VISIBLE : View.INVISIBLE}" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_save_and_continue"
+                    style="@style/SecondaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="0dp"
+                    android:enabled="@{viewModel.isSendBtnEnabled()}"
+                    android:stateListAnimator="@null"
+                    android:text="@{viewModel.sendBtnLabel}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/msg_cv_url_change_once"
+                    android:textColor="@color/orange_light_invertible" />
+
+            </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

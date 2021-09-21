@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ButtonState" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.certifiedlisting.HomeOwnerDetailViewModel" />
+    </data>
+
+    <!-- Mock up: https://projects.invisionapp.com/d/main#/console/20119097/425534504/ -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_l">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/BigHeadingColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_s"
+                android:drawableStart="@drawable/ic_big_check_circle"
+                android:drawablePadding="@dimen/spacing_m"
+                android:drawableTint="@color/purple"
+                android:gravity="center_vertical"
+                android:text="@string/label_success"
+                android:visibility="@{safeUnbox(viewModel.notifiedHomeOwner)? View.GONE : View.VISIBLE}"
+                tools:targetApi="o" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_s"
+                android:text="@string/label_your_listing_published_in_srx"
+                android:visibility="@{safeUnbox(viewModel.notifiedHomeOwner)? View.GONE : View.VISIBLE}" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_s"
+                android:visibility="@{viewModel.listingPO == null? View.GONE : View.VISIBLE}">
+
+                <include
+                    layout="@layout/list_item_listing"
+                    app:listingPO="@{viewModel.listingPO}" />
+
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_s"
+                android:text="@string/label_make_your_listing_different" />
+
+            <include
+                android:id="@+id/layout_certified"
+                layout="@layout/layout_publish_listing_success_certified"
+                app:viewModel="@{viewModel}" />
+
+            <include
+                android:id="@+id/layout_sponsor"
+                layout="@layout/layout_publish_listing_success_sponsor"
+                app:viewModel="@{viewModel}" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_featured_listing"
+                style="@style/SecondaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:text="@string/label_add_on_feature_listing"
+                android:visibility="@{safeUnbox(viewModel.listingPO.isFLSlotAvailable)? View.VISIBLE : View.GONE }" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBody"
+                android:layout_width="@dimen/width_notified_home_owner"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:drawableTop="@drawable/ic_big_check_circle"
+                android:drawableTint="@color/purple"
+                android:gravity="center_vertical"
+                android:text="@string/msg_notify_homeowner"
+                android:textAlignment="center"
+                android:visibility="@{safeUnbox(viewModel.notifiedHomeOwner)? View.VISIBLE : View.GONE}"
+                tools:ignore="RtlCompat"
+                tools:targetApi="o" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/tv_direct_to_dashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_take_me_to_dashboard" />
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

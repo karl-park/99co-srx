@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<import type="android.view.View" />
+
+		<import type="android.text.TextUtils" />
+
+		<variable
+				name="listingPO"
+				type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+		<variable
+				name="listingDetailPO"
+				type="sg.searchhouse.agentconnect.model.api.listing.ListingDetailPO" />
+
+		<variable
+				name="isVisible"
+				type="Boolean" />
+	</data>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:visibility="@{isVisible == true ? View.VISIBLE : View.GONE}">
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.getFloorName(context))}"
+				app:label="@{String.valueOf(@string/label_listing_details_floor)}"
+				app:value="@{listingPO.getFloorName(context)}" />
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingDetailPO.developer)}"
+				app:label="@{String.valueOf(@string/label_listing_details_developer)}"
+				app:value="@{listingDetailPO.developer}" />
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.id)}"
+				app:label="@{String.valueOf(@string/label_listing_details_listing_id)}"
+				app:value="@{listingPO.listingTypeId}" />
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.actualDatePosted)}"
+				app:label="@{String.valueOf(@string/label_listing_details_listing_date)}"
+				app:value="@{listingPO.actualDatePosted}" />
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.fullAddressMaybeWithPostalCode)}"
+				app:label="@{String.valueOf(@string/label_listing_details_address)}"
+				app:value="@{listingPO.fullAddressMaybeWithPostalCode}" />
+	</LinearLayout>
+</layout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_empty_view_all_conversations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackgroundBorderless"
+        android:paddingStart="@dimen/spacing_m"
+        android:paddingTop="@dimen/spacing_xs"
+        android:paddingEnd="@dimen/spacing_m"
+        android:paddingBottom="@dimen/spacing_xs">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginBottom="@dimen/spacing_s"
+            android:layout_toStartOf="@+id/btn_empty_view_all_message"
+            android:drawableStart="@drawable/ic_menu_chat"
+            android:drawablePadding="@dimen/spacing_m"
+            android:drawableTint="@color/black_invertible"
+            android:gravity="start|center_vertical"
+            android:text="@string/label_you_have_no_new_message" />
+
+    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+            android:id="@+id/btn_empty_view_all_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="@string/button_view" />
+</RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="isNewProjects"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tab_show_all"
+                style="@style/TabButtonLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m"
+                android:text="@string/tab_listings_show_all"
+                app:isSelected="@{isNewProjects == false}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tab_new_projects"
+                style="@style/TabButtonRight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m"
+                android:text="@string/tab_listings_new_projects"
+                app:isSelected="@{isNewProjects == true}" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardPropertyNewsViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:animateLayoutChanges="true"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_property_news"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:overScrollMode="never"
+                        android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_view_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_s"
+                        android:text="@string/label_view_all_news"
+                        android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}" />
+
+                <!-- show them loading, error and fail state.. -->
+                <include
+                        layout="@layout/layout_loading_fail_error_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:isShowEmpty="@{viewModel.isShowEmpty()}"
+                        app:isShowOccupied="@{viewModel.isShowOccupied()}"
+                        app:mainStatus="@{viewModel.mainStatus}" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

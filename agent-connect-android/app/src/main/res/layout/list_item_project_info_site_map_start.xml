@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="photoPO"
+                type="sg.searchhouse.agentconnect.model.api.project.PhotoPO" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_xs"
+            android:paddingEnd="0dp">
+
+        <include
+                layout="@layout/list_item_project_info_site_map"
+                app:photoPO="@{photoPO}" />
+    </FrameLayout>
+</layout>

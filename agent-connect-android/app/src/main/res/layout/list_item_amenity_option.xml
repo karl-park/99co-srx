@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+
+		<import type="android.view.View" />
+
+		<variable
+				name="amenityOption"
+				type="sg.searchhouse.agentconnect.enumeration.api.LocationEnum.AmenityOption" />
+
+		<variable
+				name="isSelected"
+				type="Boolean" />
+	</data>
+
+	<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:clickable="true"
+			android:focusable="true"
+			android:foreground="?selectableItemBackground"
+			android:orientation="vertical">
+
+		<Button
+				style="@style/Body"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:background="@color/transparent"
+				android:clickable="false"
+				android:focusable="false"
+				android:padding="@dimen/spacing_xs"
+				android:text="@{amenityOption.label}"
+				android:textColor="@{isSelected ? @color/cyan : @color/black_invertible}" />
+
+		<View
+				android:layout_width="match_parent"
+				android:layout_height="5dp"
+				android:background="@color/cyan"
+				android:visibility="@{isSelected ? View.VISIBLE : View.INVISIBLE}" />
+	</LinearLayout>
+</layout>

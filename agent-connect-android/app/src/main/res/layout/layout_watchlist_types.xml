@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.WatchlistEnum.WatchlistType" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.watchlist.WatchlistCriteriaFormViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_listings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_l"
+                android:checked="@{viewModel.hasListings}"
+                android:text="@{context.getString(WatchlistType.LISTINGS.label)}" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cb_transactions"
+                android:checked="@{viewModel.hasTransactions}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{context.getString(WatchlistType.TRANSACTIONS.label)}" />
+    </LinearLayout>
+</layout>

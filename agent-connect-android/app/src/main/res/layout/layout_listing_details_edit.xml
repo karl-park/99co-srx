@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isAgentCurrentUser"
+            type="Boolean" />
+
+        <variable
+            name="agentPO"
+            type="sg.searchhouse.agentconnect.model.api.agent.AgentPO" />
+
+        <variable
+            name="isShowByListingGroup"
+            type="Boolean" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_enquire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="@{agentPO != null &amp;&amp; isAgentCurrentUser &amp;&amp; isShowByListingGroup == true? View.VISIBLE : View.GONE}"
+        app:cardBackgroundColor="@color/white_invertible"
+        app:cardCornerRadius="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/view_divider_horizontal" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/btn_srx_add_on"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:drawableStart="@drawable/ic_edit"
+                    android:text="@string/button_listing_details_edit_listing" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_srx_add_on"
+                    style="@style/PrimaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/button_listing_details_srx_add_on" />
+            </RelativeLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

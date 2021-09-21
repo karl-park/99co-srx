@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+                name="listingPO"
+                type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_m">
+
+            <FrameLayout
+                    android:layout_width="@dimen/width_image_transacted_listing"
+                    android:layout_height="@dimen/height_image_transacted_listing">
+
+                <ImageView
+                        android:id="@+id/iv_listing"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/content_description_news_photo"
+                        android:foreground="@color/transacted_listing_foreground"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_square_image_placeholder"
+                        app:imageUrl="@{listingPO.listingPhoto}" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="top"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/spacing_xs"
+                        android:paddingEnd="@dimen/spacing_xs">
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <sg.searchhouse.agentconnect.view.widget.common.CircleImageView
+                                android:id="@+id/layout_profile"
+                                android:layout_width="@dimen/icon_size"
+                                android:layout_height="@dimen/icon_size"
+                                android:layout_centerVertical="true"
+                                app:imageUrl='@{listingPO == null? "": listingPO.getAgentPhoto()}' />
+
+                        <TextView
+                                style="@style/SmallBodyBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/spacing_xs"
+                                android:layout_toEndOf="@+id/layout_profile"
+                                android:ellipsize="end"
+                                android:lines="1"
+                                android:text="@{listingPO.getAgentName()}" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xs">
+
+
+                        <ImageView
+                                android:id="@+id/iv_agency"
+                                android:layout_width="@dimen/icon_size"
+                                android:layout_height="@dimen/icon_size"
+                                android:layout_centerVertical="true"
+                                app:imageUrl="@{listingPO.agentPO.agencyLogo}" />
+
+                        <TextView
+                                android:id="@+id/tv_agent_phone"
+                                style="@style/SmallBody"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_xs"
+                                android:layout_toEndOf="@+id/iv_agency"
+                                android:clickable="true"
+                                android:drawableStart="@drawable/ic_small_phone"
+                                android:drawableTint="@color/gray"
+                                android:ellipsize="end"
+                                android:focusable="true"
+                                android:foreground="?selectableItemBackgroundBorderless"
+                                android:lines="1"
+                                android:text="@{listingPO.agentPO.getMobileNumberForDisplay()}"
+                                android:visibility="@{TextUtils.isEmpty(listingPO.agentPO.getMobileNumberForDisplay())? View.GONE:View.VISIBLE}" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <ImageView
+                        android:id="@+id/iv_sold_banner"
+                        android:layout_width="@dimen/size_corner_banner"
+                        android:layout_height="@dimen/size_corner_banner"
+                        android:layout_gravity="top|end"
+                        android:src="@drawable/ic_sold_banner"
+                        android:visibility="@{listingPO.getOwnershipType() == OwnershipType.SALE ? View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                        android:id="@+id/iv_rented_banner"
+                        android:layout_width="@dimen/size_corner_banner"
+                        android:layout_height="@dimen/size_corner_banner"
+                        android:layout_gravity="top|end"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_rented_banner"
+                        android:visibility="@{listingPO.getOwnershipType() == OwnershipType.RENT ? View.VISIBLE : View.GONE}" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_xs">
+
+                <TextView
+                        android:id="@+id/tv_listing_header"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@{listingPO.getListingName()}" />
+
+                <TextView
+                        style="@style/SmallBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xxs"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{listingPO.getListingDescription(context)}" />
+
+                <TextView
+                        style="@style/ExtraSmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:text="@{listingPO.displaySizePsf}" />
+
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xxs"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:id="@+id/tv_rooms"
+                            style="@style/ListingIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawableStart="@drawable/ic_bed"
+                            android:text="@{listingPO.roomsNumber}"
+                            android:visibility="@{TextUtils.isEmpty(listingPO.roomsNumber) ? View.GONE : View.VISIBLE}" />
+
+                    <TextView
+                            android:id="@+id/tv_bathrooms"
+                            style="@style/ListingIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawableStart="@drawable/ic_bath_tub"
+                            android:text="@{listingPO.bathroomNumber}"
+                            android:visibility="@{TextUtils.isEmpty(listingPO.bathroomNumber) ? View.INVISIBLE : View.VISIBLE}" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <include layout="@layout/view_divider_horizontal" />
+    </LinearLayout>
+</layout>

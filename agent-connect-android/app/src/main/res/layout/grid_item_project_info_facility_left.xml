@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="nameValuePO"
+                type="sg.searchhouse.agentconnect.model.api.common.NameValuePO" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/spacing_xs"
+            android:paddingEnd="@dimen/spacing_xs">
+
+        <include
+                layout="@layout/grid_item_project_info_facility"
+                app:nameValuePO="@{nameValuePO}" />
+    </FrameLayout>
+</layout>

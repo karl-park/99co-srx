@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+
+        <variable
+            name="tenure"
+            type="sg.searchhouse.agentconnect.enumeration.api.ProjectEnum.Tenure" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_filter_project"
+        style="@style/ListingFilterPill"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pill_height"
+        android:text="@{tenure.label}"
+        app:isSelected="@{isSelected}" />
+
+</layout>

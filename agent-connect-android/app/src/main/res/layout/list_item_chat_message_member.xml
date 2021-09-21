@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="member"
+                type="sg.searchhouse.agentconnect.model.api.userprofile.UserPO" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+
+        <variable
+                name="isShowRemoveButton"
+                type="Boolean" />
+
+        <variable
+                name="isShowCallButton"
+                type="Boolean" />
+
+        <variable
+                name="isShowChatButton"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_invertible"
+            android:orientation="vertical">
+
+        <!-- Agent Image and Name-->
+        <RelativeLayout
+                android:id="@+id/rl_member_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingEnd="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_xs">
+
+            <sg.searchhouse.agentconnect.view.widget.common.ProfileIconLayout
+                    android:id="@+id/layout_profile_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_toEndOf="@id/layout_profile_icon"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@{member.name}" />
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/content_description_setting_item_icon"
+                    android:src="@{safeUnbox(isExpand) ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}" />
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_40"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m"
+                android:visibility="@{safeUnbox(isExpand) ? View.VISIBLE : View.GONE}">
+
+            <ImageButton
+                    android:id="@+id/ib_call_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:contentDescription="@string/content_description_phone"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:paddingStart="@dimen/spacing_l"
+                    android:paddingEnd="@dimen/spacing_l"
+                    android:src="@drawable/ic_phone"
+                    android:visibility="@{safeUnbox(isShowCallButton)? View.VISIBLE : View.GONE}" />
+
+            <ImageButton
+                    android:id="@+id/ib_message_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:contentDescription="@string/content_description_message"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:paddingStart="@dimen/spacing_l"
+                    android:paddingEnd="@dimen/spacing_l"
+                    android:src="@drawable/ic_message"
+                    android:visibility="@{safeUnbox(isShowChatButton)? View.VISIBLE : View.GONE}" />
+
+            <Button
+                    android:id="@+id/btn_member_cv"
+                    style="@style/Heading1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/white_invertible"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:stateListAnimator="@null"
+                    android:text="@string/label_cv" />
+
+            <ImageButton
+                    android:id="@+id/ib_remove_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent"
+                    android:contentDescription="@string/content_description_delete"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:paddingStart="@dimen/spacing_l"
+                    android:paddingEnd="@dimen/spacing_l"
+                    android:src="@drawable/ic_trash"
+                    android:visibility="@{safeUnbox(isShowRemoveButton)? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:background="@color/divider_color" />
+
+    </LinearLayout>
+</layout>

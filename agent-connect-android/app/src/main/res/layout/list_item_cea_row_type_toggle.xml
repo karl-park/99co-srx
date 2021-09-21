@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="showDivider"
+                type="Boolean" />
+
+        <variable
+                name="rowType"
+                type="sg.searchhouse.agentconnect.model.api.cea.CeaFormRowPO" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/spacing_s"
+                android:paddingBottom="@dimen/spacing_s">
+
+            <TextView
+                    android:id="@+id/tv_toggle_label"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:maxWidth="@dimen/max_width_spinner_label"
+                    android:maxLines="2"
+                    android:text="@{rowType.rowTitle}" />
+
+            <ImageButton
+                    android:id="@+id/ib_info"
+                    android:layout_width="@dimen/size_help_icon"
+                    android:layout_height="@dimen/size_help_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xxs"
+                    android:layout_marginEnd="@dimen/spacing_xxs"
+                    android:layout_toEndOf="@+id/tv_toggle_label"
+                    android:background="?android:selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:contentDescription="@string/content_description_info"
+                    android:focusable="true"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_help_circle"
+                    android:visibility="@{TextUtils.isEmpty(rowType.info) ? View.GONE : View.VISIBLE}" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_toggle"
+                    style="@style/Switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xs" />
+
+        </RelativeLayout>
+        
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:background="@color/divider_color"
+                android:visibility="@{showDivider == true? View.VISIBLE: View.GONE}" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.RentalStampDutyCalculatorViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:background="@color/light_gray_invertible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@string/activity_stamp_duty_rental" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                    android:id="@+id/layout_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <include
+                        android:id="@+id/layout_header"
+                        layout="@layout/layout_header_calculator_stamp_duty_rental"
+                        android:layout_alignParentTop="true"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/spacing_m_minus"
+                        app:viewModel="@{viewModel}" />
+
+                <include
+                        android:id="@+id/layout_property_details"
+                        layout="@layout/layout_stamp_duty_rental_property_details"
+                        android:layout_alignParentBottom="true"
+                        android:layout_below="@id/layout_header"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        app:viewModel="@{viewModel}" />
+            </RelativeLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

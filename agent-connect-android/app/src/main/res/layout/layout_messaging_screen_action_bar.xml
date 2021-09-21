@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="showInfo"
+            type="Boolean" />
+
+        <variable
+            name="showPhoneCall"
+            type="Boolean" />
+
+        <variable
+            name="conversationType"
+            type="sg.searchhouse.agentconnect.enumeration.api.ChatEnum.ConversationType" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white_invertible"
+        android:elevation="1dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_messaging_header"
+            style="@style/ClassicActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:id="@+id/layout_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true">
+
+                    <include
+                        android:id="@+id/layout_profile"
+                        layout="@layout/layout_ssm_profile"
+                        app:conversationType="@{conversationType}" />
+
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_messaging_name"
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/layout_contact"
+                    android:layout_toEndOf="@+id/layout_image"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:lines="1"
+                    android:paddingStart="@dimen/spacing_xs"
+                    android:paddingEnd="@dimen/spacing_xs"
+                    android:text="@{name}" />
+
+                <LinearLayout
+                    android:id="@+id/layout_contact"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/ib_messaging_info"
+                        android:layout_width="@dimen/size_30"
+                        android:layout_height="@dimen/size_30"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/content_description_phone"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_more_horizontal"
+                        android:tint="@color/black_invertible"
+                        android:visibility="@{safeUnbox(showInfo) ? View.VISIBLE : View.GONE}" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/ib_messaging_phone"
+                        android:layout_width="@dimen/size_30"
+                        android:layout_height="@dimen/size_30"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/content_description_phone"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_phone"
+                        android:tint="@color/black_invertible"
+                        android:visibility="@{safeUnbox(showPhoneCall)? View.VISIBLE : View.GONE}" />
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </FrameLayout>
+</layout>

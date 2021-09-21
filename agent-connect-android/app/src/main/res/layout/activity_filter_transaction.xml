@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyPurpose" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.SearchEntryType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.transaction.FilterTransactionViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:text="@string/activity_filter_listing_results" />
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <ScrollView
+                        android:id="@+id/scroll_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_above="@id/layout_action"
+                        android:layout_alignParentTop="true">
+
+                    <LinearLayout
+                            android:id="@+id/layout_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <!--Property types-->
+                        <LinearLayout
+                                android:visibility="@{viewModel.entryType == SearchEntryType.PROJECT ? View.GONE : View.VISIBLE}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            <TextView
+                                    style="@style/Title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_m"
+                                    android:text="@string/transaction_filter_label_property_type" />
+
+                            <include
+                                    android:id="@+id/layout_residential_main_property_types"
+                                    layout="@layout/layout_filter_transaction_residential_property_main_types"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/spacing_m"
+                                    android:layout_marginTop="@dimen/spacing_m"
+                                    android:layout_marginEnd="@dimen/spacing_m"
+                                    android:layout_marginBottom="0dp"
+                                    app:isVisible="@{viewModel.propertyPurpose == PropertyPurpose.RESIDENTIAL}"
+                                    app:selectedPropertyMainType="@{viewModel.propertyMainType}" />
+
+                            <include
+                                    android:id="@+id/layout_commercial_sub_property_types"
+                                    layout="@layout/layout_filter_transaction_commercial_property_sub_types"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/spacing_m"
+                                    android:layout_marginTop="@dimen/spacing_m"
+                                    android:layout_marginEnd="@dimen/spacing_m"
+                                    android:layout_marginBottom="0dp"
+                                    app:viewModel="@{viewModel}" />
+
+                            <com.google.android.flexbox.FlexboxLayout
+                                    android:id="@+id/layout_property_sub_types"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_m"
+                                    app:alignContent="flex_start"
+                                    app:alignItems="flex_start"
+                                    app:flexDirection="row"
+                                    app:flexWrap="wrap"
+                                    app:justifyContent="flex_start" />
+
+                            <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/list_view_divider"
+                                    android:background="@color/divider_color" />
+                        </LinearLayout>
+
+                        <!--Area type-->
+                        <LinearLayout
+                                android:visibility="@{viewModel.entryType == SearchEntryType.PROJECT &amp;&amp; viewModel.propertyMainType != PropertyMainType.LANDED ? View.GONE : View.VISIBLE}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            <TextView
+                                    style="@style/Title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_m"
+                                    android:text="@string/transaction_filter_label_area_type" />
+
+                            <com.google.android.flexbox.FlexboxLayout
+                                    android:id="@+id/layout_area_type"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_m"
+                                    app:alignContent="flex_start"
+                                    app:alignItems="flex_start"
+                                    app:flexDirection="row"
+                                    app:flexWrap="wrap"
+                                    app:justifyContent="flex_start" />
+
+                            <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/list_view_divider"
+                                    android:background="@color/divider_color" />
+                        </LinearLayout>
+
+                        <!--Search radius-->
+                        <LinearLayout
+                                android:visibility="@{viewModel.entryType == SearchEntryType.PROJECT ? View.GONE : View.VISIBLE}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            <TextView
+                                    style="@style/Title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_m"
+                                    android:text="@string/transaction_filter_label_search_radius" />
+
+                            <com.google.android.flexbox.FlexboxLayout
+                                    android:id="@+id/layout_search_radius"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/spacing_m"
+                                    app:alignContent="flex_start"
+                                    app:alignItems="flex_start"
+                                    app:flexDirection="row"
+                                    app:flexWrap="wrap"
+                                    app:justifyContent="flex_start" />
+
+                            <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/list_view_divider"
+                                    android:background="@color/divider_color" />
+                        </LinearLayout>
+
+                        <!--Size-->
+                        <TextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/transaction_filter_label_size" />
+
+                        <include
+                                android:id="@+id/layout_size"
+                                layout="@layout/layout_range_number_boxes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                        <!--Age-->
+                        <TextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/transaction_filter_label_age" />
+
+                        <include
+                                android:id="@+id/layout_age"
+                                layout="@layout/layout_range_number_boxes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                        <!--Tenure type-->
+                        <TextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/transaction_filter_label_tenure" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                                android:id="@+id/layout_tenure_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                app:alignContent="flex_start"
+                                app:alignItems="flex_start"
+                                app:flexDirection="row"
+                                app:flexWrap="wrap"
+                                app:justifyContent="flex_start" />
+                    </LinearLayout>
+                </ScrollView>
+
+                <LinearLayout
+                        android:id="@+id/layout_action"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="vertical">
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/spacing_m">
+
+                        <Button
+                                android:id="@+id/btn_submit"
+                                style="@style/PrimaryButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:text="@string/button_apply_filters" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

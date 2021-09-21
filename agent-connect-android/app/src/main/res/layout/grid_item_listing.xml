@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel.DisplayMode" />
+
+        <variable
+            name="listingPO"
+            type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+        <variable
+            name="isSelectMode"
+            type="Boolean" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp"
+            app:strokeColor="@color/listing_card_stroke_color"
+            app:strokeWidth="@dimen/card_stroke_width">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_listing_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/listing_item_photo_height"
+                        android:contentDescription="@string/content_description_listing_photo"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{listingPO.listingPhoto}" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_last_seen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="@dimen/list_view_divider_minus"
+                        android:background="@drawable/card_square_static"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_xs">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/icon_small_size"
+                            android:layout_height="@dimen/icon_small_size"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/spacing_xxs"
+                            android:src="@drawable/ic_clock"
+                            android:tint="@color/gray_invertible" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyGray"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="@{listingPO.getFormattedActualDatePosted(context)}" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--TODO: Need to set background as white, back to this when free-->
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/checkbox"
+                            style="@style/CheckBox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="start|top"
+                            android:checked="@{isSelected}" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="top|end"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_xs"
+                            android:contentDescription="@string/content_description_favorite"
+                            android:src="@drawable/ic_heart_outline"
+                            android:tint="@color/white"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@color/purple"
+                        android:paddingTop="@dimen/spacing_xxs"
+                        android:paddingBottom="@dimen/spacing_xxs"
+                        android:visibility="@{listingPO.ownerCertifiedInd ? View.VISIBLE : View.GONE}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/CertifiedListingWhiteTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textSize="@dimen/text_size_12" />
+
+                    </RelativeLayout>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_xs">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_header"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:ellipsize="end"
+                        android:lines="2"
+                        android:text="@{listingPO.getListingName()}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/ExtraSmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_xxs"
+                        android:ellipsize="end"
+                        android:lines="2"
+                        android:text="@{listingPO.getListingDescription(context)}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/ListingTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_listing_tag"
+                        android:layout_marginBottom="@dimen/spacing_xxs"
+                        android:text="@string/label_listing_new_project"
+                        android:visibility="@{listingPO.newLaunchInd ? View.VISIBLE : View.INVISIBLE}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/ExtraSmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@{listingPO.displaySizePsf}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_price"
+                        style="@style/Heading2Color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{listingPO.askingPriceLabel()}"
+                        android:textColor="@color/purple" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/ExtraSmallBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/label_has_x_listing"
+                        android:textColor="@color/purple"
+                        android:textSize="@dimen/text_size_10"
+                        android:visibility="@{listingPO.xListingInd ? View.VISIBLE : View.INVISIBLE}" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/layout_rooms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:layout_toStartOf="@+id/iv_video_viewing"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_rooms"
+                                style="@style/ListingIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:drawableStart="@drawable/ic_bed"
+                                android:text="@{listingPO.roomsNumber}"
+                                android:visibility="@{TextUtils.isEmpty(listingPO.roomsNumber) ? View.GONE : View.VISIBLE}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_bathrooms"
+                                style="@style/ListingIcon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:drawableStart="@drawable/ic_bath_tub"
+                                android:text="@{listingPO.bathroomNumber}"
+                                android:visibility="@{TextUtils.isEmpty(listingPO.bathroomNumber) ? View.INVISIBLE : View.VISIBLE}" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_video_viewing"
+                            android:layout_width="@dimen/size_video_viewing_icon"
+                            android:layout_height="@dimen/size_video_viewing_icon"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/spacing_xxs"
+                            android:layout_marginEnd="@dimen/spacing_xxs"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_listing_video"
+                            android:visibility="@{safeUnbox(listingPO.allowVideoViewing()) ? View.VISIBLE : View.GONE}" />
+
+                    </RelativeLayout>
+
+                    <include
+                        layout="@layout/layout_listing_grid_tags"
+                        app:listingPO="@{listingPO}" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            app:contentPaddingBottom="@dimen/spacing_xs"
+            app:contentPaddingLeft="@dimen/spacing_xs"
+            app:contentPaddingRight="@dimen/spacing_xs"
+            app:contentPaddingTop="@dimen/spacing_xs"
+            app:strokeColor="@color/listing_card_stroke_color"
+            app:strokeWidth="@dimen/card_stroke_width">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <sg.searchhouse.agentconnect.view.widget.common.CircleImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:background="@drawable/profile_icon_background"
+                    app:url="@{listingPO.agentPO.photo}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBodyBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{listingPO.agentPO.name}" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </LinearLayout>
+</layout>

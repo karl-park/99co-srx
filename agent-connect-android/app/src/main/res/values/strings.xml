@@ -1,0 +1,2609 @@
+<resources>
+    <!--Common-->
+    <string name="app_name">SRX Advisor</string>
+
+    <string name="srx_customer_service_phone">+65 6635 3388</string>
+    <string name="srx_customer_service_email">customerservice@srx.com.sg</string>
+
+    <string name="label_srx">SRX</string>
+    <string name="label_edit">Edit</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="label_done">Done</string>
+    <string name="label_all">All</string>
+    <string name="label_public">Public</string>
+    <string name="label_agents">Agents</string>
+    <string name="label_group">Group</string>
+    <string name="label_view_to_offer">View to offer</string>
+    <string name="label_clear">Clear</string>
+    <string name="label_search">Search</string>
+    <string name="label_any">Any</string>
+    <string name="label_ok">OK</string>
+    <string name="label_success">Success&#160;!</string>
+    <string name="label_save">Save</string>
+    <string name="label_title_from">From</string>
+    <string name="label_title_to">To</string>
+    <string name="label_customer_enquiry">Customer Enquiry</string>
+    <string name="label_price">\$%s</string>
+    <string name="label_percent">%s%%</string>
+    <string name="label_proceed">Proceed</string>
+    <string name="label_small_or">or</string>
+    <string name="dot">⋅</string>
+
+    <string name="label_choose_mail">Choose mail&#8230;</string>
+    <string name="label_small_coming_soon">Coming Soon!</string>
+    <string name="label_latest">Latest</string>
+    <string name="label_no_photo_uploaded">No photo uploaded</string>
+    <string name="label_no_internet_connection">No internet connection</string>
+
+    <string name="date_placeholder">Unknown date</string>
+    <string name="progress_dialog_message">Processing. Please wait.</string>
+
+    <string name="content_description_button_expand">Expand</string>
+    <string name="content_description_button_collapse">Collapse</string>
+
+    <string name="toast_download_report_failed_generic">Download report failed.</string>
+    <string name="toast_copied_link">Link copied.</string>
+
+    <string name="initial_letter_sunday">S</string>
+    <string name="initial_letter_monday">M</string>
+    <string name="initial_letter_tuesday">T</string>
+    <string name="initial_letter_wednesday">W</string>
+    <string name="initial_letter_thursday">T</string>
+    <string name="initial_letter_friday">F</string>
+    <string name="initial_letter_saturday">S</string>
+
+    <!--Number with unit-->
+    <string name="number_sqft">%s sqft</string>
+    <plurals name="number_year">
+        <item quantity="one">%s year</item>
+        <item quantity="other">%s years</item>
+    </plurals>
+    <string name="number_percentage">%s&#65130;</string>
+
+    <!--Content description-->
+    <string name="content_description_search">Search</string>
+
+    <!--General exceptions-->
+    <string name="fail_generic_contact_srx">Failed to process your request. Please contact
+        customerservice@srx.com.sg for help.
+    </string>
+    <string name="error_generic_contact_srx">An error occurred while processing your request. Please contact
+        customerservice@srx.com.sg for help.
+    </string>
+    <string name="error_unknown">Unknown error</string>
+    <string name="error_empty_message">Error without description</string>
+
+    <string name="exception_generic">Error occurred</string>
+    <string name="exception_empty_message">Empty message</string><!--When toast message is empty-->
+    <string name="exception_parse">Parse exception</string>
+    <string name="exception_illegal_argument">Illegal argument exception</string>
+    <string name="exception_security">Security Exception</string>
+    <string name="exception_class_cast">Class cast exception</string>
+
+    <string name="error_missing_required_fields">Missing required fields</string>
+
+    <!--API exceptions-->
+    <string name="exception_empty_response_body">Request success but the response body is empty.</string>
+    <string name="exception_fail_parse_success_response">Failed to parse success response.</string>
+    <string name="exception_fail_parse_exception">Failed to parse error response.</string>
+    <string name="exception_parse_error_illegal_state">Encountered illegal state when parse error.</string>
+    <string name="exception_fail_no_object">Error but no response returned.</string>
+    <string name="exception_server_error">Server error %s.</string>
+    <string name="exception_internal_server_error">Error 500 internal server error.</string>
+    <string name="exception_page_not_found">Error 404 page not found.</string>
+    <string name="exception_forbidden">Error 403 forbidden.</string>
+    <string name="exception_bad_request">Error 400 bad request.</string>
+    <string name="exception_server_unavailable">Error 503 server unavailable. Most probably due to backend upgrading,
+        please try again later.
+    </string>
+    <string name="exception_io">Unable to reach server. Please check your internet connection.</string>
+
+    <string name="confirmation_label_yes">Yes</string>
+    <string name="confirmation_label_no">No</string>
+
+    <string name="msg_failed_to_generate_token">Failed to generate token. Please contact customerservice@srx.com.sg for help.</string>
+
+    <!--Login exceptions-->
+    <string name="error_required_field">Required field</string>
+    <string name="error_invalid_email">Invalid email</string>
+    <string name="error_invalid_password">Minimum of 6 characters</string>
+    <string name="error_invalid_cea">Invalid CEA registration number</string>
+    <string name="error_invalid_mobile">Invalid mobile number</string>
+
+    <!--Errors message for response-->
+    <string name="login_success">Login success.</string>
+    <string name="login_failed">Login failed. %s</string>
+    <string name="login_error">Login error. %s</string>
+    <string name="error_otp_failed">Verification failed</string>
+
+    <!-- Action String -->
+    <string name="action_sign_in">Sign In</string>
+    <string name="action_update">Update</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_signing_in">Signing In&#8230;</string>
+    <string name="action_updating">Updating&#8230;</string>
+    <string name="action_submitting">Submitting&#8230;</string>
+    <string name="action_deleting">Deleting&#8230;</string>
+
+    <!-- Menu -->
+    <string name="menu_item_reset">Reset</string>
+    <string name="menu_item_search">@string/label_search</string>
+    <string name="menu_item_save">@string/label_save</string>
+    <string name="menu_item_share">Share</string>
+    <string name="menu_item_favorite">Favorite</string>
+    <string name="menu_item_create">Create</string>
+    <string name="menu_item_add_new">Add new</string>
+    <string name="menu_item_sign_out_from_portal">@string/label_sign_out_from_portal</string>
+
+    <!--Sign up & Login screens-->
+    <string name="title_welcome">Welcome!</string>
+    <string name="title_forgot_password">Forgot Password</string>
+    <string name="label_cea_no">CEA No.</string>
+    <string name="label_mobile">Mobile</string>
+    <string name="label_email">Email Address</string>
+    <string name="label_password">Password</string>
+    <string name="label_forgot_password">Forgot Password?</string>
+    <string name="label_cea_and_mobile">Enter CEA &amp; Mobile No.</string>
+    <string name="label_customer_service">Customer Service</string>
+    <string name="label_reset_account">Reset Account</string>
+
+    <string name="msg_already_account">I already have an account,</string>
+    <string name="msg_sign_me_in">sign me in</string>
+    <string name="msg_account_creation">Enter your email address and password for future sign in</string>
+    <string name="msg_forgot_password">Enter your registered email below and we will send you instructions for setting a
+        new password
+    </string>
+    <string name="msg_reset_account">You have exceeded the number of devices allowed. Please contact SRX (66353388)
+        regarding your subscription.
+    </string>
+    <string name="msg_reset_account_success">Account has been reset</string>
+    <string name="msg_send_otp">Successfully send OTP</string>
+    <string name="msg_new_version_available">A new version %s is available. Do you want to update?</string>
+    <string name="msg_force_update_new_version">Please update your app to continue. This version of the app is no longer supported.</string>
+
+    <!--OTP Screen-->
+    <string name="label_resend_otp">Resend OTP</string>
+    <string name="msg_otp_screen">Please verify your contact number by entering OTP (One time password) below</string>
+
+    <!-- Non Subscriber Prompt-->
+    <string name="action_become_subscriber">Become a subscriber</string>
+    <string name="label_privacy_policy">Privacy Policy</string>
+    <string name="msg_non_subscriber_dialog">You don\'t seem to have a subscription</string>
+    <string name="msg_subscription_level">This feature isn\'t available at your subscription level</string>
+    <string name="msg_subscriber_help">I’m a subscriber, help!</string>
+    <string name="msg_subscriber_schedule_call_back">Schedule a call back</string>
+    <string name="msg_subscriber_member_features">Consortium member features</string>
+    <string name="msg_agree_privacy_policy">Yes, I accept the Privacy Policy</string>
+    <string name="msg_schedule_call_back_success">Thank You! Our customer service will be in touch shortly.</string>
+    <string name="msg_choose_one_purpose">Please choose become a subscriber</string>
+    <string name="msg_subscriber_immediate_access">Schedule a call back to get immediate access to this and other great features</string>
+    <string name="content_description_dismiss">Dismiss</string>
+    <string name="toast_trial_subscription_activated">Free trial subscription activated</string>
+
+    <!--Bottom App Bars Menu-->
+    <string name="content_description_dashboard">Dashboard</string>
+    <string name="content_description_chat">Chat</string>
+    <string name="content_description_agent_cv">Agent CV</string>
+    <string name="content_description_more">More</string>
+
+    <!--Main page dashboard search bar-->
+    <string name="hint_dashboard_search">Find Listings / Transactions / X-Value</string>
+    <string name="dashboard_greeting">%1$s, %2$s!</string>
+    <string name="greeting_morning">Good morning</string>
+    <string name="greeting_afternoon">Good afternoon</string>
+    <string name="greeting_evening">Good evening</string>
+    <string name="generic_username">sir/madam</string>
+    <string name="content_description_agency_icon">Agency icon</string>
+
+    <!--Main dashboard conversation box-->
+    <string name="label_you_have_no_new_message">You have no new message</string>
+    <string name="content_description_new_messages">New messages</string>
+    <plurals name="label_incoming_message_count">
+        <item quantity="one">You have %s new message</item>
+        <item quantity="other">You have %s new messages</item>
+    </plurals>
+    <string name="button_view">View</string>
+
+    <!--Main dashboard user listings box-->
+    <!--a. Empty-->
+    <string name="user_listings_empty_title">You have not created any listings</string>
+    <string name="user_listings_empty_description">Get started by creating a listing</string>
+    <string name="button_create_listing">Create Listing</string>
+
+    <string name="draft_cea_empty_title">You have not created any cea forms</string>
+    <string name="draft_cea_empty_description">Get started by creating cea form</string>
+    <string name="button_create_cea_exclusive">Create CEA Exclusive</string>
+
+    <!--b. Present-->
+    <plurals name="title_sale_listings_summary">
+        <item quantity="one">You have 1 active listing for sale</item>
+        <item quantity="other">You have %d active listings for sale</item>
+    </plurals>
+    <plurals name="title_rent_listings_summary">
+        <item quantity="one">You have 1 active listing for rent</item>
+        <item quantity="other">You have %d active listings for rent</item>
+    </plurals>
+    <string name="button_view_all">View All</string>
+
+    <!--c. Loading and exceptions-->
+    <string name="label_loading_conversations">Loading conversations</string>
+    <string name="label_load_conversations_fail">Failed to load conversations</string>
+    <string name="label_load_conversations_error">Error when loading conversations</string>
+    <string name="label_loading_user_listings">Loading user listings</string>
+    <string name="label_load_user_listings_fail">Failed to load user listings</string>
+    <string name="label_load_user_listings_error">Error when loading user listings</string>
+    <string name="label_loading_watchlist_transactions">Loading watchlist transactions</string>
+    <string name="label_load_watchlist_transactions_fail">Failed to load watchlist transactions</string>
+    <string name="label_load_watchlist_transactions_error">Error when loading watchlist transactions</string>
+    <string name="label_loading_watchlist_listings">Loading watchlist listings</string>
+    <string name="label_load_watchlist_listings_fail">Failed to load watchlist listings</string>
+    <string name="label_load_watchlist_listings_error">Error when loading watchlist listings</string>
+    <string name="label_loading_news">Loading news</string>
+
+    <!-- Chat Tab -->
+    <string name="title_inbox">Inbox</string>
+    <string name="title_upload_image">Upload image/photo</string>
+    <string name="label_send">Send</string>
+    <string name="label_today">Today</string>
+    <string name="label_chat">Chat</string>
+    <string name="label_yesterday">Yesterday</string>
+    <string name="label_group_name">Group Name</string>
+    <string name="label_cv">CV</string>
+    <string name="label_add_agents">Add agents</string>
+    <string name="label_camera">Camera</string>
+    <string name="label_gallery">Gallery</string>
+    <string name="label_choose_picture">Choose pictures</string>
+    <string name="label_blacklist">Blacklist</string>
+    <string name="label_mark_as_read">Mark as read</string>
+    <string name="label_add">Add</string>
+    <string name="label_conversations">Conversations</string>
+    <string name="label_messages">Messages</string>
+    <string name="label_turn_on">Turn on</string>
+    <string name="label_capital_new">NEW</string>
+    <string name="label_ssm_blast">SRX Chat Blast</string>
+
+    <string name="hint_search">@string/label_search</string>
+    <string name="hint_search_inbox">Search inbox</string>
+    <string name="hint_leave_a_comment">Leave a comment</string>
+    <string name="hint_group_name">Group name</string>
+
+    <string name="msg_from">From</string>
+    <string name="msg_no_conversation_history">No conversation history</string>
+    <string name="msg_no_chats_selected">No chats selected</string>
+    <string name="msg_no_of_chats_selected">%s chats selected</string>
+    <string name="msg_no_agent_list">No agent list</string>
+    <string name="msg_delete_enquiry">Delete this customer enquiry?</string>
+    <string name="msg_delete_conversations">Delete selected conversation(s)?</string>
+    <string name="msg_blacklist_agents">Blacklist selected agent(s)?</string>
+    <string name="msg_mark_as_read">Mark as read selected conversation(s)?</string>
+    <string name="msg_remove_members">Remove members from conversation?</string>
+    <string name="msg_cannot_black_list">You cannot blacklist group chat, srx enquiry and announcement</string>
+    <string name="msg_add_agent_to_group">Add selected agent(s) to group chat?</string>
+    <string name="msg_delete_one_conversation">Delete this conversation?</string>
+    <string name="msg_blacklist_one_agent">Blacklist this agent?</string>
+    <string name="msg_notification_alert">Please turn on your push notification.\nNotifications give you quick and easy access to important updates such as:\n\n1.SSM Chat\n2.Customer Enquiries</string>
+
+    <string name="content_description_phone">Call consumer</string>
+    <string name="content_description_message">Message consumer</string>
+    <string name="content_description_delete">Delete enquiry</string>
+    <string name="content_description_compose_image">Compose Message</string>
+    <string name="content_description_arrow_right">arrow right</string>
+    <string name="content_description_agency_logo">Agency Logo</string>
+    <string name="content_description_expert_analyzer">Expert Analyzer</string>
+    <string name="content_description_remove_agent">Remove Agent</string>
+    <string name="content_description_camera">Chat camera</string>
+
+
+    <string name="error_select_at_least_one_conversation">Please select at least one conversation</string>
+    <string name="error_select_at_least_one_agent">Please select at least one agent</string>
+    <string name="error_whatsapp_not_available">WhatsApp is not available on your device</string>
+    <string name="error_missing_conversation">Missing conversation</string>
+    <string name="error_missing_agent">Missing agent</string>
+    <string name="error_missing_agents">Missing agent list</string>
+    <string name="error_missing_user">Missing user</string>
+
+    <!--Main page settings-->
+    <string name="setting_item_my_profile">My Profile</string>
+    <string name="setting_item_my_listings">My Listings</string>
+    <string name="setting_item_my_clients">My Clients</string>
+    <string name="setting_item_news">News</string>
+    <string name="setting_item_calculators">Calculators</string>
+    <string name="setting_item_find_agent">Find Agent</string>
+    <string name="setting_item_loan_referral">Loan Referral</string>
+    <string name="setting_item_training">Training</string>
+    <string name="setting_item_help_and_support">Help &amp; Support</string>
+    <string name="setting_item_invite_agents">Invite Agents</string>
+    <string name="setting_item_feedback">Give Us Feedback</string>
+    <string name="setting_item_privacy_statement">Privacy Statement</string>
+    <string name="setting_item_terms_of_use">Terms of Use</string>
+    <string name="setting_item_terms_of_sale">Terms of Sale</string>
+    <string name="setting_item_switch_server">Switch Server</string>
+    <string name="setting_item_login_as_agent">Login Agent\'s Account</string>
+    <string name="setting_item_logout_from_agent">Logout Agent\'s Account</string>
+    <string name="setting_item_sign_out">Sign Out</string>
+    <string name="content_description_settings_profile_icon">Profile icon</string>
+    <string name="content_description_settings_profile_enter">View profile</string>
+    <string name="content_description_setting_item_icon">Setting item icon</string>
+    <string name="content_description_chevron">Chevron</string>
+
+    <!-- Switch Server -->
+    <string name="title_switch_server">Switch Server</string>
+    <string name="label_server_production">Production Server</string>
+    <string name="label_server_demo1">Demo1 Server</string>
+    <string name="label_server_demo2">Demo2 Server</string>
+    <string name="label_server_demo3">Demo3 Server</string>
+    <string name="label_server_demo4">Demo4 Server</string>
+    <string name="label_server_demo5">Demo5 Server</string>
+    <string name="label_server_demo6">Demo6 Server</string>
+    <string name="label_server_srx_trainer">Trainer Server</string>
+    <string name="action_change_server">Change</string>
+    <string name="msg_changed_url">Domain url has changed.</string>
+    <string name="error_msg_select_server">Please select server</string>
+
+    <!--Login as agent-->
+    <string name="title_login_as_agent">Login Agent Account</string>
+    <string name="msg_confirm_to_login_as_agent">Confirm to login in as %s ?</string>
+
+    <!--Search page-->
+    <string name="label_rent">Rent</string>
+    <string name="label_sale">Sale</string>
+    <string name="label_room_rental">Room Rental</string>
+    <string name="search_tab_label_listings">Listings</string>
+    <string name="search_tab_label_transactions">Transactions</string>
+    <string name="search_tab_label_x_value">X - Value</string>
+    <string name="switch_label_is_commercial">Commercial</string>
+
+    <!--Search page listings and transactions fragment-->
+    <string name="hint_search_listings">Type or select location</string>
+    <string name="hint_search_email_postal_code">Enter your email address or postal code</string>
+    <string name="label_current_location">Current Location</string>
+    <string name="label_current_location_is_searching">Searching around&#8230;</string>
+    <string name="label_jump_to_listings">Jump to listings</string>
+    <string name="label_jump_to_transactions">Jump to latest 50 transactions</string>
+    <string name="label_information">Information</string>
+
+    <!--Project Directory -->
+    <string name="label_project_info">Project Info / Planning Decisions</string>
+    <string name="label_information_shortcut">NEW</string>
+    <string name="label_enter_project_name_or_location">Enter project name or location</string>
+    <string name="label_project_order_sort_by">Sort by</string>
+
+    <string name="msg_no_project_list">No results found for current search criteria.</string>
+    <string name="msg_project_empty_view">Find projects by entering a search criteria.</string>
+
+    <string name="label_project_sort_name_asc">Name</string>
+    <string name="label_project_sort_date_desc">Date (new to old)</string>
+    <string name="label_project_sort_date_asc">Date (old to new)</string>
+
+    <string name="project_filter_type_of_area">Type of Area</string>
+    <string name="project_type_of_area_any">Any</string>
+    <string name="project_type_of_area_strata">Strata</string>
+    <string name="project_type_of_area_land">Land</string>
+
+    <string name="project_filter_completion">Completion</string>
+    <string name="project_completion_any">Any</string>
+    <string name="project_completion_under_construction">Under Construction</string>
+    <string name="project_completion_completed">Completed</string>
+    <string name="project_completion_new_projects">New Projects</string>
+
+    <string name="project_filter_radius">Radius</string>
+    <string name="project_radius_any">Any</string>
+    <string name="project_radius_half_km">0.5km</string>
+    <string name="project_radius_one_km">1 km</string>
+    <string name="project_radius_one_half_km">1.5km</string>
+    <string name="project_radius_two_km">2km</string>
+
+    <string name="project_filter_age">Age (1–50 years)</string>
+    <string name="project_filter_size">Size</string>
+
+    <string name="project_filter_tenure">Tenure</string>
+    <string name="project_tenure_any">Any</string>
+    <string name="project_tenure_freehold">Freehold/999 years</string>
+    <string name="project_tenure_leasehold">Leasehold</string>
+
+    <string name="content_description_project_info">project info image content description</string>
+
+    <!--Search page x-value fragment-->
+    <string name="title_x_value">X-Value</string>
+    <string name="description_x_value">X-Value™ automated valuation serves as a guide for general reference. If you
+        require a certified appraisal for any property sale, purchase, mortgage, accounting, internal transfer, etc.,
+        please order a full inspection and valuation report.
+    </string>
+    <string name="btn_get_x_value">Get X-Value</string>
+    <string name="hint_search_address_postal_code">Enter your address or postal code</string>
+    <string name="dialog_title_property_types">Property Types</string>
+    <string name="dialog_title_tenure_types">Tenure Types</string>
+
+    <!--Search page listing options-->
+    <string name="listing_option_mrt">MRT</string>
+    <string name="listing_option_districts">Districts</string>
+    <string name="listing_option_areas">Areas</string>
+    <string name="listing_option_schools">Schools</string>
+    <string name="listing_option_travel_time">Travel Time</string>
+
+    <!--Search page building types-->
+    <string name="property_type_all">All</string>
+    <string name="property_type_hdb">HDB</string>
+    <string name="property_type_condo">Condo</string>
+    <string name="property_type_landed">Landed</string>
+    <string name="property_type_commercial">Commercial</string>
+    <string name="property_type_residential">Residential</string>
+
+    <string name="property_type_plural_all">All</string>
+    <string name="property_type_plural_hdb">HDBs</string>
+    <string name="property_type_plural_condo">Condos</string>
+    <string name="property_type_plural_landed">Landed Properties</string>
+    <string name="property_type_plural_commercial">Commercial Properties</string>
+
+    <string name="title_dashboard_watchlist_transactions_occupied">Recent transactions from watchlist</string>
+    <string name="button_map">Map</string>
+    <string name="button_list">List</string>
+    <string name="button_export">Export</string>
+    <string name="button_filter_results">Filter results</string>
+    <string name="property_type_with_count_residential">Residential (%s)</string>
+    <string name="property_type_with_count_hdb">HDB (%s)</string>
+    <string name="property_type_with_count_condo">Condo (%s)</string>
+    <string name="property_type_with_count_landed">Landed (%s)</string>
+    <string name="property_type_with_count_commercial">Commercial (%s)</string>
+
+    <!--Transaction summary-->
+    <string name="button_export_transactions">Export</string>
+    <string name="toast_limited_transactions_export">Your subscription level only allows you to export up to 30 latest transactions.</string>
+    <string name="content_description_external_link">External link</string>
+    <string name="label_lowest_psf">Lowest PSF</string>
+    <string name="label_median_psf">Median PSF</string>
+    <string name="label_highest_psf">Highest PSF</string>
+    <string name="label_lowest_price">Lowest price</string>
+    <string name="label_highest_price">Highest price</string>
+    <string name="label_last_month_change">Last month change</string>
+
+    <!--Listings-->
+    <string name="label_listings_everywhere">Everywhere in Singapore</string>
+    <string name="button_filter_result">Filter Results</string>
+    <string name="label_sort_by">Sort by</string>
+    <plurals name="label_listing_summary">
+        <item quantity="one">%1$s property for %2$s</item>
+        <item quantity="other">%1$s properties for %2$s</item>
+    </plurals>
+    <plurals name="label_listing_summary_match_and_nearby">
+        <item quantity="one">%1$s property for %2$s, %3$s nearby</item>
+        <item quantity="other">%1$s properties for %2$s, %3$s nearby</item>
+    </plurals>
+    <string name="label_empty_selected_listings">No selected listings.</string>
+    <string name="label_sold_properties">Sold properties</string>
+    <string name="label_rented_properties">Rented properties</string>
+    <string name="title_listings_empty">No properties found</string>
+    <string name="description_listings_empty">Try adjusting your search</string>
+    <string name="button_reset_search">Reset search</string>
+    <string name="dialog_title_listing_sort_order">Sort by</string>
+    <string name="label_load_listings_fail">Failed to load listings</string>
+    <string name="label_load_listings_error">Unexpected error occur when load listings</string>
+    <string name="bed_room_count">%d BR</string>
+    <string name="bed_room_count_more_than">≥ %d BR</string>
+    <string name="bed_room_count_with_count">%1$d BR (%2$s)</string>
+    <string name="bed_room_count_more_than_with_count">≥ %1$d BR (%2$s)</string>
+    <string name="view_mode_map">Map View</string>
+    <string name="view_mode_grid">Grid View</string>
+    <string name="view_mode_list">List View</string>
+    <plurals name="label_selected_listings">
+        <item quantity="one">%s listing selected</item>
+        <item quantity="other">%s listings selected</item>
+    </plurals>
+    <string name="button_export_listings">Export Listings</string>
+    <plurals name="button_export_listings">
+        <item quantity="one">Export Listing</item>
+        <item quantity="other">Export Listings</item>
+    </plurals>
+    <string name="hint_export_listings_max">Max %s listings</string>
+    <string name="toast_selected_listings_exceed_max">Only maximum %s listings can be exported at once.</string>
+    <string name="toast_selected_listings_srx_chat_exceed_max">You may only blast SRX Chat up to %s listings at once.</string>
+    <string name="button_co_broke">Co-broke</string>
+    <string name="dialog_title_export_listings_options">Export Options</string>
+    <string name="dialog_title_selected_listings">Selected Listings</string>
+    <string name="listings_export_option_agent_contact">Agent contacts</string>
+    <string name="listings_export_option_photo">Full listing details</string>
+    <string name="button_download_pdf">Download PDF</string>
+    <string name="button_download_excel">Download Excel</string>
+    <string name="dialog_message_generate_listing_report">Generating report of listings. Please wait.</string>
+    <string name="dialog_message_load_listing_report">Loading report&#8230;</string>
+    <string name="fail_export_listings">Export listings failed.</string>
+    <string name="error_export_listings">Error occurred when export listings.</string>
+    <string name="dialog_title_download_pdf_viewer">No PDF viewer found</string>
+    <string name="dialog_message_download_pdf_viewer">Install one from Google Play?</string>
+    <string name="tab_listings_show_all">Show All</string>
+    <string name="tab_listings_new_projects">New Projects</string>
+    <string name="tab_listings_include_nearby">Include Nearby</string>
+    <string name="tab_listings_project_only">Project Only</string>
+    <string name="dialog_message_warning_sms_telco">Please note that SMS to your clients through Agent Connect is delivered by your telco carrier. If you experience any delays, please do contact your telco provider.</string>
+    <string name="listings_header_near_by">Nearby Properties within 2KM</string>
+    <string name="listing_item_distance">%s away</string>
+    <string name="dialog_message_confirm_quit_select_mode">Discard all your selected listings?</string>
+
+    <string name="tab_export_listings_pdf">PDF</string>
+    <string name="tab_export_listings_excel">Excel</string>
+
+    <string name="toast_generate_report_failed">Generate report failed.</string>
+    <string name="toast_download_report_failed">Download report failed.</string>
+
+    <string name="dialog_title_csv_viewer_not_found">No CSV viewer found</string>
+    <string name="dialog_message_csv_viewer_not_found">Install one from Google Play?</string>
+
+    <!--Listing item-->
+    <string name="label_has_x_listing">with SRX certified valuation</string>
+    <string name="label_certified_listing">Certified Listing</string>
+    <string name="content_description_listing_photo">Listing photo</string>
+    <string name="label_also_on_classifieds">Also on Classifieds</string>
+    <string name="label_listing_exclusive">Exclusive</string>
+    <string name="label_listing_drone">Drone</string>
+    <string name="label_listing_full_view">v360°</string>
+    <string name="label_listing_new_project">New Project</string>
+    <string name="content_description_favorite">Favorite</string>
+    <string name="button_enquire_now">Enquire Now</string>
+    <string name="label_listing_featured">Featured</string>
+    <string name="label_bedrooms">Bedrooms</string>
+    <string name="label_bathrooms">Bathrooms</string>
+    <string name="label_rest_rooms">Restrooms</string>
+    <string name="listing_label_built_year">Built Year</string>
+    <string name="listing_label_top">TOP</string>
+    <string name="label_credit_summary">Credits Summary</string>
+    <string name="label_drone">Drone</string>
+    <string name="label_v360">v360</string>
+    <string name="label_share_on">Share on</string>
+
+    <!--Listing sort order labels-->
+    <string name="listing_order_criteria_default">Relevance</string>
+    <string name="listing_order_criteria_date_posted_asc">Date (old to new)</string>
+    <string name="listing_order_criteria_date_posted_desc">Date (new to old)</string>
+
+    <string name="listing_order_criteria_distance_asc">Distance (near to far)</string>
+    <string name="listing_order_criteria_distance_desc">Distance (far to near)</string>
+
+    <string name="listing_order_criteria_price_asc">Price (low to high)</string>
+    <string name="listing_order_criteria_price_desc">Price (high to low)</string>
+    <string name="listing_order_criteria_size_asc">Size (low to high)</string>
+    <string name="listing_order_criteria_size_desc">Size (high to low)</string>
+    <string name="listing_order_criteria_psf_asc">PSF (low to high)</string>
+    <string name="listing_order_criteria_psf_desc">PSF (high to low)</string>
+    <string name="listing_order_criteria_num_bedrooms_asc">Bedrooms (least to most)</string>
+    <string name="listing_order_criteria_num_bedrooms_desc">Bedrooms (most to least)</string>
+    <string name="listing_order_criteria_listing_quality_asc">Listing Quality (low to high)</string>
+    <string name="listing_order_criteria_listing_quality_desc">Listing Quality (high to low)</string>
+
+    <!--Listing enum tenure labels-->
+    <string name="tenure_label_not_specified">Lease not specified</string>
+    <string name="tenure_label_freehold">Freehold</string>
+    <string name="tenure_label_leasehold">Leasehold</string>
+    <string name="tenure_label_nine_nine_nine_years">999 years</string>
+    <string name="tenure_label_thirty_years">30 years</string>
+    <string name="tenure_label_sixty_years">60 years</string>
+    <string name="tenure_label_one_hundred_three_years">103 years</string>
+
+    <!--Listing enum tenure labels with count-->
+    <string name="tenure_label_with_count_not_specified">Lease not specified (%s)</string>
+    <string name="tenure_label_with_count_freehold">Freehold (%s)</string>
+    <string name="tenure_label_with_count_leasehold">Leasehold (%s)</string>
+    <string name="tenure_label_with_count_nine_nine_nine_years">999 years (%s)</string>
+    <string name="tenure_label_with_count_thirty_years">30 years (%s)</string>
+    <string name="tenure_label_with_count_sixty_years">60 years (%s)</string>
+    <string name="tenure_label_with_count_one_hundred_three_years">103 years (%s)</string>
+
+    <!--Listing enum tenure full labels -->
+    <string name="tenure_label_full_not_specified">Lease not specified</string>
+    <string name="tenure_label_full_freehold">Freehold</string>
+    <string name="tenure_label_full_leasehold">Leasehold/99 years</string>
+    <string name="tenure_label_full_nine_nine_nine_years">Freehold/999 years</string>
+    <string name="tenure_label_full_thirty_years">Leasehold/30 years</string>
+    <string name="tenure_label_full_sixty_years">Leasehold/60 years</string>
+    <string name="tenure_label_full_one_hundred_three_years">Leasehold/130 years</string>
+
+    <!--Listing sub types-->
+    <string name="listing_sub_type_hdb_3_rooms">3 rooms</string>
+    <string name="listing_sub_type_hdb_4_rooms">4 rooms</string>
+    <string name="listing_sub_type_hdb_5_rooms">5 rooms</string>
+    <string name="listing_sub_type_hdb_executive">Executive</string>
+    <string name="listing_sub_type_terrace">Terrace</string>
+    <string name="listing_sub_type_condominium">Condominium</string>
+    <string name="listing_sub_type_apartment">Apartment</string>
+    <string name="listing_sub_type_semi_detached">Semi detached</string>
+    <string name="listing_sub_type_detached">Detached</string>
+    <string name="listing_sub_type_office">Office</string>
+    <string name="listing_sub_type_retail">Retail</string>
+    <string name="listing_sub_type_shop_house">Shop house</string>
+    <string name="listing_sub_type_warehouse">Warehouse</string>
+    <string name="listing_sub_type_factory">Factory</string>
+    <string name="listing_sub_type_hdb_1_room">1 room</string>
+    <string name="listing_sub_type_hdb_2_rooms">2 rooms</string>
+    <string name="listing_sub_type_hdb_hudc">HUDC</string>
+    <string name="listing_sub_type_hdb_jumbo">Jumbo</string>
+    <string name="listing_sub_type_hdb_shop_house">HDB shophouse</string>
+    <string name="listing_sub_type_land">Land</string>
+    <string name="listing_sub_type_all_private_residential">All private residential</string>
+    <string name="listing_sub_type_all_hdb">All hdb</string>
+    <string name="listing_sub_type_all_commercial">All</string>
+    <string name="listing_sub_type_all_landed">All landed</string>
+    <string name="listing_sub_type_condo_apt">Condo/Apartment</string>
+    <string name="listing_sub_type_ura_industrial">URA industrial</string>
+
+    <string name="listing_sub_type_all_commercial_complete">All commercial</string>
+
+    <!--Listing sub types (plural)-->
+    <string name="listing_sub_type_plural_hdb_3_rooms">3 Rooms</string>
+    <string name="listing_sub_type_plural_hdb_4_rooms">4 Rooms</string>
+    <string name="listing_sub_type_plural_hdb_5_rooms">5 Rooms</string>
+    <string name="listing_sub_type_plural_hdb_executive">Executives</string>
+    <string name="listing_sub_type_plural_terrace">Terraces</string>
+    <string name="listing_sub_type_plural_condominium">Condominiums</string>
+    <string name="listing_sub_type_plural_apartment">Apartments</string>
+    <string name="listing_sub_type_plural_semi_detached">Semi Detached Properties</string>
+    <string name="listing_sub_type_plural_detached">Detached Properties</string>
+    <string name="listing_sub_type_plural_office">Offices</string>
+    <string name="listing_sub_type_plural_retail">Retails</string>
+    <string name="listing_sub_type_plural_shop_house">Shop Houses</string>
+    <string name="listing_sub_type_plural_warehouse">Warehouses</string>
+    <string name="listing_sub_type_plural_factory">Factories</string>
+    <string name="listing_sub_type_plural_hdb_1_room">1 Room</string>
+    <string name="listing_sub_type_plural_hdb_2_rooms">2 Rooms</string>
+    <string name="listing_sub_type_plural_hdb_hudc">HUDCs</string>
+    <string name="listing_sub_type_plural_hdb_jumbo">Jumbos</string>
+    <string name="listing_sub_type_plural_hdb_shop_house">HDB Shophouses</string>
+    <string name="listing_sub_type_plural_land">Lands</string>
+    <string name="listing_sub_type_plural_all_private_residential">Private Residential Properties</string>
+    <string name="listing_sub_type_plural_all_hdb">HDBs</string>
+    <string name="listing_sub_type_plural_all_commercial">All</string>
+    <string name="listing_sub_type_plural_all_landed">Landed Properties</string>
+    <string name="listing_sub_type_plural_condo_apt">Condos/Apartments</string>
+    <string name="listing_sub_type_plural_ura_industrial">URA industrial Properties</string>
+
+    <!--Listing sub types with count-->
+    <string name="listing_sub_type_with_count_hdb_3_rooms">3 rooms (%s)</string>
+    <string name="listing_sub_type_with_count_hdb_4_rooms">4 rooms (%s)</string>
+    <string name="listing_sub_type_with_count_hdb_5_rooms">5 rooms (%s)</string>
+    <string name="listing_sub_type_with_count_hdb_executive">Executive (%s)</string>
+    <string name="listing_sub_type_with_count_terrace">Terrace (%s)</string>
+    <string name="listing_sub_type_with_count_condominium">Condominium (%s)</string>
+    <string name="listing_sub_type_with_count_apartment">Apartment (%s)</string>
+    <string name="listing_sub_type_with_count_semi_detached">Semi detached (%s)</string>
+    <string name="listing_sub_type_with_count_detached">Detached (%s)</string>
+    <string name="listing_sub_type_with_count_office">Office (%s)</string>
+    <string name="listing_sub_type_with_count_retail">Retail (%s)</string>
+    <string name="listing_sub_type_with_count_shop_house">Shop house (%s)</string>
+    <string name="listing_sub_type_with_count_warehouse">Warehouse (%s)</string>
+    <string name="listing_sub_type_with_count_factory">Factory (%s)</string>
+    <string name="listing_sub_type_with_count_hdb_1_room">1 room (%s)</string>
+    <string name="listing_sub_type_with_count_hdb_2_rooms">2 rooms (%s)</string>
+    <string name="listing_sub_type_with_count_hdb_hudc">HUDC (%s)</string>
+    <string name="listing_sub_type_with_count_hdb_jumbo">Jumbo (%s)</string>
+    <string name="listing_sub_type_with_count_hdb_shop_house">HDB shophouse (%s)</string>
+    <string name="listing_sub_type_with_count_land">Land (%s)</string>
+    <string name="listing_sub_type_with_count_all_private_residential">All private residential (%s)</string>
+    <string name="listing_sub_type_with_count_all_hdb">All hdb (%s)</string>
+    <string name="listing_sub_type_with_count_all_commercial">All commercial (%s)</string>
+    <string name="listing_sub_type_with_count_all_landed">All landed (%s)</string>
+    <string name="listing_sub_type_with_count_condo_apt">Condo/Apartment (%s)</string>
+    <string name="listing_sub_type_with_count_ura_industrial">URA industrial (%s)</string>
+
+    <!--Listing property ages-->
+    <string name="property_age_zero_to_five_years_old">0 to 5yrs old</string>
+    <string name="property_age_five_to_ten_years_old">5 to 10yrs old</string>
+    <string name="property_age_ten_to_twenty_years_old">10 to 20yrs old</string>
+    <string name="property_age_twenty_to_thirty_years_old">20 to 30yrs old</string>
+    <string name="property_age_more_than_thirty_years_old">> 30yrs old</string>
+
+    <string name="property_age_with_count_zero_to_five_years_old">0 to 5yrs old (%s)</string>
+    <string name="property_age_with_count_five_to_ten_years_old">5 to 10yrs old (%s)</string>
+    <string name="property_age_with_count_ten_to_twenty_years_old">10 to 20yrs old (%s)</string>
+    <string name="property_age_with_count_twenty_to_thirty_years_old">20 to 30yrs old (%s)</string>
+    <string name="property_age_with_count_more_than_thirty_years_old">> 30yrs old (%s)</string>
+
+    <string name="listing_video_viewing_available">Video viewing available</string>
+    <string name="listing_video_viewing_unavailable">Not available</string>
+
+    <!-- Find Agent-->
+    <string name="title_srx_agent">SRX Agents</string>
+    <string name="hint_agent_search">Agent name, Mobile, Email or Cea No</string>
+
+    <!--Listing filters-->
+    <string name="activity_filter_listing_results">Filter Results</string>
+    <string name="title_filter_listing_property_type">Property Type</string>
+    <string name="title_filter_listing_all_residential">All Residential</string>
+    <string name="title_filter_listing_all_commercial">All Commercial</string>
+    <string name="title_filter_listing_price_range">Price Range</string>
+    <string name="title_filter_listing_bedrooms">Bedrooms</string>
+    <string name="title_filter_listing_bathrooms">Bathrooms</string>
+    <string name="title_filter_listing_psf">PSF</string>
+    <string name="title_filter_listing_floor_area">Floor Area</string>
+    <string name="title_filter_listing_floor_level">Floor Level</string>
+    <string name="title_filter_listing_tenure">Tenure</string>
+    <string name="title_filter_listing_construction_year">Construction Year</string>
+    <string name="title_filter_listing_furnishing">Furnishing</string>
+    <string name="title_filter_listing_listed">Listed</string>
+    <string name="title_filter_listing_new_launches">New Launches</string>
+    <string name="title_filter_listing_x_listing_price">SRX Certified Valuation</string>
+    <string name="title_filter_listing_v360_virtual_tours">v360 Virtual Tours</string>
+    <string name="title_filter_listing_drone_views">Drone Views</string>
+    <string name="title_filter_listing_published_on_classified">Published on Classified</string>
+    <string name="listing_filter_label_listing_features">Listing features</string>
+
+    <!-- Search Options Title-->
+    <string name="title_search_by_areas">Search by Areas</string>
+    <string name="title_search_by_districts">Search by Districts</string>
+
+    <string name="title_all_districts">All districts in</string>
+    <string name="msg_selected_areas">Areas - %s</string>
+    <string name="msg_selected_districts">Districts - %s</string>
+
+    <!--MRT search-->
+    <string name="activity_mrt_search">Search by MRTs</string>
+    <string name="label_load_mrts_fail">Failed to load MRTs</string>
+    <string name="label_load_mrts_error">Unexpected error occur when load MRTs</string>
+    <string name="label_all_mrt_stations">All %s MRT Stations</string>
+    <string name="label_all_lrt_stations">All %s Stations</string>
+
+    <!--School search-->
+    <string name="activity_school_search">Search by Schools</string>
+    <string name="label_load_schools_fail">Failed to load schools</string>
+    <string name="label_load_schools_error">Unexpected error occur when load schools</string>
+
+    <string name="school_type_international_schools">International schools</string>
+    <string name="school_type_polytechnic">Polytechnic</string>
+    <string name="school_type_primary_schools">Primary schools</string>
+    <string name="school_type_private_schools">Private schools</string>
+    <string name="school_type_secondary_schools">Secondary schools</string>
+    <string name="school_type_universities">Universities</string>
+
+    <!-- listing management -->
+    <string name="title_create_new_listing">Create New Listing</string>
+    <string name="title_update_listing">Update Listing</string>
+    <string name="title_certified_listings">Certified Listings</string>
+
+    <string name="action_next">Next</string>
+    <string name="action_saving">Saving&#8230;</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_get_size">Get size</string>
+    <string name="action_post_listing">Post Listing</string>
+    <string name="action_posting_listing">Posting Listing&#8230;</string>
+    <string name="action_get_verified">Get verified</string>
+    <string name="action_send_invite">Send Invite</string>
+    <string name="action_sending_invite">Sending Invite&#8230;</string>
+    <string name="action_repost_listing">Repost Listing</string>
+    <string name="action_reposting_listing">Reposting Listing&#8230;</string>
+    <string name="action_refresh_listing">Refresh Listing</string>
+    <string name="action_refreshing_listing">Refreshing Listing&#8230;</string>
+
+    <string name="label_free_caps">FREE</string>
+    <string name="label_free">Free</string>
+    <string name="label_enter_property_address">Enter address or postcode</string>
+    <string name="label_property_guru">PG</string>
+    <string name="label_portal">Portal</string>
+    <string name="label_agency">Agency</string>
+    <string name="label_continue_draft">Continue draft</string>
+    <string name="label_create_forms">Create forms</string>
+    <string name="label_sign_in_cea_exclusive">Sign in CEA Exclusive</string>
+    <string name="label_dash">-</string>
+    <string name="label_unit_number_info">Unit number will not be revealed</string>
+    <string name="label_size_sqft">Sqft</string>
+    <string name="label_size_sqm">Sqm</string>
+    <string name="label_photos">Photos</string>
+    <string name="label_floor_plan">Floor Plans</string>
+    <string name="label_srx_photo">SRX photos</string>
+    <string name="label_srx_value_added_services">SRX value added services</string>
+    <string name="label_youtube_video">Youtube video</string>
+    <string name="label_upload">Upload</string>
+    <string name="label_read_advisory">Read Advisory</string>
+    <string name="label_empty_wallet">Your wallet is empty</string>
+    <string name="label_boost_listing_rank">Boosts listing rank</string>
+    <string name="label_get_more_leads">Get more leads than uncertified</string>
+    <string name="label_home_owner_detail">Home Owner Details</string>
+    <string name="label_direct_to_dashboard">Skip this and take me to Dashboard</string>
+    <string name="label_take_me_to_dashboard">Take me to Dashboard</string>
+    <string name="label_your_listing_published_in_srx">Your listing is published in SRX</string>
+    <string name="label_make_your_listing_different">Make your listings different from the rest</string>
+    <string name="label_learn_more">Learn more</string>
+    <string name="label_cover_photo">Cover</string>
+    <string name="label_set_as_cover">Set as cover</string>
+    <string name="label_video_viewing">Video viewing</string>
+
+    <string name="label_select">Select</string>
+    <string name="label_ad_quality">Ad Quality</string>
+    <string name="label_srx_x_value">SRX X-Value</string>
+    <string name="label_asking_price">Asking Price</string>
+    <string name="label_price_options">Price Options</string>
+    <string name="label_show_x_value">Display Price with X-Value</string>
+    <string name="label_listing_header">Listing Header</string>
+    <string name="label_listing_desc">Listing Description</string>
+    <string name="label_special_message">Add special message to agent</string>
+    <string name="label_furnished">Furnished</string>
+    <string name="label_condition">Condition</string>
+    <string name="label_floor_location">Floor Location</string>
+    <string name="label_tenancy_status">Tenancy Status</string>
+    <string name="label_special_features">Special Features</string>
+    <string name="label_fixtures_and_fittings">Fixtures &amp; Fittings</string>
+    <string name="label_outdoor_indoor_area">Outdoor/Indoor Areas</string>
+    <string name="check_box_label_apply_features">Options above do not apply to my unit</string>
+    <string name="label_available_from">Available from</string>
+    <string name="label_lease_term">Lease Term</string>
+    <string name="label_assignment_type">Assignment Type</string>
+    <string name="label_utilities_amount">Utility Amount</string>
+    <string name="label_room_type">Room Type</string>
+    <string name="label_rental_type">Rental Type</string>
+    <string name="label_optional">(optional)</string>
+    <string name="label_owner_type">Owner type</string>
+    <string name="label_nothing">Nothing</string>
+    <string name="label_remove_video">Remove Video</string>
+    <string name="label_select_all">Select All</string>
+    <string name="label_unselect_all">Unselect All</string>
+    <string name="label_remove_photo">Remove Photo</string>
+    <string name="label_acknowledge">Acknowledge</string>
+
+    <string name="label_take_off_listing">Take down listing</string>
+    <string name="label_delete_listing">Delete Listing</string>
+    <string name="msg_take_off_listing">Take down this listing?</string>
+    <string name="msg_delete_listing">Delete this listing?</string>
+    <string name="msg_take_down_listings">Take down selected listing(s)?</string>
+    <string name="msg_delete_listings">Delete selected listing(s)?</string>
+    <string name="msg_delete_draft_cea_forms">Remove selected CEA form(s)?</string>
+
+    <string name="hint_enter_url">Enter URL</string>
+    <string name="hint_property_search">Search by street, project, building and postal code</string>
+    <string name="hint_property_classification">Property classification</string>
+    <string name="hint_property_type">Property type</string>
+    <string name="hint_tenure_type">Tenure type</string>
+    <string name="hint_model">Model</string>
+    <string name="hint_floor">Floor</string>
+    <string name="hint_developer">Developer</string>
+    <string name="hint_unit">Unit</string>
+    <string name="hint_built_size">Built Size %s</string>
+    <string name="hint_land_size">Land Size (Sqft)</string>
+    <string name="hint_completion_year">Completion date</string>
+    <string name="hint_available_from">DD/MM/YYYY</string>
+    <string name="hint_enter_tenancy_amount">Enter tenancy amount</string>
+    <string name="hint_enter_takeover_amount">Enter takeover amount</string>
+    <string name="hint_enter_utilities_cost">Enter utilities cost</string>
+    <string name="hint_enter_home_owner_mobile">Enter Home owner\'s mobile number</string>
+    <string name="hint_enter_home_report_client_name">Enter client\'s name (Optional)</string>
+
+    <string name="msg_successfully_published_listings">You have successfully published your listing</string>
+    <string name="msg_auto_saved_find_draft">Your listing will be auto saved in My Listings</string>
+    <string name="msg_auto_saved_drafts">Autosaved in drafts</string>
+    <string name="msg_listing_certified">You can now get your listings certified from home owners</string>
+    <string name="msg_empty_wallet">That\'s fine, just add more credits to continue</string>
+    <string name="msg_visible_only_to_agents">Visible only to agents</string>
+    <string name="msg_turn_on_location_provider">Please turn on the location service provider on your device.</string>
+    <string name="msg_location_provider_processing">It might take a while to get your location, please wait and try again.</string>
+    <string name="msg_listing_quality_info">Your Listing Quality will determine your listing ranking on SRX.com.sg, it can be detailed as follows:\n\nBasic Info - 20%\nUnit No. - 20%\nListing header - 10%\nRemarks - 20%\nUpload quality photos - 5%/photo (20% max)\nFacilities and fittings - 5%/item (10% max)</string>
+    <string name="msg_read_advisory">I declare that i have consent from the client to advertise this property and I have complied with the EAA, its Regulations and CEA’s guidelines.</string>
+    <string name="msg_acknowledge_description">Under the EAA and its Regulations, only licensed estate agents and registered sales persons are allowed to conduct estate agency work in Singapore.\nIn addition, they are required to display their identification and be clearly in their advertisements when they advertise for sales/purchase/lease of properties.\nAny offender who operates without an estate agent licence shall be liable on conviction to a fine not exceeding $75,000 or imprisonment for a term not exceeding 3 Years or to both.\nAny offender who carries out estate agency work without registration may be liable on conviction to a fine of up to $25,000 or to imprisonment of up to 12 months, or to both.\nA person who abets the commission of such offence may himself/herself be liable for the same penalty.</string>
+    <string name="msg_delete_images_confirmation">Delete selected image(s)?</string>
+    <string name="msg_invalid_youtube_link">Invalid youtube link</string>
+    <string name="msg_certified_listing">Upon posting, enter home owners details to get them verify your listing in SRX</string>
+    <string name="msg_get_certified_listing_home_owner">You can now get your listings certified from homeowners.</string>
+    <string name="msg_confirmation_posting_credit">You have %1$s.This will cost you %2$s</string>
+    <string name="msg_agree_acknowledged">Please check the above agreement before processing</string>
+    <string name="msg_valid_youtube_url">Valid youtube url</string>
+    <string name="msg_wrong_youtube_url">Wrong youtube url</string>
+    <string name="msg_notify_homeowner">We have notified the homeowner to certify your listing</string>
+    <string name="msg_failed_photos">%s photo(s) failed to upload</string>
+    <plurals name="label_credit_count">
+        <item quantity="one">%s Credit</item>
+        <item quantity="other">%s Credits</item>
+    </plurals>
+    <string name="msg_listing_video_viewing">Customers can request to view this listing through video call</string>
+    <string name="msg_advertise_listing">You can now advertise your listing in SRX Community.</string>
+    <string name="label_enter_sponsor">Community Post</string>
+
+    <!-- Post listing vet photo non quality photo-->
+    <string name="label_vet_listing_what_is">What is</string>
+    <string name="label_vet_listing_non_quality">Non-Quality</string>
+    <string name="label_vet_listing_picture">pictures?</string>
+    <string name="label_vet_listing_appeal">Appeal</string>
+    <string name="label_non_quality_photo_info">Non-Quality is determined based on the following</string>
+
+    <string name="label_non_quality_photo_height">Height of photo</string>
+    <string name="label_non_quality_photo_width">Width of photo</string>
+    <string name="label_non_quality_photo_contain_face">Photo contains a face</string>
+    <string name="label_non_quality_photo_text_within_photo">Text within the photo</string>
+    <string name="label_non_quality_photo_blurriness">Blurriness</string>
+    <string name="label_non_quality_photo_saturation">Saturation</string>
+
+    <string name="label_what_happens_to_non_quality_listing">What happens to a Non-Quality picture?</string>
+    <string name="label_explanation_of_non_quality_listing">You can still proceed with posting but it will be placed at the end of all listing photos</string>
+
+    <string name="label_what_if_system_detects_wrongly">What if system detects wrongly?</string>
+    <string name="label_explanation_of_if_system_detects_wrongly">You can request an appeal and after review, it will be not tagged as Non-Quality</string>
+
+    <plurals name="label_non_quality_photo_pictures">
+        <item quantity="one">picture</item>
+        <item quantity="other">pictures</item>
+    </plurals>
+
+    <string name="dialog_title_request_an_appeal">Request an appeal</string>
+    <string name="dialog_msg_request_an_appeal_will_be_sent">Request will be sent to the internal team for review</string>
+    <string name="dialog_positive_button_label_appeal">Appeal</string>
+
+    <string name="error_msg_invalid_quality_photo">Invalid Quality Listing Photo</string>
+
+    <string name="label_quality_listing_appeal_status_submitted">Pending Review</string>
+    <string name="label_quality_listing_appeal_status_approve">Approved</string>
+    <string name="label_quality_listing_appeal_status_rejected">Rejected</string>
+    <string name="label_quality_listing_appeal_status_kiv">KIV</string>
+
+    <!-- Portal Importing listings -->
+    <string name="title_import_and_sync_listings">Import &amp; Sync Listings</string>
+    <string name="title_import_and_sync_settings">My Import &amp; Sync Settings</string>
+    <string name="title_import_listings">Import Listings</string>
+    <string name="title_import_summary">Import summary</string>
+
+    <string name="label_import_listings">Import Listings</string>
+    <string name="label_remember_me">Remember me</string>
+    <string name="label_read_more">Read More</string>
+    <string name="label_close">Close</string>
+    <string name="label_sign_out_from_portal">Sign out</string>
+    <string name="label_go_to_my_listings">Go to my listings</string>
+    <string name="label_go_to_portal_listings">Go back to Import Listings</string>
+    <string name="label_import">Import</string>
+    <string name="label_no_portal_listings">No portal listings found</string>
+    <string name="label_sync_settings">Sync settings</string>
+    <string name="label_portal_listings_show_all">Show all</string>
+    <string name="label_portal_listings_imported">Imported to SRX</string>
+    <string name="label_sync">Sync</string>
+    <string name="label_view_in_pg">View Listing</string>
+    <string name="label_portal_type_pg_id">ID %s</string>
+    <string name="label_portal_type_portal_id">Portal %s</string>
+    <string name="label_portal_type_agency_id">Agency %s</string>
+    <string name="label_imported_listing">Imported Listings</string>
+
+    <string name="hint_email_address">E-mail address</string>
+    <string name="hint_password">Password</string>
+
+    <string name="action_import_to_srx">Import to SRX</string>
+    <string name="action_sync_listings">Sync listings</string>
+    <string name="action_connect">Connect</string>
+    <string name="action_connecting">Connecting&#8230;</string>
+    <string name="action_my_listings">My Listings</string>
+    <string name="action_review_failed_listings">Review failed Listing(s)</string>
+    <string name="action_apply_settings">Apply settings</string>
+    <string name="action_apply_settings_and_select_listings">Apply settings &amp; select listings</string>
+
+    <string name="msg_last_synced">Last synced: %s</string>
+    <string name="msg_import_from_pg">Connect your PG account to import all your active listings into SRX</string>
+    <string name="msg_select_listings_to_import_to_srx">Select listings to import to SRX</string>
+    <string name="msg_my_pg_listings">
+        ** Disclaimer: Subscribers must check the Terms and Conditions of any third party with whom they may have contracted with respect to any restrictions on sharing or using posted content. Third party Terms and Conditions may vary from time to time and it is important to make regular checks as to their ongoing legal duties and obligations.
+        \n\nStreetSine does not encourage or endorse any actions by subscribers that breach or may breach their contractual obligations with any third party and StreetSine bears no liability whatsoever for the actions of any subscriber who fails to check or chooses to ignore their third party contractual obligations.
+        \n\nListings imported may not have 100% listing quality as Property Guru and SRX listing features are different. Please refer to the information shown below in order to get 100% listing quality.\n\nBasic info** - 20%\nUnit Number - 20%\nRemarks - 20%\nListing Header -10%\nUpload quality photos - 5% / photo (20% max)\nFacilities and fittings - 5% / item (10% max)\n\n
+        ** Please make sure that postal code is correct after the import.
+    </string>
+    <string name="msg_portal_login_disclaimer">
+        ** Disclaimer: Subscribers must check the Terms and Conditions of any third party with whom they may have contracted with respect to any restrictions on sharing or using posted content. Third party Terms and Conditions may vary from time to time and it is important to make regular checks as to their ongoing legal duties and obligations.
+        \n\nStreetSine does not encourage or endorse any actions by subscribers that breach or may breach their contractual obligations with any third party and StreetSine bears no liability whatsoever for the actions of any subscriber who fails to check or chooses to ignore their third party contractual obligations.
+    </string>
+    <string name="msg_sync_settings">You can make changes to this under sync settings</string>
+    <string name="msg_sync_settings_long_desc">Listings will be imported and published to SRX, failed listings will be saved under draft. You can view under manage my listings.</string>
+    <plurals name="label_listings_count">
+        <item quantity="one">%s listing</item>
+        <item quantity="other">%s listings</item>
+    </plurals>
+    <string name="msg_portal_listings_selected">%s selected</string>
+    <string name="msg_portal_listings_successfully_published">%s successfully published</string>
+    <string name="msg_portal_listings_failed">%s failed</string>
+    <string name="msg_make_your_listing_different">Make your listings different from the rest</string>
+    <string name="msg_import_listings_time">How often do you want to sync your imported listings?</string>
+    <string name="msg_apply_settings">Sync will overwrite previous details but will not affect any SRX Value-added Services you have added to your listing. A listing credit will be utilized for every sync and reposting of a listing.</string>
+    <string name="msg_importing">Importing..</string>
+
+    <string name="error_msg_portal_login_info">Incorrect login information</string>
+
+    <string name="dialog_message_importing_listings">Importing listings.Please wait.</string>
+    <string name="dialog_message_import_confirmation">%s to import.Import selected listing(s) to SRX?</string>
+    <string name="dialog_message_sync_listings_confirmation">All your listings will be automatically imported now and synced. Would you like to proceed?</string>
+
+    <!-- Create Listing Enum -->
+    <string name="property_classification_hdb">HDB</string>
+    <string name="property_classification_private_residential">Private Residential</string>
+    <string name="property_classification_commercial_industrial">Commercial / Industrial</string>
+    <string name="property_type_hdb_1_room">HDB 1 Room</string>
+    <string name="property_type_hdb_2_rooms">HDB 2 Rooms</string>
+    <string name="property_type_hdb_3_rooms">HDB 3 Rooms</string>
+    <string name="property_type_hdb_4_rooms">HDB 4 Rooms</string>
+    <string name="property_type_hdb_5_rooms">HDB 5 Rooms</string>
+    <string name="property_type_hdb_executive">HDB Executive</string>
+    <string name="property_type_hdb_hudc">HDB HUDC</string>
+    <string name="property_type_hdb_jumbo">HDB Jumbo</string>
+    <string name="property_type_semi_detached">Semi-Detached</string>
+    <string name="price_option_negotiable">Negotiable</string>
+    <string name="price_option_guide_price">Guide price</string>
+    <string name="price_option_offer_in_excess">Offer in excess</string>
+    <string name="price_option_view_to_offer">@string/label_view_to_offer</string>
+    <string name="price_option_other_please">Others (please specify)</string>
+    <string name="tenancy_status_tenanted">Tenanted</string>
+    <string name="tenancy_status_not_tenanted">Not tenanted</string>
+    <string name="room_type_master">Master</string>
+    <string name="room_type_common">Common</string>
+    <string name="post_listing_lease_term_flexible">Flexible</string>
+    <string name="post_listing_lease_term_six_months">6 months</string>
+    <string name="post_listing_lease_term_one_year">1 year</string>
+    <string name="post_listing_lease_term_two_years">2 years</string>
+    <string name="post_listing_lease_term_two_years_and_above">2+ years</string>
+    <string name="owner_type_not_available">N.A</string>
+    <string name="owner_type_private">Private</string>
+    <string name="owner_type_government">Government</string>
+    <string name="assignment_type_takeover">Takeover</string>
+    <string name="assignment_type_no_takeover">No Takeover</string>
+    <string name="furnish_level_bare">Bare</string>
+    <string name="furnish_level_partially_fitted">Partially fitted</string>
+    <string name="furnish_level_fully_fitted">Fully fitted</string>
+    <string name="rental_type_whole_unit">Whole Unit</string>
+    <string name="rental_type_sublet">Sublet</string>
+
+    <string name="property_info_address">Address</string>
+    <string name="property_info_classification">Property Classification</string>
+    <string name="property_info_property_type">Property Type</string>
+    <string name="property_info_model">Model</string>
+    <string name="property_info_tenure">Tenure</string>
+    <string name="property_info_completion_date">Completion Date</string>
+    <string name="property_info_unit">Unit</string>
+    <string name="property_info_size">Size</string>
+    <string name="property_info_developer">Developer</string>
+
+    <!--Listing room count-->
+    <string name="room_count_any">Any</string>
+    <string name="room_count_one">1</string>
+    <string name="room_count_two">2</string>
+    <string name="room_count_three">3</string>
+    <string name="room_count_four">4</string>
+    <string name="room_count_five">5</string>
+    <string name="room_count_six_and_above">6+</string>
+
+    <!--Filter listing-->
+    <string name="listing_filter_label_property_type">Property Type</string>
+    <string name="listing_filter_label_price_range">Price Range</string>
+    <string name="listing_filter_label_price_psf">Price per square feet</string>
+    <string name="listing_filter_label_floor_area">Floor Area</string>
+    <string name="listing_filter_label_land_size">Land Size</string>
+    <string name="listing_filter_label_rental_type">Rental Type</string>
+    <string name="listing_filter_label_floor_level">Floor Level</string>
+    <string name="listing_filter_label_tenure">Tenure</string>
+    <string name="listing_filter_label_construction_year">Construction year</string>
+    <string name="listing_filter_label_furnishing">Furnishing</string>
+    <string name="listing_filter_label_listed">Listed date</string>
+    <string name="label_to">to</string>
+    <string name="content_description_residential_property_icon">Residential icon</string>
+    <string name="content_description_commercial_property_icon">Commercial icon</string>
+
+    <!--Listing floor labels-->
+    <string name="label_floor_ground">Ground</string>
+    <string name="label_floor_low">Low</string>
+    <string name="label_floor_mid">Mid</string>
+    <string name="label_floor_high">High</string>
+    <string name="label_floor_penthouse">Penthouse</string>
+
+    <string name="label_furnish_full">Fully furnished</string>
+    <string name="label_furnish_half">Partial furnished</string>
+    <string name="label_furnish_not">Not furnished</string>
+    <string name="label_filter_misc_owner_certified">Certified</string>
+    <string name="label_filter_misc_virtual_tours">v360</string>
+    <string name="label_filter_misc_drone_views">Drone</string>
+    <string name="label_filter_misc_exclusive">Exclusive</string>
+    <string name="label_filter_misc_x_listing_price">with SRX certified valuations</string>
+    <string name="title_activity_listing_details">ListingDetailsActivity</string>
+
+    <!--Listing filter first posted date-->
+    <string name="dialog_title_select_listed_date">Listed Date</string>
+    <string name="label_date_first_posted_any">Any</string>
+    <string name="label_date_first_posted_within_three_days">Within 3 days</string>
+    <string name="label_date_first_posted_within_one_week">Within 1 week</string>
+    <string name="label_date_first_posted_within_two_weeks">Within 2 weeks</string>
+    <string name="label_date_first_posted_within_one_month">Within 1 month</string>
+
+    <!--Listing filter submit panel-->
+    <string name="button_apply_filters">Apply Filters</string>
+    <plurals name="label_filter_listings_count_residential">
+        <item quantity="one">%s Home</item>
+        <item quantity="other">%s Homes</item>
+    </plurals>
+    <plurals name="label_filter_listings_count_commercial">
+        <item quantity="one">%s Property</item>
+        <item quantity="other">%s Properties</item>
+    </plurals>
+
+    <!--Listing details-->
+    <string name="title_listing_details_key_information">Key Information</string>
+    <string name="label_listing_details_type">Type</string>
+    <string name="label_listing_details_model">Model</string>
+    <string name="label_listing_details_construction_year">Construction year</string>
+    <string name="label_listing_details_tenure">Tenure</string>
+    <string name="label_listing_details_district">District</string>
+    <string name="label_listing_details_hdb_town">HDB Town</string>
+    <string name="label_listing_details_address">Address</string>
+    <string name="label_listing_details_listing_date">Listing Date</string>
+    <string name="label_listing_details_developer">Developer</string>
+    <string name="label_listing_details_listing_id">Listing ID</string>
+    <string name="label_listing_details_floor">Floor</string>
+    <string name="button_show_more">Show More</string>
+    <string name="button_show_less">Show Less</string>
+    <string name="button_close">Close</string>
+    <string name="label_listing_details_lease_term">Lease Term</string>
+    <string name="label_listing_details_furnish">Furnish</string>
+    <string name="title_listing_details_description">Description</string>
+    <string name="title_listing_details_location">Location</string>
+    <string name="title_listing_details_facilities">Facilities</string>
+    <string name="title_listing_details_home_value_estimator">Home Value Estimator (X-Value)</string>
+    <string name="title_listing_details_similar_listings">Recommended Properties</string>
+    <string name="listing_details_agent_cea_number">CEA: %s</string>
+    <string name="title_listing_details_contact_agent">Contact Agent</string>
+    <string name="button_view_agent_cv">View Agent CV</string>
+    <string name="error_agent_mobile_not_available">The phone number of agent not available.</string>
+    <string name="message_share_other_listing">Hey there! Check out this property I found on SRX… what do you think?😊\n\uD83D\uDE0A %s</string>
+    <string name="message_share_own_listing">Hey there! Check out my listing on SRX… what do you think?😊\n\uD83D\uDE0A %s</string>
+    <string name="label_cea_not_available">Not available</string>
+    <string name="label_listing_type_srx_listing">SRX Listing</string>
+    <string name="label_listing_type_public_listing">Public Listing</string>
+    <string name="button_listing_details_edit_listing">Edit Listing</string>
+    <string name="button_listing_details_srx_add_on">SRX Add On</string>
+    <string name="label_listing_transacted">This listing has been transacted</string>
+    <string name="button_copy_transacted">Make a copy</string>
+    <string name="title_listing_details_home_value_estimator_latest_transactions">Latest Transactions</string>
+    <string name="title_listing_details_x_trend">X - Trend</string>
+    <string name="label_listing_details_x_value_lowest">Lowest Value</string>
+    <string name="label_listing_details_x_value_highest">Highest Value</string>
+    <string name="label_listing_details_x_value_latest">X-Value</string>
+
+    <!--Enquire agent option-->
+    <string name="dialog_option_call_agent">Call Agent</string>
+    <string name="dialog_option_message">Message</string>
+    <string name="dialog_option_whatsapp">WhatsApp</string>
+    <string name="dialog_option_chat">SRX Chat</string>
+    <string name="dialog_option_text_message">Text Message</string>
+    <string name="dialog_option_app_enquiry">SRX App Enquiry</string>
+    <string name="template_message_enquire_agent">Hi. I\'m interested in your sale listing for %1$s on SRX (%2$s/l/%3$s). Please contact me. Thanks 😊</string>
+    <string name="template_message_enquire_agent_public">Hi, I am interested in your %1$s, %2$s (%3$s)%4$s, %5$s. Please contact me. Rgds, %6$s%7$s</string>
+
+    <!--Cobroke option-->
+    <string name="dialog_option_cobroke_phone_sms">SMS</string>
+    <string name="dialog_option_cobroke_srx_chat">SRX Chat</string>
+    <string name="dialog_option_cobroke_srx_sms_blast">SRX free SMS blast</string>
+
+    <!--Cobroke phone SMS option-->
+    <string name="dialog_option_cobroke_phone_sms_messages">Messages</string>
+    <string name="dialog_option_cobroke_phone_sms_messenger">Messenger</string>
+    <string name="dialog_option_cobroke_phone_sms_hangouts">Hangouts</string>
+    <string name="dialog_option_cobroke_phone_sms_whatsapp">WhatsApp</string>
+
+    <!--HDB town name-->
+    <string name="hdb_town_name_angmokio">Ang Mo Kio</string>
+    <string name="hdb_town_name_bedok">Bedok/Chai Chee</string>
+    <string name="hdb_town_name_bishan">Bishan</string>
+    <string name="hdb_town_name_bukit_batok">Bukit Batok</string>
+    <string name="hdb_town_name_bukit_merah">Bukit Merah/Telok Blangah</string>
+    <string name="hdb_town_name_bukit_panjang">Bukit Panjang</string>
+    <string name="hdb_town_name_bukit_timah">Bukit Timah</string>
+    <string name="hdb_town_name_central_area">Central Area</string>
+    <string name="hdb_town_name_choa_chu_kang">Choa Chu Kang</string>
+    <string name="hdb_town_name_clementi">Clementi/West Coast</string>
+    <string name="hdb_town_name_geylang">Geylang/Macpherson/Eunos</string>
+    <string name="hdb_town_name_hougang">Hougang</string>
+    <string name="hdb_town_name_jurong_east">Jurong East</string>
+    <string name="hdb_town_name_jurong_west">Jurong West</string>
+    <string name="hdb_town_name_kallang">Kallang/Whampoa</string>
+    <string name="hdb_town_name_lim_chu_kang">Lim Chu Kang</string>
+    <string name="hdb_town_name_marine_parade">Marine Parade</string>
+    <string name="hdb_town_name_pasir_ris">Pasir Ris</string>
+    <string name="hdb_town_name_punggol">Punggol</string>
+    <string name="hdb_town_name_queenstown">Queenstown</string>
+    <string name="hdb_town_name_sembawang">Sembawang</string>
+    <string name="hdb_town_name_sengkang">Sengkang</string>
+    <string name="hdb_town_name_serangoon">Serangoon</string>
+    <string name="hdb_town_name_tampines">Tampines/Simei</string>
+    <string name="hdb_town_name_toapayoh">Toa Payoh</string>
+    <string name="hdb_town_name_woodlands">Woodlands</string>
+    <string name="hdb_town_name_yishun">Yishun</string>
+    <string name="hdb_town_name_tengah">Tengah</string>
+
+    <!--District name-->
+    <string name="district_name_d1">D1 - Boat Quay / Raffles Place / Marina</string>
+    <string name="district_name_d2">D2 - Chinatown / Tanjong Pagar</string>
+    <string name="district_name_d3">D3 - Alexandra / Commonwealth</string>
+    <string name="district_name_d4">D4 - Sentosa / Harbourfront</string>
+    <string name="district_name_d5">D5 - Buona Vista / West Coast / Clementi New Town</string>
+    <string name="district_name_d6">D6 - City Hall / Clarke Quay</string>
+    <string name="district_name_d7">D7 - Beach Road / Bugis / Rochor</string>
+    <string name="district_name_d8">D8 - Farrer Park / Serangoon Rd</string>
+    <string name="district_name_d9">D9 - Orchard / River Valley</string>
+    <string name="district_name_d10">D10 - Tanglin / Holland / Bukit Timah</string>
+    <string name="district_name_d11">D11 - Newton / Novena</string>
+    <string name="district_name_d12">D12 - Balestier / Toa Payoh</string>
+    <string name="district_name_d13">D13 - Macpherson / Potong Pasir</string>
+    <string name="district_name_d14">D14 - Eunos / Geylang / Paya Lebar</string>
+    <string name="district_name_d15">D15 - East Coast / Marine Parade</string>
+    <string name="district_name_d16">D16 - Bedok / Upper East Coast</string>
+    <string name="district_name_d17">D17 - Changi Airport / Changi Village</string>
+    <string name="district_name_d18">D18 - Pasir Ris / Tampines</string>
+    <string name="district_name_d19">D19 - Hougang / Punggol / Sengkang</string>
+    <string name="district_name_d20">D20 - Ang Mo Kio / Bishan / Thomson</string>
+    <string name="district_name_d21">D21 - Clementi Park / Upper Bukit Timah</string>
+    <string name="district_name_d22">D22 - Boon Lay / Jurong / Tuas</string>
+    <string name="district_name_d23">D23 - Dairy Farm / Bukit Panjang / Choa Chu Kang</string>
+    <string name="district_name_d24">D24 - Lim Chu Kang / Tengah</string>
+    <string name="district_name_d25">D25 - Admiralty / Woodlands</string>
+    <string name="district_name_d26">D26 - Mandai / Upper Thomson</string>
+    <string name="district_name_d27">D27 - Sembawang / Yishun</string>
+    <string name="district_name_d28">D28 - Seletar / Yio Chu Kang</string>
+
+    <!--Amenity option-->
+    <string name="label_amenity_option_others">Your Location</string>
+    <string name="label_amenity_option_mrt">MRT</string>
+    <string name="label_amenity_option_bus">Bus</string>
+    <string name="label_amenity_option_schools">Schools</string>
+    <string name="label_amenity_option_retail">Retail</string>
+    <string name="label_amenity_option_restaurant">F&amp;B</string>
+    <string name="label_amenity_option_medical">Hospital</string>
+    <string name="label_amenity_option_worship">Places Of Worship</string>
+
+    <!--Listing media-->
+    <string name="title_activity_listing_medias_loading">Loading…</string>
+    <string name="title_activity_listing_medias">%1$d of %2$d</string>
+    <string name="hint_video">Video</string>
+    <string name="hint_watch_video">Click to watch video</string>
+    <string name="toast_error_invalid_url">Invalid URL.</string>
+
+    <string name="listing_media_tag_virtual_tour">v360&#176; inside</string>
+    <string name="listing_media_tag_drone_view">Drone View</string>
+    <string name="listing_media_tag_generic">Media</string>
+
+    <!--My listings-->
+    <string name="title_my_listings">My Listings</string>
+    <string name="button_select_all">Select All</string>
+    <string name="button_unselect_all">Unselect All</string>
+    <string name="content_description_sort">Sort</string>
+    <string name="label_rent_with_count">Rent (%d)</string>
+    <string name="label_sale_with_count">Sale (%d)</string>
+    <string name="toast_error_invalid_portal_listing_url">Portal listing URL missing or invalid.</string>
+    <string name="label_boost_my_listing_rank">Featured listing slot is available</string>
+    <string name="content_description_top_tip">Top tip</string>
+    <string name="button_add_featured">Add Now</string>
+    <string name="label_my_listing_seen">Seen</string>
+    <string name="label_my_listing_clicked">Clicked</string>
+    <string name="label_my_listing_enquired">Enquired</string>
+    <string name="label_my_listing_expiry">Expiry: %s</string>
+    <string name="label_my_listing_posted">Posted: %s</string>
+    <string name="label_my_listing_srx_certified">with SRX certified</string>
+    <string name="label_my_listing_srx_valuation">valuation</string>
+
+    <string name="hint_my_listing_search_listings">Search %s listings</string>
+    <string name="msg_my_listings_add_value_services">Select listing(s) to add value-added services</string>
+    <string name="dialog_message_copying_listing">Copying listings.Please wait.</string>
+
+    <!--My listings tab title-->
+    <string name="tab_title_my_active_listings_fragment">Active</string>
+    <string name="tab_title_my_draft_listings_fragment">Draft</string>
+    <string name="tab_title_my_past_listings_fragment">Past</string>
+    <string name="tab_title_my_transaction_listings_fragment">Transaction</string>
+
+    <!--My listings tab title occupied-->
+    <string name="tab_title_my_active_listings_fragment_occupied">Active (%d)</string>
+    <string name="tab_title_my_draft_listings_fragment_occupied">Draft (%d)</string>
+    <string name="tab_title_my_past_listings_fragment_occupied">Past (%d)</string>
+    <string name="tab_title_my_transaction_listings_fragment_occupied">Transaction (%d)</string>
+
+    <!--My listings order criteria-->
+    <string name="label_my_listing_order_criteria_default">Default</string>
+    <string name="label_my_listing_order_criteria_listing_quality_asc">Listing Quality (low to high)</string>
+    <string name="label_my_listing_order_criteria_listing_quality_desc">Listing Quality (high to low)</string>
+    <string name="label_my_listing_order_criteria_date_posted_asc">Posted Date (old to new)</string>
+    <string name="label_my_listing_order_criteria_date_posted_desc">Posted Date (new to old)</string>
+    <string name="label_my_listing_order_criteria_v_t360_asc">V360° Listings</string>
+    <string name="label_my_listing_order_criteria_spv_asc">Valuation Listings</string>
+    <string name="label_my_listing_order_criteria_drone_view_asc">Drone Listings</string>
+    <string name="label_my_listing_order_criteria_create_date_asc">Created Date (old to new)</string>
+    <string name="label_my_listing_order_criteria_create_date_desc">Created Date (new to old)</string>
+
+    <!--My listings group-->
+    <string name="label_listing_group_active">Active</string>
+    <string name="label_listing_group_drafts">Drafts</string>
+    <string name="label_listing_group_expired">Expired</string>
+    <string name="label_listing_group_taken_off">Taken off</string>
+    <string name="label_listing_group_transaction">Transaction</string>
+    <string name="label_listing_group_cea_form">CEA form</string>
+
+    <string name="label_my_listing_draft_listing">Listings</string>
+    <string name="label_my_listing_draft_listing_count">Listings (%d)</string>
+    <string name="label_my_listing_draft_cea_forms">CEA Exclusive</string>
+    <string name="label_my_listing_draft_cea_forms_count">CEA Exclusive (%d)</string>
+
+    <!--Transactions-->
+    <string name="label_group_transaction_summary_title_near">Transaction Summary near %s</string>
+    <string name="label_group_transaction_summary_title_for">Transaction Summary for %s</string>
+    <string name="label_group_transaction_title_sub_type">%s in Singapore</string>
+    <string name="title_group_transaction_suffix_property_type_address">%1$s in %2$s</string>
+    <string name="title_group_transaction_suffix_property_type_amenity">%1$s near %2$s</string>
+    <string name="label_project_transaction_summary_title">Transaction Summary for %s</string>
+    <string name="label_transaction_projects_empty">No project available.</string>
+    <string name="label_transactions_empty">No transaction available.</string>
+    <string name="label_transactions_summary_empty">No transaction summary available.</string>
+    <string name="label_list_item_transaction_project_completed">Completed: %s</string>
+    <string name="description_transactions_project">District %1$s | %2$s | Completed %3$s</string>
+    <string name="project_item_price">\$%1$s to \$%2$s</string>
+    <string name="dialog_title_select_block">Select block</string>
+    <string name="dialog_title_transaction_sort_order">Sort by</string>
+    <string name="description_transactions_project_completed">Built %s</string>
+    <string name="project_item_built_year">Built - %s</string>
+    <string name="button_info">Info</string>
+
+    <!--Transaction tab titles-->
+    <string name="tab_title_transactions_projects">Projects</string>
+    <string name="tab_title_transactions_transactions">Transactions</string>
+    <string name="tab_title_transactions_table">Table view</string>
+    <string name="tab_title_transactions_tower">Tower view</string>
+    <string name="tab_title_transactions_real_time">Real-Time</string>
+    <string name="tab_title_transactions_official">Official</string>
+
+    <!--Transaction item columns-->
+    <string name="label_column_transaction_date_sold">Date</string>
+    <string name="label_column_transaction_address">Address</string>
+    <string name="label_column_transaction_size_sqft">Sqft</string>
+    <string name="label_column_transaction_size_sqm">Sqm</string>
+    <string name="label_column_transaction_size">Size</string>
+    <string name="label_column_transaction_psf">PSF</string>
+    <string name="label_column_transaction_price">Price</string>
+    <string name="label_column_transaction_property_type">Model</string>
+    <string name="label_column_transaction_sale_type">Sale Type</string>
+    <string name="label_column_transaction_project_name">Project Name</string>
+    <string name="label_column_transaction_model_type">Model Type</string>
+    <string name="label_column_transaction_area_type">Area</string>
+    <string name="label_column_transaction_built_year">Built</string>
+    <string name="label_column_transaction_transaction">Type</string>
+    <string name="label_column_transaction_block">Blk</string>
+    <string name="label_column_transaction_unit">Unit</string>
+    <string name="label_column_transaction_cov">COV</string>
+    <string name="label_column_transaction_size_range">Size</string>
+    <string name="label_column_transaction_tenure">Tenure</string>
+
+    <!--Transaction tower-->
+    <string name="label_tower_blocks">Blocks</string>
+    <string name="label_tower_block">Blk %s</string>
+    <string name="label_floor">Level</string>
+    <string name="tower_unit_title">Unit %s</string>
+    <plurals name="label_unit_caveat_count">
+        <item quantity="one">%s caveat lodged</item>
+        <item quantity="other">%s caveats lodged</item>
+    </plurals>
+
+    <!--Transaction caveats-->
+    <plurals name="dialog_header_caveats">
+        <item quantity="one">%s Caveat Lodged</item>
+        <item quantity="other">%s Caveats Lodged</item>
+    </plurals>
+    <string name="clause_caveat_not_available">Transactions before 1995 are not available</string>
+    <string name="column_caveat_date">Date</string>
+    <string name="column_caveat_area">Area (Sqft)</string>
+    <string name="column_caveat_psf">PSF</string>
+    <string name="column_caveat_price">Price</string>
+
+    <!-- Agent CV and Profile -->
+    <string name="title_payment">Payment</string>
+    <string name="label_general_info">General Information</string>
+    <string name="label_track_record">My Track Record</string>
+    <string name="label_testimonials">Testimonials</string>
+    <string name="label_testimonial">Testimonial</string>
+    <string name="label_social_media">Social Media</string>
+    <string name="label_cv_listings">Listings</string>
+    <string name="label_cv_sale_listings">Listings for Sale</string>
+    <string name="label_cv_rent_listings">Listings for Rent</string>
+    <string name="label_cv_sold_transactions">Sold Transactions</string>
+    <string name="label_cv_rented_transactions">Rented Transactions</string>
+    <string name="label_private">Private</string>
+    <string name="label_wallet">Wallet</string>
+    <string name="label_valuation">Valuation</string>
+    <string name="label_x_drone">X-Drone</string>
+    <string name="label_view_my_cv">View my CV</string>
+    <string name="label_view_my_clients">View my clients (%s)</string>
+    <string name="label_subscription">Subscription</string>
+    <string name="label_membership_status">%s membership</string>
+    <string name="label_my_clients">My Clients</string>
+    <string name="label_most_recent">Most Recent</string>
+    <string name="label_adviser_clients">Trusted Adviser Clients</string>
+    <string name="label_referral_code">Referral code</string>
+    <string name="label_if_any">if any</string>
+
+    <string name="label_sold">Sold</string>
+    <string name="label_rented">Rented</string>
+
+    <string name="label_no_testimonial_placeholder">You have not added any testimonial yet</string>
+    <string name="label_no_general_info_placeholder">You have not added any general information yet</string>
+    <string name="label_no_listing_placeholder">You have not added any listing yet</string>
+    <string name="label_no_transaction_placeholder">You have not made any transaction yet</string>
+    <string name="label_website_url">Website URL</string>
+    <string name="label_unavailable">Unavailable</string>
+    <string name="label_show_in_agent_cv">Show in Agent CV</string>
+    <string name="label_preferred_bank">Preferred bank</string>
+    <string name="label_payment_single">Single payment</string>
+    <string name="label_payment_installment">Instalment</string>
+    <string name="label_available_months">%s months</string>
+
+    <string name="hint_testimonial_name">Name</string>
+    <string name="hint_cv_url">your name</string>
+
+    <string name="title_x_drone_packages">X-Done Packages</string>
+    <string name="title_upgrade_membership">Upgrade Membership</string>
+    <string name="action_invite_clients">Invite clients</string>
+    <string name="action_add_now">Add now</string>
+    <string name="action_create_new_listing">Create new listing</string>
+    <string name="action_save_and_continue">Save &amp; continue</string>
+    <string name="action_proceed_to_payment">Proceed to payment</string>
+    <string name="action_subscribe">Subscribe</string>
+    <string name="msg_agreement_subscribe_trial">By tapping Subscribe, I agree to SRX Terms of Use &amp; Terms of Sale</string>
+    <string name="link_agreement_subscribe_trial_terms_of_use">Terms of Use</string>
+    <string name="link_agreement_subscribe_trial_terms_of_sale">Terms of Sale</string>
+
+    <string name="msg_cv_url_change_once">You cannot change your URL upon saving</string>
+    <string name="msg_social_media">Option to share you listings to your social media page by linking</string>
+    <string name="msg_upgrade_membership">Membership upgrade is valid 1 year from the date of upgrade</string>
+    <string name="msg_promotional_offers">Promotional offers/deals? Call or email us</string>
+    <string name="msg_need_help">Need help? Call or email us</string>
+    <string name="msg_interest_free_instalments">Interest free instalments available with</string>
+    <string name="msg_customer_service_working_hour">Office hours: 9 AM - 6 PM (Mon-Fri )</string>
+    <string name="msg_delete_testimonial">Delete selected testimonial?</string>
+    <string name="msg_save_cv_url">Save this url?</string>
+    <string name="msg_instalment_options">Instalment options available in payment page</string>
+    <string name="msg_agree_to">I agree to</string>
+    <string name="msg_terms_of_use">Terms of Use,</string>
+    <string name="msg_terms_of_sale">Terms of Sale</string>
+    <string name="msg_and">and</string>
+    <string name="msg_privacy_policy">Privacy Policy</string>
+    <string name="msg_payment_success">Payment is successful. Thank you for your purchase!</string>
+    <string name="msg_property">%s property</string>
+    <string name="msg_properties">%s properties</string>
+
+    <string name="error_missing_available_month">Please select available month</string>
+
+    <string name="transaction_sold">%s Sold</string>
+    <string name="transaction_rented">%s Rented</string>
+    <string name="listing_sale">%s Sale</string>
+    <string name="listing_rent">%s Rent</string>
+    <string name="order_criteria_category">Category</string>
+    <string name="order_criteria_price">Price</string>
+    <string name="order_criteria_psf">PSF</string>
+
+    <string name="content_description_facebook">Facebook</string>
+    <string name="content_description_twitter">Twitter</string>
+
+    <string name="error_missing_transaction_type">Missing transaction type</string>
+    <string name="error_missing_transaction_property_type">Missing transaction property type</string>
+
+    <!--Amenities-->
+    <string name="activity_amenities">Amenities</string>
+    <string name="label_amenities_empty">No amenity available.</string>
+    <string name="amenity_transport_bus_mrt">Bus / MRT</string>
+    <string name="amenity_transport_drive">Drive</string>
+    <string name="amenity_transport_walk">Walk</string>
+    <string name="content_description_travel_mode_selection">Travel mode selection</string>
+    <string name="label_my_location">My Location</string>
+    <string name="label_amenities_enter_location">Enter a location</string>
+
+    <!-- Activate credits for some features-->
+    <string name="action_sending_request">Sending Request&#8230;</string>
+
+    <string name="title_add_drone">Add Drone</string>
+    <string name="title_add_v_360">Add v360°</string>
+    <string name="title_add_valuation">Add Valuation Request</string>
+    <string name="title_add_feature_listing">Add Featured Listing</string>
+    <string name="title_add_certified_listing">Add Certified Listing</string>
+    <string name="title_add_sponsor">Add Sponsor</string>
+
+    <string name="label_type_drone">drone</string>
+    <string name="label_type_v_360">V360</string>
+    <string name="label_type_valuation">valuation</string>
+    <string name="label_type_feature">feature</string>
+    <string name="label_type_sponsor">sponsor</string>
+
+    <!-- add on floating action bar -->
+    <string name="sub_add_on_export_pdf">Export PDF</string>
+    <string name="sub_add_on_no_deposit">No Deposit</string>
+    <string name="sub_add_on_certified_listing">Certified Listing</string>
+    <string name="sub_add_on_feature_listing_plus">Featured listing plus</string>
+    <string name="sub_add_on_feature_listing">Feature</string>
+    <string name="sub_add_on_repost">Repost</string>
+    <string name="sub_add_on_refresh">Refresh</string>
+    <string name="sub_add_on_take_down">Take Down</string>
+    <string name="sub_add_on_delete">Delete</string>
+    <string name="sub_add_on_copy">Make a copy</string>
+    <string name="sub_add_on_v360">v360°</string>
+    <string name="sub_add_on_x_drone">X-Drone</string>
+    <string name="sub_add_on_community_post">Community Post</string>
+
+    <string name="label_add_on_sponsor_listing">Sponsor this listing</string>
+    <string name="label_add_on_feature_listing">Feature this listing</string>
+    <string name="label_add_on_certified_listing">Certified listing</string>
+    <string name="label_add_on_v360">Add v360°</string>
+    <string name="label_add_on_drone">Add drone</string>
+    <string name="label_add_on_community_post">Post to community</string>
+
+    <!-- Features Credit Application-->
+    <string name="label_credit_deductible">Total credits deductible</string>
+    <string name="label_available_drone_credit">Available drone credits</string>
+    <string name="label_available_v360_credit">Available v360° credits</string>
+    <string name="label_available_valuation_credit">Available valuation credits</string>
+    <string name="label_available_feature_listing_credit">Available featured listing credits</string>
+    <string name="label_available_sponsored_listing_credit">Available sponsored post credits</string>
+    <plurals name="label_feature_listing_type_with_count">
+        <item quantity="one">%1$s (%2$s Credit)</item>
+        <item quantity="other">%1$s (%2$s Credits)</item>
+    </plurals>
+    <string name="label_certified_listing_home_owner_number">Enter Home owner\'s mobile number and send invite.</string>
+
+    <string name="label_book_appointment_date">Book appointment date</string>
+    <string name="label_book_inspection_date">Book inspection date</string>
+    <string name="label_show_available_showflats">Select available showflats</string>
+    <string name="label_select_preferred_date">Select your preferred date</string>
+    <string name="label_preferred_timing">Preferred timing</string>
+    <string name="label_remove">Remove</string>
+    <string name="label_sample_report">Sample report</string>
+
+    <string name="toast_downloading_valuation_sample_report">Valuation sample report is now downloading in the background. Please check your notifications for the download progress.</string>
+    <string name="notification_download_valuation_sample_report">Valuation sample report is ready</string>
+
+    <!-- message features-->
+    <string name="msg_add_on_drone">You are adding drone videos to the following listings</string>
+    <string name="msg_add_on_v360">You are adding v360° feature to the following listings</string>
+    <string name="msg_add_on_valuation">You are adding valuation request to the following listings</string>
+    <string name="msg_add_on_feature_listing">You are adding feature listing request to the following listings</string>
+    <string name="msg_add_on_sponsor">You are adding sponsor to the following listings</string>
+    <string name="msg_confirm_before_activate">Request %s for listing(s)?</string>
+    <string name="msg_feature_listing_confirm_before_activate">Request feature listing(s)?</string>
+    <string name="msg_confirmation_repost_listings">%1$s selected to repost. This will cost you %2$s</string>
+    <string name="msg_confirmation_refresh_listings">%1$s selected to refresh. This will cost you %2$s</string>
+    <string name="msg_no_time_slots_for_selected_date">No time slots for selected date</string>
+    <string name="toast_get_refresh_cost_failed">Failed to get refresh listing cost.</string>
+
+    <string name="hint_optional_remarks">Optional Remarks</string>
+
+    <string name="action_go_back_to_my_listings">Go back to My Listings</string>
+    <string name="msg_notified_home_owner">We have notified the homeowner to certify your listing</string>
+
+    <!-- error -->
+    <string name="error_select_at_least_one_listing">Please select at least one listing</string>
+    <string name="error_msg_empty_listings_to_activate_features">Empty listings to activate features</string>
+
+    <string name="content_description_wallet">wallet icon</string>
+    <!--Filter transactions-->
+    <string name="transaction_filter_label_search_radius">Radius</string>
+    <string name="transaction_filter_label_tenure">Tenure</string>
+
+    <!--Search radius-->
+    <string name="filter_transaction_search_radius_half_km">0.5 km</string>
+    <string name="filter_transaction_search_radius_one_km">1.0 km</string>
+    <string name="filter_transaction_search_radius_one_and_half_km">1.5 km</string>
+    <string name="filter_transaction_search_radius_two_km">2.0 km</string>
+    <string name="transaction_filter_label_area_type">Area Type</string>
+
+    <!--Area type-->
+    <string name="area_type_strata">Strata</string>
+    <string name="area_type_land">Landed</string>
+
+    <!--Tenure type-->
+    <string name="filter_transaction_search_tenure_type_freehold">Freehold</string>
+    <string name="filter_transaction_search_tenure_type_leasehold">Leasehold</string>
+
+    <!--Transaction filter label-->
+    <string name="transaction_filter_label_size">Floor Area (sqft)</string>
+    <string name="transaction_filter_label_age">Age (1 &#8211; 50 years)</string>
+    <string name="transaction_filter_label_property_type">Property Type</string>
+
+    <!--Search X-value form-->
+    <string name="hint_area_type">Type of Area</string>
+    <string name="hint_tenure">Tenure</string>
+    <string name="hint_built_year">Built Year</string>
+    <string name="hint_area_gfa">Built Size (GFA) (sqft)</string>
+    <string name="hint_area_sqft">Sqft</string>
+    <string name="hint_area_sqm">Sqm</string>
+    <string name="hint_area_ext">Ext. Area</string>
+
+    <!--Search X-value item-->
+    <string name="label_area_sqft_sqm">%1$s sqft | %2$s sqm</string>
+
+    <!--Search X-value page-->
+    <string name="label_search_x_value_hint">Search for address</string>
+
+    <!--X-value details-->
+    <string name="activity_x_value">X-Value</string>
+
+    <string name="title_x_value_comparables">Comparables</string>
+    <string name="title_x_value_x_trend">X - Trend</string>
+    <string name="title_x_value_asking_price_calculator">Asking price calculator</string>
+    <string name="title_x_value_last_month_change">Last month change</string>
+    <string name="label_x_value_change_this_property">This property</string>
+    <string name="label_x_value_change_ccr">CCR</string>
+    <string name="label_x_value_change_singapore">Singapore</string>
+    <string name="message_fail_download_x_value_report">Download X-value report failed.</string>
+    <string name="label_x_value_comparable_source_srx">SRX</string>
+
+    <string name="label_x_value_sale_x_value">Sale X Value</string>
+    <string name="label_x_value_comparable_psf">PSF</string>
+    <string name="label_x_value_rental_x_value">Rental X Value</string>
+    <string name="btn_x_value_download_home_report">Download X-Value home report</string>
+    <string name="average_comparable_psf">Avg comparable PSF</string>
+    <string name="label_x_value_comparable_resale">Resale</string>
+    <string name="label_x_value_comparable_transacted_price">Transacted Price</string>
+    <string name="label_x_value_comparable_adj_psf">Adj. PSF</string>
+    <string name="label_x_value_comparable_lease">Lease</string>
+    <string name="label_x_value_comparable_date">Date</string>
+    <string name="label_x_value_comparable_floor">Floor</string>
+    <string name="label_x_value_comparable_size">Size</string>
+    <string name="button_comparables_view_latest_transactions">View latest transactions</string>
+    <string name="button_comparables_view_nearby_listings">View nearby listings</string>
+    <string name="title_x_value_latest_transactions">Latest Transactions</string>
+    <string name="label_x_value_latest_transaction_resale">Resale</string>
+    <string name="label_x_value_renovation">Renovation</string>
+    <string name="label_x_value_adjust_good_will">Adjust Goodwill</string>
+    <string name="hint_renovation_year">YYYY</string>
+    <string name="plus">+</string>
+    <string name="minus">–</string>
+    <string name="label_x_value_comparables_empty">No comparables.</string>
+    <string name="label_x_value_recent_sale_transactions_empty">No recent sale transactions.</string>
+    <string name="label_x_value_recent_rental_transactions_empty">No recent rental transactions.</string>
+    <string name="dialog_message_load_x_value_report">Loading report&#8230;</string>
+    <string name="selection_no_renovation">No Renovation</string>
+    <string name="x_trend_graph_empty">No data available.</string>
+
+    <string name="toast_error_missing_id">Unable to generate report due to missing request ID.</string>
+
+    <!--X-value sort-->
+    <string name="x_value_sort_date">Date</string>
+    <string name="x_value_sort_date_asc">Least Recent</string>
+    <string name="x_value_sort_date_desc">Most Recent</string>
+
+    <!--Transaction sort type-->
+    <string name="label_transaction_sort_type_default">Default</string>
+    <string name="label_transaction_sort_type_contract_date_desc">Contract date (new to old)</string>
+    <string name="label_transaction_sort_type_contract_date_asc">Contract date (old to new)</string>
+    <string name="label_transaction_sort_type_block_desc">Block number (high to low)</string>
+    <string name="label_transaction_sort_type_block_asc">Block number (low to high)</string>
+    <string name="label_transaction_sort_type_unit_no_asc">Unit number (low to high)</string>
+    <string name="label_transaction_sort_type_unit_no_desc">Unit number (high to low)</string>
+    <string name="label_transaction_sort_type_price_asc">Price (low to high)</string>
+    <string name="label_transaction_sort_type_price_desc">Price (high to low)</string>
+    <string name="label_transaction_sort_type_psf_asc">PSF (low to high)</string>
+    <string name="label_transaction_sort_type_psf_desc">PSF  (high to low)</string>
+    <string name="label_transaction_sort_type_size_asc">Size (low to high)</string>
+    <string name="label_transaction_sort_type_size_desc">Size (high to low)</string>
+    <string name="label_transaction_sort_type_built_year_desc">Built year (new to old)</string>
+    <string name="label_transaction_sort_type_built_year_asc">Built year (old to new)</string>
+
+    <!--Property news-->
+    <string name="content_description_news_photo">News photo</string>
+    <string name="title_property_news">Property News</string>
+    <string name="content_description_share">Share</string>
+    <string name="msg_no_property_news">No property news</string>
+    <string name="hint_property_news_search">Search</string>
+    <string name="message_share_news">what do you think?😊\uD83D\uDE0A %s</string>
+    <string name="label_all_categories">All Categories</string>
+    <string name="label_categories">Categories</string>
+    <string name="label_view_all_news">View all news</string>
+
+    <!--X-trend time scale-->
+    <string name="x_trend_time_scale_five_years">5 yrs</string>
+    <string name="x_trend_time_scale_three_years">3 yrs</string>
+    <string name="x_trend_time_scale_one_year">1 yr</string>
+    <string name="x_trend_time_scale_ten_years">10 yrs</string>
+    <string name="x_trend_time_scale_twenty_five_years">25 yrs</string>
+
+    <!-- CEA Exclusive -->
+    <string name="title_sign_cea_exclusive">Sign CEA Exclusive</string>
+    <string name="title_form_5_sale_of_residential_property">Sale of residential property</string>
+    <string name="title_form_6_purchase_of_residential_property">Purchase of residential property</string>
+    <string name="title_form_7_lease_by_landlord">Lease by landlord</string>
+    <string name="title_form_8_lease_by_tenant">Lease by tenant</string>
+    <string name="title_cea_self_defined_terms">Self-Defined Terms</string>
+    <string name="title_cea_agent_owner_details">Agent &amp; Owner Details</string>
+    <string name="title_cea_agent_details">Agent details</string>
+    <string name="title_cea_owner_details">Owner details</string>
+    <string name="title_cea_agent_signature">Agent\'s signature</string>
+    <string name="title_cea_owner_signature">Owner\'s signature</string>
+    <string name="title_cea_terms_and_conditions">Terms &amp; Conditions</string>
+
+    <string name="label_cea_choose_agreement_type">Choose an agreement type to proceed</string>
+    <string name="label_form_5_sale">Sale</string>
+    <string name="label_form_6_purchase">Purchase</string>
+    <string name="label_form_7_lease_by_landlord">Lease by landlord</string>
+    <string name="label_form_8_lease_by_tenant">Lease by tenant</string>
+
+    <string name="label_item_form_5">Form 5 (Sale)</string>
+    <string name="label_item_form_6">Form 6 (Purchase)</string>
+    <string name="label_item_form_7">Form 7 (Lease by landlord)</string>
+    <string name="label_item_form_8">Form 8 (Lease by tenant)</string>
+
+    <string name="label_cea_built_sqm">Built (sqm)</string>
+    <string name="label_cea_built_sqft">Built (sqft)</string>
+    <string name="label_cea_dollar_sign">$</string>
+    <string name="label_cea_percentage_sign">%</string>
+    <string name="label_cea_commission">Commission</string>
+    <string name="label_cea_renewal_commission">Renewal Commission</string>
+    <string name="label_cea_add_new_term">Add new term</string>
+    <string name="label_cea_add_signature">Add signature</string>
+    <string name="label_cea_add_owner_details">Add owner\'s details</string>
+    <string name="label_cea_publish_srx">Upon submitting you will be directed to listing creation to publish your listing in SRX.</string>
+    <string name="label_cea_copy_exclusive">A copy of the Exclusive will be emailed to the owner and the agent</string>
+    <string name="label_cea_client_signature">%s \'s signature</string>
+    <string name="label_cea_party_name">Name : %s</string>
+    <string name="label_cea_signed">Signed</string>
+    <string name="label_cea_required">Required</string>
+
+    <string name="label_cea_item_expected">Expected</string>
+    <string name="label_cea_item_asking">Asking</string>
+    <string name="label_cea_item_validity">Validity</string>
+
+    <string name="msg_cea_sign_area">Please sign in the area below</string>
+    <string name="msg_cea_acknowledge_terms_and_condition">Please acknowledge terms and conditions</string>
+    <string name="msg_cea_required_sign">Required signature</string>
+    <string name="msg_cea_signed">Signed</string>
+    <string name="msg_cea_required_signatures">All Parties MUST sign before processing</string>
+    <string name="msg_cea_add_at_least_one">Please add at least one party</string>
+
+    <string name="msg_required_field_agent_sections">%s is required in agent sections</string>
+    <string name="msg_signature_file_name">Signature_%s</string>
+
+
+    <string name="action_create_cea_exclusive">Create CEA Exclusive</string>
+    <string name="action_confirm_signature">Confirm signature</string>
+
+    <string name="content_description_info">info icon</string>
+
+    <!--Home report-->
+    <string name="activity_home_report">Home Report</string>
+    <string name="btn_get_home_report">Get home report</string>
+    <string name="description_home_report">Singapore\'s most trusted source of home pricing information.\n1.8M home reports generated since 2008.</string>
+    <string name="toast_download_home_report_fail">Failed to download home report.</string>
+    <string name="toast_download_home_report_error">Error when download home report.</string>
+    <string name="dialog_message_generate_home_report">Generating home report&#8230;</string>
+    <string name="toast_home_report_project_not_found">Project not available.</string>
+    <string name="toast_home_report_address_not_found">Address not available.</string>
+    <string name="error_home_report_invalid_property_type">No available properties at this address</string>
+    <string name="home_report_tenure_free_hold">Freehold</string>
+    <string name="home_report_tenure_lease_hold">Leasehold</string>
+
+    <!--Project info-->
+    <string name="tab_project_info_project_info">Project Info</string>
+    <string name="tab_project_info_planning_decisions">Planning Decisions</string>
+
+    <string name="title_project_info_key_info">Key Information</string>
+    <string name="title_project_info_unit_details">Unit Details</string>
+    <string name="title_project_info_fixture_details">Fixture Details</string>
+    <string name="title_project_info_facilities">Facilities</string>
+    <string name="title_project_info_site_map">Site Map, Elevation Plan &amp; Floor Plans</string>
+
+    <string name="label_project_info_key_info_address">Address</string>
+    <string name="label_project_info_key_info_completed">Completed</string>
+    <string name="label_project_info_key_info_top">TOP</string>
+    <string name="label_project_info_key_info_district">District</string>
+    <string name="label_project_info_key_info_distance_from_city">Distance from city</string>
+    <string name="label_project_info_key_info_type">Type</string>
+    <string name="label_project_info_key_info_tenure">Tenure</string>
+    <string name="label_project_info_key_info_developer">Developer</string>
+    <string name="label_project_info_key_info_plot_ratio">Plot ratio</string>
+    <string name="label_project_info_key_info_total_units">Total units</string>
+
+    <string name="msg_project_info_disclaimer">NOTE: Project Information is subjected to changes by developers, authorities or the management office. While StreetSine has taken every care to ensure that the information is accurate, the user is advised to verify this information before using it.</string>
+    <string name="msg_project_info_disclaimer_collapsed">NOTE: Project Information is subjected to changes by developers, authorities or the management&#8230; Read more</string>
+    <string name="link_button_project_info_disclaimer">Read more</string>
+    <string name="button_view_map">View map</string>
+    <string name="error_position_not_available">Position not available.</string>
+    <string name="menu_item_switch_map">Switch Map</string>
+    <string name="select_project_map_google_map">Google Map</string>
+    <string name="select_project_map_one_map">One Map</string>
+    <string name="select_project_map_lithosheet">Lithosheet</string>
+    <string name="subtitle_project_info_site_map">Site Map</string>
+    <string name="subtitle_project_info_elevation_map">Elevation Map</string>
+    <string name="subtitle_project_info_floor_plan">Floor Plans</string>
+    <string name="description_project_info_floor_plan">Show available floor plans.</string>
+    <string name="content_description_site_map">Site Map</string>
+    <string name="title_activity_site_map_medias_loading">Loading…</string>
+    <string name="title_activity_site_map_medias">%1$d of %2$d</string>
+    <string name="hint_project_info_block">Block</string>
+    <string name="hint_project_info_floor">Floor</string>
+    <string name="hint_project_info_unit">Unit</string>
+
+    <string name="title_dialog_site_map_block">Select Block</string>
+    <string name="title_dialog_site_map_floor">Select Floor</string>
+    <string name="title_dialog_site_map_unit">Select Unit</string>
+
+    <string name="header_decision_type">Type</string>
+
+    <string name="button_view_all_listings">View all listings</string>
+    <string name="button_view_all_transactions">View all transactions</string>
+
+    <!--Decision date-->
+    <string name="decision_date_three_month">within last 3 months</string>
+    <string name="decision_date_six_months">within last 6 months</string>
+    <string name="decision_date_one_year">within last 1 year</string>
+    <string name="decision_date_two_years">within last 2 years</string>
+    <string name="decision_date_five_years">within last 5 years</string>
+    <string name="decision_date_all">Since 2000</string>
+
+    <!--Dashboard market watch-->
+    <string name="title_dashboard_market_data">SRX Market Data</string>
+
+    <string name="title_market_watch_hdb_rental">HDB Rental</string>
+    <string name="title_market_watch_hdb_resale">HDB Resale</string>
+    <string name="title_market_watch_condo_rental">Condo Rental</string>
+    <string name="title_market_watch_condo_resale">Condo Resale</string>
+
+    <string name="title_market_watch_condo_ccr">CCR</string>
+    <string name="title_market_watch_condo_ocr">OCR</string>
+    <string name="title_market_watch_condo_rcr">RCR</string>
+
+    <string name="title_market_watch_hdb_3_rooms">3-Room</string>
+    <string name="title_market_watch_hdb_4_rooms">4-Room</string>
+    <string name="title_market_watch_hdb_5_rooms">5-Room</string>
+    <string name="title_market_watch_hdb_executive">Executive</string>
+
+    <string name="column_market_watch_index">Index</string>
+    <string name="column_market_watch_price">Price</string>
+    <string name="column_market_watch_volume">Volume</string>
+    <string name="column_market_watch_month">Month</string>
+
+    <string name="title_market_graph_hdb_rental">HDB Rental %1$s vs %2$s</string>
+    <string name="title_market_graph_hdb_resale">HDB Resale %1$s vs %2$s</string>
+    <string name="title_market_graph_condo_rental">Condo Rental %1$s vs %2$s</string>
+    <string name="title_market_graph_condo_resale">Condo Resale %1$s vs %2$s</string>
+
+    <string name="marker_market_watch_index">%1$s\nIndex: %2$s</string>
+    <string name="marker_market_watch_volume">%1$s\nVolume: %2$s</string>
+
+    <string name="empty_market_watch_graph">No data available.</string>
+
+    <!-- Flash Report -->
+    <string name="title_dashboard_flash_report">SRX Flash Report</string>
+
+    <string name="label_flash_report_pdf">PDF</string>
+    <string name="label_flash_report_graphics">Graphic</string>
+
+    <string name="msg_no_flash_reports">No flash reports</string>
+    <string name="msg_loading_report">Loading report&#8230;</string>
+
+    <string name="content_description_download">Download</string>
+
+    <string name="sort_option_flash_report_date_desc">Date (new to old)</string>
+    <string name="sort_option_flash_report_date_asc">Date (old to new)</string>
+
+    <string name="report_type_condo_resale">Condo Resale</string>
+    <string name="report_type_hdb_resale">HDB Resale</string>
+    <string name="report_type_condo_and_hdb_rental">Condo &amp; HDB Rental</string>
+
+    <plurals name="number_flash_report">
+        <item quantity="one">%s flash report</item>
+        <item quantity="other">%s flash reports</item>
+    </plurals>
+
+    <string name="message_download_flash_report">Report for %s is now downloading in the background. Please check your notifications for the download progress.</string>
+    <string name="notification_download_flash_report_progress">Download market flash report of %s</string>
+    <string name="notification_download_flash_report_error">Error generating flash report of %s</string>
+    <string name="notification_download_flash_report_success">The market flash report of %s is ready</string>
+
+    <!-- project planning -->
+    <string name="empty_planning_decision_types">No planning decision types available.</string>
+    <string name="empty_planning_decisions">No planning decisions available.</string>
+
+    <string name="dialog_title_project_decision_filter_date">Decision Date</string>
+    <string name="label_filter_decision_date">Decision Date</string>
+
+    <!--SMS blast-->
+    <string name="title_activity_sms_blast">SRX Free SMS Blast</string>
+    <string name="toast_error_no_listings">Please select at least one agent.</string>
+
+    <string name="sms_blast_item_title_property_available">Property still available?</string>
+    <string name="sms_blast_item_title_schedule_viewing">Schedule Viewing</string>
+    <string name="button_submit_blast">Send free SMS blast</string>
+    <string name="button_submitting_blast">Sending SMS&#8230;</string>
+    <string name="empty_cobroke_sms_templates">SMS templates empty</string>
+    <plurals name="description_sms_blast_success">
+        <item quantity="one">You have sent SRX free SMS blast to %s listing\nAgents will reply directly to you via SMS/Phone</item>
+        <item quantity="other">You have sent SRX free SMS blast to %s listings\nAgents will reply directly to you via SMS/Phone</item>
+    </plurals>
+
+    <string name="button_sms_blast_back">Go back to listing results</string>
+    <string name="warning_schedule_viewing_earliest_time">Please schedule time at least 30 minutes from now.</string>
+
+    <!--Success layout-->
+    <string name="title_success_layout">Success!</string>
+
+    <!--Months-->
+    <string name="month_jan">Jan</string>
+    <string name="month_feb">Feb</string>
+    <string name="month_mar">Mar</string>
+    <string name="month_apr">Apr</string>
+    <string name="month_may">May</string>
+    <string name="month_jun">Jun</string>
+    <string name="month_jul">Jul</string>
+    <string name="month_aug">Aug</string>
+    <string name="month_sep">Sep</string>
+    <string name="month_oct">Jan</string>
+    <string name="month_nov">Nov</string>
+    <string name="month_dec">Dec</string>
+
+    <!--Featured listing prompt-->
+    <string name="button_add_now">Add Now</string>
+
+    <!--Notification-->
+    <string name="notification_channel_name_general">General</string>
+    <string name="notification_channel_description_general">Notifications for general purpose.</string>
+    <string name="notification_channel_name_marketing">Marketing</string>
+    <string name="notification_channel_description_marketing">Notifications for marketing purpose.</string>
+
+    <!--Home report notification-->
+    <string name="notification_generate_home_report_in_progress">Generating home report for</string>
+    <string name="notification_generate_home_report_fail">Generate home report for %s failed</string>
+    <string name="notification_generate_home_report_error">Failed to generate home report for</string>
+
+    <string name="notification_download_home_report_in_progress">Downloading home report for</string>
+    <string name="notification_download_home_report_success">Your home report is ready for</string>
+    <string name="notification_download_home_report_error">Error downloading home report for</string>
+
+    <string name="button_home_report_back">Go Back</string>
+    <string name="layout_description_generating_home_report">Generating home report</string>
+
+    <string name="toast_generating_home_report">Home report is now generating in the background. Please check your notifications for the download progress.</string>
+
+    <!--X value report notification-->
+    <string name="notification_generate_x_value_report_in_progress">Generating X-Value report of %s</string>
+    <string name="notification_generate_x_value_report_fail">Generate X-Value report of %s failed</string>
+    <string name="notification_generate_x_value_report_error">Error generating X-Value report of %s</string>
+    <string name="notification_generate_x_value_report_fail_insufficient_data">Insufficient data to generate an X-Value for this property</string>
+
+    <string name="notification_download_x_value_report_in_progress">Downloading X-Value report of %s</string>
+    <string name="notification_download_x_value_report_success">The X-Value report of %s is ready</string>
+    <string name="notification_download_x_value_report_content_success">Click to view PDF.</string>
+    <string name="notification_download_x_value_report_error">Error downloading X-Value report of %s</string>
+
+    <string name="toast_generating_x_value_report">We are generating X-Value report of %s for you, please check notification.</string>
+
+    <!--Featured listing types-->
+    <string name="dialog_title_featured_listing_types">Featured Listing Types</string>
+    <string name="dialog_featured_listing_item_premier">Premier</string>
+    <string name="dialog_featured_listing_item_xl">XL</string>
+    <string name="content_description_featured_listing_item_premier">Premier</string>
+    <string name="content_description_featured_listing_item_xl">XL</string>
+
+    <string name="dialog_featured_listing_types_premier_description_1">Guaranteed placement in Top 3 search result slots (50% rotation)</string>
+    <string name="dialog_featured_listing_types_premier_description_2">Additional top 3 exposure in district/location searches</string>
+
+    <string name="dialog_featured_listing_types_xl_description_1">Get noticed with a supersized listing</string>
+    <string name="dialog_featured_listing_types_xl_description_2">Features your listing in its existing ranking position</string>
+    <string name="button_view_product_info_sheet">View product info sheet</string>
+
+    <string name="toast_download_failed">Download failed.</string>
+    <string name="notification_download_file_in_progress">Downloading File</string>
+    <string name="notification_download_featured_listing_success">Featured listing info sheet is ready</string>
+    <string name="notification_download_featured_listing_content_success">Click to view PDF.</string>
+    <string name="toast_downloading_featured_listing_info">Downloading featured listing info sheet, please check notification.</string>
+
+    <string name="instruction_choose_featured_listing">Choose your featured listing type to proceed</string>
+    <string name="content_description_bullet">Bullet</string>
+    <string name="content_description_help">Help</string>
+
+    <!--Home report bottom card-->
+    <string name="card_generating_home_report">Generating home report for</string>
+    <string name="card_downloading_home_report">Downloading home report for</string>
+    <string name="card_generate_home_report_fail">Generate home report failed</string>
+    <string name="card_generate_home_report_error">Error generating home report</string>
+    <string name="card_download_home_report_error">Error downloading home report</string>
+    <string name="card_download_home_report_done">Your home report is ready for</string>
+
+    <string name="dialog_confirm_view_home_report">View generated home report?</string>
+    <string name="label_layout_generating_home_report">Generating</string>
+
+    <string name="toast_generate_existing_home_report">Generating previous home report, please wait.</string>
+
+    <!-- SRX Chat-->
+    <string name="title_srx_chat">SRX Chat</string>
+    <string name="label_srx_chat">Selected listings will be tagged with your custom message and sent to agent\'s inbox</string>
+    <string name="label_srx_chat_summary">Name this summary to easily access and follow up in inbox</string>
+    <string name="action_send_srx_chat">Send to SRX Chat</string>
+    <string name="action_sending_srx_chat">Sending to SRX Chat</string>
+    <plurals name="label_listing_count">
+        <item quantity="one">%s listing</item>
+        <item quantity="other">%s listings</item>
+    </plurals>
+    <string name="msg_srx_blast">Hi, I\’m interested in your listing please contact me ASAP!</string>
+    <string name="label_title">Summary</string>
+    <plurals name="label_srx_chat_success_listing">
+        <item quantity="one">You have sent SRX Chat to %s listing.\nAgents\' reply will be sent to your inbox</item>
+        <item quantity="other">You have sent SRX Chat to %s listings.\n Agents\' reply will be sent to your inbox</item>
+    </plurals>
+    <string name="hint_luxury_condo">eg. Luxury condos</string>
+
+    <string name="msg_click_to_view_pdf">Click to view PDF.</string>
+
+    <string name="template_message_enquire_listing">Hi. I\'m interested in your listing. Please contact me ASAP!</string>
+
+    <string name="label_expired_listing">Expired listing</string>
+
+    <!-- Report and Research-->
+    <string name="title_report_and_research">Report &amp; Research</string>
+    <string name="label_report_home_report">Home Report</string>
+    <string name="label_report_x_value_report">X-Value Report</string>
+    <string name="label_report_affordability_report">Affordability Report</string>
+    <string name="label_report_new_launches_report">New Launches Report</string>
+    <string name="label_report_flash_report">Flash Report</string>
+
+    <string name="title_new_launches_reports">New Launches Reports</string>
+    <string name="sub_title_new_launches_reports">Select projects with reports you wish to download &amp; send</string>
+
+    <string name="label_no_project_selected">No project selected</string>
+    <string name="label_attachment">Attachment</string>
+    <string name="label_subject">Subject</string>
+
+    <string name="btn_download_and_send">Download &amp; send</string>
+    <string name="action_send">Send</string>
+    <string name="action_sending">Sending&#8230;</string>
+    <string name="msg_no_new_launches_report">No new launches report</string>
+    <string name="msg_max_5_reports">Maximum reports is 5</string>
+
+    <string name="message_download_new_launches_report">Report for %s is now downloading in the background. Please check your notifications for the download progress.</string>
+    <string name="notification_download_new_launches_report_progress">Download new launches report of %s</string>
+    <string name="notification_download_new_launches_report_error">Error generating new launches report of %s</string>
+    <string name="notification_download_new_launches_report_success">The new launches report of %s is ready</string>
+
+    <string name="label_filter_property_type">Property Subtype</string>
+    <string name="label_new_launch_reports_sort_launch_date_desc">Date (new to old)</string>
+    <string name="label_new_launch_reports_sort_launch_date_asc">Date (old to new)</string>
+
+    <string name="label_option_phone_book">My Phone book</string>
+    <string name="label_option_my_clients">My Clients</string>
+    <string name="msg_select_one_recipient">Please add at least one recipient</string>
+    <string name="msg_failed_to_send_contacts">Failed to send those numbers %s</string>
+    <string name="action_back_to_reports_and_research">Go back to reports &amp; researches</string>
+
+    <plurals name="label_selected_report_count">
+        <item quantity="one">%s project selected</item>
+        <item quantity="other">%s projects selected</item>
+    </plurals>
+    <plurals name="label_projects_count">
+        <item quantity="one">%s project</item>
+        <item quantity="other">%s projects</item>
+    </plurals>
+    <plurals name="label_success_report_count">
+        <item quantity="one">You have sent %s project report to</item>
+        <item quantity="other">You have sent %s project reports to</item>
+    </plurals>
+    <plurals name="label_clients_count">
+        <item quantity="one">%s Client</item>
+        <item quantity="other">%s Clients</item>
+    </plurals>
+    <string name="label_no_project">No project</string>
+    <string name="label_collapse">Collapse</string>
+    <string name="label_expand">Expand</string>
+
+    <!--My SG home clients-->
+    <string name="button_search_my_sg_home_clients">Enter client\'s name or address</string>
+    <string name="title_my_sg_home_clients">My Clients (%s)</string>
+    <string name="title_my_sg_home_clients_zero">My Clients</string>
+    <string name="button_invite_clients">Invite Clients</string>
+    <string name="layout_my_sg_home_clients_empty">No clients found for this search term</string>
+
+    <string name="agent_client_list_item_sale_x_value">Sale X-Value</string>
+    <string name="agent_client_list_item_sale_capital_gain">Capital Gain</string>
+    <string name="agent_client_list_item_sale_rental_yield">Rental Yield</string>
+    <string name="agent_client_list_item_footer">Capital gain is based on last purchased price %1$s (%2$s)</string>
+
+    <string name="sort_order_address_desc">Nearest Last</string>
+    <string name="sort_order_address_asc">Nearest First</string>
+
+    <string name="sort_order_user_desc">Most Recent</string>
+    <string name="sort_order_user_asc">Least Recent</string>
+
+    <plurals name="label_clients_last_seen">
+        <item quantity="one">%1$s view - Last seen on %2$s</item>
+        <item quantity="other">%1$s views - Last seen on %2$s</item>
+    </plurals>
+
+    <!--My SG home invite clients-->
+    <string name="title_dialog_invite_client">Invite Client</string>
+    <string name="title_invite_client_your_message">Your Message</string>
+
+    <string name="list_item_invite_client_app">Share</string>
+    <string name="list_item_invite_client_copy_link">Copy Link</string>
+    <string name="list_item_invite_client_qr_code">QR Code</string>
+    <string name="msg_save_qr_code_in_gallery">Save QR code in gallery!</string>
+    <string name="file_name_client_invite">client_invite</string>
+
+    <!--Search client-->
+    <string name="hint_search_client">Enter client\'s name or address</string>
+
+    <!-- Send messages to clients-->
+    <string name="label_no_client_selected">No client selected</string>
+    <plurals name="label_selected_client_count">
+        <item quantity="one">%s client selected</item>
+        <item quantity="other">%s clients selected</item>
+    </plurals>
+
+    <string name="dialog_option_client_srx_chat">SRX Chat</string>
+    <string name="dialog_option_client_email">Email</string>
+    <string name="dialog_option_client_sms">SMS</string>
+    <string name="title_client_send_message_via_srx_chat">Send Message via SRX Chat</string>
+    <string name="title_client_send_message_via_email">Send Message via Email</string>
+    <string name="title_client_send_message_via_SMS">Send Message via SMS</string>
+
+    <string name="label_attachments">Attachments</string>
+    <string name="label_link">Link</string>
+    <string name="label_add_photos">Add Photos</string>
+    <string name="label_temp_client_name">Hi [Client Name],</string>
+
+    <string name="hint_paste_your_link_here">Paste your link here</string>
+    <string name="hint_type_your_message_here">Type your message here</string>
+
+    <string name="action_send_message">Send Message</string>
+    <string name="action_sending_message">Sending Message</string>
+    <string name="action_back_to_clients">Go back to My Clients</string>
+
+    <string name="progress_dialog_upload_image">Uploading image, plase wait.</string>
+
+    <plurals name="msg_success_client_send_messages">
+        <item quantity="one">You have sent your message to %1$s client via %2$s</item>
+        <item quantity="other">You have sent your message to %1$s clients via %2$s</item>
+    </plurals>
+
+    <string name="error_msg_max_photo_limit">Maximum images to upload is %d</string>
+    <string name="error_msg_invalid_web_url">Invalid web url</string>
+
+    <!--QR code-->
+    <string name="title_qr_code">Scan QR Code to know the current value of your property</string>
+    <string name="toast_error_generate_qr_code">Encountered error when generating QR code!</string>
+    <string name="msg_save_qr_to_photo_album">Save QR code to photo album?</string>
+
+    <!--Search current location-->
+    <string name="toast_search_current_location_fail">Search current location failed.</string>
+    <string name="toast_search_current_location_error">Encountered error when search current location.</string>
+
+    <!--Clients search type-->
+    <string name="client_search_type_address">Address</string>
+    <string name="client_search_type_user_profile">User Profile</string>
+
+    <!--Calculator-->
+    <string name="activity_title_calculator">Calculators</string>
+
+    <string name="calculator_type_all">All</string>
+    <string name="calculator_type_affordability_quick">Affordability - Quick</string>
+    <string name="calculator_type_affordability_advanced">Affordability - Advanced</string>
+    <string name="calculator_type_selling">Selling</string>
+    <string name="calculator_type_stamp_duty">Stamp Duty</string>
+
+    <!--Affordability quick calculator-->
+    <string name="activity_affordability_quick">Affordability - Quick</string>
+    <string name="title_calculate_max_purchase_price">Calculate Max Purchase Price</string>
+    <string name="title_calculate_income_required">Calc. Income required for purchase</string>
+
+    <string name="description_calculate_max_purchase_price">Maximum Purchase Price based upon $%s monthly gross income</string>
+    <string name="description_calculate_income_required">Monthly gross income required for $%s purchase</string>
+
+    <string name="description_2_affordability_header_item">Based on the calculations below</string>
+    <string name="button_amend">Amend</string>
+    <string name="or">or</string>
+    <string name="text_box_calculator_property_purchase_price">Property purchase price</string>
+    <string name="text_box_calculator_down_payment">Downpayment</string>
+    <string name="text_box_calculator_monthly_debt_expenses">Monthly debt expenses\n(Excluding property loans)</string>
+    <string name="text_box_calculator_monthly_property_loan">Monthly property loan</string>
+    <string name="text_box_calculator_monthly_other_commitments">Other commitments</string>
+    <string name="text_box_calculator_monthly_fixed_income">Monthly fixed income</string>
+
+    <!--Buyer stamp duty calculator-->
+    <string name="activity_stamp_duty_buyer">Buyer Stamp Duty</string>
+    <string name="label_total_payable_stamp_duty">Your total payable stamp duty</string>
+    <string name="label_buyer_stamp_duty">Buyer stamp duty</string>
+    <string name="label_additional_buyer_stamp_duty">Additional buyer stamp duty (%s)</string>
+    <string name="label_additional_buyer_stamp_duty_empty">Additional buyer stamp duty</string>
+    <string name="label_who_pay_buyer_stamp_duty">Who pays additional buyer stamp duty?</string>
+    <string name="footer_stamp_duty_hint_calculation">Based on the calculations below</string>
+    <string name="text_box_calculator_purchase_price">Purchase price</string>
+    <string name="text_box_calculator_property_type">Property type</string>
+    <string name="title_section_calculator_property_details">Property Details</string>
+    <string name="title_section_calculator_buyer_details">Buyer Details</string>
+    <string name="text_box_calculator_application_type">Application type</string>
+    <string name="text_box_calculator_citizenship">Citizenship</string>
+    <string name="text_box_calculator_citizenship_2">Second citizenship</string>
+    <string name="text_box_calculator_property_number">No. of properties owned</string>
+    <string name="text_box_calculator_property_loan_number">No. of property loans</string>
+    <string name="button_share_calculation_to_client">Share this to client</string>
+
+    <string name="buyer_application_type_single">Single</string>
+    <string name="buyer_application_type_joint_applicant">Joint Applicant</string>
+
+    <string name="buyer_profile_singaporean">Singaporean</string>
+    <string name="buyer_profile_pr">SPR</string>
+    <string name="buyer_profile_fta">FTA Foreigner</string>
+    <string name="buyer_profile_non_fta">Non-FTA Foreigner</string>
+    <string name="dialog_title_stamp_duty">Stamp Duty</string>
+
+    <string name="list_item_stamp_duty_buyer">Buyer Stamp Duty</string>
+    <string name="list_item_stamp_duty_seller">Seller Stamp Duty</string>
+    <string name="list_item_stamp_duty_rental">Rental Stamp Duty</string>
+
+    <!--Rental stamp duty calculator-->
+    <string name="activity_stamp_duty_rental">Rental Stamp Duty</string>
+    <string name="title_section_calculator_rental_property_details">Property Details</string>
+    <string name="text_box_calculator_start_date">Start date</string>
+    <string name="text_box_calculator_end_date">End date</string>
+    <string name="text_box_calculator_monthly_rent">Monthly rent</string>
+    <string name="text_box_calculator_other_monthly_charges">Other monthly charges</string>
+    <string name="hint_calculator_date">DDMMYYYY</string>
+    <string name="error_calculator_rental_date">End date must be later than start date</string>
+
+    <!--Selling calculator-->
+    <string name="activity_calculator_selling">Selling</string>
+    <string name="label_calculator_selling_payable_ssd">Your payable SSD</string>
+    <string name="label_calculator_selling_annual_capital_gain">Annualised capital gain</string>
+
+    <string name="tab_calculator_selling_look_up_property">Look up property</string>
+    <string name="tab_calculator_selling_enter_details">Enter details</string>
+
+    <string name="text_box_calculator_selling_property_details">Property details</string>
+    <string name="text_box_calculator_selling_est_selling_price">Est. selling price</string>
+    <string name="text_box_calculator_selling_sale_date">Sale date</string>
+    <string name="text_box_calculator_selling_purchase_date">Purchase date</string>
+    <string name="text_box_calculator_selling_est_purchase_price">Purchase price</string>
+    <string name="text_box_calculator_selling_bsd">BSD/ABSD</string>
+    <string name="hint_calculator_selling_property_details">Enter postal code or address</string>
+    <string name="message_share_rental_stamp_duty">Hi! Here\'s the link to your Rental Stamp Duty calculation. Ask me more about it! %s</string>
+    <string name="message_share_buyer_stamp_duty">Hi! Here\'s the link to your Buyer Stamp Duty calculation. Ask me more about it! %s</string>
+
+    <string name="button_calculate">Calculate</string>
+    <string name="button_calculating">Calculating&#8230;</string>
+    <string name="button_enter_property_details">Enter details</string>
+    <string name="title_dialog_calculator_property_details">Property details</string>
+
+    <string name="error_calculate_x_value_property_not_found">No records\nYour property info cannot be found</string>
+    <string name="dialog_title_select_date">Select date (day/month/year)</string>
+    <string name="error_calculator_sale_date">Sale date must be later than purchase date</string>
+
+    <string name="dialog_title_calculator_sale_date">Select sale date (DDMMYYYY)</string>
+    <string name="dialog_title_calculator_purchase_date">Select purchase date (DDMMYYYY)</string>
+    <string name="dialog_title_calculator_start_date">Select start date (DDMMYYYY)</string>
+    <string name="dialog_title_calculator_end_date">Select end date (DDMMYYYY)</string>
+
+    <string name="toast_calculate_x_value_fail">Failed to calculate X-value.</string>
+    <string name="toast_calculate_x_value_error">Encountered error when calculate X-value.</string>
+
+    <!--Transactions watchlist on dashboard-->
+    <string name="title_dashboard_watchlist_transactions">Transactions from watchlist</string>
+    <string name="button_add_criteria">Add criteria</string>
+    <string name="button_add_property">Add property</string>
+
+    <string name="column_watchlist_transaction_date">Date</string>
+    <string name="column_watchlist_transaction_address">Address</string>
+    <string name="column_watchlist_transaction_unit">Unit</string>
+    <string name="column_watchlist_transaction_price">Price</string>
+    <string name="description_watchlist_transactions_empty">You have not added any criteria in your watchlist yet</string>
+
+    <!--Listings watchlist on dashboard-->
+    <string name="title_dashboard_watchlist_listings">Listings from watchlist</string>
+    <string name="description_watchlist_listings_empty">You have not added any criteria in your watchlist yet</string>
+    <string name="button_manage_watchlists">Manage watchlists</string>
+
+    <!--Transactions watchlist-->
+    <string name="activity_transactions_watchlist">Transactions from watchlist</string>
+    <string name="count_watchlist_recent_transactions_zero">No recent transactions</string>
+    <plurals name="count_watchlist_recent_transactions">
+        <item quantity="one">%s recent transaction</item>
+        <item quantity="other">%s recent transactions</item>
+    </plurals>
+
+    <!--Listings watchlist-->
+    <string name="activity_listings_watchlist">Listings from watchlist</string>
+    <string name="count_watchlist_recent_listings_zero">No recent listings</string>
+    <plurals name="count_watchlist_recent_listings">
+        <item quantity="one">%s recent listing</item>
+        <item quantity="other">%s recent listings</item>
+    </plurals>
+
+    <!--Add watchlist criteria-->
+    <string name="activity_add_watchlist_criteria">Add Criteria</string>
+    <string name="activity_edit_watchlist_criteria">Edit Criteria</string>
+    <string name="hint_enter_location">Enter location</string>
+    <string name="title_watchlist_property_type">Property Type</string>
+    <string name="label_more_options">More options</string>
+    <string name="label_name_search_criteria">Name this search criteria</string>
+    <string name="label_display_watchlist_type">Show on watchlist</string>
+    <string name="label_watchlist_form_area_type">Area Type</string>
+    <string name="label_watchlist_form_tenure">Tenure</string>
+    <string name="label_watchlist_form_project_type">Project Type</string>
+    <string name="label_watchlist_form_rental_type">Rental Type</string>
+
+    <string name="hint_text_box_area_min">Min Area (sqft)</string>
+    <string name="hint_text_box_area_max">Max Area (sqft)</string>
+
+    <string name="hint_text_box_psf_min">Min PSF</string>
+    <string name="hint_text_box_psf_max">Max PSF</string>
+
+    <string name="hint_text_box_price_min">Min Price</string>
+    <string name="hint_text_box_price_max">Max Price</string>
+
+    <string name="label_rental_type_any">Any</string>
+    <string name="label_rental_type_entire_house">Entire House</string>
+    <string name="label_rental_type_room_rental">Room Rental</string>
+
+    <string name="label_watchlist_project_type_any">All</string>
+    <string name="label_watchlist_project_type_new">New Projects</string>
+    <string name="label_watchlist_project_type_resale">Resale Projects</string>
+
+    <string name="watchlist_type_listings">Listings</string>
+    <string name="watchlist_type_transactions">Transactions</string>
+    <string name="button_save_watchlist_criteria">Save to my watchlist</string>
+    <string name="title_watchlist_add_on">Add</string>
+    <string name="title_watchlist_search_radius">Search Radius</string>
+
+    <string name="label_watchlist_search_radius_any">Any</string>
+    <string name="label_watchlist_search_radius">%s km</string>
+
+    <string name="toast_delete_criteria_success">Criteria \"%s\" deleted.</string>
+    <string name="toast_delete_criteria_fail">Failed to delete criteria \"%s\".</string>
+    <string name="toast_delete_criteria_error">Encountered error when delete criteria \"%s\".</string>
+
+    <string name="toast_add_criteria_success">Criteria \"%s\" added.</string>
+    <string name="toast_add_criteria_fail">Failed to add criteria \"%s\".</string>
+    <string name="toast_add_criteria_error">Encountered error when add criteria \"%s\".</string>
+
+    <string name="toast_update_criteria_success">Criteria \"%s\" modified.</string>
+    <string name="toast_update_criteria_fail">Failed to modify criteria \"%s\".</string>
+    <string name="toast_update_criteria_error">Encountered error when modify criteria \"%s\".</string>
+
+    <string name="toast_error_watchlist_missing_location">Please select location from \"Enter Location\" text box or \"Add\" lookup buttons.</string>
+
+    <string name="error_min_max">Max value must be larger than min value</string>
+    <string name="error_require_watchlist_type">Select at least 1 watchlist type</string>
+
+    <!--Edit watchlist criteria-->
+    <string name="dialog_watchlist_confirm_delete">Confirm delete criteria?</string>
+
+    <!--Listing criteria watchlist-->
+    <plurals name="header_watchlist_listing">
+        <item quantity="one">%s criterion</item>
+        <item quantity="other">%s criteria</item>
+    </plurals>
+
+    <!--My profile watchlist-->
+    <string name="title_profile_watchlist">My Watchlist</string>
+    <string name="layout_empty_my_profile_watchlist">You haven\'t add any watchlist yet.</string>
+
+    <plurals name="profile_watchlist_property_sub_type_count">
+        <item quantity="one">%s Type</item>
+        <item quantity="other">%s Types</item>
+    </plurals>
+
+    <plurals name="tag_profile_watchlist_mrts">
+        <item quantity="one">Near %s MRT</item>
+        <item quantity="other">Near %s MRTs</item>
+    </plurals>
+
+    <plurals name="tag_profile_watchlist_areas">
+        <item quantity="one">Within %s Area</item>
+        <item quantity="other">Within %s Areas</item>
+    </plurals>
+
+    <plurals name="tag_profile_watchlist_schools">
+        <item quantity="one">Near %s School</item>
+        <item quantity="other">Near %s Schools</item>
+    </plurals>
+
+    <string name="toast_error_missing_url">URL missing.</string>
+    <!--TODO Refactor `toast_error_invalid_url`-->
+    <string name="toast_error_invalid_url_2">Invalid URL %s.</string>
+
+    <!--Advanced affordability calculator-->
+    <string name="activity_calculator_affordability_advanced">Affordability - Advanced</string>
+    <string name="label_max_purchase_price">Max Purchase Price</string>
+    <string name="label_max_loan_amount">Max Loan Amount</string>
+    <string name="button_view_more_details">View more details</string>
+    <string name="text_box_calculator_age">Age</string>
+    <string name="text_box_calculator_monthly_variable_income">Monthly variable income</string>
+    <plurals name="human_age">
+        <item quantity="one">%s year old</item>
+        <item quantity="other">%s years old</item>
+    </plurals>
+    <string name="text_box_calculator_title_borrower">Borrower 1</string>
+    <string name="text_box_calculator_title_borrower_2">Borrower 2</string>
+    <string name="text_box_calculator_cash_on_hand">Cash on hand</string>
+    <string name="text_box_calculator_cpf_oa_amount">CPF OA amount</string>
+    <string name="button_calculate_affordability">Calculate Affordability</string>
+    <string name="button_add_commitment">Add commitment</string>
+    <string name="dialog_title_add_commitment">Your commitment</string>
+    <string name="dialog_title_delete_commitment">Delete commitment \"%s\"?</string>
+
+    <!--Advanced affordability details-->
+    <string name="activity_affordability_details">Affordability - Advanced</string>
+    <string name="title_section_calculator_borrower_details">Borrower Details</string>
+
+    <string name="entry_affordability_advanced_max_purchase_price">Max Purchase Price</string>
+    <string name="entry_affordability_advanced_max_loan_amount">Max Loan Amount</string>
+    <string name="entry_affordability_advanced_total_monthly_income">Total monthly income</string>
+    <string name="entry_affordability_advanced_total_monthly_commitments">Total monthly commitments</string>
+    <string name="entry_affordability_advanced_based_on_msr">Based on MSR</string>
+    <string name="entry_affordability_advanced_based_on_tdsr">Based on TDSR</string>
+    <string name="entry_affordability_advanced_monthly_loan_payment">Monthly loan payment</string>
+    <string name="entry_affordability_advanced_downpayment">Downpayment (Cash + CPF)</string>
+    <string name="entry_affordability_advanced_ltv">LTV</string>
+    <string name="entry_affordability_advanced_bsd">BSD</string>
+    <string name="entry_affordability_advanced_absd">ABSD</string>
+
+    <string name="advanced_property_type_hdb">HDB / EC</string>
+    <string name="advanced_property_type_private">Private</string>
+
+    <string name="error_advanced_calculator_invalid_age">Borrower must be at lease 21 years old.</string>
+
+    <plurals name="days_ago">
+        <item quantity="one">%s day ago</item>
+        <item quantity="other">%s days ago</item>
+    </plurals>
+
+    <plurals name="months_ago">
+        <item quantity="one">%s month ago</item>
+        <item quantity="other">%s months ago</item>
+    </plurals>
+
+    <plurals name="years_ago">
+        <item quantity="one">%s year ago</item>
+        <item quantity="other">%s years ago</item>
+    </plurals>
+
+    <string name="days_ago_short">%sd</string>
+    <string name="months_ago_short">%smon</string>
+    <string name="years_ago_short">%syr</string>
+
+    <!--Chat image caption-->
+    <string name="activity_chat_image_caption">Send Image</string>
+    <string name="hint_add_caption">Add caption (optional)</string>
+    <string name="dialog_message_confirm_quit_caption">Confirm quit sending image?</string>
+
+    <!--Agent profile photo-->
+    <string name="dialog_list_item_take_profile_photo">Take a photo</string>
+    <string name="dialog_list_item_choose_profile_photo">Choose a photo</string>
+    <string name="dialog_list_item_remove_profile_photo">Remove photo</string>
+    <string name="dialog_message_confirm_delete_profile_photo">Confirm delete profile photo?</string>
+    <string name="error_camera_image_not_available">Camera image not available</string>
+
+    <!--Crop image-->
+    <string name="activity_crop_image">Crop Image</string>
+
+    <!--Home report usage stats-->
+    <string name="title_home_report_usage">Your home report usage</string>
+    <string name="home_report_usage_total">Total</string>
+    <string name="home_report_usage_this_month">This month</string>
+    <string name="activity_sponsor_listing">Community Post</string>
+    <plurals name="home_report_usage_report_counter">
+        <item quantity="one">report</item>
+        <item quantity="other">reports</item>
+    </plurals>
+
+    <!-- PG Auto Import-->
+    <string name="button_preview_listings">Preview listings</string>
+    <string name="label_skip_now">Skip now</string>
+    <string name="label_do_not_remind_me">Don\'t remind me again</string>
+
+    <string name="title_auto_import_summary">Import Summary</string>
+    <string name="sub_title_rank_even_higher">Want to rank even higher?</string>
+    <string name="label_rank_higher_description">Have the homeowners certify your listings and gain the advantage in our platform!</string>
+    <string name="button_add_home_owner_number">Add homeowner\'s number</string>
+    <string name="label_do_it_later">Do it later</string>
+
+    <string name="title_auto_import_certified_listing">Certified Listing</string>
+    <string name="label_get_certified_listings">You can now get your listings certified by homeowners.</string>
+    <string name="button_send_invite">Send Invite</string>
+    <plurals name="auto_import_listing_count">
+        <item quantity="one">%s listing</item>
+        <item quantity="other">%s listings</item>
+    </plurals>
+    <string name="label_auto_import_listing_count">We\'ve found %s that belong to you.</string>
+    <string name="label_import_and_post_listings">Import them now and post on SRX for FREE!</string>
+
+    <string name="action_importing_listings">Importing..</string>
+
+    <string name="label_skip">Skip</string>
+    <string name="title_important_notice">Important Notice</string>
+    <string name="label_read_full_disclaimer">Read full disclaimer</string>
+    <string name="msg_disclaimer_intro">Subscribers must check the Terms and Conditions of any third party with whom they may have contracted with respect to any restrictions on sharing or using posted content. Third party Terms and Conditions may vary from time to time and it is important to make regular checks as to their ongoing legal duties and obligations....</string>
+    <string name="msg_disclaimer_details">Subscribers must check the Terms and Conditions of any third party with whom they may have contracted with respect to any restrictions on sharing or using posted content. Third party Terms and Conditions may vary from time to time and it is important to make regular checks as to their ongoing legal duties and obligations.
+        \n\nStreetSine does not encourage or endorse any actions by subscribers that breach or may breach their contractual obligations with any third party and StreetSine bears no liability whatsoever for the actions of any subscriber who fails to check or chooses to ignore their third party contractual obligations.
+        \n\nUnder the EAA and its Regulations, only licenses estate agents and registered sales persons are allowed to conduct estate agency work in Singapore.
+        \n\nIn addition, they are required to display their identification and be clearly in their advertisements when they advertise for sales/purchase/lease of properties. Any offender who operates without an estate agent license shall be liable on conviction to a fine not exceeding $75,000 or imprisonment for a term not exceeding 3 years or to both.
+        \n\nAny offender who carries out estate agency work without registration may be liable on conviction to a fine of up to $25,000 or to imprisonment of up to 12 months, or to both.
+        \n\nA person who abets the commission of such offence may himself/herself be liable for the same penalty.
+        \n\nBy Importing and Posting, you declare you have consent from the client to advertise this property and complied with the EAA, its Regulations and CEA\'s guidelines.</string>
+    <string name="label_import_and_post_consent">By Importing and Posting, you declare you have consent from the client to advertise this property and complied with the EAA, its Regulations and CEA\'s guidelines.</string>
+    <string name="label_want_rank_higher">Want to rank even higher?</string>
+    <string name="label_want_rank_higher_description">Have the homeowners certify your listings and gain the advantage in our platform!</string>
+
+    <string name="action_add_home_owner_number">Add homeowner\'s number</string>
+    <string name="label_preview_failed_listing_count">%s needs your attention and can be found in drafts</string>
+    <string name="label_draft">drafts</string>
+    <string name="label_enter_number_or_add_from_contacts">Enter number or add from contacts</string>
+    <string name="label_auto_import_certified_listings">You can now get your listings certified by homeowners.Learn more</string>
+
+    <!--Sponsor listing-->
+    <string name="header_sponsor_listing">Your listing will be sponsored in SRX Communities located within %s</string>
+    <string name="label_sponsor_listing_preview">Your listing advertisement preview</string>
+    <string name="btn_sponsor_listing_enquire_now">Enquire now</string>
+    <string name="btn_sponsor_listing_visit_listing">Go to listing</string>
+    <string name="btn_sponsor_listing_share">Share</string>
+    <string name="label_sponsored">Sponsored</string>
+    <string name="error_not_enough_credits">Not enough credits.</string>
+    <string name="title_sponsor_listing_credit_summary">Credit Summary</string>
+    <string name="label_sponsor_listing_deductible_credits">Total credits deductible</string>
+    <string name="label_sponsor">Sponsor</string>
+    <string name="label_sponsor_listing">Community post</string>
+    <string name="agreement_sponsor_listing">I agree to Terms of Use and Terms of Sale</string>
+    <string name="agreement_sponsor_listing_link_term_of_use">Terms of Use</string>
+    <string name="agreement_sponsor_listing_link_term_of_sale">Terms of Sale</string>
+    <string name="message_sponsored_listing_reminder">Sponsored listing in SRX community until %s</string>
+    <string name="toast_sponsor_listing_success">Post to community success!</string>
+    <string name="toast_sponsor_listing_fail">Post to community fail.</string>
+    <string name="dialog_confirm_clear_text">Confirm clear text?</string>
+    <string name="fragment_preview_sponsor_listing">Sponsor Credits</string>
+    <string name="description_preview_sponsor_listing">Sponsor Credits will feature your listing in SRX\'s new module, Communities, where homeowners and investors can see your listing in their social feed!</string>
+
+    <string name="question_community_post_type">What would you like to promote?</string>
+    <string name="question_community_post_target">How would you like to target?</string>
+    <string name="community_post_promote_type_post">Post</string>
+    <string name="community_post_promote_type_listing">Listing</string>
+    <string name="community_post_target_community">Community</string>
+    <string name="community_post_target_hyper">Hyper Target</string>
+    <string name="label_select_target_communities">Select your target communities</string>
+    <string name="hint_search_target_communities">Enter or choose planning area/subzone </string>
+    <string name="label_selected_audience">Your selected audience include</string>
+    <plurals name="label_address_count">
+        <item quantity="one">%s address</item>
+        <item quantity="other">%s addresses</item>
+    </plurals>
+    <string name="activity_search_planning_area">Planning areas/Subzones</string>
+    <string name="hint_search_planning_area">Enter or choose planning area/subzone</string>
+    <string name="label_all_sub_zones">All subzones in %s</string>
+    <string name="title_text_box_community_title">Title</string>
+    <string name="title_text_box_community_description">Description</string>
+    <plurals name="dialog_confirm_post_community">
+        <item quantity="one">%s credit will be deducted. Proceed?</item>
+        <item quantity="other">%s credits will be deducted. Proceed?</item>
+    </plurals>
+    <string name="dialog_confirm_quit_draft_community_post">All progress in this session will be lost upon quit. Confirm?</string>
+    <string name="disclaimer_x_value">X-Value is provided for general reference and does not constitute a valuation by a licensed appraiser. StreetSine Singapore Pte Ltd accepts no liability whatsoever arising from any use of or reliance on the X-Value. Use of X-Value is subject to SRX\'s Terms of Use and Privacy Policy.</string>
+
+    <!--Community hyper target-->
+    <string name="description_community_hyper_target">Hyper targeting makes it easier to connect with clients, generate leads and increase sales.</string>
+    <string name="instruction_create_or_select_template">Create new or select from your saved targets</string>
+    <string name="label_saved_targets">Saved targets</string>
+    <string name="button_community_create_new_target">Create new target</string>
+    <string name="activity_community_hyper_target">Hyper Targeting</string>
+    <string name="hint_search_hyper_target_address">Type address/district/region</string>
+    <string name="label_hyper_select_location">Location</string>
+    <string name="label_hyper_radius">Radius</string>
+    <string name="label_hyper_property_type">Property type</string>
+    <string name="label_hyper_x_value">X-Value</string>
+    <string name="label_hyper_capital_gain">Capital gain</string>
+    <string name="label_hyper_target_name">Hyper target name</string>
+    <string name="label_hyper_tenure">Tenure</string>
+
+    <string name="sponsor_duration_one_week">1 Week</string>
+    <string name="sponsor_duration_two_weeks">2 Weeks</string>
+    <string name="sponsor_duration_three_weeks">3 Weeks</string>
+    <string name="sponsor_duration_four_weeks">4 Weeks</string>
+
+    <string name="sponsor_duration_long_one_week">one week</string>
+    <string name="sponsor_duration_long_two_weeks">two weeks</string>
+    <string name="sponsor_duration_long_three_weeks">three weeks</string>
+    <string name="sponsor_duration_long_four_weeks">four weeks</string>
+
+    <string name="dialog_confirm_remove_hyper_target">Confirm remove hyper target?</string>
+    <string name="toast_remove_hyper_target_removed">Hyper target removed.</string>
+
+    <string name="toast_invalid_hyper_target">Missing parameters, please check and submit again.</string>
+    <string name="label_view">View</string>
+
+    <string name="button_load_more_hyper_templates">+%s more</string>
+
+    <string name="dialog_title_hyper_target_templates">Select hyper target templates</string>
+    <string name="label_hyper_target_estimated_reach">Estimated reach</string>
+    <string name="toast_submitting">Submitting, please wait.</string>
+
+    <string name="label_any_percent">Any &#65130;</string>
+    <string name="button_top_up_shared_wallet">Top up shared wallet</string>
+    <string name="description_shared_wallet">Credits for listing creation and refresh are shared with your 99.co account. Top up your wallet here!</string>
+
+    <string name="label_wallet_post_listing_top_up_99">Top up on 99.co app</string>
+</resources>

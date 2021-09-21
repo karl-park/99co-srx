@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.AgentProfileAndCvEnum.PaymentPlan" />
+
+        <variable
+            name="subscriptionPackage"
+            type="sg.searchhouse.agentconnect.model.api.agent.PackageDetailPO" />
+
+        <variable
+            name="selectedPackageId"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/spacing_xs"
+            app:cardElevation="@dimen/spacing_xs"
+            app:cardUseCompatPadding="true"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp"
+            app:strokeColor="@{selectedPackageId == subscriptionPackage.packageId ? @color/cyan : @color/transparent}"
+            app:strokeWidth="@dimen/card_stroke_width">
+
+            <RelativeLayout
+                android:id="@+id/layout_package_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:padding="@dimen/spacing_m">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_package_name"
+                    style="@style/BodyBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{subscriptionPackage.name}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_toEndOf="@id/tv_package_name"
+                    android:background="@drawable/new_indicator_background_rectangle"
+                    android:gravity="end"
+                    android:padding="@dimen/spacing_xxs"
+                    android:scaleType="centerInside"
+                    android:text="@string/label_capital_new"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_10" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_package_price"
+                    style="@style/Heading2Color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_toStartOf="@id/tv_badge"
+                    android:gravity="end"
+                    android:text="@string/label_free" />
+            </RelativeLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:orientation="vertical"
+            android:visibility="@{selectedPackageId.equals(subscriptionPackage.packageId) ? View.VISIBLE : View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:text="@string/msg_agreement_subscribe_trial" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                android:id="@+id/btn_subscribe"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:gravity="center"
+                android:text="@string/action_subscribe" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

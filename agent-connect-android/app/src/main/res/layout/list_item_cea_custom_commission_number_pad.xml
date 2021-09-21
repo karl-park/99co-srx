@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isPriceCommission"
+            type="Boolean" />
+
+        <variable
+            name="isRateCommission"
+            type="Boolean" />
+
+        <variable
+            name="rowPO"
+            type="sg.searchhouse.agentconnect.model.api.cea.CeaFormRowPO" />
+
+        <variable
+            name="selectedValue"
+            type="String" />
+
+        <variable
+            name="isRequiredField"
+            type="Boolean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginBottom="@dimen/spacing_s">
+
+            <TextView
+                android:id="@+id/tv_commission_label"
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:maxWidth="@dimen/max_width_picker_label"
+                android:maxLines="2"
+                android:text="@{rowPO.rowTitle}" />
+
+            <ImageButton
+                android:id="@+id/ib_info"
+                android:layout_width="@dimen/size_help_icon"
+                android:layout_height="@dimen/size_help_icon"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/spacing_xxs"
+                android:layout_marginEnd="@dimen/spacing_xxs"
+                android:layout_toEndOf="@+id/tv_commission_label"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/content_description_info"
+                android:focusable="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_help_circle"
+                android:visibility="@{TextUtils.isEmpty(rowPO.info) ? View.GONE : View.VISIBLE}" />
+
+            <LinearLayout
+                android:id="@+id/layout_commission"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_custom_commission_input"
+                android:layout_alignParentEnd="true"
+                android:background="@{safeUnbox(isRequiredField)? @drawable/et_error_background : null}"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_custom_commission_component">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_price_commission"
+                    style="@style/RoundedGroupButton"
+                    android:layout_width="@dimen/width_custom_commission_sign"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/card_group_rounded_start"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/label_cea_dollar_sign"
+                    app:isSelected="@{isPriceCommission}" />
+
+                <View
+                    android:layout_width="@dimen/list_view_divider"
+                    android:layout_height="match_parent"
+                    android:background="@color/cyan" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_rate_commission"
+                    style="@style/RoundedGroupButton"
+                    android:layout_width="@dimen/width_custom_commission_sign"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/card_center_horizontal"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="@string/label_cea_percentage_sign"
+                    app:isSelected="@{isRateCommission}" />
+
+                <View
+                    android:layout_width="@dimen/list_view_divider"
+                    android:layout_height="match_parent"
+                    android:background="@{safeUnbox(isRateCommission) ? @color/cyan : @color/divider_color}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_price_commission"
+                    android:layout_width="@dimen/width_custom_commission_input"
+                    android:layout_height="match_parent"
+                    android:visibility="@{safeUnbox(isPriceCommission)? View.VISIBLE : View.GONE}" />
+
+                <EditText
+                    android:layout_width="@dimen/width_custom_commission_input"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/card_group_rounded_end"
+                    android:hint="@{rowPO.placeHolder}"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:paddingStart="@dimen/spacing_xs"
+                    android:paddingEnd="@dimen/spacing_xs"
+                    android:singleLine="true"
+                    android:text="@={rowPO.rowValue}"
+                    android:visibility="@{safeUnbox(isRateCommission)? View.VISIBLE : View.GONE}"
+                    tools:ignore="LabelFor"
+                    tools:targetApi="O" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <include layout="@layout/view_divider_horizontal" />
+    </LinearLayout>
+</layout>

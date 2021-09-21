@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="project"
+            type="sg.searchhouse.agentconnect.model.api.transaction.TransactionSearchResultPO" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="@dimen/spacing_xs"
+        android:paddingEnd="0dp">
+
+        <include
+            layout="@layout/grid_item_project_directory"
+            app:project="@{project}" />
+
+    </FrameLayout>
+</layout>

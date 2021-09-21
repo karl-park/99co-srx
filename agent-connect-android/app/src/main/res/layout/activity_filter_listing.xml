@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyPurpose" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.FilterListingViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible"
+            tools:context=".view.activity.listing.FilterListingActivity">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/ClassicActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:text="@string/activity_filter_listing_results" />
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <ScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/layout_action"
+                    android:layout_alignParentTop="true">
+
+                    <LinearLayout
+                        android:id="@+id/layout_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_property_type" />
+
+                        <include
+                            android:id="@+id/layout_residential_main_property_types"
+                            layout="@layout/layout_filter_listing_residential_property_main_types"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="0dp"
+                            app:isVisible="@{viewModel.propertyPurpose == PropertyPurpose.RESIDENTIAL}"
+                            app:selectedPropertyMainType="@{viewModel.propertyMainType}" />
+
+                        <include
+                            android:id="@+id/layout_commercial_sub_property_types"
+                            layout="@layout/layout_filter_listing_commercial_property_sub_types"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="0dp"
+                            app:viewModel="@{viewModel}" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_property_sub_types"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+
+                        <!--Price range-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_price_range" />
+
+                        <include
+                            android:id="@+id/layout_price_range"
+                            layout="@layout/layout_range_number_boxes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.propertyPurpose == PropertyPurpose.RESIDENTIAL ? View.VISIBLE : View.GONE}">
+
+                            <!--Bedrooms-->
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/label_bedrooms" />
+
+                            <include
+                                android:id="@+id/layout_bedrooms"
+                                layout="@layout/layout_bedrooms"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                app:viewModel="@{viewModel}" />
+                        </LinearLayout>
+
+                        <!--Bathrooms-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/label_bathrooms" />
+
+                        <include
+                            android:id="@+id/layout_bathrooms"
+                            layout="@layout/layout_bathrooms"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            app:viewModel="@{viewModel}" />
+
+                        <!--Price per square feet-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_price_psf" />
+
+                        <include
+                            android:id="@+id/layout_price_psf"
+                            layout="@layout/layout_range_number_boxes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <!--Floor area-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_floor_area" />
+
+                        <include
+                            android:id="@+id/layout_floor_area"
+                            layout="@layout/layout_range_number_boxes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <!--Land size-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.propertyMainType == PropertyMainType.LANDED ? View.VISIBLE : View.GONE}">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/listing_filter_label_land_size" />
+
+                            <include
+                                android:id="@+id/layout_land_size"
+                                layout="@layout/layout_range_number_boxes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <!--Rental type-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.ownershipTypeInputOnly != OwnershipType.SALE ? View.VISIBLE : View.GONE}">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                android:text="@string/listing_filter_label_rental_type" />
+
+                            <com.google.android.flexbox.FlexboxLayout
+                                android:id="@+id/layout_rental_types"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/spacing_m"
+                                app:alignContent="flex_start"
+                                app:alignItems="flex_start"
+                                app:flexDirection="row"
+                                app:flexWrap="wrap"
+                                app:justifyContent="flex_start" />
+                        </LinearLayout>
+
+                        <!--Floor level-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_floor_level" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_floor_levels"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+
+                        <!--Tenure-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_tenure" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_tenures"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+
+                        <!--Construction year-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_construction_year" />
+
+                        <include
+                            android:id="@+id/layout_construction_year"
+                            layout="@layout/layout_range_number_boxes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <!--Furnishing-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_furnishing" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_furnishes"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+
+                        <!--Listing date-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_listed" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_listing_dates"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+
+                        <!--Miscellaneous-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@string/listing_filter_label_listing_features" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_misc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/pill_virtual_tours"
+                                style="@style/ListingFilterPill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/pill_height"
+                                android:text="@string/label_filter_misc_virtual_tours"
+                                app:isSelected="@{viewModel.hasVirtualTours}" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/pill_drone_views"
+                                style="@style/ListingFilterPill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/pill_height"
+                                android:text="@string/label_filter_misc_drone_views"
+                                app:isSelected="@{viewModel.hasDroneViews}" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/pill_owner_certified"
+                                style="@style/ListingFilterPill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/pill_height"
+                                android:text="@string/label_filter_misc_owner_certified"
+                                app:isSelected="@{viewModel.ownerCertification}" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/pill_exclusive"
+                                style="@style/ListingFilterPill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/pill_height"
+                                android:text="@string/label_filter_misc_exclusive"
+                                app:isSelected="@{viewModel.exclusiveListing}" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/pill_x_listing_price"
+                                style="@style/ListingFilterPill"
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/pill_height"
+                                android:text="@string/label_filter_misc_x_listing_price"
+                                app:isSelected="@{viewModel.xListingPrice}" />
+
+                        </com.google.android.flexbox.FlexboxLayout>
+                    </LinearLayout>
+                </ScrollView>
+
+                <LinearLayout
+                    android:id="@+id/layout_action"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:background="@color/divider_color" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_m">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/btn_submit">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="@{viewModel.totalLabel}"
+                                android:visibility="@{viewModel.isDisplayCount() ? View.VISIBLE : View.INVISIBLE }" />
+
+                            <include
+                                layout="@layout/layout_loading"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:visibility="@{!viewModel.isDisplayCount() ? View.VISIBLE : View.INVISIBLE }" />
+                        </FrameLayout>
+
+                        <Button
+                            android:id="@+id/btn_submit"
+                            style="@style/PrimaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/button_apply_filters" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

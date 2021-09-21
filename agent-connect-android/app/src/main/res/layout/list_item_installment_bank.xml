@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="instalmentPayment"
+                type="sg.searchhouse.agentconnect.model.api.agent.InstallmentPaymentOptionPO" />
+
+        <variable
+                name="selectedBankId"
+                type="Integer" />
+
+        <variable
+                name="showInstallmentLayout"
+                type="Boolean" />
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:alignContent="flex_start"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rb_installment_bank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{instalmentPayment.bankId == selectedBankId? true : false}" />
+
+        <!-- Installment bank logos -->
+        <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/layout_installment_bank_logos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start" />
+
+        <!-- Installment months -->
+        <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/layout_installment_months"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xs"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:visibility="@{safeUnbox(showInstallmentLayout) ? View.VISIBLE : View.GONE}"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>

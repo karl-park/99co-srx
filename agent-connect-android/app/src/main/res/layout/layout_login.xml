@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".view.activity.auth.SignInActivity">
+
+    <data>
+
+        <variable
+                name="signIn"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.auth.SignInViewModel" />
+
+        <variable
+                name="buttonState"
+                type="sg.searchhouse.agentconnect.enumeration.status.ButtonState" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- Email Address -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_layout_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/ic_clear"
+                app:endIconMode="clear_text"
+                app:error="@{signIn.errorEmail}"
+                app:errorEnabled="true"
+                app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:afterTextChanged="@{signIn::afterTextChangedEmail}"
+                    android:hint="@string/label_email"
+                    android:singleLine="true"
+                    android:text="@={signIn.email}"
+                    android:theme="@style/EditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Password -->
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_layout_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                app:endIconMode="password_toggle"
+                app:error="@{signIn.errorPassword}"
+                app:errorEnabled="true"
+                app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:afterTextChanged="@{signIn::afterTextChangedPassword}"
+                    android:hint="@string/label_password"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:text="@={signIn.password}"
+                    android:theme="@style/EditText" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+</layout>

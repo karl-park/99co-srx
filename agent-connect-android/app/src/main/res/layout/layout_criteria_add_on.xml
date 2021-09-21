@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.watchlist.WatchlistCriteriaFormViewModel" />
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="space_between">
+
+        <include
+                android:id="@+id/btn_search_by_mrt"
+                layout="@layout/small_pill_with_count"
+                app:count="@{viewModel.mrtCount}"
+                app:label="@{@string/listing_option_mrt}" />
+
+        <include
+                android:id="@+id/btn_search_by_districts"
+                layout="@layout/small_pill_with_count"
+                app:count="@{viewModel.districtCount}"
+                app:label="@{@string/listing_option_districts}" />
+
+        <include
+                android:id="@+id/btn_search_by_areas"
+                layout="@layout/small_pill_with_count"
+                app:count="@{viewModel.hdbTownCount}"
+                app:label="@{@string/listing_option_areas}" />
+
+        <include
+                android:id="@+id/btn_search_by_schools"
+                layout="@layout/small_pill_with_count"
+                app:count="@{viewModel.schoolCount}"
+                app:label="@{@string/listing_option_schools}" />
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>

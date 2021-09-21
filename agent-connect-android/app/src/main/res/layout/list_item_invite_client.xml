@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="icon"
+                type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <LinearLayout
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white_invertible"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_centerVertical="true"
+                    android:tintMode="src_in"
+                    android:src="@{icon}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:paddingStart="@dimen/spacing_xs"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:paddingTop="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_m"
+                    android:tint="@color/black_invertible"
+                    app:tint="@color/black_invertible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_title"
+                    style="@style/Body"
+                    android:layout_toEndOf="@+id/iv_icon"
+                    android:text="@{title}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingTop="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_m" />
+        </RelativeLayout>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/list_view_divider"
+                android:background="@color/divider_color" />
+    </LinearLayout>
+</layout>

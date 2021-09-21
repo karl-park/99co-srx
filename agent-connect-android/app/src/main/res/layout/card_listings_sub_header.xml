@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.ProjectLaunchStatus" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyPurpose" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <import type="android.view.View" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingsViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_xs">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:background="@color/divider_color" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/spacing_m"
+                    android:paddingBottom="@dimen/spacing_m">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_listing_total"
+                        style="@style/SubText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/spacing_xs"
+                        android:layout_toStartOf="@id/btn_export_listings"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@{viewModel.summaryLabel}"
+                        android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.INVISIBLE}" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_export_listings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:drawableStart="@drawable/ic_file_plus"
+                        android:drawableTint="@color/black_invertible"
+                        android:text="@string/button_export_listings" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.hasExternalFilter == false &amp;&amp; viewModel.propertyPurpose == PropertyPurpose.RESIDENTIAL ? View.VISIBLE : View.GONE}">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:background="@color/divider_color" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:visibility="@{viewModel.isUpdateListingCounts() ? View.INVISIBLE : View.VISIBLE}">
+
+                    <LinearLayout
+                        android:id="@+id/layout_property_types"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/smart_filter_height"
+                        android:gravity="start|center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="0dp">
+
+                        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_property_type_clear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:text="@string/label_clear"
+                            android:visibility="@{viewModel.propertyType != null ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/btn_property_type_label"
+                            style="@style/PropertyTypeButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@{viewModel.propertyType != null ? ContextCompat.getDrawable(context, viewModel.propertyType.iconResId) : null}"
+                            android:text="@{viewModel.propertyTypeFilterLabel}"
+                            android:textColor="@color/black_invertible"
+                            android:visibility="@{viewModel.propertyType != null ? View.VISIBLE : View.GONE}" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="start|center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="@{viewModel.propertyType == null ? View.VISIBLE : View.GONE}">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/btn_property_type_hdb"
+                                style="@style/PropertyTypeButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_property_type_hdb"
+                                android:text="@string/property_type_hdb"
+                                android:textColor="@{viewModel.propertyType == PropertyMainType.HDB ? @color/black : @color/cyan}"
+                                android:visibility="@{viewModel.propertyMainTypeCounts[PropertyMainType.HDB] != 0 ? View.VISIBLE : View.GONE}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/btn_property_type_condo"
+                                style="@style/PropertyTypeButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_property_type_condo"
+                                android:text="@string/property_type_condo"
+                                android:textColor="@{viewModel.propertyType == PropertyMainType.CONDO ? @color/black : @color/cyan}"
+                                android:visibility="@{viewModel.propertyMainTypeCounts[PropertyMainType.CONDO] != 0 ? View.VISIBLE : View.GONE}" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/btn_property_type_landed"
+                                style="@style/PropertyTypeButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/ic_property_type_landed"
+                                android:text="@string/property_type_landed"
+                                android:textColor="@{viewModel.propertyType == PropertyMainType.LANDED ? @color/black : @color/cyan}"
+                                android:visibility="@{viewModel.propertyMainTypeCounts[PropertyMainType.LANDED] != 0 ? View.VISIBLE : View.GONE}" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/spacing_m"
+                android:paddingEnd="@dimen/spacing_m">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:background="@color/divider_color" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <include
+                        android:id="@+id/tabs_include_nearby"
+                        layout="@layout/tab_layout_listing_include_nearby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:visibility="@{viewModel.isApplyNearByToggle() == true ? View.VISIBLE : View.GONE}"
+                        app:isIncludeNearBy="@{viewModel.isIncludeNearBy()}" />
+
+                    <include
+                        android:id="@+id/tabs_listing_new_projects"
+                        layout="@layout/tab_layout_listing_new_projects"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:visibility="@{viewModel.isApplyNearByToggle() != true ? View.VISIBLE : View.GONE}"
+                        app:isNewProjects="@{viewModel.projectLaunchStatus == ProjectLaunchStatus.NEW_LAUNCH}" />
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_translucent"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{viewModel.selectMode != null ? View.VISIBLE : View.GONE}" />
+    </FrameLayout>
+</layout>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyPurpose" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertySubType" />
+
+        <!--Since com.android.tools.build:gradle:3.5.1-->
+        <!--unable to past selectedPropertySubTypes because it is a list-->
+        <!--hence got to pass in entire view model here-->
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.transaction.FilterTransactionViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.propertyPurpose == PropertyPurpose.COMMERCIAL ? View.VISIBLE : View.GONE}">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+            <include
+                    android:id="@+id/btn_property_sub_type_retail"
+                    layout="@layout/button_filter_property_type_commercial"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:background="@{@drawable/selectable_card_start_top}"
+                    app:isSelected="@{viewModel.propertySubTypes.contains(PropertySubType.RETAIL)}"
+                    app:propertySubType="@{PropertySubType.RETAIL}" />
+
+            <View
+                    android:layout_width="@dimen/list_view_divider"
+                    android:layout_height="match_parent"
+                    android:background="@{viewModel.propertySubTypes.contains(PropertySubType.RETAIL) || viewModel.propertySubTypes.contains(PropertySubType.OFFICE) ? @color/cyan : @color/card_border}" />
+
+            <include
+                    android:id="@+id/btn_property_sub_type_office"
+                    layout="@layout/button_filter_property_type_commercial"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:background="@{@drawable/selectable_card_center_top}"
+                    app:isSelected="@{viewModel.propertySubTypes.contains(PropertySubType.OFFICE)}"
+                    app:propertySubType="@{PropertySubType.OFFICE}" />
+
+            <View
+                    android:layout_width="@dimen/list_view_divider"
+                    android:layout_height="match_parent"
+                    android:background="@{viewModel.propertySubTypes.contains(PropertySubType.OFFICE) || viewModel.propertySubTypes.contains(PropertySubType.FACTORY) ? @color/cyan : @color/card_border}" />
+
+            <include
+                    android:id="@+id/btn_property_sub_type_factory"
+                    layout="@layout/button_filter_property_type_commercial"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:background="@{@drawable/selectable_card_center_top}"
+                    app:isSelected="@{viewModel.propertySubTypes.contains(PropertySubType.FACTORY)}"
+                    app:propertySubType="@{PropertySubType.FACTORY}" />
+
+            <View
+                    android:layout_width="@dimen/list_view_divider"
+                    android:layout_height="match_parent"
+                    android:background="@{viewModel.propertySubTypes.contains(PropertySubType.FACTORY) || viewModel.propertySubTypes.contains(PropertySubType.WAREHOUSE) ? @color/cyan : @color/card_border}" />
+
+            <include
+                    android:id="@+id/btn_property_sub_type_warehouse"
+                    layout="@layout/button_filter_property_type_commercial"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:background="@{@drawable/selectable_card_end_top}"
+                    app:isSelected="@{viewModel.propertySubTypes.contains(PropertySubType.WAREHOUSE)}"
+                    app:propertySubType="@{PropertySubType.WAREHOUSE}" />
+        </LinearLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/list_view_divider"
+                    android:background="@color/card_border" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_weight="1"
+                        android:visibility="@{viewModel.propertySubTypes.contains(PropertySubType.RETAIL) ? View.VISIBLE : View.INVISIBLE}"
+                        android:background="@color/cyan" />
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_weight="1"
+                        android:visibility="@{viewModel.propertySubTypes.contains(PropertySubType.OFFICE) ? View.VISIBLE : View.INVISIBLE}"
+                        android:background="@color/cyan" />
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_weight="1"
+                        android:visibility="@{viewModel.propertySubTypes.contains(PropertySubType.FACTORY) ? View.VISIBLE : View.INVISIBLE}"
+                        android:background="@color/cyan" />
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_weight="1"
+                        android:visibility="@{viewModel.propertySubTypes.contains(PropertySubType.WAREHOUSE) ? View.VISIBLE : View.INVISIBLE}"
+                        android:background="@color/cyan" />
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_weight="1"
+                        android:visibility="@{viewModel.propertySubTypes.contains(PropertySubType.LAND) ? View.VISIBLE : View.INVISIBLE}"
+                        android:background="@color/cyan" />
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_weight="1"
+                        android:visibility="@{viewModel.propertySubTypes.contains(PropertySubType.HDB_SHOP_HOUSE) ? View.VISIBLE : View.INVISIBLE}"
+                        android:background="@color/cyan" />
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_weight="1"
+                        android:visibility="@{viewModel.propertySubTypes.contains(PropertySubType.SHOP_HOUSE) ? View.VISIBLE : View.INVISIBLE}"
+                        android:background="@color/cyan" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+            <include
+                    android:id="@+id/btn_property_sub_type_land"
+                    layout="@layout/button_filter_property_type_commercial"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:background="@{@drawable/selectable_card_start_bottom}"
+                    app:isSelected="@{viewModel.propertySubTypes.contains(PropertySubType.LAND)}"
+                    app:propertySubType="@{PropertySubType.LAND}" />
+
+            <View
+                    android:layout_width="@dimen/list_view_divider"
+                    android:layout_height="match_parent"
+                    android:background="@{viewModel.propertySubTypes.contains(PropertySubType.LAND) || viewModel.propertySubTypes.contains(PropertySubType.HDB_SHOP_HOUSE) ? @color/cyan : @color/card_border}" />
+
+            <include
+                    android:id="@+id/btn_property_sub_type_hdb_shop_house"
+                    layout="@layout/button_filter_property_type_commercial"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:background="@{@drawable/selectable_card_center_bottom}"
+                    app:isSelected="@{viewModel.propertySubTypes.contains(PropertySubType.HDB_SHOP_HOUSE)}"
+                    app:propertySubType="@{PropertySubType.HDB_SHOP_HOUSE}" />
+
+            <View
+                    android:layout_width="@dimen/list_view_divider"
+                    android:layout_height="match_parent"
+                    android:background="@{viewModel.propertySubTypes.contains(PropertySubType.HDB_SHOP_HOUSE) || viewModel.propertySubTypes.contains(PropertySubType.SHOP_HOUSE) ? @color/cyan : @color/card_border}" />
+
+            <include
+                    android:id="@+id/btn_property_sub_type_shop_house"
+                    layout="@layout/button_filter_property_type_commercial"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:background="@{@drawable/selectable_card_end_bottom}"
+                    app:isSelected="@{viewModel.propertySubTypes.contains(PropertySubType.SHOP_HOUSE)}"
+                    app:propertySubType="@{PropertySubType.SHOP_HOUSE}" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

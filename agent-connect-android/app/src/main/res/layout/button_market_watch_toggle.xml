@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <import type="android.graphics.PorterDuff.Mode" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.MarketDirection" />
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="valueChange"
+                type="String" />
+
+        <variable
+                name="isSelected"
+                type="Boolean" />
+
+        <variable
+                name="arrowDrawable"
+                type="android.graphics.drawable.Drawable" />
+
+        <variable
+                name="marketDirection"
+                type="sg.searchhouse.agentconnect.enumeration.app.MarketDirection" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_m"
+            app:contentPaddingBottom="@dimen/spacing_xs"
+            app:contentPaddingTop="@dimen/spacing_xs"
+            app:strokeColor="@{isSelected == true ? @color/text_box_border_focused : @color/text_box_border}">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/SmallBodyGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@{title}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:drawableEnd="@{arrowDrawable}"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="@{valueChange}" />
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="completion"
+            type="sg.searchhouse.agentconnect.enumeration.api.ProjectEnum.Completion" />
+
+        <variable
+            name="isSelected"
+            type="Boolean" />
+        
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_filter_pill"
+        style="@style/ListingFilterPill"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pill_height"
+        android:text="@{completion.label}"
+        app:isSelected="@{isSelected}" />
+
+</layout>

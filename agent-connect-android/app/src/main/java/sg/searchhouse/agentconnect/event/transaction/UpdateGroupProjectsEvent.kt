@@ -1,0 +1,5 @@
+package sg.searchhouse.agentconnect.event.transaction
+
+import sg.searchhouse.agentconnect.model.api.transaction.TransactionSearchCriteriaV2VO
+
+class UpdateGroupProjectsEvent(val transactionSearchCriteriaV2VO: TransactionSearchCriteriaV2VO)

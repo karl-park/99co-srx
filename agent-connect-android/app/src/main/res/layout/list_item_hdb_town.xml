@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="hdbTown" type="sg.searchhouse.agentconnect.model.api.lookup.LookupHdbTownsResponse.HdbTown"/>
+    </data>
+
+    <LinearLayout
+            android:id="@+id/ll_hdb_town"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m"
+            android:foreground="?selectableItemBackground"
+            android:focusable="true"
+            android:clickable="true"
+            android:orientation="vertical">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginBottom="@dimen/spacing_s">
+
+            <!-- hdb town name -->
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_town_name"
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentStart="true"
+                    android:text="@{hdbTown.townName}"/>
+
+            <!-- Check box -->
+            <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/cb_hdb_town"
+                    android:theme="@style/CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:layout_alignEnd="@+id/tv_town_name"
+                    android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <View android:background="@color/divider_color"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/list_view_divider"/>
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="optionLabel"
+            type="String" />
+
+        <variable
+            name="isNew"
+            type="Boolean" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/spacing_s">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/ListingTag.New"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_listing_tag"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/tv_fab_option"
+            android:text="@string/label_capital_new"
+            android:visibility="@{isNew ? View.VISIBLE : View.GONE}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fab_option"
+            style="@style/BodyBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackgroundBorderless"
+            android:paddingStart="0dp"
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingEnd="@dimen/spacing_xs"
+            android:paddingBottom="@dimen/spacing_xs"
+            android:text="@{optionLabel}" />
+    </RelativeLayout>
+
+</layout>

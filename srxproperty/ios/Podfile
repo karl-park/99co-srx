@@ -1,0 +1,157 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'SRXProperty' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for SRXProperty
+
+#    pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
+    rn_path = '../node_modules/react-native'
+    rn_maps_path = '../node_modules/react-native-maps'
+    
+    # See http://facebook.github.io/react-native/docs/integration-with-existing-apps.html#configuring-cocoapods-dependencies
+    pod 'Yoga', path: "#{rn_path}/ReactCommon/yoga"
+    pod 'React', path: rn_path, subspecs: [
+    # 'Core',
+    # 'CxxBridge',
+    # 'DevSupport',
+    # 'RCTActionSheet',
+    # 'RCTAnimation',
+    # 'RCTGeolocation',
+    # 'RCTImage',
+    # 'RCTLinkingIOS',
+    # 'RCTNetwork',
+    # 'RCTSettings',
+    # 'RCTText',
+    # 'RCTVibration',
+    # 'RCTWebSocket',
+    ]
+
+    pod 'React-CoreModules', :path => '../node_modules/react-native/React/CoreModules'
+    pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
+    pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
+    pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
+    pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
+    pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
+    pod 'React', :path => "#{rn_path}"
+    pod 'React-Core', :path => "#{rn_path}/"
+    pod 'React-Core/DevSupport', :path => "#{rn_path}/"
+    pod 'React-RCTSettings', :path => "#{rn_path}/Libraries/Settings"
+    pod 'React-RCTNetwork', :path => "#{rn_path}/Libraries/Network"
+    pod 'React-RCTLinking', :path => "#{rn_path}/Libraries/LinkingIOS"
+    pod 'React-RCTImage', :path => "#{rn_path}/Libraries/Image"
+    pod 'React-RCTAnimation', :path => "#{rn_path}/Libraries/NativeAnimation"
+    pod 'React-RCTText', :path => "#{rn_path}/Libraries/Text"
+    pod 'React-RCTVibration', :path => "#{rn_path}/Libraries/Vibration"
+    pod 'React-Core/RCTWebSocket', :path => "#{rn_path}/"
+    pod 'React-RCTActionSheet', :path => "#{rn_path}/Libraries/ActionSheetIOS"
+    pod 'React-RCTBlob', :path => "#{rn_path}/Libraries/Blob"
+
+    pod 'React-cxxreact', :path => "#{rn_path}/ReactCommon/cxxreact"
+    pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
+    pod 'React-jsiexecutor', :path => '../node_modules/react-native/ReactCommon/jsiexecutor'
+    pod 'React-jsinspector', :path => '../node_modules/react-native/ReactCommon/jsinspector'
+    pod 'ReactCommon/jscallinvoker', :path => "../node_modules/react-native/ReactCommon"
+    pod 'ReactCommon/turbomodule/core', :path => "../node_modules/react-native/ReactCommon"
+    
+
+    # React Native third party dependencies podspecs
+    pod 'DoubleConversion', :podspec => "#{rn_path}/third-party-podspecs/DoubleConversion.podspec"
+    pod 'glog', :podspec => "#{rn_path}/third-party-podspecs/glog.podspec"
+    # If you are using React Native <0.54, you will get the following error:
+    # "The name of the given podspec `GLog` doesn't match the expected one `glog`"
+    # Use the following line instead:
+    #pod 'GLog', :podspec => "#{rn_path}/third-party-podspecs/GLog.podspec"
+    pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
+    
+    # react-native-maps dependencies
+    pod 'react-native-maps', path: rn_maps_path
+    pod 'react-native-google-maps', path: rn_maps_path  # Unomment this line if you want to support GoogleMaps on iOS
+    pod 'GoogleMaps'  # Uncomment this line if you want to support GoogleMaps on iOS
+    pod 'Google-Maps-iOS-Utils' # Uncomment this line if you want to support GoogleMaps on iOS
+
+    pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
+  pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
+  pod 'ReactNativeNavigation', :path => '../node_modules/react-native-navigation'
+
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
+  pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
+
+
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'RNCPushNotificationIOS', :path => '../node_modules/@react-native-community/push-notification-ios'
+
+  # pod 'RealmJS', :path => '../node_modules/realm'
+
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+
+  pod 'RNFBAnalytics', :path => '../node_modules/@react-native-firebase/analytics'
+  
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
+
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'react-native-notifications', :path => '../node_modules/react-native-notifications'
+
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+  
+  pod 'react-native-cookies', :path => '../node_modules/@react-native-community/cookies'
+ 
+  pod 'RNGoogleSignin', :path => "../node_modules/@react-native-community/google-signin"
+  
+  pod 'RNAppleAuthentication', :path => '../node_modules/@invertase/react-native-apple-authentication'
+  
+  pod 'react-native-progress-view', :path => '../node_modules/@react-native-community/progress-view'
+
+  pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
+
+  target 'SRXPropertyTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'SRXProperty-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for SRXProperty-tvOS
+
+  target 'SRXProperty-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name == 'react-native-google-maps'
+            target.build_configurations.each do |config|
+                config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
+            end
+        end
+        
+        targets_to_ignore = %w(React yoga)
+        
+        if targets_to_ignore.include? target.name
+          target.remove_from_project
+        end
+    end
+end

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="importListingStatus"
+            type="StatusKey" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <sg.searchhouse.agentconnect.view.widget.common.Pill
+            android:id="@+id/btn_import_pg"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/pill_height"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:text="@string/title_import_listings"
+            android:visibility="@{importListingStatus != StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+        <include
+            layout="@layout/layout_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:visibility="@{importListingStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+        <include layout="@layout/view_divider_horizontal" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:text="@string/label_create_forms" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.Pill
+            android:id="@+id/btn_cea_exclusive"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/pill_height"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:text="@string/label_sign_in_cea_exclusive" />
+
+        <!-- TODO: will use in next version -->
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:text="@string/label_continue_draft"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/layout_search_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</layout>

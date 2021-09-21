@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/new_indicator_background" />
+            <corners android:radius="@dimen/radius_project_info_new_indicator" />
+            <size android:width="@dimen/size_project_info_new_indicator" android:height="@dimen/size_project_info_new_indicator" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum" />
+
+        <variable
+                name="listingPO"
+                type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+    </data>
+
+    <FrameLayout
+            android:paddingStart="@dimen/spacing_xxs"
+            android:paddingEnd="@dimen/spacing_xxs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include
+                android:id="@+id/layout_watchlist_listing_core"
+                layout="@layout/layout_watchlist_listing_core"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:listingPO="@{listingPO}" />
+    </FrameLayout>
+</layout>

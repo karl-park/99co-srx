@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardUserListingsViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:baselineAligned="false"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+        <include
+                layout="@layout/card_active_listing_count_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_start}"
+                app:breakdown="@{viewModel.hdbSale}"
+                app:ownershipType="@{OwnershipType.SALE}"
+                app:viewModel="@{viewModel}" />
+
+        <include
+                layout="@layout/card_active_listing_count_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center}"
+                app:breakdown="@{viewModel.condoSale}"
+                app:ownershipType="@{OwnershipType.SALE}"
+                app:viewModel="@{viewModel}" />
+
+        <include
+                layout="@layout/card_active_listing_count_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center}"
+                app:breakdown="@{viewModel.landedSale}"
+                app:ownershipType="@{OwnershipType.SALE}"
+                app:viewModel="@{viewModel}" />
+
+        <include
+                layout="@layout/card_active_listing_count_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_end}"
+                app:breakdown="@{viewModel.commercialSale}"
+                app:ownershipType="@{OwnershipType.SALE}"
+                app:viewModel="@{viewModel}" />
+    </LinearLayout>
+</layout>

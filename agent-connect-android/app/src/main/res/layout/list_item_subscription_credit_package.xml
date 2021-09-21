@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.TextUtils" />
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.AgentProfileAndCvEnum.PaymentPlan" />
+
+        <variable
+                name="subscriptionPackage"
+                type="sg.searchhouse.agentconnect.model.api.agent.PackageDetailPO" />
+
+        <variable
+                name="paymentPlan"
+                type="sg.searchhouse.agentconnect.enumeration.api.AgentProfileAndCvEnum.PaymentPlan" />
+
+        <variable
+                name="selectedPackageId"
+                type="String" />
+
+        <variable
+                name="isEnabledPaymentButton"
+                type="Boolean" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/spacing_xs"
+            app:cardElevation="@dimen/spacing_xs"
+            app:cardUseCompatPadding="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:id="@+id/layout_package_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_m">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            style="@style/BodyBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/tv_package_price"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text="@{subscriptionPackage.name}" />
+
+                    <TextView
+                            android:id="@+id/tv_package_price"
+                            style="@style/Heading2Color"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/spacing_xs"
+                            android:maxLines="@integer/max_line_1"
+                            android:text="@{subscriptionPackage.getFormattedAmount()}" />
+                </RelativeLayout>
+
+                <TextView
+                        style="@style/SubText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{subscriptionPackage.description}"
+                        android:visibility="@{TextUtils.isEmpty(subscriptionPackage.description)? View.GONE : View.VISIBLE}" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:orientation="vertical"
+                    android:visibility="@{selectedPackageId.equals(subscriptionPackage.packageId) ? View.VISIBLE : View.GONE}">
+
+                <sg.searchhouse.agentconnect.view.widget.agent.profile.PaymentPlanRadioGroup
+                        android:id="@+id/radio_payment_plan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+
+                <!-- Installment preferred bank-->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:orientation="vertical"
+                        android:visibility="@{paymentPlan == PaymentPlan.INSTALMENT? View.VISIBLE :View.GONE }">
+
+                    <TextView
+                            style="@style/BodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_preferred_bank" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_installment_banks"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:overScrollMode="never" />
+
+                </LinearLayout>
+
+                <!-- Payment -->
+                <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_l"
+                        android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cb_membership_payment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:theme="@style/CheckBox" />
+
+                    <sg.searchhouse.agentconnect.view.widget.agent.profile.SaleAgreement
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical" />
+
+                </LinearLayout>
+
+
+                <sg.searchhouse.agentconnect.view.widget.common.ActionButton
+                        android:id="@+id/btn_proceed_payment"
+                        style="@style/PrimaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_s"
+                        android:enabled="@{isEnabledPaymentButton}"
+                        android:gravity="center"
+                        android:text="@string/action_proceed_to_payment" />
+
+                <TextView
+                        style="@style/ExtraSmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:text="@string/msg_instalment_options"
+                        android:visibility="@{paymentPlan == PaymentPlan.INSTALMENT? View.VISIBLE :View.GONE }" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

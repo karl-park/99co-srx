@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="visibility"
+                type="Integer" />
+    </data>
+
+    <LinearLayout
+            android:visibility="@{visibility}"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        <View
+                android:layout_width="@dimen/column_width_transaction_date_sold"
+                android:layout_height="match_parent" />
+
+        <View
+                android:layout_width="@dimen/column_width_transaction_address"
+                android:layout_height="match_parent"
+                android:background="@color/accordion_background_invertible" />
+
+        <View
+                style="@style/SmallBodyBold"
+                android:layout_width="@dimen/column_width_transaction_unit"
+                android:layout_height="match_parent" />
+
+        <View
+                android:background="@color/accordion_background_invertible"
+                android:layout_width="@dimen/column_width_transaction_price"
+                android:layout_height="match_parent" />
+
+        <View
+                android:layout_width="@dimen/column_width_transaction_size_sqft"
+                android:layout_height="match_parent" />
+
+        <View
+                android:layout_width="@dimen/column_width_transaction_psf"
+                android:background="@color/accordion_background_invertible"
+                android:layout_height="match_parent" />
+
+        <View
+                android:layout_width="@dimen/column_width_transaction_built_year"
+                android:layout_height="match_parent" />
+
+        <View
+                android:layout_width="@dimen/column_width_transaction_transaction"
+                android:background="@color/accordion_background_invertible"
+                android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

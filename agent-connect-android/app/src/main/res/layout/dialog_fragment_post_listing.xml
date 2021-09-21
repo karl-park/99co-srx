@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.create.PostListingViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ButtonState" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum.ListingGroup" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_invertible"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_clear">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_ad_quality" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_non_quality_info"
+                    android:layout_width="@dimen/size_help_icon"
+                    android:layout_height="@dimen/size_help_icon"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:clickable="true"
+                    android:contentDescription="@string/content_description_agency_icon"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackgroundBorderless"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_help_circle" />
+
+                <sg.searchhouse.agentconnect.view.widget.listing.create.ListingQualityBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_height_quality_listing"
+                    android:layout_gravity="center"
+                    app:quality="@{viewModel.listingEditPO.getQualityString()}" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ib_action"
+                android:layout_width="@dimen/icon_size_big"
+                android:layout_height="@dimen/icon_size_big"
+                android:layout_gravity="end"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="@string/content_description_agency_icon"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_more_horizontal"
+                android:visibility="@{viewModel.listingGroup == ListingGroup.TRANSACTION? View.GONE : View.VISIBLE}" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/light_gray_invertible"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <sg.searchhouse.agentconnect.view.widget.listing.create.PostListingBasicInfoCard
+                    android:id="@+id/layout_listing_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m_minus"
+                    android:layout_marginBottom="0dp" />
+
+                <sg.searchhouse.agentconnect.view.widget.listing.create.PostListingPriceAndSpecificInfoCard
+                    android:id="@+id/layout_price_and_specific_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="0dp" />
+
+                <sg.searchhouse.agentconnect.view.widget.listing.create.PostListingHeaderAndDescCard
+                    android:id="@+id/layout_listing_header_and_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="0dp" />
+
+                <sg.searchhouse.agentconnect.view.widget.listing.create.PostListingAdditionalInfoCard
+                    android:id="@+id/layout_additional_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="0dp" />
+
+                <sg.searchhouse.agentconnect.view.widget.listing.create.PostListingFacilitiesCard
+                    android:id="@+id/layout_facilities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="0dp"
+                    app:isFeaturesApplicable="@{!viewModel.listingEditPO.noFeaturesFixturesAreasInd}" />
+
+                <sg.searchhouse.agentconnect.view.widget.listing.create.PostListingMediaCard
+                    android:id="@+id/layout_media"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="0dp" />
+
+                <sg.searchhouse.agentconnect.view.widget.listing.create.PostListingCreditSummaryCard
+                    android:id="@+id/layout_credit_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/margin_5_minus" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingBottom="@dimen/spacing_xs">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_post_listing"
+                style="@style/PrimaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:enabled="@{viewModel.isBtnEnabled}"
+                android:text="@{viewModel.actionBtnLabel}" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

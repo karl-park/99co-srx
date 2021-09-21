@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_m"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SubText"
+                android:textAlignment="center"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/description_watchlist_transactions_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_add_criteria"
+                    android:drawableStart="@drawable/ic_action_plus"
+                    android:text="@string/button_add_criteria"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_add_property"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="0dp"
+                    android:layout_gravity="center_vertical"
+                    android:drawableStart="@drawable/ic_action_plus"
+                    android:text="@string/button_add_property"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

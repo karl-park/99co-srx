@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.portal.PortalImportSummaryDialogViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_check_circle"
+            android:drawablePadding="@dimen/spacing_s"
+            android:drawableTint="@color/purple"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.previewSuccessCountLabel}"
+            android:visibility="@{TextUtils.isEmpty(viewModel.previewSuccessCountLabel)? View.GONE : View.VISIBLE}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginBottom="0dp"
+            android:visibility="@{viewModel.showFailedCountLabel? View.VISIBLE : View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:src="@drawable/ic_remove"
+                android:tint="@color/red" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_preview_failed_count_label"
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="@dimen/spacing_xxs" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Heading2Color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginBottom="0dp"
+            android:text="@string/sub_title_rank_even_higher" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginBottom="0dp"
+            android:lineSpacingExtra="@dimen/spacing_xxs"
+            android:text="@string/label_rank_higher_description" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tv_add_home_owner_numbers"
+            style="@style/SecondaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:text="@string/button_add_home_owner_number" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+            android:id="@+id/tv_do_it_later"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/label_do_it_later" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+                name="sortTypeLabelResId"
+                type="Integer" />
+
+        <variable
+                name="sortTypeIconResId"
+                type="Integer" />
+
+        <variable
+                name="isSortTypeNeutral"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:text="@string/label_sort_by" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                android:id="@+id/btn_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                app:resourceText="@{sortTypeLabelResId}" />
+
+        <ImageButton
+                android:id="@+id/ib_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:contentDescription="@string/content_description_sort"
+                android:src="@{ContextCompat.getDrawable(context, sortTypeIconResId)}"
+                android:visibility="@{isSortTypeNeutral ? View.GONE : View.VISIBLE}" />
+    </LinearLayout>
+</layout>

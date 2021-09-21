@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="srxIndexPO"
+                type="sg.searchhouse.agentconnect.model.api.propertyindex.LoadMarketWatchIndicesResponse.SrxIndexPO" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_market_watch_item"
+            android:layout_marginStart="@dimen/spacing_s"
+            android:layout_marginEnd="@dimen/spacing_s">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBody"
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:lines="1"
+                android:layout_alignParentStart="true"
+                android:layout_toEndOf="@id/tv_price"
+                android:text="@{title}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_price"
+                style="@style/SmallBody"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/width_column_market_data_price"
+                android:layout_height="wrap_content"
+                android:gravity="end|center_vertical"
+                android:layout_gravity="end|center_vertical"
+                android:drawablePadding="@dimen/drawable_padding_market_index"
+                android:drawableEnd="@{srxIndexPO.getIncreaseArrow(context)}"
+                android:ellipsize="end"
+                android:layout_toStartOf="@id/tv_volume"
+                android:lines="1"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/padding_end_column_market_data"
+                android:text="@{srxIndexPO.increaseLabel}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_volume"
+                style="@style/SmallBody"
+                android:layout_centerVertical="true"
+                android:drawablePadding="@dimen/drawable_padding_market_index"
+                android:layout_width="@dimen/width_column_market_data_volume"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:drawableEnd="@{srxIndexPO.getMonthlyVolChangeArrow(context)}"
+                android:ellipsize="end"
+                android:gravity="end|center_vertical"
+                android:layout_toStartOf="@id/tv_month"
+                android:lines="1"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/padding_end_column_market_data"
+                android:text="@{srxIndexPO.monthlyVolChangeLabel}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_month"
+                style="@style/SmallBody"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center_vertical"
+                android:layout_width="@dimen/width_column_market_data_month"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="end|center_vertical"
+                android:lines="1"
+                android:text="@{srxIndexPO.formattedDate}" />
+    </RelativeLayout>
+</layout>

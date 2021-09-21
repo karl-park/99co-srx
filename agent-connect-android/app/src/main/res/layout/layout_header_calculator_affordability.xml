@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.AffordabilityCalculatorOption" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.AffordabilityCalculatorViewModel" />
+    </data>
+
+    <FrameLayout
+            android:clickable="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:animateLayoutChanges="true"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPaddingBottom="0dp"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp">
+
+            <LinearLayout
+                    android:id="@+id/layout_affordability_header"
+                    android:animateLayoutChanges="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <include
+                        android:id="@+id/card_max_purchase_price"
+                        layout="@layout/card_affordability_type"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:amount="@{viewModel.maxPurchasePrice}"
+                        app:description="@{viewModel.maxPurchasePriceDescription}"
+                        app:isExpand="@{viewModel.affordabilityCalculatorOption == AffordabilityCalculatorOption.MAX_PURCHASE_PRICE}"
+                        app:title="@{@string/title_calculate_max_purchase_price}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/ExtraSmallBodyBold"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/or"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <include
+                        android:id="@+id/card_income_required"
+                        layout="@layout/card_affordability_type"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:amount="@{viewModel.incomeRequired}"
+                        app:description="@{viewModel.incomeRequiredDescription}"
+                        app:isExpand="@{viewModel.affordabilityCalculatorOption == AffordabilityCalculatorOption.INCOME_REQUIRED}"
+                        app:title="@{@string/title_calculate_income_required}" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

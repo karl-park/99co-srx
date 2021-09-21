@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.xvalue.XValueViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:text="@string/title_x_value_latest_transactions"
+            android:visibility="gone" />
+
+        <sg.searchhouse.agentconnect.view.widget.xvalue.TransactedOwnershipRadioGroup
+            android:id="@+id/radio_group_ownership_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_s"
+            android:visibility="@{viewModel.canSelectOwnershipType ? View.VISIBLE : View.GONE}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_latest_transactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.ownershipType == OwnershipType.SALE ? View.VISIBLE : View.GONE}">
+
+            <include
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/label_x_value_recent_sale_transactions_empty)}"
+                app:visibility="@{viewModel.isShowSaleTransactionsEmpty() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:visibility="@{viewModel.loadLatestSaleTransactionsStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/fail_generic_contact_srx)}"
+                app:visibility="@{viewModel.loadLatestSaleTransactionsStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/error_generic_contact_srx)}"
+                app:visibility="@{viewModel.loadLatestSaleTransactionsStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.ownershipType == OwnershipType.RENT ? View.VISIBLE : View.GONE}">
+
+            <include
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/label_x_value_recent_rental_transactions_empty)}"
+                app:visibility="@{viewModel.isShowRentalTransactionsEmpty() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:visibility="@{viewModel.loadLatestRentalTransactionsStatus == StatusKey.LOADING ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/fail_generic_contact_srx)}"
+                app:visibility="@{viewModel.loadLatestRentalTransactionsStatus == StatusKey.FAIL ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/error_generic_contact_srx)}"
+                app:visibility="@{viewModel.loadLatestRentalTransactionsStatus == StatusKey.ERROR ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

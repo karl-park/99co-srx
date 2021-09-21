@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.cv.AgentCvViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/tv_testimonials"
+                    style="@style/Heading2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_testimonials" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/tv_testimonials"
+                    android:visibility="@{viewModel.isOwnCv == true? View.VISIBLE : View.GONE}">
+
+                <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_testimonials"
+                        style="@style/Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:checked="@{viewModel.agentCvPO.showTestimonials}"
+                        android:visibility="@{viewModel.showTestimonialPlaceholder == true? View.GONE : View.VISIBLE}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/tv_view_all_testimonials"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/switch_testimonials"
+                        android:gravity="end"
+                        android:text="@string/button_view_all"
+                        android:visibility="@{viewModel.showTestimonialPlaceholder == true? View.GONE : View.VISIBLE}" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_testimonials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:overScrollMode="never"
+                android:visibility="@{safeUnbox(viewModel.showTestimonialPlaceholder)? View.GONE : View.VISIBLE}" />
+
+        <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
+                android:id="@+id/list_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:visibility="@{safeUnbox(viewModel.showTestimonialPlaceholder)? View.GONE : View.VISIBLE}"
+                app:dotColor="@color/gray"
+                app:selectedDotColor="@color/cyan" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_m"
+                android:visibility="@{safeUnbox(viewModel.showTestimonialPlaceholder)? View.VISIBLE : View.GONE}">
+
+            <TextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_no_testimonial_placeholder"
+                    android:textColor="@color/gray" />
+
+            <Button
+                    android:id="@+id/btn_add_now"
+                    style="@style/SecondaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:stateListAnimator="@null"
+                    android:text="@string/action_add_now" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

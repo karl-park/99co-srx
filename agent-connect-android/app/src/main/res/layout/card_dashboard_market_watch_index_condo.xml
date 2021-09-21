@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+
+        <variable
+                name="mainIndexPO"
+                type="sg.searchhouse.agentconnect.model.api.propertyindex.LoadMarketWatchIndicesResponse.SrxIndexPO" />
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="subIndices"
+                type="sg.searchhouse.agentconnect.model.api.propertyindex.LoadMarketWatchIndicesResponse.NonLandedPrivateSubIndexes" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            app:cardCornerRadius="@dimen/small_card_border_radius"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp">
+
+        <LinearLayout
+                android:id="@+id/layout_main"
+                android:layout_toStartOf="@id/layout_view_graph"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginEnd="@dimen/width_dashboard_right_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <include
+                    layout="@layout/layout_market_watch_index"
+                    app:srxIndexPO="@{mainIndexPO}"
+                    app:title="@{title}" />
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_s"
+                    android:layout_marginEnd="@dimen/spacing_s"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="@dimen/spacing_xs"
+                    android:visibility="@{isExpand ? View.VISIBLE : View.GONE}">
+
+                <include
+                        layout="@layout/layout_market_watch_condo_sub_indices"
+                        app:subIndices="@{subIndices}" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <include
+                layout="@layout/view_divider_vertical"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/width_dashboard_right_button"
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent" />
+
+        <include
+                android:id="@+id/layout_view_graph"
+                layout="@layout/layout_view_market_graph" />
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.certifiedlisting.CertifiedListingViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_invertible">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibility="@{safeUnbox(viewModel.isHomeOwnerNotified()) ? View.GONE : View.VISIBLE}">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_collapsing_toolbar_height"
+                android:background="@color/white_invertible"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    android:fitsSystemWindows="true"
+                    app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                    app:expandedTitleMarginEnd="@dimen/spacing_m"
+                    app:expandedTitleMarginStart="@dimen/spacing_m"
+                    app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_cancel"
+                        app:title="@string/title_add_certified_listing" />
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_m"
+                        app:alignContent="flex_start"
+                        app:alignItems="flex_start"
+                        app:flexDirection="row"
+                        app:flexWrap="wrap">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SmallBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginEnd="@dimen/margin_2"
+                            android:text="@string/label_certified_listing_home_owner_number" />
+
+                        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/tv_learn_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_learn_more" />
+                    </com.google.android.flexbox.FlexboxLayout>
+
+
+                    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        app:contentPaddingBottom="0dp"
+                        app:contentPaddingLeft="0dp"
+                        app:contentPaddingRight="0dp"
+                        app:contentPaddingTop="0dp">
+
+                        <include
+                            layout="@layout/list_item_my_listing_preview_info"
+                            app:disableSelection="@{false}"
+                            app:isSelected="@{false}"
+                            app:listingPO="@{viewModel.listingPO}" />
+
+                    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/RoundedEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_m"
+                        android:hint="@string/hint_enter_home_owner_mobile"
+                        android:inputType="number"
+                        android:text="@={viewModel.mobileNumber}" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/PrimaryButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/spacing_xl"
+                        android:layout_marginBottom="0dp"
+                        android:enabled="@{viewModel.isBtnEnabled()}"
+                        android:onClick="@{()->viewModel.requestHomeOwnerCertification()}"
+                        android:text="@{viewModel.btnLabel}" />
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <include
+                layout="@layout/layout_loading_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <include
+            layout="@layout/layout_action_success"
+            app:buttonLabel="@{@string/action_go_back_to_my_listings}"
+            app:content="@{@string/msg_notified_home_owner}"
+            app:visibility="@{safeUnbox(viewModel.isHomeOwnerNotified()) ? View.VISIBLE : View.GONE}" />
+    </FrameLayout>
+
+</layout>

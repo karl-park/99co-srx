@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.cv.AgentCvViewModel" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/tv_general_info"
+                    style="@style/Heading2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_general_info" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/tv_general_info"
+                    android:visibility="@{viewModel.isOwnCv == true? View.VISIBLE : View.GONE}">
+
+                <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_general_info"
+                        style="@style/Switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/spacing_xs"
+                        android:checked="@{viewModel.agentCvPO.showAboutMe}"
+                        android:visibility="@{safeUnbox(viewModel.showGeneralInfoPlaceholder)? View.GONE : View.VISIBLE}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/switch_general_info"
+                        android:gravity="end"
+                        android:text="@string/label_edit"
+                        android:visibility="@{safeUnbox(viewModel.showGeneralInfoPlaceholder)? View.GONE : View.VISIBLE}" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{safeUnbox(viewModel.showGeneralInfoPlaceholder)? View.GONE : View.VISIBLE}">
+
+            <TextView
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:ellipsize="end"
+                    android:maxLines="@{isExpand == true ? Integer.MAX_VALUE : 5}"
+                    android:text='@{viewModel.agentCvPO != null ? viewModel.agentCvPO.aboutMe : ""}' />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_expand_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:drawableEnd="@drawable/ic_chevron_down"
+                    android:drawableTint="@color/cyan"
+                    android:text="@string/button_show_more"
+                    android:visibility="@{isExpand == false ? View.VISIBLE : View.GONE}" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_collapse_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:drawableEnd="@drawable/ic_chevron_up"
+                    android:drawableTint="@color/cyan"
+                    android:text="@string/button_close"
+                    android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/spacing_m"
+                android:paddingBottom="@dimen/spacing_m"
+                android:visibility="@{safeUnbox(viewModel.showGeneralInfoPlaceholder)? View.VISIBLE : View.GONE}">
+
+            <TextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_no_general_info_placeholder"
+                    android:textColor="@color/gray" />
+
+            <Button
+                    android:id="@+id/btn_add_now"
+                    style="@style/SecondaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:stateListAnimator="@null"
+                    android:text="@string/action_add_now" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

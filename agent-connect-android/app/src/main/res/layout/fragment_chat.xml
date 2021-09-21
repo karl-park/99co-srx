@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.fragment.main.chat.ChatFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.main.chat.ChatViewModel" />
+
+        <variable
+            name="buttonState"
+            type="sg.searchhouse.agentconnect.enumeration.status.ButtonState" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_m">
+
+            <!-- Inbox Header -->
+            <TextView
+                style="@style/Heading1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:text="@string/title_inbox" />
+
+            <!-- Search Inbox -->
+            <EditText
+                android:id="@+id/et_search_inbox"
+                style="@style/SearchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="0dp"
+                android:afterTextChanged="@{viewModel::afterTextChangedSearch}"
+                android:hint="@string/hint_search_inbox"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@={viewModel.searchKeyword}"
+                android:visibility="@{viewModel.isSearchConversationEnabled() ? View.VISIBLE : View.GONE}"
+                tools:ignore="LabelFor"
+                tools:targetApi="O" />
+
+            <Button
+                android:id="@+id/btn_search_box"
+                style="@style/SearchEditText.Pseudo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="0dp"
+                android:hint="@string/hint_search_inbox"
+                android:textAlignment="textStart"
+                android:visibility="@{viewModel.isSearchConversationEnabled() ? View.GONE : View.VISIBLE}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_search_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingBottom="@dimen/rv_padding_bottom"
+                android:visibility="@{viewModel.searchResults.size() > 0 ? View.VISIBLE : View.GONE}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+            <!-- Edit and Compose Message -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:visibility="@{viewModel.searchResults.size() > 0 ? View.GONE : View.VISIBLE}">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_edit_chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:onClick="@{()->viewModel.onToggleEditMode()}"
+                    android:padding="@dimen/margin_4"
+                    android:text="@{safeUnbox(viewModel.isEditMode)? @string/label_cancel : @string/label_edit}"
+                    android:textSize="@dimen/text_size_16" />
+
+                <ImageButton
+                    android:id="@+id/ib_compose_message"
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_alignEnd="@+id/tv_edit_chat"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/content_description_compose_image"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_compose_msg"
+                    android:tint="@color/black_invertible" />
+            </RelativeLayout>
+
+            <sg.searchhouse.agentconnect.view.widget.main.chat.ChatTabLayout
+                android:id="@+id/tl_chat_list"
+                style="@style/ChatTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:visibility="@{viewModel.searchResults.size() > 0 ? View.GONE : View.VISIBLE}" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_chat_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:visibility="@{viewModel.searchResults.size() > 0 ? View.GONE : View.VISIBLE}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rl_chat_bottom_sheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:animateLayoutChanges="true"
+            android:background="@color/white_invertible"
+            android:orientation="vertical"
+            android:visibility="@{safeUnbox(viewModel.isEditMode)? View.VISIBLE : View.GONE}">
+
+            <include layout="@layout/view_divider_horizontal" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/spacing_m">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_blacklist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:enabled="@{viewModel.isEnabledActionButtons}"
+                    android:text="@string/label_blacklist" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_mark_as_read"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:enabled="@{viewModel.isEnabledActionButtons}"
+                    android:text="@string/label_mark_as_read" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:enabled="@{viewModel.isEnabledActionButtons}"
+                    android:text="@string/action_delete" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

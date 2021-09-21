@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- disabled states -->
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="@color/btn_yellow_disabled" />
+            <corners android:radius="20dp" />
+            <padding android:left="@dimen/btn_padding_horizontal_8" android:right="@dimen/btn_padding_horizontal_8" />
+        </shape>
+    </item>
+    <!-- pressed state -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/btn_focus_background" />
+            <corners android:radius="20dp" />
+            <padding android:left="@dimen/btn_padding_horizontal_8" android:right="@dimen/btn_padding_horizontal_8" />
+        </shape>
+    </item>
+    <!-- normal states -->
+    <item>
+        <shape>
+            <solid android:color="@color/btn_yellow" />
+            <corners android:radius="20dp" />
+            <padding android:left="@dimen/btn_padding_horizontal_8" android:right="@dimen/btn_padding_horizontal_8" />
+        </shape>
+    </item>
+</selector>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.main.dashboard.DashboardSearchViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <FrameLayout
+            android:clickable="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:orientation="vertical">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_m">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_greeting"
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:ellipsize="end"
+                            android:lines="1" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_agency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/top_agency_icon_height"
+                            android:layout_marginStart="@dimen/spacing_xs"
+                            android:layout_toEndOf="@id/tv_greeting"
+                            android:contentDescription="@string/content_description_agency_icon"
+                            android:scaleType="fitCenter" />
+                </RelativeLayout>
+
+                <sg.searchhouse.agentconnect.view.widget.common.SearchButton
+                        android:id="@+id/btn_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_action_search"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@string/hint_dashboard_search" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

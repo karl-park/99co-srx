@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="subIndices"
+                type="sg.searchhouse.agentconnect.model.api.propertyindex.LoadMarketWatchIndicesResponse.HdbSubIndexes" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <include
+                layout="@layout/layout_market_watch_sub_index"
+                app:srxIndexPO="@{subIndices.hdb3Room}"
+                app:title="@{@string/title_market_watch_hdb_3_rooms}" />
+
+        <include
+                layout="@layout/layout_market_watch_sub_index"
+                app:srxIndexPO="@{subIndices.hdb4Room}"
+                app:title="@{@string/title_market_watch_hdb_4_rooms}" />
+
+        <include
+                layout="@layout/layout_market_watch_sub_index"
+                app:srxIndexPO="@{subIndices.hdb5Room}"
+                app:title="@{@string/title_market_watch_hdb_5_rooms}" />
+
+        <include
+                layout="@layout/layout_market_watch_sub_index"
+                app:srxIndexPO="@{subIndices.hdbExecutive}"
+                app:title="@{@string/title_market_watch_hdb_executive}" />
+    </LinearLayout>
+</layout>

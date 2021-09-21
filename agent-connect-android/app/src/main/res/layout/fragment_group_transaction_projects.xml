@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.transaction.TransactionProjectsViewModel" />
+    </data>
+
+    <FrameLayout
+            android:id="@+id/layout_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <include
+                android:id="@+id/layout_loading_fail_error"
+                layout="@layout/layout_loading_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+        <include
+                android:id="@+id/layout_empty"
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/label_transaction_projects_empty)}"
+                app:visibility="@{viewModel.isShowEmpty() ? View.VISIBLE : View.GONE}" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.HiddenSwipeRefreshLayout
+                android:id="@+id/layout_swipe_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false" />
+        </sg.searchhouse.agentconnect.view.widget.common.HiddenSwipeRefreshLayout>
+    </FrameLayout>
+</layout>

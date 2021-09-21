@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Mock-up: https://projects.invisionapp.com/d/main?origin=v7#/console/20119097/435289731/preview?scrollOffset=900 -->
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.SponsorListingViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:text="@string/label_select_target_communities" />
+
+        <!--Mock button to show search bar-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_search"
+            style="@style/SearchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            android:enabled="@{!viewModel.hasExistingTargetCommunities}"
+            android:text="@string/hint_search_target_communities"
+            android:textAlignment="textStart"
+            android:textColor="@color/hint" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_target_communities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="@dimen/spacing_xs" />
+
+        <View
+            android:visibility="@{viewModel.hasTargetCommunities ? View.VISIBLE : View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_height="@dimen/list_view_divider"
+            android:foreground="@color/divider_color" />
+
+        <include
+            layout="@layout/layout_loading_fail_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mainStatus="@{viewModel.getAddressCountStatus.key}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.hasTargetCommunities &amp;&amp; viewModel.getAddressCountStatus.key == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_m"
+                android:text="@string/label_selected_audience" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Heading2Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:drawableStart="@drawable/ic_address"
+                android:drawablePadding="@dimen/spacing_xs"
+                android:gravity="center_vertical"
+                android:text="@{viewModel.selectedAddressCountLabel}" />
+
+            <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:progress="@{viewModel.addressesPercentage}"
+                android:progressTint="@color/purple"
+                android:visibility="@{viewModel.totalAvailableAddressCount > 0 ? View.VISIBLE : View.GONE}" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.totalAvailableAddressCount > 0 ? View.VISIBLE : View.GONE}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_audience_number_start"
+                    style="@style/ExtraSmallBodyPurple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:text="@{Integer.toString(0)}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBodyPurple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/tv_audience_number_start"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:text="@{viewModel.totalAvailableAddressCountLabel}" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

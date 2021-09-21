@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="photoPO"
+                type="sg.searchhouse.agentconnect.model.api.project.PhotoPO" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_xs"
+                app:contentPaddingBottom="0dp"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp"
+                app:contentPaddingTop="0dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/width_site_map"
+                    android:layout_height="@dimen/height_site_map"
+                    android:contentDescription="@string/content_description_site_map"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{photoPO.thumbnailUrl}" />
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

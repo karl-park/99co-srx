@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.HyperTargetActionType" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.community.CommunityHyperTargetViewModel" />
+
+        <variable
+            name="actionType"
+            type="HyperTargetActionType" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <!-- Mock up: https://invis.io/23Z5WH2986J#/435289732_Add_Sponsored__Copy_3 -->
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/ClassicActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:title="@string/activity_community_hyper_target" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/layout_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:text="@{@string/label_hyper_select_location}" />
+
+                        <!--Mock button to show search bar-->
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_search"
+                            style="@style/SearchEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:background="@{!viewModel.isShowNameError() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                            android:text="@{viewModel.location != null ? viewModel.location : @string/hint_search_hyper_target_address}"
+                            android:textAlignment="textStart"
+                            android:textColor="@{viewModel.location != null ? @color/black : @color/hint}" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/spacing_m"
+                            android:visibility="@{viewModel.isShowLocationError() ? View.GONE : View.VISIBLE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:text="@string/error_required_field"
+                            android:visibility="@{viewModel.isShowLocationError() ? View.VISIBLE : View.GONE}" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.isShowRadiusSeekBar() ? View.VISIBLE : View.GONE}">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                android:text="@{@string/label_hyper_radius}" />
+
+                            <sg.searchhouse.agentconnect.view.widget.common.LabeledSeekBar
+                                android:id="@+id/sb_search_radius"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_xs"
+                                android:layout_marginEnd="@dimen/spacing_xs"
+                                android:layout_marginBottom="@dimen/spacing_xl" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:text="@{@string/label_hyper_property_type}" />
+
+                        <include
+                            android:id="@+id/layout_residential_main_property_types"
+                            layout="@layout/layout_filter_listing_residential_property_main_types"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            app:isVisible="@{true}"
+                            app:selectedPropertyMainType="@{viewModel.propertyMainType}" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_property_sub_types"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <!-- X-value -->
+                        <include
+                            android:id="@+id/layout_header_x_value"
+                            layout="@layout/layout_hyper_section_header"
+                            app:isExpand="@{actionType == HyperTargetActionType.VIEW || viewModel.isExpandXValue()}"
+                            app:isNotExpandable="@{actionType == HyperTargetActionType.VIEW}"
+                            app:title="@{@string/label_hyper_x_value}" />
+
+                        <include
+                            android:id="@+id/layout_x_value"
+                            layout="@layout/layout_range_number_boxes_new"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:visibility="@{viewModel.isExpandXValue() ? View.VISIBLE : View.GONE}" />
+
+                        <include
+                            android:id="@+id/layout_x_value_labels"
+                            layout="@layout/layout_range_number_labels"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:visibility="@{actionType == HyperTargetActionType.VIEW ? View.VISIBLE : View.GONE}" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <!-- Capital gain -->
+                        <include
+                            android:id="@+id/layout_header_capital_gain"
+                            layout="@layout/layout_hyper_section_header"
+                            app:isExpand="@{actionType == HyperTargetActionType.VIEW || viewModel.isExpandCapitalGain()}"
+                            app:isNotExpandable="@{actionType == HyperTargetActionType.VIEW}"
+                            app:title="@{@string/label_hyper_capital_gain}" />
+
+                        <include
+                            android:id="@+id/layout_capital_gain"
+                            layout="@layout/layout_range_number_boxes_new"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:visibility="@{viewModel.isExpandCapitalGain() ? View.VISIBLE : View.GONE}" />
+
+                        <include
+                            android:id="@+id/layout_capital_gain_labels"
+                            layout="@layout/layout_range_number_labels"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:visibility="@{actionType == HyperTargetActionType.VIEW ? View.VISIBLE : View.GONE}" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <!-- Tenure -->
+                        <include
+                            android:id="@+id/layout_header_tenure"
+                            layout="@layout/layout_hyper_section_header"
+                            app:isExpand="@{actionType == HyperTargetActionType.VIEW || viewModel.isExpandTenure()}"
+                            app:isNotExpandable="@{actionType == HyperTargetActionType.VIEW}"
+                            app:title="@{@string/label_hyper_tenure}" />
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_tenure_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/spacing_m"
+                            android:visibility="@{actionType == HyperTargetActionType.VIEW || viewModel.isExpandTenure() ? View.VISIBLE : View.GONE}"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:background="@color/divider_color" />
+
+                        <!-- Name -->
+                        <include
+                            android:id="@+id/layout_header_target_name"
+                            layout="@layout/layout_hyper_section_header"
+                            app:isExpand="@{true}"
+                            app:isNotExpandable="@{true}"
+                            app:title="@{@string/label_hyper_target_name}" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/et_target_name"
+                                style="@style/RoundedEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="@dimen/spacing_m"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:background="@{!viewModel.isShowNameError() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                                android:inputType="textCapWords"
+                                android:singleLine="true" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/ExtraSmallBodyError"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginTop="@dimen/spacing_xs"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_marginBottom="@dimen/spacing_xl"
+                                android:text="@string/error_required_field"
+                                android:visibility="@{viewModel.isShowNameError() ? View.VISIBLE : View.GONE}" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/spacing_xl"
+                                android:visibility="@{viewModel.isShowNameError() ? View.GONE : View.VISIBLE}" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/transparent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="@{actionType == HyperTargetActionType.VIEW ? View.VISIBLE : View.GONE}" />
+                </FrameLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

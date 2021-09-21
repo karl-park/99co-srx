@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<import type="android.view.View" />
+
+		<variable
+				name="viewModel"
+				type="sg.searchhouse.agentconnect.viewmodel.fragment.amenity.AmenitiesFragmentViewModel" />
+	</data>
+
+	<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		<include
+				layout="@layout/layout_loading_fail_error"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				app:mainStatus="@{viewModel.mainStatus}" />
+
+		<include
+				layout="@layout/layout_load_list_fail"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_gravity="center"
+				app:title="@{String.valueOf(@string/label_amenities_empty)}"
+				app:visibility="@{viewModel.isShowEmpty() ? View.VISIBLE : View.GONE}" />
+
+		<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/list"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:nestedScrollingEnabled="false"
+				android:overScrollMode="never"
+				android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}" />
+	</FrameLayout>
+</layout>

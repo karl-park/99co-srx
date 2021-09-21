@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+                name="remarks"
+                type="String" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{TextUtils.isEmpty(remarks) ? View.GONE : View.VISIBLE}">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_m">
+
+            <TextView
+                    android:id="@+id/tv_header"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:text="@string/title_listing_details_description" />
+
+            <TextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:ellipsize="end"
+                    android:maxLines="@{isExpand == true ? Integer.MAX_VALUE : 4}"
+                    android:text="@{remarks}" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_expand_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:drawableEnd="@drawable/ic_chevron_down"
+                    android:drawableTint="@color/cyan"
+                    android:text="@string/button_show_more"
+                    android:visibility="@{isExpand == false ? View.VISIBLE : View.GONE}" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_collapse_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:drawableEnd="@drawable/ic_chevron_up"
+                    android:drawableTint="@color/cyan"
+                    android:text="@string/button_close"
+                    android:visibility="@{isExpand == true ? View.VISIBLE : View.GONE}" />
+        </LinearLayout>
+
+        <include layout="@layout/view_divider_horizontal" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<data>
+
+		<import type="android.view.View" />
+
+		<variable
+				name="label"
+				type="String" />
+
+		<variable
+				name="value"
+				type="String" />
+
+		<variable
+				name="isVisible"
+				type="Boolean" />
+	</data>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="@dimen/spacing_xs"
+			android:orientation="horizontal"
+			android:visibility="@{safeUnbox(isVisible) == true ? View.VISIBLE : View.GONE}"
+			android:weightSum="3">
+
+		<TextView
+				style="@style/Body"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="start|top"
+				android:layout_weight="2"
+				android:text="@{label}"
+				android:textAlignment="textStart" />
+
+		<TextView
+				style="@style/Body"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="start|top"
+				android:layout_weight="1"
+				android:text="@{value}"
+				android:textAlignment="textStart" />
+	</LinearLayout>
+</layout>

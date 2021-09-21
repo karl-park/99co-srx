@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingDetailsViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_l"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="@dimen/spacing_xxs"
+                android:layout_weight="1"
+                android:background="@drawable/box_x_value_summary_item">
+
+            <include
+                    layout="@layout/layout_listing_details_home_value_estimator_summary_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:time="@{viewModel.lowestXValue.getQuarterYearOrLatest(context)}"
+                    app:title="@{@string/label_listing_details_x_value_lowest}"
+                    app:value="@{viewModel.lowestXValue.formattedValue}"
+                    app:valueTextColor="@{@color/black_invertible}" />
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xxs"
+                android:layout_marginEnd="@dimen/spacing_xxs"
+                android:layout_weight="1"
+                android:background="@drawable/box_x_value_summary_item"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingBottom="@dimen/spacing_xs">
+
+            <include
+                    layout="@layout/layout_listing_details_home_value_estimator_summary_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:time="@{@string/label_latest}"
+                    app:title="@{@string/label_listing_details_x_value_latest}"
+                    app:value="@{viewModel.latestXValue.formattedValue}"
+                    app:valueTextColor="@{@color/colorAccent}" />
+        </FrameLayout>
+
+        <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xxs"
+                android:layout_marginEnd="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/box_x_value_summary_item">
+
+            <include
+                    layout="@layout/layout_listing_details_home_value_estimator_summary_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:time="@{viewModel.highestXValue.getQuarterYearOrLatest(context)}"
+                    app:title="@{@string/label_listing_details_x_value_highest}"
+                    app:value="@{viewModel.highestXValue.formattedValue}"
+                    app:valueTextColor="@{@color/black_invertible}" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

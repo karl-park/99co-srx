@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingDetailsViewModel" />
+
+        <variable
+                name="timeScale"
+                type="sg.searchhouse.agentconnect.enumeration.api.XValueEnum.TimeScale" />
+
+        <variable
+                name="background"
+                type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            style="@style/RoundedGroupButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_x_trend_time_scale"
+            android:background="@{background}"
+            android:onClick="@{() -> viewModel.selectTimeScale(timeScale)}"
+            android:text="@{timeScale.label}"
+            android:textColor="@{viewModel.selectedTimeScale == timeScale ? @color/white : @color/black}"
+            app:isSelected="@{viewModel.selectedTimeScale == timeScale}" />
+</layout>

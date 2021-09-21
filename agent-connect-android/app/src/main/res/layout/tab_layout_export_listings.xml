@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.ExportOption" />
+
+        <variable
+                name="exportOption"
+                type="ExportOption" />
+    </data>
+
+    <LinearLayout
+            android:layout_marginTop="@dimen/spacing_m"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tab_pdf"
+                style="@style/TabButtonLeft"
+                android:text="@{ExportOption.PDF.label}"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isSelected="@{exportOption == ExportOption.PDF}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_tab_excel"
+                style="@style/TabButtonRight"
+                android:text="@{ExportOption.EXCEL.label}"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:isSelected="@{exportOption == ExportOption.EXCEL}" />
+    </LinearLayout>
+</layout>

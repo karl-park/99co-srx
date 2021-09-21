@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_m"
+                app:contentPaddingBottom="@dimen/spacing_m"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        style="@style/Title"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:text="@string/dialog_title_featured_listing_types"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <TextView
+                        style="@style/Title"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:text="@string/dialog_featured_listing_item_premier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <LinearLayout
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:gravity="top"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <ImageView
+                            android:layout_marginStart="@dimen/spacing_s"
+                            android:layout_marginEnd="@dimen/spacing_xs"
+                            android:src="@drawable/ft_listing_premier"
+                            android:contentDescription="@string/content_description_featured_listing_item_premier"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:layout_width="@dimen/width_featured_listing_dialog_image"
+                            android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                            android:layout_marginTop="@dimen/spacing_xxs"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        <include
+                                layout="@layout/layout_bullet_text"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:text="@{@string/dialog_featured_listing_types_premier_description_1}" />
+
+                        <include
+                                layout="@layout/layout_bullet_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:text="@{@string/dialog_featured_listing_types_premier_description_2}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                        style="@style/Title"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:text="@string/dialog_featured_listing_item_xl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <LinearLayout
+                        android:layout_marginStart="0dp"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:gravity="top"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <ImageView
+                            android:layout_marginStart="@dimen/spacing_s"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:layout_marginEnd="@dimen/spacing_xs"
+                            android:src="@drawable/ft_listing_xl"
+                            android:contentDescription="@string/content_description_featured_listing_item_xl"
+                            android:layout_width="@dimen/width_featured_listing_dialog_image"
+                            android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                            android:layout_marginTop="@dimen/spacing_xxs"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        <include
+                                layout="@layout/layout_bullet_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                app:text="@{@string/dialog_featured_listing_types_xl_description_1}" />
+
+                        <include
+                                layout="@layout/layout_bullet_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:text="@{@string/dialog_featured_listing_types_xl_description_2}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include
+                        layout="@layout/view_divider_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_view_product_info_sheet"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:drawableTint="@color/gray_invertible"
+                        android:drawableStart="@drawable/ic_pdf"
+                        android:text="@string/button_view_product_info_sheet"
+                        android:layout_gravity="start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

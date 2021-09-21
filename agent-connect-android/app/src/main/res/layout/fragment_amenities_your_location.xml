@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<variable
+				name="viewModel"
+				type="sg.searchhouse.agentconnect.viewmodel.fragment.amenity.AmenitiesYourLocationFragmentViewModel" />
+	</data>
+
+	<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="@dimen/spacing_m"
+					android:layout_marginTop="@dimen/spacing_m"
+					android:layout_marginEnd="@dimen/spacing_m"
+					android:orientation="vertical">
+
+				<TextView
+						style="@style/Title"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="@dimen/spacing_xs"
+						android:text="@string/label_title_to" />
+
+				<Button
+						android:id="@+id/btn_to"
+						style="@style/SearchEditText"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="@dimen/spacing_m"
+						android:hint="@string/label_amenities_enter_location"
+						android:text="@{viewModel.destinationAddress}"
+						android:textAlignment="textStart" />
+
+				<TextView
+						style="@style/Title"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="@dimen/spacing_xs"
+						android:text="@string/label_title_from" />
+
+				<Button
+						android:id="@+id/btn_from"
+						style="@style/SearchEditText"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="@dimen/spacing_m"
+						android:drawableStart="@null"
+						android:ellipsize="end"
+						android:enabled="false"
+						android:lines="1"
+						android:paddingStart="@dimen/spacing_m"
+						android:paddingEnd="@dimen/spacing_m"
+						android:text="@{viewModel.listingAddress}"
+						android:textAlignment="textStart"
+						android:textColor="@color/gray" />
+			</LinearLayout>
+
+			<include
+					layout="@layout/layout_select_travel_mode"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/spacing_m"
+					app:drivingDuration="@{viewModel.drivingDurationPolylinePoints.first}"
+					app:selectedTravelMode="@{viewModel.travelMode}"
+					app:transitDuration="@{viewModel.transitDurationPolylinePoints.first}"
+					app:walkingDuration="@{viewModel.walkingDurationPolylinePoints.first}" />
+		</LinearLayout>
+	</ScrollView>
+</layout>

@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.SponsorListingViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.CommunityPostEnum.PromoteType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.CommunityPostEnum.Target" />
+    </data>
+
+    <!-- Mock up: https://projects.invisionapp.com/d/main/#/console/20119097/425534500/preview -->
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_invertible">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_collapsing_toolbar_height"
+                android:background="@color/white_invertible"
+                android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                    app:expandedTitleMarginEnd="@dimen/spacing_m"
+                    app:expandedTitleMarginStart="@dimen/spacing_m"
+                    app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_cancel"
+                        app:title="@string/activity_sponsor_listing">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="@dimen/spacing_s"
+                            android:visibility="@{viewModel.summary != null ? View.VISIBLE : View.GONE}">
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/ib_wallet"
+                                android:layout_width="@dimen/icon_size_big"
+                                android:layout_height="@dimen/icon_size_big"
+                                android:layout_gravity="center_vertical"
+                                android:background="?selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:contentDescription="@string/content_description_wallet"
+                                android:focusable="true"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/ic_wallet" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                style="@style/Badge"
+                                android:layout_width="@dimen/size_top_up_credit"
+                                android:layout_height="@dimen/size_top_up_credit"
+                                android:layout_gravity="center|start"
+                                android:layout_marginBottom="@dimen/spacing_xxs"
+                                android:contentDescription="@string/content_description_bullet"
+                                android:paddingTop="@dimen/spacing_xxs"
+                                android:paddingBottom="@dimen/spacing_xxs"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_arrow_down_2"
+                                android:tint="@color/white"
+                                android:visibility="@{viewModel.summary.creditsEnough != true ? View.VISIBLE : View.GONE}" />
+                        </FrameLayout>
+                    </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <include
+                layout="@layout/layout_loading_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:visibility="@{viewModel.isShowOccupied ? View.VISIBLE : View.GONE}">
+
+                <LinearLayout
+                    android:id="@+id/layout_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/BodyBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:text="@string/question_community_post_type" />
+
+                    <include
+                        layout="@layout/tab_layout_community_post_promote_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        app:selectedPromoteType="@{viewModel.promoteType}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:text="@string/label_small_coming_soon"
+                        android:visibility="@{viewModel.promoteType == PromoteType.POST ? View.VISIBLE : View.GONE}" />
+
+                    <include
+                        layout="@layout/list_item_community_listing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:visibility="@{viewModel.promoteType == PromoteType.LISTING ? View.VISIBLE : View.GONE}"
+                        app:listingPO="@{viewModel.listing}" />
+
+                    <include
+                        layout="@layout/view_divider_horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/list_view_divider"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/BodyBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/spacing_m"
+                        android:text="@string/question_community_post_target" />
+
+                    <include
+                        layout="@layout/tab_layout_community_post_target"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        app:selectedTarget="@{viewModel.target}" />
+
+                    <include
+                        layout="@layout/layout_community_hyper_target"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:visibility="@{viewModel.target == Target.HYPER ? View.VISIBLE : View.GONE}"
+                        app:viewModel="@{viewModel}" />
+
+                    <include
+                        layout="@layout/layout_community_default"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.target == Target.COMMUNITY ? View.VISIBLE : View.GONE}"
+                        app:viewModel="@{viewModel}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/BodyBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:text="@string/title_text_box_community_title" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginEnd="@dimen/spacing_m">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_listing_header"
+                            style="@style/RoundedEditText.Small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@{!viewModel.isShowListingHeaderError() ? @drawable/et_rounded_gray_background_with_border_small : @drawable/et_rounded_gray_background_with_border_small_error}"
+                            android:gravity="top"
+                            android:importantForAutofill="no"
+                            android:inputType="textMultiLine"
+                            android:overScrollMode="always"
+                            android:paddingStart="@dimen/spacing_s"
+                            android:paddingTop="@dimen/spacing_s"
+                            android:paddingEnd="@dimen/spacing_xl"
+                            android:paddingBottom="@dimen/spacing_s"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:text="@{viewModel.listingHeader}"
+                            tools:ignore="LabelFor"
+                            tools:targetApi="O" />
+
+                        <!--TODO Display background ripple-->
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ib_clear_listing_header"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_margin="@dimen/spacing_xs"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_clear"
+                            android:tint="@color/gray"
+                            android:visibility="@{TextUtils.isEmpty(viewModel.listingHeader) ? View.INVISIBLE : View.VISIBLE}" />
+                    </FrameLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_error_header"
+                            style="@style/ExtraSmallBodyError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/error_required_field"
+                            android:visibility="@{viewModel.isShowListingHeaderError() ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyGray"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@id/tv_error_header"
+                            android:gravity="end"
+                            android:text="@{viewModel.LISTING_HEADER_MAX_WORD_COUNT}"
+                            android:textColor="@{viewModel.isShowListingHeaderError() ? @color/red : @color/gray_invertible}" />
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/BodyBold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:text="@string/title_text_box_community_description" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginEnd="@dimen/spacing_m">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_listing_remark"
+                            style="@style/RoundedEditText.Small"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/height_sponsor_listing_description_long"
+                            android:background="@{!viewModel.isShowListingRemarkError() ? @drawable/et_rounded_gray_background_with_border_small : @drawable/et_rounded_gray_background_with_border_small_error}"
+                            android:gravity="top"
+                            android:importantForAutofill="no"
+                            android:inputType="textMultiLine"
+                            android:maxLength="140"
+                            android:overScrollMode="always"
+                            android:paddingStart="@dimen/spacing_s"
+                            android:paddingTop="@dimen/spacing_s"
+                            android:paddingEnd="@dimen/spacing_xl"
+                            android:paddingBottom="@dimen/spacing_s"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:text="@{viewModel.listingRemark}"
+                            tools:ignore="LabelFor"
+                            tools:targetApi="O" />
+
+                        <!--TODO Display background ripple-->
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/ib_clear_listing_remark"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_gravity="center_vertical|end"
+                            android:layout_margin="@dimen/spacing_xs"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/ic_clear"
+                            android:tint="@color/gray"
+                            android:visibility="@{TextUtils.isEmpty(viewModel.listingRemark) ? View.INVISIBLE : View.VISIBLE}" />
+                    </FrameLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_error_remark"
+                            style="@style/ExtraSmallBodyError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/error_required_field"
+                            android:visibility="@{viewModel.isShowListingRemarkError() ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyGray"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@id/tv_error_remark"
+                            android:gravity="end"
+                            android:text="@{viewModel.LISTING_REMARK_MAX_WORD_COUNT}"
+                            android:textColor="@{viewModel.isShowListingRemarkError() ? @color/red : @color/gray_invertible}" />
+                    </RelativeLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xs">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/ExtraSmallBodyGray"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/spacing_xs"
+                                android:text="@string/label_sponsor_listing_preview" />
+
+                            <include
+                                layout="@layout/layout_sponsor_listing_preview"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/spacing_m"
+                                app:listing="@{viewModel.listing}"
+                                app:listingHeader="@{viewModel.listingHeader}"
+                                app:listingRemark="@{viewModel.listingRemark}" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/white_translucent"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:visibility="@{viewModel.isEnablePreview() ? View.GONE : View.VISIBLE}" />
+                    </FrameLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SmallBodyOrange"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_s"
+                        android:text="@{viewModel.summary.flExpiryMsg}"
+                        android:visibility="@{viewModel.summary.hasFlExpiryMsg() ? View.VISIBLE : View.GONE}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SmallBodyError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/error_not_enough_credits"
+                        android:visibility="@{viewModel.summary.creditsEnough || viewModel.summary == null ? View.GONE : View.VISIBLE}" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_xs"
+                        android:visibility="@{viewModel.summary == null ? View.GONE : View.VISIBLE}" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/layout_durations"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_s"
+                            android:visibility="@{viewModel.mainStatus != StatusKey.LOADING_NEXT_LIST_ITEM ? View.VISIBLE : View.INVISIBLE}"
+                            app:alignContent="flex_start"
+                            app:alignItems="flex_start"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="flex_start" />
+
+                        <include
+                            layout="@layout/layout_loading"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:visibility="@{viewModel.mainStatus == StatusKey.LOADING_NEXT_LIST_ITEM ? View.VISIBLE : View.GONE}" />
+                    </FrameLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_s"
+                        android:text="@string/title_sponsor_listing_credit_summary" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_s">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_label_deductible"
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/label_sponsor_listing_deductible_credits" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/BodyBold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@id/tv_label_deductible"
+                            android:gravity="end"
+                            android:text="@{viewModel.creditsDeductibleLabel}" />
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_s"
+                        android:drawableEnd="@drawable/ic_wallet"
+                        android:drawablePadding="@dimen/spacing_xs"
+                        android:text="@string/label_wallet" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                        android:id="@+id/layout_wallet_item_sponsor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="@dimen/small_card_border_radius"
+                        app:contentPaddingBottom="@dimen/spacing_s">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Body"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@id/tv_post_listing_credits"
+                                android:text="@string/label_sponsor" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_post_listing_credits"
+                                style="@style/BodyBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@+id/ib_top_up_credits"
+                                android:text="@{viewModel.summary.getFormattedCreditsAvailable(context)}" />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                android:id="@+id/ib_top_up_credits"
+                                android:layout_width="@dimen/icon_size_big"
+                                android:layout_height="@dimen/icon_size_big"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/spacing_l"
+                                android:background="@drawable/view_circle_yellow_background"
+                                android:src="@drawable/ic_action_plus"
+                                android:tint="@color/white_invertible" />
+                        </RelativeLayout>
+                    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_s"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_s"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cb_agree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:checked="@{viewModel.isCheckAgreement()}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_agreement"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/agreement_sponsor_listing" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SmallBodyError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:text="@{viewModel.activateListingErrorMessage}"
+                        android:visibility="@{TextUtils.isEmpty(viewModel.activateListingErrorMessage) ? View.GONE : View.VISIBLE}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_l"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_confirm"
+                            style="@style/PrimaryButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            android:layout_weight="2"
+                            android:enabled="@{viewModel.isEnableSubmitButton()}"
+                            android:text="@{!viewModel.isSubmitting() ? @string/action_confirm : @string/action_submitting}" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{viewModel.isSubmitting() ? View.VISIBLE : View.GONE}" />
+
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

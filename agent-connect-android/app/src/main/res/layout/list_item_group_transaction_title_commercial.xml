@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="visibility"
+                type="Integer" />
+    </data>
+
+    <LinearLayout
+            android:visibility="@{visibility}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    style="@style/SmallBodyBold"
+                    android:layout_width="@dimen/column_width_transaction_date_sold"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:paddingTop="@dimen/spacing_xs"
+                    android:paddingBottom="@dimen/spacing_xs"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingEnd="@dimen/spacing_xs"
+                    android:text="@string/label_column_transaction_date_sold"
+                    android:textAlignment="textStart" />
+
+            <TextView
+                    style="@style/SmallBodyBold"
+                    android:layout_width="@dimen/column_width_transaction_address"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/label_column_transaction_address"
+                    android:textAlignment="textStart" />
+
+            <TextView
+                    style="@style/SmallBodyBold"
+                    android:layout_width="@dimen/column_width_transaction_unit"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/label_column_transaction_unit"
+                    android:textAlignment="textStart" />
+
+            <TextView
+                    style="@style/SmallBodyBold"
+                    android:layout_width="@dimen/column_width_transaction_price"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/label_column_transaction_price"
+                    android:textAlignment="textStart" />
+
+            <TextView
+                    style="@style/SmallBodyBold"
+                    android:layout_width="@dimen/column_width_transaction_size_sqft"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/label_column_transaction_size_sqft"
+                    android:textAlignment="textStart" />
+
+            <TextView
+                    style="@style/SmallBodyBold"
+                    android:layout_width="@dimen/column_width_transaction_psf"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/label_column_transaction_psf"
+                    android:textAlignment="textStart" />
+
+            <TextView
+                    style="@style/SmallBodyBold"
+                    android:layout_width="@dimen/column_width_transaction_built_year"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/label_column_transaction_built_year"
+                    android:textAlignment="textStart" />
+
+            <TextView
+                    style="@style/SmallBodyBold"
+                    android:layout_width="@dimen/column_width_transaction_transaction"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:padding="@dimen/spacing_xs"
+                    android:text="@string/label_column_transaction_transaction"
+                    android:textAlignment="textStart" />
+        </LinearLayout>
+
+        <include layout="@layout/view_divider_horizontal" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="date" type="String"/>
+    </data>
+    <LinearLayout
+            android:id="@+id/ll_message_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginBottom="@dimen/spacing_s">
+        <TextView
+                android:id="@+id/tv_message_date"
+                style="@style/ExtraSmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_xs"
+                android:text="@{date}"/>
+    </LinearLayout>
+</layout>

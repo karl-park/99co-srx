@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+	<data>
+		<variable name="viewModel"
+				type="sg.searchhouse.agentconnect.viewmodel.activity.listing.FilterListingViewModel"/>
+		<variable name="furnish"
+		          type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.Furnish"/>
+	</data>
+
+	<androidx.appcompat.widget.AppCompatButton
+			app:isSelected="@{viewModel.hasFurnish(furnish)}"
+			android:id="@+id/button"
+			android:text="@{furnish.label}"
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/pill_height"
+			style="@style/ListingFilterPill"/>
+</layout>

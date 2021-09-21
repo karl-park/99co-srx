@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingDetailsViewModel" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.graphStatusKey != null ? View.VISIBLE : View.GONE}">
+
+        <TextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:text="@string/title_listing_details_x_trend" />
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_x_trend_chart"
+                android:layout_marginBottom="@dimen/spacing_m">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.graphStatusKey == StatusKey.SUCCESS &amp;&amp; viewModel.isGraphAvailable() == true ? View.VISIBLE : View.GONE}">
+
+                <include
+                        layout="@layout/layout_listing_x_trend_time_scale"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_x_trend_time_scale"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        app:viewModel="@{viewModel}" />
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/chart_x_trend"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                </FrameLayout>
+            </LinearLayout>
+
+            <include
+                    layout="@layout/layout_load_list_fail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    app:title="@{@string/x_trend_graph_empty}"
+                    app:visibility="@{viewModel.graphStatusKey == StatusKey.SUCCESS &amp;&amp; viewModel.isGraphAvailable() != true ? View.VISIBLE : View.GONE}" />
+
+            <include
+                    layout="@layout/layout_loading_fail_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    app:mainStatus="@{viewModel.graphStatusKey}" />
+        </FrameLayout>
+    </LinearLayout>
+</layout>

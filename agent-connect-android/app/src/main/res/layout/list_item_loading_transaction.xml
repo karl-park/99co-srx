@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><!--Loading list item for horizontal scroll view-->
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="scale"
+                type="Float" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ScalableLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingTop="@dimen/spacing_xs"
+            android:paddingEnd="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_xs"
+            app:scale="@{scale}">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/pb_loading_indicator"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="@dimen/loading_progress_bar_size"
+                android:layout_height="@dimen/loading_progress_bar_size" />
+    </sg.searchhouse.agentconnect.view.widget.common.ScalableLinearLayout>
+</layout>

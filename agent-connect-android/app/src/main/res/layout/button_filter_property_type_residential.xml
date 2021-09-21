@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+                name="selectedPropertyMainType"
+                type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <variable
+                name="propertyMainType"
+                type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <variable
+                name="background"
+                type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button"
+                style="@style/FilterListingPropertyButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@{background}"
+                android:stateListAnimator="@null"
+                app:isSelected="@{selectedPropertyMainType == propertyMainType}" />
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:drawableTint="@color/filter_property_content_tint"
+                android:foreground="@color/transparent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/size_filter_property_type"
+                    android:layout_height="@dimen/size_filter_property_type"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:clickable="false"
+                    android:contentDescription="@string/content_description_residential_property_icon"
+                    android:src="@{ContextCompat.getDrawable(context, propertyMainType.iconResId)}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:clickable="false"
+                    android:gravity="center_horizontal"
+                    android:text="@{propertyMainType.label}"
+                    android:textColor="@color/black_invertible"
+                    android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+    </FrameLayout>
+
+
+</layout>

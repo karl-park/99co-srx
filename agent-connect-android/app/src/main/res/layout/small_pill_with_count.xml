@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="label"
+                type="String" />
+
+        <variable
+                name="count"
+                type="Integer" />
+    </data>
+
+    <LinearLayout
+            style="@style/SmallPill"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:paddingStart="@dimen/spacing_m"
+            android:paddingEnd="@dimen/spacing_xs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBody"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_height="@dimen/small_pill_height"
+                android:text="@{label}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Badge"
+                android:visibility="@{count > 0 ? View.VISIBLE : View.GONE}"
+                android:layout_gravity="center_vertical"
+                android:text="@{Integer.toString(count)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

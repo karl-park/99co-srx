@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.SrxChatViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.createBlastStatusKey == StatusKey.SUCCESS ? View.GONE : View.VISIBLE}">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    android:background="@color/white_invertible"
+                    android:fitsSystemWindows="true">
+
+                    <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/collapsingToolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_collapsing_toolbar_height"
+                        app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                        app:expandedTitleMarginEnd="@dimen/spacing_m"
+                        app:expandedTitleMarginStart="@dimen/spacing_m"
+                        app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                        <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            style="@style/ClassicActionBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:contentInsetLeft="0dp"
+                            app:contentInsetStart="0dp"
+                            app:contentInsetStartWithNavigation="0dp"
+                            app:layout_collapseMode="pin"
+                            app:navigationIcon="@drawable/ic_cancel"
+                            app:title="@string/title_srx_chat" />
+
+                    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingEnd="@dimen/spacing_m">
+
+                        <TextView
+                            style="@style/SmallBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            android:text="@string/label_srx_chat" />
+
+                        <include
+                            android:id="@+id/layout_chat_message_template"
+                            layout="@layout/layout_srx_chat_message_template"
+                            app:viewModel="@{viewModel}" />
+
+                        <include
+                            android:id="@+id/layout_srx_chat_selected_listings"
+                            layout="@layout/layout_srx_chat_selected_listings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xl"
+                            android:layout_marginBottom="0dp"
+                            app:viewModel="@{viewModel}" />
+
+                        <TextView
+                            style="@style/SmallBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginBottom="0dp"
+                            android:text="@string/label_srx_chat_summary" />
+
+                        <EditText
+                            style="@style/RoundedEditText"
+                            android:layout_width="@dimen/width_title_edit_text"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:hint="@string/hint_luxury_condo"
+                            android:text="@={viewModel.title}" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_send"
+                            style="@style/PrimaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/spacing_l"
+                            android:layout_marginBottom="@dimen/size_40"
+                            android:enabled="@{viewModel.isActionBtnEnabled()}"
+                            android:gravity="center"
+                            android:text="@{viewModel.actionBtnLabel}" />
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <include
+                layout="@layout/layout_action_success"
+                app:buttonLabel="@{@string/button_sms_blast_back}"
+                app:content="@{viewModel.successMessage}"
+                app:visibility="@{viewModel.createBlastStatusKey == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

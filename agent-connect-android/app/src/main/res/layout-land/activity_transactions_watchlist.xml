@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.watchlist.TransactionsWatchlistViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/ClassicActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:navigationIcon="@drawable/ic_cancel"
+                    app:title="@string/activity_transactions_watchlist" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{safeUnbox(viewModel.isShowOccupied()) ? View.VISIBLE : View.GONE}">
+
+                    <LinearLayout
+                        android:id="@+id/layout_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="@{viewModel.selectedCriteria == null ? View.VISIBLE : View.GONE}">
+
+                            <include
+                                android:id="@+id/layout_header"
+                                layout="@layout/list_item_watchlist_main_criteria_header"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentTop="true"
+                                app:watchlistHeader="@{viewModel.watchlistHeader}" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/list"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_below="@id/layout_header"
+                                android:layout_alignParentBottom="true" />
+                        </RelativeLayout>
+
+                        <include
+                            android:id="@+id/layout_watchlist_transactions_criteria_all"
+                            layout="@layout/layout_watchlist_transactions_criteria_all"
+                            app:viewModel="@{viewModel}" />
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <include
+                    layout="@layout/layout_load_list_fail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:visibility="@{safeUnbox(viewModel.isShowEmpty()) ? View.VISIBLE : View.GONE}" />
+
+                <include
+                    layout="@layout/layout_loading_fail_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:mainStatus="@{viewModel.mainStatus}" />
+            </FrameLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

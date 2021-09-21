@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <variable
+                name="isVisible"
+                type="Boolean" />
+
+        <variable
+                name="selectedPropertyMainType"
+                type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:visibility="@{isVisible ? View.VISIBLE : View.GONE}"
+            android:weightSum="4">
+
+        <include
+                android:id="@+id/btn_property_main_type_residential"
+                layout="@layout/button_filter_property_type_residential"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/selectable_card_start}"
+                app:propertyMainType="@{PropertyMainType.RESIDENTIAL}"
+                app:selectedPropertyMainType="@{selectedPropertyMainType}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{selectedPropertyMainType == PropertyMainType.RESIDENTIAL || selectedPropertyMainType == PropertyMainType.HDB ? @color/cyan : @color/card_border}" />
+
+        <include
+                android:id="@+id/btn_property_main_type_hdb"
+                layout="@layout/button_filter_property_type_residential"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/selectable_card_center}"
+                app:propertyMainType="@{PropertyMainType.HDB}"
+                app:selectedPropertyMainType="@{selectedPropertyMainType}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{selectedPropertyMainType == PropertyMainType.HDB || selectedPropertyMainType == PropertyMainType.CONDO ? @color/cyan : @color/card_border}" />
+
+        <include
+                android:id="@+id/btn_property_main_type_condo"
+                layout="@layout/button_filter_property_type_residential"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/selectable_card_center}"
+                app:propertyMainType="@{PropertyMainType.CONDO}"
+                app:selectedPropertyMainType="@{selectedPropertyMainType}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{selectedPropertyMainType == PropertyMainType.CONDO || selectedPropertyMainType == PropertyMainType.LANDED ? @color/cyan : @color/card_border}" />
+
+        <include
+                android:id="@+id/btn_property_main_type_landed"
+                layout="@layout/button_filter_property_type_residential"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/selectable_card_end}"
+                app:propertyMainType="@{PropertyMainType.LANDED}"
+                app:selectedPropertyMainType="@{selectedPropertyMainType}" />
+    </LinearLayout>
+</layout>

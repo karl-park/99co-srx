@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+                name="propertySubType"
+                type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertySubType" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/SearchPropertyButtonLayout"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:src="@{context.getDrawable(propertySubType.iconResId)}"
+                android:layout_width="@dimen/icon_size_big"
+                android:layout_height="@dimen/icon_size_big" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SearchPropertyButtonText"
+                android:text="@{context.getString(propertySubType.label)}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

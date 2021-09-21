@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.widget.LinearLayout" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.CalculatorEnum.BuyerProfile" />
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="selectedBuyerProfile"
+                type="BuyerProfile" />
+
+        <variable
+                name="ownedPropertyNumber"
+                type="sg.searchhouse.agentconnect.enumeration.api.CalculatorEnum.PropertyNumber" />
+
+        <variable
+                name="propertyLoanNumber"
+                type="sg.searchhouse.agentconnect.enumeration.api.CalculatorEnum.PropertyNumber" />
+
+        <variable
+                name="isFullWidth"
+                type="Boolean" />
+
+        <variable
+                name="isShowAgeError"
+                type="Boolean" />
+    </data>
+
+    <LinearLayout
+            android:id="@+id/layout_container"
+            android:paddingBottom="@dimen/spacing_l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:visibility="@{isFullWidth ? View.GONE : View.VISIBLE}"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:text="@{title}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:text="@string/text_box_calculator_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                android:id="@+id/et_age"
+                android:background="@{!isShowAgeError ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <View
+                android:visibility="@{isShowAgeError ? View.GONE : View.VISIBLE}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xl" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBodyError"
+                android:visibility="@{isShowAgeError ? View.VISIBLE : View.GONE}"
+                android:layout_gravity="start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginBottom="@dimen/spacing_xl"
+                android:text="@string/error_advanced_calculator_invalid_age" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:text="@string/text_box_calculator_citizenship"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_buyer_profile"
+                style="@style/RoundedEditText"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:drawableTint="@color/gray_invertible"
+                android:drawablePadding="@dimen/spacing_xs"
+                android:stateListAnimator="@null"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_rounded_gray_background_with_border"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                app:resourceText="@{selectedBuyerProfile.label}" />
+
+        <LinearLayout
+                android:weightSum="2"
+                android:orientation="@{isFullWidth ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
+
+            <!--NOTE: This arrangement is because "Monthly fixed income" title-->
+            <!--shorter than "Monthly variable income"-->
+            <!--Invert if otherwise-->
+            <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_title_monthly_fixed_income"
+                        style="@style/Body"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_monthly_fixed_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <FrameLayout
+                        android:layout_below="@id/tv_title_monthly_fixed_income"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                            android:id="@+id/et_monthly_fixed_income"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <View
+                    android:visibility="@{isFullWidth ? View.VISIBLE : View.GONE}"
+                    android:layout_width="@dimen/spacing_xs"
+                    android:layout_height="match_parent" />
+
+            <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_monthly_variable_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                        android:id="@+id/et_monthly_variable_income"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:text="@string/text_box_calculator_monthly_debt_expenses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                android:id="@+id/et_monthly_debt_expenses"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:text="@string/text_box_calculator_monthly_property_loan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                android:id="@+id/et_monthly_property_loan"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:text="@string/text_box_calculator_monthly_other_commitments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                android:id="@+id/et_other_commitments"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <LinearLayout
+                android:weightSum="2"
+                android:orientation="@{isFullWidth ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false">
+
+            <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_property_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <include
+                        android:id="@+id/layout_stamp_duty_property_number"
+                        layout="@layout/selector_number_string"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:value="@{ownedPropertyNumber.label}" />
+            </LinearLayout>
+
+            <View
+                    android:visibility="@{isFullWidth ? View.VISIBLE : View.GONE}"
+                    android:layout_width="@dimen/spacing_xs"
+                    android:layout_height="match_parent" />
+
+            <LinearLayout
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_property_loan_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <include
+                        android:id="@+id/layout_stamp_duty_property_loan_number"
+                        layout="@layout/selector_number_string"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:value="@{propertyLoanNumber.label}" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:text="@string/text_box_calculator_cash_on_hand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                android:id="@+id/et_cash_on_hand"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        <LinearLayout
+                android:visibility="@{selectedBuyerProfile == BuyerProfile.SINGAPOREAN || selectedBuyerProfile == BuyerProfile.SPR ? View.VISIBLE : View.GONE}"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Body"
+                    android:layout_marginBottom="@dimen/spacing_xs"
+                    android:text="@string/text_box_calculator_cpf_oa_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_cpf_oa_amount"
+                    android:layout_marginBottom="@dimen/spacing_l"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

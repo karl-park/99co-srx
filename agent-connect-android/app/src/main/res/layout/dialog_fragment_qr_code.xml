@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.common.QrCodeDialogViewModel" />
+    </data>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_weight="3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:textAlignment="center"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:text="@string/title_qr_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_qr_code"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_width="@dimen/size_qr_code"
+                        android:layout_height="@dimen/size_qr_code" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                        android:id="@+id/btn_link"
+                        android:textAlignment="center"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@{viewModel.url}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+        <View
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+    </LinearLayout>
+</layout>

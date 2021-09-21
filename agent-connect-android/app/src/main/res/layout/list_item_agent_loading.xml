@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_m">
+
+            <sg.searchhouse.agentconnect.view.widget.common.CircleImageView
+                android:layout_width="@dimen/profile_icon_size"
+                android:layout_height="@dimen/profile_icon_size"
+                android:background="@drawable/profile_icon_background"
+                android:padding="@dimen/button_border"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_agent_photo_placeholder"
+                android:tint="@color/light_gray_invertible" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_gray_invertible"
+                    android:lines="1" />
+
+                <TextView
+                    style="@style/ExtraSmallBodyGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xxs"
+                    android:background="@color/light_gray_invertible"
+                    android:lines="1" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/size_50"
+                android:layout_height="@dimen/size_logo_size"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:background="@color/light_gray_invertible"
+                android:contentDescription="@string/content_description_expert_analyzer" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_view_divider"
+            android:background="@color/divider_color" />
+
+    </LinearLayout>
+</com.facebook.shimmer.ShimmerFrameLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_flash_report_item"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_m"
+            app:cardCornerRadius="@dimen/small_card_border_radius"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/spacing_s"
+                android:paddingEnd="0dp">
+
+                <TextView
+                    android:id="@+id/tv_report_date"
+                    style="@style/SmallBody"
+                    android:layout_width="@dimen/size_50"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="@dimen/spacing_s"
+                    android:background="@color/light_gray_invertible" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_flash_report"
+                    android:layout_width="@dimen/width_flash_report_icon"
+                    android:layout_height="@dimen/height_flash_report_icon"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/tv_report_date"
+                    android:background="@color/light_gray_invertible"
+                    android:contentDescription="@string/content_description_download" />
+
+                <TextView
+                    android:id="@+id/tv_report_title"
+                    style="@style/SmallBody"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_xs"
+                    android:layout_toStartOf="@+id/layout_analytics_report"
+                    android:layout_toEndOf="@+id/img_flash_report"
+                    android:background="@color/light_gray_invertible" />
+
+                <LinearLayout
+                    android:id="@+id/layout_analytics_report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="@dimen/list_view_divider"
+                        android:layout_height="match_parent"
+                        android:background="@color/divider_color" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_analytics_graph"
+                        android:layout_width="@dimen/width_flash_report_analytics"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:background="@color/light_gray_invertible"
+                            android:contentDescription="@string/content_description_download" />
+
+                    </LinearLayout>
+
+                    <include layout="@layout/view_divider_vertical" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_report_download"
+                        android:layout_width="@dimen/width_dashboard_right_button"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:background="@color/light_gray_invertible"
+                            android:contentDescription="@string/content_description_download" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</layout>

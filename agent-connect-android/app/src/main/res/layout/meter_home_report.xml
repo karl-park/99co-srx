@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <!--From 0 to 1-->
+        <variable
+            name="percentage"
+            type="Float" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="@dimen/width_home_report_stats_meter_content"
+            android:layout_height="@dimen/height_home_report_stats_meter"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="@dimen/width_home_report_stats_meter_content"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_weight="@{1.0f - percentage}" />
+
+            <View
+                android:layout_width="@dimen/width_home_report_stats_meter_content"
+                android:layout_height="0dp"
+                android:background="@color/cyan"
+                app:layout_weight="@{percentage}" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/width_home_report_stats_meter"
+            android:layout_height="@dimen/height_home_report_stats_meter"
+            android:scaleType="fitXY"
+            android:src="@drawable/stat_bar" />
+    </FrameLayout>
+</layout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.transaction.TransactionProjectTowerViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:id="@+id/layout_root"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <include
+                layout="@layout/layout_loading_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+        <include
+                layout="@layout/layout_load_list_fail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:title="@{String.valueOf(@string/label_transaction_projects_empty)}"
+                app:visibility="@{viewModel.isShowEmpty() ? View.VISIBLE : View.GONE}" />
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isShowOccupied() ? View.VISIBLE : View.GONE}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_block"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:overScrollMode="never" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/list_block">
+
+                <!--Floors (sticky)-->
+                <LinearLayout
+                        android:id="@+id/layout_floor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:orientation="vertical"
+                        android:visibility="@{viewModel.isShowFloors() ? View.VISIBLE : View.GONE}">
+
+                    <include
+                            layout="@layout/list_item_transaction_tower_floor_title"
+                            android:layout_width="@dimen/tower_floor_title_width"
+                            android:layout_height="wrap_content"
+                            app:block="@{viewModel.selectedBlock.block}" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_floor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            android:overScrollMode="never" />
+                </LinearLayout>
+
+                <!--Units-->
+                <HorizontalScrollView
+                        android:id="@+id/scroll_view_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/layout_floor"
+                        android:overScrollMode="never">
+
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <include
+                                android:id="@+id/layout_transaction_tower_unit_title"
+                                layout="@layout/layout_transaction_tower_unit_title" />
+
+                        <sg.searchhouse.agentconnect.view.widget.common.HiddenSwipeRefreshLayout
+                                android:id="@+id/layout_swipe_refresh"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/list_unit"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:nestedScrollingEnabled="false" />
+                        </sg.searchhouse.agentconnect.view.widget.common.HiddenSwipeRefreshLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </RelativeLayout>
+        </RelativeLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

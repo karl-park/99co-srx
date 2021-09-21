@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.CalculatorEnum.PropertyType" />
+
+        <variable
+                name="ownedPropertyNumber"
+                type="Integer" />
+    </data>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/RoundedEditText"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:text="@{ownedPropertyNumber.toString()}"
+                android:layout_width="@dimen/width_text_box_property_number"
+                android:layout_height="wrap_content" />
+
+        <LinearLayout
+                android:weightSum="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_minus_property_number"
+                    android:tint="@color/gray_invertible"
+                    android:layout_marginEnd="-1dp"
+                    android:src="@drawable/ic_action_minus"
+                    android:background="@drawable/btn_toggle_left"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/tab_height" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btn_plus_property_number"
+                    android:tint="@color/gray_invertible"
+                    android:src="@drawable/ic_action_plus"
+                    android:background="@drawable/btn_toggle_right"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/tab_height" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

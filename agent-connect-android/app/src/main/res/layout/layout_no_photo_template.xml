@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/my_listing_item_photo_width"
+    android:layout_height="@dimen/my_listing_item_photo_height"
+    android:background="@drawable/layout_no_photo_template_dotted_border"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="@dimen/list_icon_size"
+        android:layout_height="@dimen/list_icon_size"
+        android:src="@drawable/ic_srx_advisor_x" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:layout_marginBottom="0dp"
+        android:text="@string/label_no_photo_uploaded"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_8" />
+
+</LinearLayout>

@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Generic-->
+    <dimen name="zero">0dp</dimen>
+    <dimen name="activity_horizontal_margin">@dimen/spacing_m</dimen>
+    <dimen name="activity_horizontal_margin_minus">@dimen/spacing_m_minus</dimen>
+    <dimen name="list_view_divider">1dp</dimen>
+    <dimen name="list_view_divider_minus">-1dp</dimen>
+    <dimen name="icon_small_size">16dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="icon_size_big">28dp</dimen>
+    <dimen name="list_icon_size">36dp</dimen>
+    <dimen name="title_icon_size">40dp</dimen>
+    <dimen name="tab_height">@dimen/size_40</dimen>
+    <dimen name="tv_line_spacing">@dimen/margin_2</dimen>
+    <dimen name="status_bar_height">24dp</dimen>
+
+    <!--Card view elevation is 2dp, hence 3dp to override it-->
+    <dimen name="elevation_above_card_view">3dp</dimen>
+
+    <dimen name="width_splash_screen_srx_advisor_logo">200dp</dimen>
+    <dimen name="height_splash_screen_srx_advisor_logo">150dp</dimen>
+
+    <!--Profile icon-->
+    <dimen name="profile_icon_size">45dp</dimen>
+    <dimen name="profile_icon_radius">22dp</dimen>
+    <dimen name="profile_icon_border">1dp</dimen>
+
+    <!--text sizes-->
+    <dimen name="text_size_24">24sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_8">8sp</dimen>
+
+    <dimen name="line_height_22">22sp</dimen>
+
+    <!--from design guidelines-->
+    <dimen name="spacing_xxs">4dp</dimen>
+    <dimen name="spacing_xs">8dp</dimen>
+    <dimen name="spacing_s">12dp</dimen>
+    <dimen name="spacing_m">16dp</dimen>
+    <dimen name="spacing_l">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+    <dimen name="spacing_xxl">40dp</dimen>
+    <dimen name="spacing_xxxxl">56dp</dimen>
+    <dimen name="spacing_xxs_minus">-4dp</dimen>
+    <dimen name="spacing_xs_minus">-8dp</dimen>
+    <dimen name="spacing_s_minus">-12dp</dimen>
+    <dimen name="spacing_m_minus">-16dp</dimen>
+    <dimen name="spacing_l_minus">-24dp</dimen>
+    <dimen name="spacing_xl_minus">-32dp</dimen>
+
+    <!--margin padding-->
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+
+    <dimen name="margin_5_minus">-5dp</dimen>
+
+    <!-- width and height-->
+    <dimen name="size_10">10dp</dimen>
+    <dimen name="size_20">20dp</dimen>
+    <dimen name="size_21">21dp</dimen>
+    <dimen name="size_25">25dp</dimen>
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="size_40">40dp</dimen>
+    <dimen name="size_45">45dp</dimen>
+    <dimen name="size_50">50dp</dimen>
+    <dimen name="size_70">70dp</dimen>
+
+    <!--Components sizes-->
+    <dimen name="top_agency_icon_height">21dp</dimen>
+
+    <!--Button-->
+    <dimen name="btn_padding_horizontal_8">@dimen/spacing_xs</dimen>
+    <dimen name="btn_padding_vertical_5">@dimen/margin_5</dimen>
+    <dimen name="btn_height">@dimen/size_40</dimen>
+    <dimen name="button_radius">20dp</dimen>
+    <dimen name="button_border">1dp</dimen>
+
+    <!--Bottom bar main action buttons-->
+    <dimen name="ic_bottom_menu_size">30dp</dimen>
+    <dimen name="ic_bottom_main_action_size">70dp</dimen>
+    <dimen name="ic_bottom_main_action_radius">35dp</dimen>
+    <dimen name="ic_bottom_main_action_margin">@dimen/margin_10</dimen>
+    <dimen name="bottom_menu_bar_height">56dp</dimen>
+
+    <!--Progress bar-->
+    <dimen name="loading_progress_bar_size">@dimen/size_25</dimen>
+    <dimen name="loading_progress_bar_size_large">@dimen/size_50</dimen>
+
+    <!--Pill-->
+    <dimen name="pill_height">36dp</dimen>
+    <dimen name="pill_radius">18dp</dimen>
+
+    <!--Small pill small_pill_height small_pill_radius-->
+    <dimen name="small_pill_height">30dp</dimen>
+    <dimen name="small_pill_radius">15dp</dimen>
+
+    <!--Card-->
+    <dimen name="small_card_border_radius">5dp</dimen>
+    <dimen name="card_border_radius">10dp</dimen>
+    <dimen name="card_border_radius_minus">-10dp</dimen>
+    <dimen name="card_bottom_shadow_distance">2dp</dimen>
+    <dimen name="big_card_border_radius">28dp</dimen>
+
+    <!--Badge-->
+    <dimen name="badge_height">20dp</dimen>
+    <dimen name="badge_radius">10dp</dimen>
+    <dimen name="badge_layout_padding">10dp</dimen>
+
+    <!--Tag e.g. new-->
+    <dimen name="tag_radius">3dp</dimen>
+
+    <!-- UI sizes -->
+    <!-- Splash Screen -->
+    <dimen name="img_splash_srx_logo_width">208dp</dimen>
+    <dimen name="img_splash_srx_logo_height">116dp</dimen>
+
+    <!-- Sign In Screen -->
+    <dimen name="img_login_srx_logo_width">95dp</dimen>
+    <dimen name="img_login_srx_logo_height">80dp</dimen>
+
+    <!--Update Credential Screen-->
+    <dimen name="img_agent_image_width">72dp</dimen>
+    <dimen name="img_agent_image_height">70dp</dimen>
+    <dimen name="img_agency_image_small_width">35dp</dimen>
+    <dimen name="img_agency_image_small_height">30dp</dimen>
+
+    <!-- OTP Screen -->
+    <dimen name="tv_otp_item_with">36dp</dimen>
+    <dimen name="tv_otp_item_height">55dp</dimen>
+    <dimen name="tv_otp_item_spacing">@dimen/spacing_s</dimen>
+
+    <!-- Non - subscriber prompt -->
+    <dimen name="img_width_non_subscriber_srx_logo">110dp</dimen>
+    <dimen name="img_height_non_subscriber_srx_logo">70dp</dimen>
+    <dimen name="picker_top_bottom_padding">@dimen/margin_4</dimen>
+    <dimen name="tv_time_picker_width">110dp</dimen>
+    <dimen name="tv_date_picker_width">120dp</dimen>
+
+    <!--Main page-->
+    <dimen name="setting_profile_icon_size">45dp</dimen>
+
+    <!--Sub floating action button position-->
+    <dimen name="margin_bottom_sub_floating_button_start">70dp</dimen>
+    <dimen name="margin_bottom_sub_floating_button_center">110dp</dimen>
+    <dimen name="margin_bottom_sub_floating_button_end">70dp</dimen>
+    <dimen name="margin_end_sub_floating_button_start">160dp</dimen>
+    <dimen name="margin_start_sub_floating_button_end">160dp</dimen>
+
+    <!-- Chat Module -->
+    <dimen name="size_bedroom_bathroom_icon">@dimen/size_20</dimen>
+    <dimen name="size_listing_image">70dp</dimen>
+    <dimen name="size_tab_bar_indicator">@dimen/margin_4</dimen>
+    <dimen name="size_chat_item_image">@dimen/size_30</dimen>
+    <dimen name="size_unread_msg_count">20dp</dimen>
+    <dimen name="size_chat_delete">120dp</dimen>
+    <dimen name="size_agent_item_height">72dp</dimen>
+    <dimen name="size_agent_card_item_width">80dp</dimen>
+    <dimen name="size_logo_size">25dp</dimen>
+    <dimen name="size_messaging_upload_icon">35dp</dimen>
+    <dimen name="size_messaging_text_area">100dp</dimen>
+    <dimen name="size_message_bubble_max_width">300dp</dimen>
+    <dimen name="radius_chat_bubble">@dimen/margin_10</dimen>
+
+    <dimen name="width_message_image">300dp</dimen>
+    <dimen name="height_message_image">300dp</dimen>
+
+    <dimen name="text_input_rounded_border_small">@dimen/size_10</dimen>
+    <dimen name="text_input_rounded_border">@dimen/size_20</dimen>
+
+    <dimen name="rv_padding_bottom">@dimen/size_70</dimen>
+    <dimen name="incoming_message_view_pager_height">100dp</dimen>
+
+    <dimen name="width_send_button">65dp</dimen>
+
+    <!-- agent directory -->
+    <dimen name="size_agent_directory_item_height">100dp</dimen>
+    <dimen name="max_height_selected_hdb_district">150dp</dimen>
+
+    <!--Listings-->
+    <dimen name="listing_item_photo_height">120dp</dimen>
+    <dimen name="listing_item_photo_width">160dp</dimen>
+    <dimen name="listing_item_checkbox_start_padding">-7dp</dimen>
+    <dimen name="margin_bottom_view_toggle">100dp</dimen>
+    <dimen name="height_view_toggle">44dp</dimen>
+    <dimen name="margin_end_view_mode_toggle">-1dp</dimen>
+    <dimen name="top_margin_listings_sub_app_bar">96dp</dimen>
+    <dimen name="horizontal_padding_listing_tag">6dp</dimen>
+    <dimen name="vertical_padding_listing_tag">4dp</dimen>
+    <dimen name="height_listing_tag">24dp</dimen>
+    <dimen name="icon_size_listing_agent">30dp</dimen>
+    <dimen name="border_radius_listing_tag">5dp</dimen>
+    <dimen name="border_radius_listing_tag_black">5dp</dimen>
+    <dimen name="listing_item_photo_featured_plus_height">164dp</dimen>
+    <dimen name="margin_bottom_listings_sub_header">2dp</dimen>
+    <dimen name="margin_top_listings_external_filter">101dp</dimen>
+    <dimen name="margin_facility_tick">-6dp</dimen>
+    <dimen name="size_filter_property_type">28dp</dimen>
+    <dimen name="top_margin_listing_multi_select">35dp</dimen>
+    <dimen name="card_stroke_width">1dp</dimen>
+    <dimen name="smart_filter_height">55dp</dimen>
+    <dimen name="height_listing_tags_one_line">@dimen/height_listing_tag</dimen>
+    <!--2 x height_listing_tag + spacing_xs-->
+    <dimen name="height_listing_tags_two_lines">56dp</dimen>
+
+    <!-- project info or directory shortcut-->
+    <dimen name="radius_project_info_new_indicator">16dp</dimen>
+    <dimen name="radius_project_info_new_indicator_small">3dp</dimen>
+    <dimen name="size_project_info_new_indicator">32dp</dimen>
+    <dimen name="size_project_info_image">@dimen/listing_item_photo_height</dimen>
+    <dimen name="max_width_info_shortcut">150dp</dimen>
+
+    <!-- manage listings -->
+    <dimen name="size_collapsing_toolbar_height">120dp</dimen>
+    <dimen name="size_help_icon">@dimen/spacing_m</dimen>
+    <dimen name="size_width_quality_listing">10dp</dimen>
+    <dimen name="size_height_quality_listing">22dp</dimen>
+    <dimen name="width_x_value_text_input">140dp</dimen>
+    <dimen name="width_tenancy_amount_text_input">200dp</dimen>
+    <dimen name="height_et_listing_description">185dp</dimen>
+    <dimen name="height_et_special_message">80dp</dimen>
+    <dimen name="height_photo_picker_line">7dp</dimen>
+    <dimen name="width_photo_picker_stoke">1dp</dimen>
+    <dimen name="width_photo_picker_dashed">10dp</dimen>
+    <dimen name="size_photo_picker_dashed_gap">6dp</dimen>
+    <dimen name="width_template_photo_picker">105dp</dimen>
+    <dimen name="height_template_photo_picker">95dp</dimen>
+    <dimen name="width_post_listing">180dp</dimen>
+    <dimen name="height_youtube_video">150dp</dimen>
+    <dimen name="size_success_icon">35dp</dimen>
+    <dimen name="width_notified_home_owner">250dp</dimen>
+
+    <dimen name="icon_non_quality_info_size">14dp</dimen>
+    <dimen name="layout_width_cover_listing_photo">55dp</dimen>
+    <dimen name="radius_cover_listing_photo_indicator">35dp</dimen>
+
+    <dimen name="width_msg_post_listing_video_viewing">230dp</dimen>
+    <dimen name="size_video_viewing_icon">20dp</dimen>
+
+    <!--Rounded card-->
+    <dimen name="card_group_rounded_height">48dp</dimen>
+    <dimen name="card_group_rounded_border_radius">24dp</dimen>
+
+    <!--Listing details views-->
+    <dimen name="listing_details_photo_height">380dp</dimen>
+    <dimen name="listing_details_map_height">200dp</dimen>
+    <item name="listing_action_bar_background_alpha" format="float" type="dimen">0.26</item>
+    <dimen name="similar_listing_photo_width">170dp</dimen>
+    <dimen name="similar_listing_photo_height">110dp</dimen>
+    <dimen name="size_dot_indicator">5dp</dimen>
+    <dimen name="stroke_dot_indicator">1dp</dimen>
+
+    <!--Listing medias-->
+    <dimen name="listing_photo_picker_size">70dp</dimen>
+    <dimen name="picker_item_padding">2dp</dimen>
+
+    <!--My listings-->
+    <dimen name="size_collapsing_toolbar_height_my_listings">90dp</dimen>
+    <dimen name="my_listing_item_photo_width">110dp</dimen>
+    <dimen name="my_listing_item_photo_height">85dp</dimen>
+    <dimen name="similar_listing_corner_radius">5dp</dimen>
+    <dimen name="width_pseudo_checkbox">50dp</dimen>
+
+    <dimen name="size_small_certified_listing_icon">14dp</dimen>
+
+    <!-- Add feature in my listings -->
+    <dimen name="size_top_up_credit">16dp</dimen>
+
+    <!--Transactions-->
+    <dimen name="transaction_project_list_height">500dp</dimen>
+    <dimen name="elevation_card_front_transaction">9dp</dimen>
+    <dimen name="height_transaction_summary_content">24dp</dimen>
+
+    <dimen name="height_transaction_row_title">36dp</dimen>
+
+    <dimen name="column_width_transaction_date_sold">85dp</dimen>
+    <dimen name="column_width_transaction_project_name">170dp</dimen>
+    <dimen name="column_width_transaction_address">145dp</dimen>
+    <dimen name="column_width_transaction_size_sqft">55dp</dimen>
+    <dimen name="column_width_transaction_size_sqm">45dp</dimen>
+    <dimen name="column_width_transaction_psf">60dp</dimen>
+    <dimen name="column_width_transaction_price">70dp</dimen>
+    <dimen name="column_width_transaction_property_type">120dp</dimen>
+    <dimen name="column_width_transaction_flat_model">155dp</dimen>
+    <dimen name="column_width_transaction_area_type">60dp</dimen>
+    <dimen name="column_width_transaction_built_year">50dp</dimen>
+    <dimen name="column_width_transaction_transaction">70dp</dimen>
+    <dimen name="column_width_transaction_type">70dp</dimen>
+    <dimen name="column_width_transaction_block">40dp</dimen>
+    <dimen name="column_width_transaction_unit">65dp</dimen> <!--Long example: Level 20 to 22-->
+    <dimen name="column_width_transaction_cov">65dp</dimen>
+    <dimen name="column_width_transaction_size_range">85dp</dimen>
+    <dimen name="column_width_transaction_tenure">80dp</dimen>
+
+    <!--Transaction tower-->
+    <dimen name="tower_unit_width">150dp</dimen>
+    <dimen name="tower_unit_title_width">149dp</dimen>
+    <dimen name="tower_unit_height">110dp</dimen>
+    <dimen name="tower_floor_width">60dp</dimen>
+    <dimen name="tower_floor_title_width">75dp</dimen>
+    <dimen name="tower_floor_title_content_width">74dp</dimen>
+
+    <!--Transaction caveats-->
+    <dimen name="column_caveat_date">140dp</dimen>
+    <dimen name="column_caveat_area">120dp</dimen>
+    <dimen name="column_caveat_psf">80dp</dimen>
+    <dimen name="column_caveat_price">120dp</dimen>
+
+    <!-- agent cv and agent profile -->
+    <dimen name="width_track_record">120dp</dimen>
+    <dimen name="height_agent_profile">90dp</dimen>
+    <dimen name="width_agent_profile">93dp</dimen>
+    <dimen name="width_agency_logo">30dp</dimen>
+    <dimen name="height_agency_logo">26dp</dimen>
+    <dimen name="height_general_info">400dp</dimen>
+
+    <dimen name="height_testimonial">200dp</dimen>
+    <dimen name="radius_agent_profile_photo">46dp</dimen>
+    <dimen name="width_testimonial_item">295dp</dimen>
+    <dimen name="height_testimonial_description">100dp</dimen>
+
+    <dimen name="top_margin_amenities_container">300dp</dimen>
+    <dimen name="height_selected_tab_underline">5dp</dimen>
+
+    <dimen name="size_button_upload_agent_profile_photo">20dp</dimen>
+
+    <!--X value-->
+    <dimen name="size_collapsing_toolbar_height_x_value">144dp</dimen>
+    <dimen name="height_x_trend_chart">285dp</dimen>
+    <dimen name="width_select_renovation_year">100dp</dimen>
+    <dimen name="width_et_renovation_price">140dp</dimen>
+    <dimen name="width_select_good_will">100dp</dimen>
+
+    <!--Property news-->
+    <dimen name="news_item_big_photo_height">164dp</dimen>
+    <dimen name="news_item_photo_height">120dp</dimen>
+    <dimen name="news_item_photo_width">120dp</dimen>
+
+    <dimen name="width_image_transacted_listing">136dp</dimen>
+    <dimen name="height_image_transacted_listing">110dp</dimen>
+    <dimen name="size_corner_banner">@dimen/size_70</dimen>
+    <dimen name="size_small_phone">@dimen/size_20</dimen>
+
+    <!--Dashboard-->
+    <dimen name="margin_top_dashboard_scrollbar">107dp</dimen>
+    <dimen name="padding_top_dashboard_scrollbar">18dp
+    </dimen> <!--spacing_xs + card_border_radius-->
+    <dimen name="padding_bottom_dashboard_scrollbar">64dp
+    </dimen> <!--spacing_xs + bottom_menu_bar_height-->
+    <!-- Portal listings-->
+    <dimen name="width_portal_import_sync_mode">170dp</dimen>
+    <dimen name="height_portal_import_sync_mode">110dp</dimen>
+
+    <dimen name="height_x_trend_time_scale">30dp</dimen>
+
+    <!--Cea Exclusive-->
+    <dimen name="max_width_spinner_label">250dp</dimen>
+    <dimen name="max_width_picker_label">170dp</dimen>
+    <dimen name="max_width_input_component">160dp</dimen>
+    <dimen name="max_width_label">300dp</dimen>
+
+    <dimen name="width_custom_commission_sign">42dp</dimen>
+    <dimen name="width_custom_commission_input">120dp</dimen>
+    <dimen name="width_cea_photo">55dp</dimen>
+    <dimen name="width_cea_item_label">75dp</dimen>
+
+    <dimen name="height_custom_commission_input">@dimen/size_40</dimen>
+    <dimen name="height_self_defined_term">250dp</dimen>
+    <dimen name="height_cea_signature">70dp</dimen>
+    <dimen name="height_signature_pad">250dp</dimen>
+    <dimen name="height_cea_photo">54dp</dimen>
+
+    <dimen name="padding_custom_commission_component">1dp</dimen>
+
+    <!--Project info-->
+    <dimen name="height_site_map">63dp</dimen>
+    <dimen name="width_site_map">75dp</dimen>
+    <dimen name="height_floor_plan">275dp</dimen>
+    <dimen name="margin_bottom_collapsing_title_project_info">20dp</dimen>
+
+    <!--Market watch-->
+    <dimen name="border_radius_market_watch_graph_fragment">20dp</dimen>
+    <dimen name="border_radius_market_watch_graph_fragment_minus">-20dp</dimen>
+    <dimen name="margin_end_market_watch_graph">@dimen/spacing_xl</dimen>
+    <dimen name="margin_bottom_market_watch_graph">45dp</dimen>
+    <dimen name="height_market_watch_item">@dimen/size_45</dimen>
+
+    <dimen name="drawable_padding_market_index">-4dp</dimen>
+    <dimen name="padding_start_market_data_price_volume_header">14dp</dimen>
+
+    <dimen name="width_column_market_data_price">68dp</dimen>
+    <dimen name="width_column_market_data_volume">68dp</dimen>
+    <dimen name="width_column_market_data_month">55dp</dimen>
+    <dimen name="padding_end_column_market_data">-6dp</dimen>
+
+    <!-- Flash Report-->
+    <dimen name="border_radius_market_flash_report_fragment">
+        @dimen/border_radius_market_watch_graph_fragment
+    </dimen>
+    <dimen name="width_flash_report_title">230dp</dimen>
+    <dimen name="width_flash_report_icon">22dp</dimen>
+    <dimen name="height_flash_report_icon">33dp</dimen>
+    <dimen name="height_flash_report_item">@dimen/size_45</dimen>
+
+    <dimen name="width_flash_report_analytics">52dp</dimen>
+
+    <dimen name="width_dashboard_right_button">48dp</dimen> <!--24 + 12 + 12-->
+    <dimen name="margin_dashboard_column_right_button">64dp
+    </dimen> <!--width_dashboard_right_button + 16-->
+
+    <!--SMS blast-->
+    <dimen name="dash_width_sms_blast">2dp</dimen>
+    <dimen name="dash_gap_sms_blast">2dp</dimen>
+
+    <!--Featured listing prompt-->
+    <dimen name="featured_prompt_page_indicator_dot_radius">3dp</dimen>
+    <dimen name="height_view_pager_feature_prompt">155dp</dimen>
+    <dimen name="width_featured_listing_dialog_image">120dp</dimen>
+    <dimen name="margin_bottom_featured_prompt">-193dp</dimen>
+
+    <dimen name="width_srx_chat_image_template">90dp</dimen>
+    <dimen name="height_srx_chat_image_template">70dp</dimen>
+    <dimen name="width_srx_text">100dp</dimen>
+    <dimen name="width_title_edit_text">200dp</dimen>
+
+    <!--New Launches Reports-->
+    <dimen name="height_new_launches_item">@dimen/size_45</dimen>
+    <dimen name="height_new_launches_subject">170dp</dimen>
+
+    <dimen name="size_qr_code">150dp</dimen>
+
+    <!-- Clients-->
+    <dimen name="height_client_message_area">90dp</dimen>
+    <!--Calculator-->
+    <dimen name="width_text_box_property_number">70dp</dimen>
+    <dimen name="corner_radius_dialog_stamp_duty">18dp</dimen>
+    <dimen name="margin_top_calculators_image">65dp</dimen>
+
+    <dimen name="corner_radius_dialog_property_details">18dp</dimen>
+
+    <dimen name="height_layout_header_calculator_stamp_duty_buyer">191dp</dimen>
+    <dimen name="margin_top_layout_child_calculator_stamp_duty_buyer">26dp</dimen>
+    <dimen name="size_seek_handle">30dp</dimen>
+    <dimen name="height_layout_header_calculator_affordability_advanced">169dp</dimen>
+    <dimen name="margin_bottom_affordability_go_advanced">72dp</dimen>
+
+    <!--Watchlist-->
+    <!--Original: w85 * h68-->
+    <dimen name="width_watchlist_listing_image">115dp</dimen>
+    <dimen name="height_watchlist_listing_image">92dp</dimen>
+
+    <dimen name="width_chat_listing_image">85dp</dimen>
+    <dimen name="height_chat_listing_image">68dp</dimen>
+
+    <dimen name="width_chat_listing_image_preview">100dp</dimen>
+    <dimen name="height_chat_listing_image_preview">86dp</dimen>
+
+    <!--Home report stats meter-->
+    <dimen name="width_home_report_stats_meter">15dp</dimen>
+    <dimen name="height_home_report_stats_meter">40dp</dimen>
+    <dimen name="width_home_report_stats_meter_content">13dp</dimen>
+
+    <!--Sponsor listing-->
+    <dimen name="height_sponsor_listing_description_long">185dp</dimen>
+    <dimen name="height_sponsor_listing_preview_image">200dp</dimen>
+    <dimen name="size_sponsor_listing_preview_image">25dp</dimen>
+    <dimen name="margin_top_list_search_planning_area">72dp</dimen>
+
+    <!--Auto import-->
+    <dimen name="height_auto_import_send_message">150dp</dimen>
+</resources>

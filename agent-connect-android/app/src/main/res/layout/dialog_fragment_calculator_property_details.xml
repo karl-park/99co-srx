@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.calculator.CalculatorPropertyDetailsDialogViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_margin="@dimen/spacing_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/corner_radius_dialog_property_details">
+
+            <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        android:id="@+id/layout_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/spacing_m"
+                        android:paddingTop="@dimen/spacing_xs"
+                        android:paddingEnd="@dimen/spacing_m">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Heading2"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            android:text="@string/title_dialog_calculator_property_details"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <!--Mock button to show search bar-->
+                    <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_search"
+                            style="@style/SearchEditText"
+                            android:drawableStart="@null"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/spacing_l"
+                            android:ellipsize="end"
+                            android:hint="@string/hint_search_address_postal_code"
+                            android:maxLines="2"
+                            android:textAlignment="textStart" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.property == null ? View.GONE : View.VISIBLE}">
+
+                        <include
+                                android:id="@+id/layout_x_value_search_form_basic"
+                                layout="@layout/layout_calculator_property_details_form_basic"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:viewModel="@{viewModel}" />
+
+                        <include
+                                android:id="@+id/layout_x_value_search_form_landed"
+                                layout="@layout/layout_calculator_property_details_form_landed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:viewModel="@{viewModel}" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_calculate"
+                            style="@style/SecondaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:enabled="@{viewModel.mainStatus != StatusKey.LOADING &amp;&amp; viewModel.isShowPropertyNotFoundError() != true}"
+                            android:text="@{viewModel.mainStatus != StatusKey.LOADING ? @string/button_calculate : @string/button_calculating}" />
+
+                    <LinearLayout
+                            android:visibility="@{viewModel.isShowPropertyNotFoundError() ? View.VISIBLE : View.GONE}"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Body"
+                                android:layout_gravity="center_horizontal"
+                                android:textAlignment="center"
+                                android:textColor="@color/orange_light"
+                                android:layout_marginTop="@dimen/spacing_xxl"
+                                android:layout_marginBottom="@dimen/spacing_xl"
+                                android:text="@string/error_calculate_x_value_property_not_found"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_enter_details"
+                                style="@style/SecondaryButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:text="@string/button_enter_property_details" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

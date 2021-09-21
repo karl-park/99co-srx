@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.listing.ListingDetailsViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.mainStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}">
+
+                <ScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/layout_footer"
+                    android:layout_alignParentTop="true"
+                    android:visibility="@{viewModel.fullListingPO != null ? View.VISIBLE : View.GONE}">
+
+                    <LinearLayout
+                        android:id="@+id/layout_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.viewpager.widget.ViewPager
+                                android:id="@+id/view_pager"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/listing_details_photo_height"
+                                android:animateLayoutChanges="false"
+                                android:background="@color/white_smoke_invertible"
+                                android:overScrollMode="never" />
+
+                            <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
+                                android:id="@+id/view_pager_indicator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|center_horizontal"
+                                android:layout_marginBottom="@dimen/spacing_m" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.listingPO.sponsored != null ? View.VISIBLE : View.GONE}">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/ExtraSmallBodyPurple"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/spacing_xs"
+                                android:layout_marginBottom="@dimen/spacing_xs"
+                                android:text="@{viewModel.listingPO.sponsored.getEndDateReminder(context)}" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:foreground="@color/body_divider_sponsor" />
+                        </LinearLayout>
+
+                        <include
+                            layout="@layout/layout_listing_details_basic"
+                            app:listingPO="@{viewModel.listingPO}" />
+
+                        <include layout="@layout/view_divider_horizontal" />
+
+                        <include
+                            layout="@layout/layout_listing_details_key_info"
+                            app:isExpand="@{viewModel.isExpandKeyInfo()}"
+                            app:listingDetailPO="@{viewModel.listingDetailPO}"
+                            app:listingPO="@{viewModel.listingPO}" />
+
+                        <include layout="@layout/view_divider_horizontal" />
+
+                        <include
+                            layout="@layout/layout_listing_details_description"
+                            app:isExpand="@{viewModel.isExpandDescription()}"
+                            app:remarks="@{viewModel.listingPO.remarks}" />
+
+                        <include
+                            layout="@layout/layout_listing_details_location"
+                            app:isExpand="@{viewModel.isExpandLocation()}"
+                            app:listingPO="@{viewModel.listingPO}" />
+
+                        <include layout="@layout/view_divider_horizontal" />
+
+                        <!--Facilities-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.hasFacilities == true ? View.VISIBLE : View.GONE}">
+
+                            <include
+                                layout="@layout/layout_listing_details_facilities"
+                                app:isExpand="@{viewModel.isExpandFacilities()}"
+                                app:listingPO="@{viewModel.listingPO}" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color"
+                                android:visibility="@{viewModel.shouldShowHomeValueEstimator != true &amp;&amp; viewModel.hasSimilarListings != true &amp;&amp; viewModel.isAgentCurrentUser() ? View.GONE : View.VISIBLE}" />
+                        </LinearLayout>
+
+                        <!--Home value estimator-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true"
+                            android:orientation="vertical">
+
+                            <include
+                                layout="@layout/layout_listing_details_home_value_estimator"
+                                app:isExpand="@{viewModel.isExpandHomeValueEstimator()}"
+                                app:viewModel="@{viewModel}" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color"
+                                android:visibility="@{viewModel.hasSimilarListings != true &amp;&amp; viewModel.isAgentCurrentUser() ? View.GONE : View.VISIBLE}" />
+                        </LinearLayout>
+
+                        <!--Similar listings-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true"
+                            android:orientation="vertical"
+                            android:visibility="@{viewModel.hasSimilarListings == true ? View.VISIBLE : View.GONE}">
+
+                            <include
+                                layout="@layout/layout_listing_details_similar_listings"
+                                app:isExpand="@{viewModel.isExpandSimilarListings()}"
+                                app:listingPO="@{viewModel.listingPO}" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/list_view_divider"
+                                android:background="@color/divider_color"
+                                android:visibility="@{!viewModel.isAgentCurrentUser() ? View.VISIBLE : View.GONE}" />
+                        </LinearLayout>
+
+                        <!--Agent info-->
+                        <include
+                            layout="@layout/layout_listing_details_contact_agent"
+                            app:fullListingPO="@{viewModel.fullListingPO}"
+                            app:isCurrentUser="@{viewModel.isAgentCurrentUser()}"
+                            app:isExpand="@{viewModel.isExpandContactAgent()}" />
+                    </LinearLayout>
+                </ScrollView>
+
+                <FrameLayout
+                    android:id="@+id/layout_footer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="@{viewModel.mainStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}">
+
+                    <include
+                        android:id="@+id/layout_enquire"
+                        layout="@layout/layout_listing_details_enquire_agent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:agentPO="@{viewModel.fullListingPO.agentPO}"
+                        app:isAgentCurrentUser="@{viewModel.isAgentCurrentUser()}" />
+
+                    <include
+                        android:id="@+id/layout_edit"
+                        layout="@layout/layout_listing_details_edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:agentPO="@{viewModel.fullListingPO.agentPO}"
+                        app:isAgentCurrentUser="@{viewModel.isAgentCurrentUser()}"
+                        app:isShowByListingGroup="@{viewModel.isShowEditLayoutByGroup()}" />
+
+                    <!--Transacted listing-->
+                    <include
+                        android:id="@+id/layout_transacted"
+                        layout="@layout/layout_listing_details_transacted"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:isAgentCurrentUser="@{viewModel.isAgentCurrentUser()}"
+                        app:isTransactedListing="@{viewModel.isTransactedListing()}" />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <include
+                layout="@layout/layout_loading_fail_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:mainStatus="@{viewModel.mainStatus}" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/ListingDetailsActionBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/status_bar_height"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

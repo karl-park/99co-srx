@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="portalListing"
+            type="sg.searchhouse.agentconnect.model.api.listing.listingmanagement.PortalListingPO" />
+
+        <variable
+            name="showSyncIndicatorLayout"
+            type="Boolean" />
+
+        <variable
+            name="showErrorLayout"
+            type="Boolean" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:id="@+id/layout_portal_listing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_m"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:layout_marginEnd="@dimen/spacing_m"
+        android:layout_marginBottom="@dimen/spacing_xs"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackgroundBorderless"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/spacing_s"
+                android:paddingTop="@dimen/spacing_xs"
+                android:paddingEnd="@dimen/spacing_s"
+                android:paddingBottom="@dimen/spacing_xs">
+
+                <TextView
+                    style="@style/SmallBody"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/spacing_xxs"
+                    android:layout_toStartOf="@+id/tv_view_in_portal"
+                    android:text="@{portalListing.getPortalListingId(context)}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_view_in_portal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/label_view_in_pg" />
+
+            </RelativeLayout>
+
+            <include layout="@layout/view_divider_horizontal" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_s">
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/checkbox"
+                    style="@style/CheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_5">
+
+                    <TextView
+                        android:id="@+id/tv_listing_address"
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toStartOf="@+id/tv_price"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{portalListing.address}" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        style="@style/TitleColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="@{portalListing.getFormattedAskingPrice()}" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_listing_address"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_rooms"
+                            style="@style/ListingIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/spacing_s"
+                            android:drawableStart="@drawable/ic_bed"
+                            android:text="@{String.valueOf(portalListing.bedrooms)}"
+                            android:visibility="@{portalListing.bedrooms > 0 ? View.VISIBLE : View.GONE}" />
+
+                        <TextView
+                            android:id="@+id/tv_bathrooms"
+                            style="@style/ListingIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:drawableStart="@drawable/ic_bath_tub"
+                            android:text="@{String.valueOf(portalListing.bathrooms)}"
+                            android:visibility="@{portalListing.bathrooms > 0 ? View.VISIBLE : View.GONE}" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{safeUnbox(showSyncIndicatorLayout) ? View.VISIBLE : View.GONE}">
+
+                <include layout="@layout/view_divider_horizontal" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/spacing_s"
+                    android:paddingTop="@dimen/spacing_xs"
+                    android:paddingEnd="@dimen/spacing_s"
+                    android:paddingBottom="@dimen/spacing_xs">
+
+                    <TextView
+                        style="@style/SmallBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/spacing_xxs"
+                        android:layout_toStartOf="@+id/switch_sync"
+                        android:text="@{portalListing.getFormattedSrxImportedDate(context)}"
+                        android:visibility="@{TextUtils.isEmpty(portalListing.getFormattedSrxImportedDate(context))? View.GONE : View.VISIBLE}" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch_sync"
+                        style="@style/PortalSyncSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/label_sync"
+                        android:visibility="@{safeUnbox(portalListing.isHideSyncIndicator())? View.GONE : View.VISIBLE}" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/list_view_divider"
+                android:layout_marginBottom="@dimen/spacing_s"
+                android:background="@color/divider_color"
+                android:visibility="@{safeUnbox(showErrorLayout)? View.VISIBLE : View.GONE}" />
+
+            <TextView
+                style="@style/SmallBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_s"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:layout_marginBottom="@dimen/spacing_s"
+                android:drawableStart="@drawable/ic_alert_triangle"
+                android:drawablePadding="@dimen/spacing_xxs"
+                android:drawableTint="@color/red"
+                android:gravity="center_vertical"
+                android:text="@{portalListing.error}"
+                android:textColor="@color/red"
+                android:visibility="@{TextUtils.isEmpty(portalListing.error)? View.GONE : View.VISIBLE}" />
+
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

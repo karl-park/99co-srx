@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.project.ProjectInfoFragmentViewModel" />
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="isExpand"
+                type="Boolean" />
+
+        <variable
+                name="isVisible"
+                type="Boolean" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_xs"
+            android:visibility="@{isVisible ? View.VISIBLE : View.GONE}"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <include
+                    android:id="@+id/layout_header"
+                    layout="@layout/layout_header_project_info"
+                    app:isExpand="@{isExpand}"
+                    app:title="@{title}" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_m"
+                    android:orientation="vertical"
+                    android:visibility="@{isExpand ? View.VISIBLE : View.GONE}">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{viewModel.hasSiteMaps ? View.VISIBLE : View.GONE}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/subtitle_project_info_site_map" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_site_map"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{viewModel.hasElevationMaps ? View.VISIBLE : View.GONE}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/subtitle_project_info_elevation_map" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/list_elevation_map"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{viewModel.hasFloorPlans ? View.VISIBLE : View.GONE}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/subtitle_project_info_floor_plan" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBody"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:text="@string/description_project_info_floor_plan" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/btn_block"
+                                style="@style/RoundedEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_m"
+                                android:layout_marginEnd="@dimen/spacing_xxs"
+                                android:layout_weight="1"
+                                android:background="@drawable/et_rounded_gray_background_with_border"
+                                android:clickable="true"
+                                android:drawableEnd="@drawable/ic_arrow_down"
+                                android:focusable="true"
+                                android:hint="@string/hint_project_info_block"
+                                android:text="@{viewModel.selectedBlock}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/btn_floor"
+                                style="@style/RoundedEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_xxs"
+                                android:layout_marginEnd="@dimen/spacing_xxs"
+                                android:layout_weight="1"
+                                android:background="@drawable/et_rounded_gray_background_with_border"
+                                android:clickable="true"
+                                android:drawableEnd="@drawable/ic_arrow_down"
+                                android:focusable="true"
+                                android:hint="@string/hint_project_info_floor"
+                                android:text="@{viewModel.selectedFloor}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/btn_unit"
+                                style="@style/RoundedEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/spacing_xxs"
+                                android:layout_marginEnd="@dimen/spacing_m"
+                                android:layout_weight="1"
+                                android:background="@drawable/et_rounded_gray_background_with_border"
+                                android:clickable="true"
+                                android:drawableEnd="@drawable/ic_arrow_down"
+                                android:focusable="true"
+                                android:hint="@string/hint_project_info_unit"
+                                android:text="@{viewModel.selectedUnit}" />
+                    </LinearLayout>
+
+                    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                            android:id="@+id/card_floor_plan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_xs"
+                            app:contentPaddingBottom="0dp"
+                            app:contentPaddingLeft="0dp"
+                            app:contentPaddingRight="0dp"
+                            app:contentPaddingTop="0dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/height_floor_plan"
+                                android:contentDescription="@string/content_description_site_map"
+                                android:scaleType="centerCrop"
+                                app:imageUrl="@{viewModel.selectedFloorPlanUrl}" />
+                    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

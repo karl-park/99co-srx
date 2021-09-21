@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="leaseTerm"
+            type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum.LeaseTerm" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.create.PostListingViewModel" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_lease_term"
+        style="@style/ListingFilterPill"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pill_height"
+        app:isSelected="@{viewModel.isLeaseTermSelected(leaseTerm)}"
+        app:resourceText="@{leaseTerm.label}" />
+</layout>

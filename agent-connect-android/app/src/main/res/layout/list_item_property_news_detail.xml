@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="onlineCommunicationPO"
+            type="sg.searchhouse.agentconnect.model.api.propertynews.OnlineCommunicationPO" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout_news_detail_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_s"
+        android:background="@color/white_invertible"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_s">
+
+            <TextView
+                android:id="@+id/tv_news_title"
+                style="@style/BodyBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:layout_toStartOf="@+id/btn_share"
+                android:maxLines="2"
+                android:text="@{onlineCommunicationPO.title}" />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="end"
+                android:background="@color/transparent"
+                android:contentDescription="@string/content_description_share"
+                android:src="@drawable/ic_share"
+                android:tint="@color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_s">
+
+            <TextView
+                android:id="@+id/tv_news_source"
+                style="@style/SmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_toStartOf="@+id/tv_news_date"
+                android:text="@{onlineCommunicationPO.source}" />
+
+            <TextView
+                android:id="@+id/tv_news_date"
+                style="@style/SmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:drawableStart="@drawable/ic_clock"
+                android:drawablePadding="@dimen/spacing_xs"
+                android:gravity="center_vertical"
+                android:text="@{onlineCommunicationPO.datePosted}" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_xs"
+            android:layout_marginBottom="@dimen/spacing_m">
+
+            <WebView
+                android:id="@+id/web_view_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>
+

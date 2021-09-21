@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xxs"
+        android:layout_marginEnd="@dimen/spacing_xs"
+        android:layout_marginBottom="@dimen/spacing_xs"
+        android:orientation="vertical">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_marginEnd="@dimen/margin_5"
+            app:contentPaddingBottom="0dp"
+            app:contentPaddingLeft="0dp"
+            app:contentPaddingRight="0dp"
+            app:contentPaddingTop="0dp"
+            app:strokeColor="@color/red"
+            app:strokeWidth="@dimen/button_border">
+
+            <FrameLayout
+                android:layout_width="@dimen/width_template_photo_picker"
+                android:layout_height="@dimen/height_template_photo_picker"
+                android:background="@drawable/view_red_border_rectangle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableTop="@drawable/ic_cancel"
+                    android:drawableTint="@color/red"
+                    android:text="@string/error_msg_invalid_quality_photo"
+                    android:textAlignment="center"
+                    android:textColor="@color/red" />
+
+            </FrameLayout>
+
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+    </FrameLayout>
+</layout>

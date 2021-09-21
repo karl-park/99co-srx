@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.event.transaction.UpdateProjectTransactionsEvent.ProjectTransactionType" />
+
+        <variable
+            name="visibility"
+            type="Integer" />
+
+        <variable
+            name="projectTransactionType"
+            type="ProjectTransactionType" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="@{visibility}">
+
+        <View
+            android:layout_width="@dimen/column_width_transaction_date_sold"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="@dimen/column_width_transaction_block"
+            android:layout_height="match_parent"
+            android:background="@color/accordion_background_invertible" />
+
+        <View
+            android:layout_width="@dimen/column_width_transaction_unit"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="@dimen/column_width_transaction_price"
+            android:layout_height="match_parent"
+            android:background="@color/accordion_background_invertible" />
+
+        <View
+            android:layout_width="@dimen/column_width_transaction_size_sqft"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="@dimen/column_width_transaction_psf"
+            android:layout_height="match_parent"
+            android:background="@color/accordion_background_invertible" />
+
+        <View
+            android:layout_width="@dimen/column_width_transaction_built_year"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="@dimen/column_width_transaction_cov"
+            android:layout_height="match_parent"
+            android:background="@color/accordion_background_invertible"
+            android:visibility="@{projectTransactionType == ProjectTransactionType.SALE ? View.VISIBLE : View.GONE}" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+                name="content"
+                type="String" />
+
+        <variable
+                name="buttonLabel"
+                type="String" />
+
+        <variable
+                name="visibility"
+                type="Integer" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+            android:visibility="@{visibility}"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_m"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                style="@style/BigHeadingColor"
+                android:drawableTint="@color/purple"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:drawablePadding="@dimen/spacing_xs"
+                android:drawableStart="@drawable/ic_big_check_circle"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:text="@string/title_success_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_l"
+            android:lineSpacingMultiplier="1.5"
+            android:text="@{content}"
+            android:textAlignment="center" />
+
+        <Button
+                android:id="@+id/btn_back"
+                style="@style/SecondaryButton"
+                android:text="@{buttonLabel}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>

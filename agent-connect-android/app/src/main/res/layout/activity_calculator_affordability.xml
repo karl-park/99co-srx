@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.AffordabilityCalculatorOption" />
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.AffordabilityCalculatorViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/ClassicActionBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@string/activity_affordability_quick" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                    android:id="@+id/layout_container"
+                    android:background="@color/light_gray_invertible"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <include
+                        android:id="@+id/layout_header"
+                        layout="@layout/layout_header_calculator_affordability"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/spacing_m_minus"
+                        app:viewModel="@{viewModel}" />
+
+                <FrameLayout
+                        android:id="@+id/layout_input"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:layout_marginBottom="@dimen/spacing_m_minus"
+                        android:layout_below="@id/layout_header"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <include
+                            layout="@layout/layout_affordability_max_purchase_price"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            app:visibility="@{viewModel.affordabilityCalculatorOption == AffordabilityCalculatorOption.MAX_PURCHASE_PRICE ? View.VISIBLE : View.GONE}" />
+
+                    <include
+                            layout="@layout/layout_affordability_income_required"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            app:visibility="@{viewModel.affordabilityCalculatorOption == AffordabilityCalculatorOption.INCOME_REQUIRED ? View.VISIBLE : View.GONE}" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                            android:id="@+id/layout_to_advanced"
+                            android:layout_gravity="bottom"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:layout_marginBottom="@dimen/spacing_xl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:contentPaddingBottom="@dimen/spacing_m"
+                            app:contentPaddingLeft="@dimen/spacing_m"
+                            app:contentPaddingRight="@dimen/spacing_m"
+                            app:contentPaddingTop="@dimen/spacing_m">
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tv_title"
+                                    style="@style/Title"
+                                    android:lines="1"
+                                    android:ellipsize="end"
+                                    android:text="@string/activity_affordability_details"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            <androidx.appcompat.widget.AppCompatImageButton
+                                    android:id="@+id/btn_expand_collapse"
+                                    android:clickable="false"
+                                    android:background="@color/transparent"
+                                    android:layout_alignEnd="@id/tv_title"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_chevron_right"
+                                    android:layout_width="@dimen/icon_size"
+                                    android:layout_height="@dimen/icon_size" />
+                        </RelativeLayout>
+                    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+                </FrameLayout>
+            </RelativeLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

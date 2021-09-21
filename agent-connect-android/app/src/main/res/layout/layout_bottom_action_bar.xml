@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="showActionBar"
+            type="Boolean" />
+
+        <variable
+            name="description"
+            type="String" />
+
+        <variable
+            name="btnLabel"
+            type="String" />
+
+        <variable
+            name="isBtnEnabled"
+            type="Boolean" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_invertible"
+        android:orientation="vertical"
+        android:visibility="@{safeUnbox(showActionBar) ? View.VISIBLE : View.GONE}">
+
+        <include layout="@layout/view_divider_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_m">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/btn_action"
+                android:text="@{description}" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_action"
+                style="@style/PrimaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:enabled="@{isBtnEnabled}"
+                android:text="@{btnLabel}" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

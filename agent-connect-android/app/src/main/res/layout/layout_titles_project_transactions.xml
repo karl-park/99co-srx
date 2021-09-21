@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.OwnershipType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyMainType" />
+
+        <import type="sg.searchhouse.agentconnect.event.transaction.UpdateProjectTransactionsEvent.ProjectTransactionType" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.transaction.ProjectTransactionsFragmentViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.ScalableFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.projectTransactionType == ProjectTransactionType.SALE || viewModel.projectTransactionType == ProjectTransactionType.RENT_REAL_TIME ? View.VISIBLE : View.GONE}"
+            app:scale="@{viewModel.scale}">
+
+            <include
+                layout="@layout/list_item_project_transaction_title_real_time_hdb"
+                app:projectTransactionType="@{viewModel.projectTransactionType}"
+                app:visibility="@{viewModel.isHdb() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/list_item_project_transaction_title_real_time_nlp"
+                app:visibility="@{viewModel.isCondo() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/list_item_project_transaction_title_real_time_landed"
+                app:visibility="@{viewModel.isLanded() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/list_item_project_transaction_title_real_time_commercial"
+                app:visibility="@{viewModel.isCommercial() ? View.VISIBLE : View.GONE}" />
+        </sg.searchhouse.agentconnect.view.widget.common.ScalableFrameLayout>
+
+        <sg.searchhouse.agentconnect.view.widget.common.ScalableFrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.projectTransactionType == ProjectTransactionType.RENT_OFFICIAL ? View.VISIBLE : View.GONE}"
+            app:scale="@{viewModel.scale}">
+
+            <include
+                layout="@layout/list_item_project_transaction_title_official_hdb"
+                app:visibility="@{viewModel.isHdb() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                layout="@layout/list_item_project_transaction_title_official"
+                app:visibility="@{viewModel.isHdb() != true ? View.VISIBLE : View.GONE}" />
+        </sg.searchhouse.agentconnect.view.widget.common.ScalableFrameLayout>
+    </FrameLayout>
+</layout>

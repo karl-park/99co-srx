@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="title"
+                type="String" />
+
+        <variable
+                name="value"
+                type="String" />
+
+        <variable
+                name="time"
+                type="String" />
+
+        <variable
+                name="valueTextColor"
+                type="Integer" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_s">
+
+        <TextView
+                style="@style/SmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{title}" />
+
+        <TextView
+                style="@style/TitleColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@{valueTextColor}"
+                app:textOrDash="@{value}" />
+
+        <TextView
+                style="@style/SmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:ellipsize="end"
+                android:lines="1"
+                app:textOrDash="@{time}" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.profile.AgentProfileViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white_invertible"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/ClassicActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <androidx.core.widget.NestedScrollView
+                    android:id="@+id/scroll_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <sg.searchhouse.agentconnect.view.widget.agent.cv.CvProfile
+                            android:id="@+id/layout_agent_profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m" />
+
+                    <include
+                            layout="@layout/view_divider_horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m" />
+
+                    <include
+                            android:id="@+id/layout_view_cv"
+                            layout="@layout/layout_item_agent_profile"
+                            app:label="@{@string/label_view_my_cv}" />
+
+                    <include
+                            layout="@layout/view_divider_horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m" />
+
+                    <include
+                            android:id="@+id/layout_view_clients"
+                            layout="@layout/layout_item_agent_profile"
+                            app:label="@{viewModel.viewMyClientsLabel}" />
+
+                    <include
+                            layout="@layout/view_divider_horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/list_view_divider"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m" />
+
+                    <TextView
+                            style="@style/BodyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:text="@string/label_subscription" />
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m"
+                            android:background="@drawable/view_red_border_rectangle"
+                            android:padding="@dimen/spacing_xs"
+                            android:visibility="@{viewModel.subscription == null ? View.GONE : View.VISIBLE}">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_subscription_type"
+                                style="@style/BodyBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@+id/tv_subscription_end_date"
+                                android:ellipsize="end"
+                                android:letterSpacing="0.3"
+                                android:maxLines="1"
+                                android:text="@{viewModel.subscription.getSubscriptionTypeUpperCase()}" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_subscription_end_date"
+                                style="@style/BodyBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/spacing_xxs"
+                                android:layout_marginEnd="0dp"
+                                android:gravity="end"
+                                android:text="@{viewModel.subscription.getFormattedSubscriptionEnd()}" />
+
+                    </RelativeLayout>
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_renew_membership"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/spacing_m"
+                            android:text="@{viewModel.subscriptionStatus}" />
+
+
+                    <sg.searchhouse.agentconnect.view.widget.agent.profile.ProfileWallet
+                            android:id="@+id/layout_profile_wallet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_marginEnd="@dimen/spacing_m" />
+
+                    <include
+                            android:id="@+id/layout_profile_watchlist"
+                            layout="@layout/layout_profile_watchlist"
+                            app:viewModel="@{viewModel}" />
+
+                    <!--TODO comment for now... will decide later-->
+                    <!--                <sg.searchhouse.agentconnect.view.widget.agent.profile.ProfileMyClients-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_marginStart="@dimen/spacing_m"-->
+                    <!--                        android:layout_marginEnd="@dimen/spacing_m" />-->
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <include
+                    layout="@layout/layout_loading_fail_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:mainStatus="@{viewModel.mainStatus}" />
+
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

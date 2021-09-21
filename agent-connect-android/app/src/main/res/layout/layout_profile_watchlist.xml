@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.agent.profile.AgentProfileViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+            android:visibility="@{viewModel.shouldShowWatchList ? View.VISIBLE : View.GONE}"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:padding="@dimen/spacing_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/Heading2"
+                    android:layout_alignStart="@id/btn_add_criteria"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/title_profile_watchlist"
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_add_criteria"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/button_add_criteria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list"
+                    android:overScrollMode="never"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:visibility="@{viewModel.isShowWatchlistOccupied() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                    layout="@layout/layout_load_list_fail"
+                    app:title="@{@string/layout_empty_my_profile_watchlist}"
+                    app:visibility="@{viewModel.isShowWatchlistEmpty() ? View.VISIBLE : View.GONE}" />
+
+            <include
+                    layout="@layout/layout_loading_fail_error"
+                    app:mainStatus="@{viewModel.watchlistStatus}" />
+        </FrameLayout>
+    </LinearLayout>
+
+</layout>

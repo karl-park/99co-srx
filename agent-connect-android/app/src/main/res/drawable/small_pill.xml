@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--pressed-->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/pill_background_selected_invertible"/>
+            <stroke android:width="@dimen/button_border" android:color="@color/text_box_border"/>
+            <corners android:radius="@dimen/small_pill_radius"/>
+        </shape>
+    </item>
+
+    <!--default-->
+    <item>
+        <shape>
+            <solid android:color="@color/transparent"/>
+            <stroke android:width="@dimen/button_border" android:color="@color/text_box_border"/>
+            <corners android:radius="@dimen/small_pill_radius"/>
+        </shape>
+    </item>
+
+</selector>

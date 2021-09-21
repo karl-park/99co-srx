@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.BedroomCount" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.listing.FilterListingViewModel" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="7">
+
+        <include
+                android:id="@+id/btn_bedroom_count_any"
+                layout="@layout/button_filter_bedroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_group_rounded_start}"
+                app:bedroomCount="@{BedroomCount.ANY}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.bedroomCounts.contains(BedroomCount.ANY) || viewModel.bedroomCounts.contains(BedroomCount.ONE) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bedroom_count_one"
+                layout="@layout/button_filter_bedroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bedroomCount="@{BedroomCount.ONE}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.bedroomCounts.contains(BedroomCount.ONE) || viewModel.bedroomCounts.contains(BedroomCount.TWO) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bedroom_count_two"
+                layout="@layout/button_filter_bedroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bedroomCount="@{BedroomCount.TWO}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.bedroomCounts.contains(BedroomCount.TWO) || viewModel.bedroomCounts.contains(BedroomCount.THREE) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bedroom_count_three"
+                layout="@layout/button_filter_bedroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bedroomCount="@{BedroomCount.THREE}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.bedroomCounts.contains(BedroomCount.THREE) || viewModel.bedroomCounts.contains(BedroomCount.FOUR) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bedroom_count_four"
+                layout="@layout/button_filter_bedroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bedroomCount="@{BedroomCount.FOUR}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.bedroomCounts.contains(BedroomCount.FOUR) || viewModel.bedroomCounts.contains(BedroomCount.FIVE) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bedroom_count_five"
+                layout="@layout/button_filter_bedroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_center_horizontal}"
+                app:bedroomCount="@{BedroomCount.FIVE}"
+                app:viewModel="@{viewModel}" />
+
+        <View
+                android:layout_width="@dimen/list_view_divider"
+                android:layout_height="match_parent"
+                android:background="@{viewModel.bedroomCounts.contains(BedroomCount.FIVE) || viewModel.bedroomCounts.contains(BedroomCount.SIX_AND_ABOVE) ? @color/cyan : @color/divider_color}" />
+
+        <include
+                android:id="@+id/btn_bedroom_count_six_and_above"
+                layout="@layout/button_filter_bedroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:background="@{@drawable/card_group_rounded_end}"
+                app:bedroomCount="@{BedroomCount.SIX_AND_ABOVE}"
+                app:viewModel="@{viewModel}" />
+    </LinearLayout>
+</layout>

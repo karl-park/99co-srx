@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingManagementEnum.PortalImportSummarySource" />
+
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.portal.PortalImportSummaryDialogViewModel" />
+    </data>
+
+    <!--from main screen - portal listing activity-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_check_circle"
+            android:drawablePadding="@dimen/spacing_s"
+            android:drawableTint="@color/purple"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.successListings}"
+            android:visibility="@{TextUtils.isEmpty(viewModel.successListings)? View.GONE : View.VISIBLE}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:drawableStart="@drawable/ic_remove"
+            android:drawablePadding="@dimen/spacing_s"
+            android:drawableTint="@color/red"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.failedListings}"
+            android:visibility="@{TextUtils.isEmpty(viewModel.failedListings)? View.GONE : View.VISIBLE}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_primary"
+            style="@style/PrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_l"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:text="@{viewModel.isFailedListingsIncluded()? @string/action_review_failed_listings : @string/action_my_listings}" />
+
+        <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+            android:id="@+id/btn_secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:text="@{viewModel.isFailedListingsIncluded()? @string/label_go_to_my_listings : @string/label_go_to_portal_listings}" />
+
+    </LinearLayout>
+</layout>

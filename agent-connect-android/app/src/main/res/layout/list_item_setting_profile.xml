@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_invertible"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        android:orientation="vertical">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_m">
+
+        <sg.searchhouse.agentconnect.view.widget.common.ProfileIconLayout
+                android:id="@+id/layout_profile"
+                android:layout_width="@dimen/setting_profile_icon_size"
+                android:layout_height="@dimen/setting_profile_icon_size"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true" />
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_toStartOf="@+id/iv_enter"
+                android:layout_toEndOf="@+id/layout_profile"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_name"
+                    style="@style/Heading2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false" />
+
+            <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/tv_email"
+                    android:clickable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_enter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/content_description_settings_profile_enter"
+                android:src="@drawable/ic_chevron_right"
+                android:tint="@color/black_invertible" />
+    </RelativeLayout>
+
+    <include layout="@layout/view_divider_horizontal" />
+
+</LinearLayout>

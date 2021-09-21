@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--pressed-->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/tag_background_selected" />
+            <stroke android:width="@dimen/button_border" android:color="@color/purple" />
+            <corners android:radius="@dimen/border_radius_listing_tag" />
+        </shape>
+    </item>
+
+    <!--default-->
+    <item>
+        <shape>
+            <solid android:color="@color/purple" />
+            <stroke android:width="@dimen/button_border" android:color="@color/purple" />
+            <corners android:radius="@dimen/border_radius_listing_tag" />
+        </shape>
+    </item>
+
+</selector>

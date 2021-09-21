@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="isShowProjects"
+                type="Boolean" />
+
+        <!--TODO Rename to `isPortrait`-->
+        <variable
+                name="isShowTabs"
+                type="Boolean" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_marginBottom="@dimen/card_border_radius_minus"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="@{isShowTabs ? @dimen/card_border_radius : @dimen/zero}"
+                app:contentPaddingBottom="@dimen/card_border_radius"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp"
+                app:contentPaddingTop="0dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <View
+                        android:visibility="@{isShowTabs ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/spacing_m" />
+
+                <sg.searchhouse.agentconnect.view.widget.transaction.TransactionListTabLayout
+                        android:id="@+id/tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:visibility="@{isShowTabs &amp;&amp; isShowProjects ? View.VISIBLE : View.GONE}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.NoSwipeViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/transaction_project_list_height"
+                        android:overScrollMode="never" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

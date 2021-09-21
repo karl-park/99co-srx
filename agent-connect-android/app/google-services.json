@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "188824846573",
+    "firebase_url": "https://sg-srx-agentconnect.firebaseio.com",
+    "project_id": "sg-srx-agentconnect",
+    "storage_bucket": "sg-srx-agentconnect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:188824846573:android:bc4440e57c871c2f098ce4",
+        "android_client_info": {
+          "package_name": "sg.searchhouse.agentconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "188824846573-t3qf34miukrl2av2aj6qau0em8qguqdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBETJDXjfO_UiBFCD7EADIy_SXKfLsrP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "188824846573-t3qf34miukrl2av2aj6qau0em8qguqdn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "188824846573-mdjijkm0dq0ofp486di6pnulc4k1m7jg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "sg.com.srx.AgentConnect",
+                "app_store_id": "1477921629"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

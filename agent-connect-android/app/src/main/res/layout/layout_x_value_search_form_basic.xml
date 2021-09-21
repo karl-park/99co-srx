@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.XValueEnum.PropertyType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertySubType" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchXValueViewModel" />
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!--Property type-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn_property_type"
+                    style="@style/RoundedEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@{viewModel.isPropertySubTypeValidated() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                    android:clickable="true"
+                    android:drawableEnd="@drawable/ic_arrow_down"
+                    android:focusable="true"
+                    android:hint="@string/hint_property_type"
+                    app:resourceText="@{viewModel.propertySubType.label}" />
+
+            <TextView
+                    style="@style/ExtraSmallBodyError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:text="@string/error_required_field"
+                    android:visibility="@{viewModel.isPropertySubTypeValidated() ? View.GONE : View.VISIBLE}" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical">
+
+                <EditText
+                        style="@style/RoundedEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@{viewModel.isUnitFloorValidated() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                        android:hint="@string/hint_floor"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={viewModel.unitFloor}"
+                        tools:ignore="LabelFor"
+                        tools:targetApi="O" />
+
+                <TextView
+                        style="@style/ExtraSmallBodyError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:text="@string/error_required_field"
+                        android:visibility="@{viewModel.isUnitFloorValidated() ? View.GONE : View.VISIBLE}" />
+            </LinearLayout>
+
+            <TextView
+                    style="@style/Body"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/size_40"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/label_dash"
+                    android:textAlignment="center" />
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical">
+
+                <EditText
+                        android:id="@+id/tv_unit"
+                        style="@style/RoundedEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@{viewModel.isUnitNumberValidated() ? @drawable/et_rounded_gray_background_with_border : @drawable/et_error_background}"
+                        android:hint="@string/hint_unit"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={viewModel.unitNumber}"
+                        tools:ignore="LabelFor"
+                        tools:targetApi="O" />
+
+                <TextView
+                        style="@style/ExtraSmallBodyError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:text="@string/error_required_field"
+                        android:visibility="@{viewModel.isUnitNumberValidated() ? View.GONE : View.VISIBLE}" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+            <!--Size-->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/spacing_s"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                    <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                            android:id="@+id/et_built_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:background="@{viewModel.isAreaValidated() ? @drawable/et_rounded_gray_background_with_border_built_area : @drawable/et_error_background_built_area}" />
+
+                    <Button
+                            android:id="@+id/btn_get_size"
+                            style="@style/SecondaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:stateListAnimator="@null"
+                            android:text="@string/action_get_size" />
+                </FrameLayout>
+
+                <TextView
+                        style="@style/ExtraSmallBodyError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_xs"
+                        android:text="@string/error_required_field"
+                        android:visibility="@{viewModel.isAreaValidated() ? View.GONE : View.VISIBLE}" />
+            </LinearLayout>
+
+            <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                    android:id="@+id/et_ext_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="2" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ChatEnum.ConversationType" />
+
+        <variable
+            name="conversationType"
+            type="sg.searchhouse.agentconnect.enumeration.api.ChatEnum.ConversationType" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.ProfileIconLayout
+            android:id="@+id/layout_profile_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{conversationType == ConversationType.SRX_ANNOUNCEMENTS ? View.GONE : View.VISIBLE}" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_normal_image"
+            android:layout_width="@dimen/profile_icon_size"
+            android:layout_height="@dimen/profile_icon_size"
+            android:background="@drawable/profile_icon_background"
+            android:padding="@dimen/spacing_xs"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_srx_advisor_x"
+            android:visibility="@{conversationType == ConversationType.SRX_ANNOUNCEMENTS ? View.VISIBLE : View.GONE}" />
+    </FrameLayout>
+</layout>

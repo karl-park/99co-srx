@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="buyerProfileTitle"
+                type="String" />
+
+        <variable
+                name="selectedBuyerProfileLabel"
+                type="Integer" />
+
+        <variable
+                name="ownedPropertyNumber"
+                type="Integer" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:text="@{buyerProfileTitle}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_buyer_profile"
+                style="@style/RoundedEditText"
+                android:layout_marginBottom="@dimen/spacing_l"
+                android:drawableTint="@color/gray_invertible"
+                android:drawablePadding="@dimen/spacing_xs"
+                android:stateListAnimator="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/et_rounded_gray_background_with_border"
+                android:drawableEnd="@drawable/ic_arrow_down"
+                app:resourceText="@{selectedBuyerProfileLabel}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Body"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:text="@string/text_box_calculator_property_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <include
+                layout="@layout/layout_stamp_duty_property_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:ownedPropertyNumber="@{ownedPropertyNumber}" />
+    </LinearLayout>
+</layout>

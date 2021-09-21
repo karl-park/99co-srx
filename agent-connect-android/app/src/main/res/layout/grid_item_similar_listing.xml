@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="isFirst"
+                type="Boolean" />
+
+        <variable
+                name="isLast"
+                type="Boolean" />
+
+        <variable
+                name="listingPO"
+                type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@{isFirst ? @dimen/spacing_m : @dimen/spacing_xs}"
+            android:paddingEnd="@{isLast ? @dimen/spacing_m : @dimen/spacing_xs}">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:id="@+id/card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                app:cardCornerRadius="@dimen/similar_listing_corner_radius"
+                app:cardElevation="0dp"
+                app:contentPaddingBottom="0dp"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp"
+                app:contentPaddingTop="0dp"
+                app:strokeColor="@color/light_gray_invertible"
+                app:strokeWidth="1dp">
+
+            <LinearLayout
+                    android:layout_width="@dimen/similar_listing_photo_width"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_s">
+
+                <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        app:cardCornerRadius="@dimen/similar_listing_corner_radius"
+                        app:cardElevation="0dp"
+                        app:contentPaddingBottom="0dp"
+                        app:contentPaddingLeft="0dp"
+                        app:contentPaddingRight="0dp"
+                        app:contentPaddingTop="0dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_listing_photo"
+                            android:layout_width="@dimen/similar_listing_photo_width"
+                            android:layout_height="@dimen/similar_listing_photo_height"
+                            android:contentDescription="@string/content_description_listing_photo"
+                            android:scaleType="centerCrop"
+                            app:imageUrl="@{listingPO.listingPhoto}" />
+                </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_header"
+                        style="@style/Heading2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@{listingPO.getListingName()}"
+                        android:textStyle="normal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SmallBodyGray"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@{listingPO.propertyType}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_price"
+                        style="@style/BodyBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:lines="1"
+                        android:text="@{listingPO.askingPriceLabel()}"
+                        android:textColor="@color/purple" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="message"
+            type="String" />
+    </data>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/view_feedback_background"
+        android:paddingTop="@dimen/spacing_s"
+        android:paddingBottom="@dimen/spacing_s"
+        android:text="@{message}"
+        android:textAlignment="center" />
+</layout>

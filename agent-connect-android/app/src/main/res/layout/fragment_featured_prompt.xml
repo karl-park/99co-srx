@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.fragment.listing.user.FeaturedPromptViewModel" />
+    </data>
+
+    <LinearLayout
+            android:id="@+id/layout_container"
+            android:background="@drawable/card_big_prompt"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_view_pager_feature_prompt"
+                android:overScrollMode="never" />
+
+        <com.rbrooks.indefinitepagerindicator.IndefinitePagerIndicator
+                android:id="@+id/view_pager_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:dotColor="@color/white"
+                app:dotRadius="@dimen/featured_prompt_page_indicator_dot_radius"
+                app:selectedDotColor="@color/cyan"
+                app:selectedDotRadius="@dimen/featured_prompt_page_indicator_dot_radius" />
+    </LinearLayout>
+</layout>

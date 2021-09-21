@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="selectedSellingCalculatorTab"
+                type="sg.searchhouse.agentconnect.enumeration.app.SellingCalculatorTab" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentPaddingBottom="@dimen/card_border_radius"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp"
+                app:strokeWidth="0dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <include
+                        android:id="@+id/tab_layout_selling_calculator"
+                        layout="@layout/tab_layout_selling_calculator"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:selectedSellingCalculatorTab="@{selectedSellingCalculatorTab}" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.NoSwipeViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_below="@id/tab_layout_selling_calculator"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never" />
+            </RelativeLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

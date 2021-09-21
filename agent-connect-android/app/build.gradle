@@ -1,0 +1,239 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'com.google.firebase.crashlytics'
+
+//Note -> please add one more zero (eg - 1.0.3.0-staging)for test version.
+// if don't add zero in front of `-staging`, backend won't support version check..
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        applicationId "sg.searchhouse.agentconnect"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 224
+        versionName "1.17.3"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.incremental": "true"]
+            }
+        }
+    }
+    buildTypes {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
+        debug {
+            resValue 'string', "api_key_google_maps", properties.getProperty("api_key_google_maps.debug")
+            resValue 'string', "base_url", properties.getProperty("base_url.staging")
+            resValue 'string', "base_url_99", properties.getProperty("base_url_99.staging")
+            resValue 'bool', "enable_crashlytics_for_debug", properties.getProperty("enable_crashlytics_for_debug")
+        }
+
+        release {
+            resValue 'string', "api_key_google_maps", properties.getProperty("api_key_google_maps.production")
+            resValue 'string', "base_url", properties.getProperty("base_url.production")
+            resValue 'string', "base_url_99", properties.getProperty("base_url_99.production")
+
+            // TODO Revisit to enable `minify` when have time
+            // to resolve `This App Bundle contains Java/Kotlin code, which might be obfuscated.` error on Play store
+            //
+            // Can't minify for now because app not working properly on production build
+            // e.g. unable to login, null pointer at `FeaturedPromptViewModel`, etc.
+            //
+            // TODO Test thoroughly before push to production
+            //
+            // Ref: https://developer.android.com/studio/build/shrink-code#decode-stack-trace
+            minifyEnabled false
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        all {
+            resValue 'string', "deeplink_scheme", properties.getProperty("deeplink_scheme")
+            resValue 'string', "deeplink_host_agent_profile", properties.getProperty("deeplink_host_agent_profile")
+
+            // For manual toggle
+            resValue 'string', "base_url_staging", properties.getProperty("base_url.staging")
+            resValue 'string', "base_url_production", properties.getProperty("base_url.production")
+            resValue 'string', "base_url_99_staging", properties.getProperty("base_url_99.staging")
+            resValue 'string', "base_url_99_production", properties.getProperty("base_url_99.production")
+            resValue 'string', "api_key_youtube", properties.getProperty("api_key_youtube")
+            resValue 'string', "base_url_demo1", properties.getProperty("base_url_demo1")
+            resValue 'string', "base_url_demo2", properties.getProperty("base_url_demo2")
+            resValue 'string', "base_url_demo3", properties.getProperty("base_url_demo3")
+            resValue 'string', "base_url_demo4", properties.getProperty("base_url_demo4")
+            resValue 'string', "base_url_demo5", properties.getProperty("base_url_demo5")
+            resValue 'string', "base_url_demo6", properties.getProperty("base_url_demo6")
+            resValue 'string', "base_url_srxtrainer", properties.getProperty("base_url_srxtrainer")
+        }
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    testOptions {
+        // To fix error: TextUtils.isEmpty method is not mocked
+        // Reference: https://medium.com/@okmanideep/dont-create-that-stringutils-to-unit-test-your-android-class-8ab32af34e84
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    // To fix occasional compile error of antlr version mismatch
+    configurations.all() {
+        def antlrVersion = '4.7.1'
+        resolutionStrategy.force "org.antlr:antlr4-runtime:$antlrVersion"
+        resolutionStrategy.force "org.antlr:antlr4-tool:$antlrVersion"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Unit Testing
+    def androidTestVersion = "1.3.0"
+    def espressoVersion = "3.3.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.test.ext:junit:1.1.2'
+    testImplementation 'org.robolectric:robolectric:4.4'
+    androidTestImplementation "androidx.test.ext:junit:1.1.2"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoVersion"
+    androidTestImplementation 'com.squareup.okhttp3:mockwebserver:4.9.0'
+    debugImplementation "androidx.test:core:$androidTestVersion"
+    debugImplementation "androidx.test:rules:$androidTestVersion"
+    debugImplementation "androidx.test:runner:$androidTestVersion"
+
+    // Test fragment
+    def fragmentKtxVersion = "1.3.3"
+    debugImplementation "androidx.fragment:fragment-testing:$fragmentKtxVersion"
+    debugImplementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
+    //Android Google libraries
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.security:security-crypto:1.0.0'
+
+    //Design libraries
+    implementation "com.google.android.material:material:1.3.0"
+
+    // Multidex
+    def multiDexVersion = "2.0.1"
+    implementation "androidx.multidex:multidex:$multiDexVersion"
+    implementation 'androidx.multidex:multidex-instrumentation:2.0.0'
+
+    //Network libraries
+    def retrofitVersion = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    //Okhttp3
+    def okhttpVersion = '4.9.0'
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    //Rx libraries
+    def rxAndroidVersion = "2.1.1"
+    def rxJavaVersion = "2.2.12"
+    def rxKotlinVersion = "2.4.0"
+    implementation "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
+    implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+
+    //Dependency injection libraries
+    def daggerVersion = '2.29.1'
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
+    // Shared preferences
+    implementation 'androidx.preference:preference-ktx:1.1.1'
+    implementation 'com.pixplicity.easyprefs:library:1.9.0@aar'
+
+    // Coroutines
+    def coroutineVersion = "1.3.9"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+
+    //Room => Kotlin
+    def roomVersion = "2.3.0"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$roomVersion"
+
+    // Glide (lazy image loading)
+    def glideVersion = '4.11.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //OTP Pin views
+    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.0.3'
+
+    // Flexbox layout, i.e. horizontal linear layout that wrap overflow elements
+    def flexboxVersion = "1.1.0"
+    implementation "com.google.android:flexbox:$flexboxVersion"
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+
+    // View pager dots indicator
+    implementation 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.10'
+
+    // Scalable photo view
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    //Firebase
+    def firebaseMessagingVersion = "21.0.1"
+    def firebaseAnalyticsVersion = "18.0.2"
+    implementation "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion"
+    implementation "com.google.firebase:firebase-messaging:$firebaseMessagingVersion"
+    implementation "com.google.firebase:firebase-crashlytics:17.4.1"
+
+    implementation platform('com.google.firebase:firebase-bom:27.0.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    // Map
+    implementation 'com.google.maps.android:android-maps-utils:2.1.0'
+
+    // Multi-line collapsing toolbar
+    implementation 'net.opacapp:multiline-collapsingtoolbar:27.1.1'
+
+    // Chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //Lottie
+    implementation 'com.airbnb.android:lottie:3.5.0'
+
+    // Shimmer for loading
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    implementation 'com.github.gcacace:signature-pad:1.2.1'
+
+    implementation 'com.github.kenglxn.QRGen:android:2.6.0'
+
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
+
+    implementation 'it.sephiroth.android.library.targettooltip:target-tooltip-library:2.0.3'
+}
+
+apply plugin: 'com.google.gms.google-services'

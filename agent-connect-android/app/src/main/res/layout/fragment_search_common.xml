@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchCommonViewModel.SearchResultType" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.api.ListingEnum.PropertyPurpose" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchCommonViewModel" />
+
+        <import type="sg.searchhouse.agentconnect.viewmodel.fragment.search.SearchCommonViewModel.DisplayMode" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="false">
+
+        <LinearLayout
+            android:id="@+id/layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xs"
+                android:visibility="@{viewModel.displayMode == DisplayMode.SEARCH ? View.VISIBLE : View.GONE }" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <sg.searchhouse.agentconnect.view.widget.common.OwnershipRadioGroup
+                    android:id="@+id/radio_group_ownership_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:layout_toStartOf="@id/btn_cancel" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/spacing_m"
+                    android:text="@string/label_cancel"
+                    android:visibility="@{viewModel.displayMode == DisplayMode.SEARCH ? View.VISIBLE : View.GONE }" />
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewModel.displayMode == DisplayMode.DEFAULT &amp;&amp; viewModel.searchResultType == SearchResultType.TRANSACTIONS &amp;&amp; viewModel.propertyPurpose == PropertyPurpose.RESIDENTIAL ? View.VISIBLE : View.GONE}">
+
+                <include
+                    layout="@layout/tab_layout_search_residential_property_type"
+                    app:selectedPropertyType="@{viewModel.propertyType}" />
+            </FrameLayout>
+
+            <!--Search bar-->
+            <sg.searchhouse.agentconnect.view.widget.common.WhiteSearchEditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_m"
+                android:visibility="@{ viewModel.displayMode == DisplayMode.SEARCH ? View.VISIBLE : View.GONE }"
+                app:hint="@{@string/hint_search_listings}" />
+
+            <!--Mock button to show search bar-->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_search"
+                style="@style/SearchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_m"
+                android:text="@string/hint_search_listings"
+                android:textAlignment="textStart"
+                android:visibility="@{ viewModel.displayMode == DisplayMode.DEFAULT ? View.VISIBLE : View.GONE }" />
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_search"
+            android:layout_alignParentBottom="true"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:visibility="@{safeUnbox(viewModel.isSearchTextOccupied()) ? View.GONE : View.VISIBLE}">
+
+            <sg.searchhouse.agentconnect.view.widget.search.SearchListingShortcutLayout
+                android:id="@+id/layout_search_listing_shortcut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:displayMode="@{viewModel.displayMode}"
+                app:propertyPurpose="@{viewModel.propertyPurpose}"
+                app:searchResultType="@{viewModel.searchResultType}" />
+        </ScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_search"
+            android:layout_alignParentBottom="true"
+            app:visibility="@{safeUnbox(viewModel.isSearchTextOccupied()) ? View.VISIBLE : View.GONE}">
+
+            <include
+                android:id="@+id/layout_list"
+                layout="@layout/layout_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:isShowOccupied="@{safeUnbox(viewModel.isSearchTextOccupied())}"
+                app:mainStatus="@{viewModel.mainStatus}" />
+        </FrameLayout>
+    </RelativeLayout>
+</layout>

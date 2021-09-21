@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="listing"
+            type="sg.searchhouse.agentconnect.model.api.listing.listingmanagement.ActivateSrxCreditListingsResponse.ActivateSrxCreditListingSummaryPO.ActivateSrxCreditListingPO" />
+
+        <variable
+            name="listingHeader"
+            type="String" />
+
+        <variable
+            name="listingRemark"
+            type="String" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentPaddingBottom="@dimen/spacing_s">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xs">
+
+                <sg.searchhouse.agentconnect.view.widget.common.CircleImageView
+                    android:id="@+id/iv_agent_photo"
+                    android:layout_width="@dimen/size_sponsor_listing_preview_image"
+                    android:layout_height="@dimen/size_sponsor_listing_preview_image"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/profile_icon_background"
+                    android:padding="@dimen/button_border"
+                    app:imageUrl="@{listing.agentPhoto}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_agent_name"
+                    style="@style/ExtraSmallBodyBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_toEndOf="@id/iv_agent_photo"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{listing.agentName}" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/ExtraSmallBodyGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/tv_agent_name"
+                    android:gravity="end"
+                    android:text="@string/label_sponsored" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_sponsor_listing_preview_image"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:background="@color/white_smoke"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{listing.listingPhoto}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SmallBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xxs"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{listingHeader}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ExtraSmallBodyGray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_xs"
+                android:ellipsize="end"
+                android:lines="2"
+                android:text="@{listingRemark}" />
+
+            <include layout="@layout/view_divider_horizontal" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s">
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_enquire_now"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/btn_share"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:gravity="start"
+                    android:text="@string/btn_sponsor_listing_enquire_now" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                    android:id="@+id/btn_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:gravity="end"
+                    android:text="@string/btn_sponsor_listing_share" />
+            </RelativeLayout>
+        </LinearLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

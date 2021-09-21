@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="sg.searchhouse.agentconnect.enumeration.app.AffordabilityCalculatorOption" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.BuyerStampDutyCalculatorViewModel" />
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:animateLayoutChanges="true"
+                android:layout_marginBottom="@dimen/spacing_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp">
+
+            <LinearLayout
+                    android:id="@+id/layout_affordability_header"
+                    android:animateLayoutChanges="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <RelativeLayout
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/label_total_payable"
+                            style="@style/BodyBold"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/label_total_payable_stamp_duty"
+                            android:layout_toStartOf="@id/tv_total_payable"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_total_payable"
+                            style="@style/Heading2Color"
+                            android:lines="1"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="@{viewModel.totalStampDuty}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/label_stamp_duty"
+                            style="@style/Body"
+                            android:lines="1"
+                            android:ellipsize="end"
+                            android:layout_toStartOf="@id/tv_stamp_duty"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@string/label_buyer_stamp_duty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_stamp_duty"
+                            style="@style/Heading2"
+                            android:lines="1"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="@{viewModel.buyerStampDuty}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/label_additional_stamp_duty"
+                            style="@style/Body"
+                            android:ellipsize="start"
+                            android:singleLine="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:text="@{viewModel.additionalStampDutyDescription}"
+                            android:layout_toStartOf="@id/tv_additional_stamp_duty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_additional_stamp_duty"
+                            style="@style/Heading2"
+                            android:lines="1"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="@{viewModel.additionalBuyerStampDuty}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <!--TODO Show when available-->
+                <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                        android:id="@+id/btn_qualify"
+                        android:visibility="gone"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="@dimen/small_card_border_radius"
+                        app:contentPaddingBottom="@dimen/spacing_xs"
+                        app:contentPaddingLeft="@dimen/spacing_xs"
+                        app:contentPaddingRight="@dimen/spacing_xs"
+                        app:contentPaddingTop="@dimen/spacing_xs">
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/label_who_pay"
+                                style="@style/Body"
+                                android:lines="1"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:text="@string/label_who_pay_buyer_stamp_duty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_alignEnd="@id/label_who_pay"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_chevron_down"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                    </RelativeLayout>
+                </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+                <LinearLayout
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_description_2"
+                            style="@style/ExtraSmallBodyGray"
+                            android:lines="1"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="@dimen/spacing_xxs"
+                            android:text="@string/footer_stamp_duty_hint_calculation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <sg.searchhouse.agentconnect.view.widget.common.ClickableTextView
+                            android:id="@+id/btn_amend"
+                            android:textSize="@dimen/text_size_12"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/button_amend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>

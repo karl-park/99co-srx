@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+        <import type="sg.searchhouse.agentconnect.model.api.listing.FeaturedPO.Category" />
+
+        <variable
+                name="listingPO"
+                type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+    </data>
+
+    <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start"
+            app:layout_height="@{listingPO.isTagsMultiline() ? @dimen/height_listing_tags_two_lines : @dimen/height_listing_tags_one_line}">
+
+        <TextView
+                style="@style/ListingTag"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:text="@string/label_listing_exclusive"
+                android:visibility="@{listingPO.isExclusive() ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+                style="@style/ListingTag"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:text="@string/label_listing_drone"
+                android:visibility="@{listingPO.hasDroneView() ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+                style="@style/ListingTag"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:text="@string/label_listing_full_view"
+                android:visibility="@{listingPO.hasVirtualTour() ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+                style="@style/ListingTagFilled"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_listing_tag"
+                android:layout_marginEnd="@dimen/spacing_xs"
+                android:text="@string/label_listing_featured"
+                android:visibility="@{listingPO.isFeatured() ? View.VISIBLE : View.GONE}" />
+    </com.google.android.flexbox.FlexboxLayout>
+</layout>

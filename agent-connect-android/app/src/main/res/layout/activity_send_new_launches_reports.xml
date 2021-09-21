@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="sg.searchhouse.agentconnect.enumeration.status.ApiStatus.StatusKey" />
+
+        <variable
+            name="viewModel"
+            type="sg.searchhouse.agentconnect.viewmodel.activity.report.newlaunches.SendNewLaunchesReportsViewModel" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_invertible">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:visibility="@{viewModel.sendReportStatus == StatusKey.SUCCESS ? View.GONE : View.VISIBLE}">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_collapsing_toolbar_height"
+                    android:background="@color/white_invertible"
+                    android:fitsSystemWindows="true">
+
+                    <com.google.android.material.appbar.CollapsingToolbarLayout
+                        android:id="@+id/collapsingToolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        app:collapsedTitleTextAppearance="@style/CollapseAppBarTextStyle"
+                        app:expandedTitleMarginEnd="@dimen/spacing_m"
+                        app:expandedTitleMarginStart="@dimen/spacing_m"
+                        app:expandedTitleTextAppearance="@style/ExpandedAppBarTextStyle"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                        <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            style="@style/ClassicActionBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            app:contentInsetLeft="0dp"
+                            app:contentInsetStart="0dp"
+                            app:contentInsetStartWithNavigation="0dp"
+                            app:layout_collapseMode="pin"
+                            app:navigationIcon="@drawable/ic_clear"
+                            app:title="@string/title_new_launches_reports" />
+                    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white_invertible"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_m">
+
+                        <TextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_title_to" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_40"
+                            android:background="@drawable/et_rounded_gray_background_with_border">
+
+                            <HorizontalScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/spacing_s"
+                                android:layout_marginEnd="0dp"
+                                android:layout_toStartOf="@+id/ib_add_contact"
+                                android:overScrollMode="never"
+                                android:scrollbars="none">
+
+                                <com.google.android.material.chip.ChipGroup
+                                    android:id="@+id/tag_chip_group"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:itemSpacing="@dimen/margin_2"
+                                    app:singleLine="true"
+                                    app:singleSelection="true" />
+
+                            </HorizontalScrollView>
+
+                            <ImageButton
+                                android:id="@+id/ib_add_contact"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/spacing_xs"
+                                android:layout_marginEnd="@dimen/spacing_s"
+                                android:background="@color/transparent"
+                                android:clickable="true"
+                                android:contentDescription="@string/label_remove_photo"
+                                android:focusable="true"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_plus_circle"
+                                android:tint="@color/cyan" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginBottom="0dp"
+                            android:text="@string/label_attachment" />
+
+                        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                            android:id="@+id/card_attachment"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/height_new_launches_item"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginBottom="0dp"
+                            app:cardCornerRadius="@dimen/small_card_border_radius"
+                            app:contentPaddingBottom="0dp"
+                            app:contentPaddingLeft="0dp"
+                            app:contentPaddingRight="0dp"
+                            app:contentPaddingTop="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:paddingStart="@dimen/spacing_m"
+                                android:paddingEnd="@dimen/spacing_m">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/img_report_icon"
+                                    android:layout_width="@dimen/width_flash_report_icon"
+                                    android:layout_height="@dimen/height_flash_report_icon"
+                                    android:layout_centerVertical="true"
+                                    android:contentDescription="@string/content_description_download"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/ic_flash_report" />
+
+                                <TextView
+                                    android:id="@+id/tv_new_launches_report_desc"
+                                    style="@style/Body"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="@dimen/spacing_xs"
+                                    android:layout_marginEnd="0dp"
+                                    android:layout_toEndOf="@+id/img_report_icon"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="@{viewModel.attachmentLabel}" />
+
+                            </RelativeLayout>
+                        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+                        <TextView
+                            style="@style/Body"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginBottom="0dp"
+                            android:text="@string/label_subject" />
+
+                        <TextView
+                            style="@style/RoundedEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/height_new_launches_subject"
+                            android:layout_marginTop="@dimen/spacing_s"
+                            android:layout_marginBottom="@dimen/spacing_m"
+                            android:padding="@dimen/spacing_xs"
+                            android:text="@{viewModel.template}" />
+
+                    </LinearLayout>
+
+                </androidx.core.widget.NestedScrollView>
+
+                <include
+                    layout="@layout/layout_bottom_action_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:btnLabel="@{viewModel.btnLabel}"
+                    app:description="@{viewModel.projectsSelectedLabel}"
+                    app:isBtnEnabled="@{viewModel.isBtnEnabled}"
+                    app:showActionBar="@{viewModel.selectedReports.size() > 0}" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <include
+                layout="@layout/layout_send_new_launches_reports_success"
+                app:buttonLabel="@{@string/action_back_to_reports_and_research}"
+                app:content="@{viewModel.successMessage}"
+                app:viewModel="@{viewModel}"
+                app:visibility="@{viewModel.sendReportStatus == StatusKey.SUCCESS ? View.VISIBLE : View.GONE}" />
+
+        </FrameLayout>
+    </sg.searchhouse.agentconnect.view.widget.common.ActivityParentLayout>
+</layout>

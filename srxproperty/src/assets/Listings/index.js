@@ -1,0 +1,21 @@
+export const Listings_BathTubIcon = require('./bath-tub.png');
+export const Listings_BedIcon = require('./bed.png');
+export const Listing_CertifiedIcon = require('./Certified.png');
+//Listing_CertifiedIconV2 is purple tick, white background, Listing_CertifiedIcon is white tick, purple background
+export const Listing_CertifiedIconV2 = require('./Certified_White.png');
+export const Listing_Listing_Marker_Selected = require('./Listing_Marker_Selected.png');
+export const Listing_Listing_Marker = require('./Listing_Marker.png');
+export const Listings_MRT_Icon = require('./mrt.png');
+export const Listings_New_Icon = require('./new.png');
+export const Listing_Transaction_Marker_Selected = require('./Transacted_Marker_Selected.png');
+export const Listing_Transaction_Marker = require('./Transacted_Marker.png');
+export const Listing_Video_Call = require('./video_call.json');
+export const Listing_V360Icon = require('./icon-360.png');
+export const Listings_V360Icon_Blue = require('./icon-360-blue.png');
+export const Listing_WhatsappIcon = require('./whatsapp_Icon.png');
+export const Listing_XDroneIcon = require('./ico_listing_xdrone.png');
+export const Listings_XDroneIcon_Blue = require('./icon-drone-blue.png');
+export const Listing_XDroneLevelIcon = require('./ico_listing_levels.png');
+export const Listing_XDroneVideoIcon = require('./ico_listing_dronevideo.png');
+export const Listing_YoutubeIcon = require('./youtube_Icon.png');
+export const Listing_WhatsApp = require('./listing_whatsapp.png');

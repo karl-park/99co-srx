@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.watchlist.ListingsWatchlistViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+            android:visibility="@{viewModel.selectedCriteria != null ? View.VISIBLE : View.GONE}"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <include
+                android:id="@+id/layout_header"
+                layout="@layout/list_item_watchlist_main_listing_criteria_expanded"
+                android:layout_alignParentTop="true"
+                android:layout_margin="@dimen/spacing_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:criteria="@{viewModel.selectedCriteria}" />
+
+        <FrameLayout
+                android:layout_below="@id/layout_header"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_listing"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:visibility="@{safeUnbox(viewModel.isShowListingsOccupied()) ? View.VISIBLE : View.GONE}" />
+
+            <include
+                    layout="@layout/layout_load_list_fail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:visibility="@{safeUnbox(viewModel.isShowListingsEmpty()) ? View.VISIBLE : View.GONE}" />
+
+            <include
+                    layout="@layout/layout_loading_fail_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:mainStatus="@{viewModel.listingsStatus}" />
+        </FrameLayout>
+    </RelativeLayout>
+</layout>

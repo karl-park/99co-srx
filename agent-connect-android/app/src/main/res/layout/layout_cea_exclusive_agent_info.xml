@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--TODO: will revamp this file.. may be merge with list_item_cea_client after testing -->
+    <data>
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="ceaNo"
+            type="String" />
+
+        <variable
+            name="agency"
+            type="String" />
+
+        <variable
+            name="imageUrl"
+            type="String" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+        android:id="@+id/card_agent_client_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
+        app:contentPaddingBottom="0dp"
+        app:contentPaddingLeft="0dp"
+        app:contentPaddingRight="0dp"
+        app:contentPaddingTop="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_m">
+
+            <sg.searchhouse.agentconnect.view.widget.common.CircleImageView
+                android:layout_width="@dimen/width_cea_photo"
+                android:layout_height="@dimen/height_cea_photo"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_agent_photo_placeholder"
+                app:url='@{TextUtils.isEmpty(imageUrl)? "": imageUrl}' />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_s"
+                android:layout_marginEnd="@dimen/spacing_s"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{name}" />
+
+                <TextView
+                    style="@style/ExtraSmallBodyGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{ceaNo}" />
+
+                <TextView
+                    style="@style/ExtraSmallBodyGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@{agency}" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+</layout>

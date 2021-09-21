@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<data>
+
+		<import type="android.view.View" />
+
+		<variable
+				name="listingPO"
+				type="sg.searchhouse.agentconnect.model.api.listing.ListingPO" />
+
+		<variable
+				name="isVisible"
+				type="Boolean" />
+
+		<import type="android.text.TextUtils" />
+	</data>
+
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:visibility="@{isVisible == true ? View.VISIBLE : View.GONE}">
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.propertyType)}"
+				app:label="@{String.valueOf(@string/label_listing_details_type)}"
+				app:value="@{listingPO.propertyType}" />
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.model)}"
+				app:label="@{String.valueOf(@string/label_listing_details_model)}"
+				app:value="@{listingPO.model}" />
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.getDistrictHdbTownName(context))}"
+				app:label="@{listingPO.getDistrictHdbTownLabel(context)}"
+				app:value="@{listingPO.getDistrictHdbTownName(context)}" />
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.builtYear)}"
+				app:label="@{listingPO.getBuiltYearLabel(context)}"
+				app:value='@{listingPO.builtYear}' />
+
+		<include
+				layout="@layout/layout_column_key_info"
+				app:isVisible="@{!TextUtils.isEmpty(listingPO.tenure)}"
+				app:label="@{String.valueOf(@string/label_listing_details_tenure)}"
+				app:value='@{listingPO.tenure}' />
+	</LinearLayout>
+</layout>

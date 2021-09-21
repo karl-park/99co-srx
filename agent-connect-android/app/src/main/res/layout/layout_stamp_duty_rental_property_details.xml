@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewModel"
+                type="sg.searchhouse.agentconnect.viewmodel.activity.calculator.RentalStampDutyCalculatorViewModel" />
+
+    </data>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:strokeWidth="0dp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Title"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:text="@string/title_section_calculator_rental_property_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_monthly_rent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                        android:id="@+id/et_monthly_rent"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <LinearLayout
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <LinearLayout
+                            android:weightSum="2"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="false">
+
+                        <LinearLayout
+                                android:layout_marginStart="0dp"
+                                android:layout_marginEnd="@dimen/spacing_xs"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/Body"
+                                    android:layout_marginBottom="@dimen/spacing_xs"
+                                    android:text="@string/text_box_calculator_start_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_start_date"
+                                    style="@style/RoundedEditText"
+                                    android:hint="@string/hint_calculator_date"
+                                    android:drawableTint="@color/gray_invertible"
+                                    android:drawablePadding="@dimen/spacing_xs"
+                                    android:stateListAnimator="@null"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@{viewModel.isShowDateError() ? @drawable/et_error_background : @drawable/et_rounded_gray_background_with_border}"
+                                    android:drawableEnd="@drawable/ic_arrow_down"
+                                    android:text="@{viewModel.startDateLabel}" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                                android:layout_marginStart="@dimen/spacing_xs"
+                                android:layout_marginEnd="0dp"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                    style="@style/Body"
+                                    android:layout_marginBottom="@dimen/spacing_xs"
+                                    android:text="@string/text_box_calculator_end_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/btn_end_date"
+                                    style="@style/RoundedEditText"
+                                    android:hint="@string/hint_calculator_date"
+                                    android:text="@{viewModel.endDateLabel}"
+                                    android:drawableTint="@color/gray_invertible"
+                                    android:drawablePadding="@dimen/spacing_xs"
+                                    android:stateListAnimator="@null"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@{viewModel.isShowDateError() ? @drawable/et_error_background : @drawable/et_rounded_gray_background_with_border}"
+                                    android:drawableEnd="@drawable/ic_arrow_down" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/ExtraSmallBodyError"
+                            android:visibility="@{viewModel.isShowDateError() ? View.VISIBLE : View.GONE}"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:text="@string/error_calculator_rental_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Body"
+                        android:layout_marginBottom="@dimen/spacing_xs"
+                        android:text="@string/text_box_calculator_other_monthly_charges"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                <sg.searchhouse.agentconnect.view.widget.common.PillNumberEditText
+                        android:id="@+id/et_other_monthly_charges"
+                        android:layout_marginBottom="@dimen/spacing_xxl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_share_to_client"
+                        style="@style/SecondaryButton"
+                        android:enabled="@{viewModel.shouldEnableShareButton == true}"
+                        android:layout_marginBottom="@dimen/spacing_m"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/button_share_calculation_to_client"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+
+        <View
+                android:elevation="@dimen/elevation_above_card_view"
+                android:layout_gravity="bottom"
+                android:background="@color/white_invertible"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/card_border_radius" />
+    </FrameLayout>
+</layout>

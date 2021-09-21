@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/app_bar"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:backgroundTint="@color/white_invertible"
+            app:fabAlignmentMode="center"
+            app:fabCradleMargin="@dimen/ic_bottom_main_action_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="0dp"
+                android:paddingEnd="16dp"
+                android:weightSum="5">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ib_menu_dashboard"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ic_bottom_menu_size"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/content_description_dashboard"
+                    app:srcCompat="@drawable/ic_menu_dashboard" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ib_menu_chat"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ic_bottom_menu_size"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/content_description_chat"
+                    app:srcCompat="@drawable/ic_menu_chat" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ic_bottom_menu_size"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ib_menu_agent_cv"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ic_bottom_menu_size"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/content_description_agent_cv"
+                    app:srcCompat="@drawable/ic_menu_agent_cv" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/ib_menu_more"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ic_bottom_menu_size"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/content_description_more"
+                    app:srcCompat="@drawable/ic_menu_more" />
+            </LinearLayout>
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <View
+            android:id="@+id/layout_fab_group_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fab_group_overlay_invertible"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="gone" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_bottom_bar_action"
+            app:fabCustomSize="@dimen/ic_bottom_main_action_size"
+            app:layout_anchor="@id/app_bar"
+            app:maxImageSize="@dimen/ic_bottom_main_action_size" />
+
+        <sg.searchhouse.agentconnect.view.widget.main.SubFloatingActionButton
+            android:id="@+id/fab_home_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="@dimen/margin_end_sub_floating_button_start"
+            android:layout_marginBottom="@dimen/margin_bottom_sub_floating_button_start"
+            android:src="@drawable/ic_home_report"
+            android:visibility="gone" />
+
+        <sg.searchhouse.agentconnect.view.widget.main.SubFloatingActionButton
+            android:id="@+id/fab_add_listing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="@dimen/margin_bottom_sub_floating_button_center"
+            android:src="@drawable/ic_action_plus"
+            android:visibility="gone" />
+
+        <sg.searchhouse.agentconnect.view.widget.main.SubFloatingActionButton
+            android:id="@+id/fab_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginStart="@dimen/margin_start_sub_floating_button_end"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="@dimen/margin_bottom_sub_floating_button_end"
+            android:src="@drawable/ic_search"
+            android:visibility="gone" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

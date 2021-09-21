@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <sg.searchhouse.agentconnect.view.widget.common.AppCardView
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/corner_radius_dialog_stamp_duty"
+                app:contentPaddingBottom="@dimen/spacing_xs"
+                app:contentPaddingLeft="0dp"
+                app:contentPaddingRight="0dp"
+                app:contentPaddingTop="@dimen/spacing_l">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginEnd="@dimen/spacing_m"
+                        android:layout_marginBottom="@dimen/spacing_l"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Title"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:text="@string/dialog_title_stamp_duty"
+                            android:layout_alignStart="@id/btn_dismiss"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/btn_dismiss"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            android:src="@drawable/ic_cancel"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size" />
+                </RelativeLayout>
+
+                <include
+                        android:id="@+id/list_item_stamp_duty_buyer"
+                        layout="@layout/list_item_stamp_duty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@{@string/list_item_stamp_duty_buyer}" />
+
+                <include
+                        android:id="@+id/list_item_stamp_duty_seller"
+                        layout="@layout/list_item_stamp_duty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@{@string/list_item_stamp_duty_seller}" />
+
+                <include
+                        android:id="@+id/list_item_stamp_duty_rental"
+                        layout="@layout/list_item_stamp_duty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:title="@{@string/list_item_stamp_duty_rental}" />
+            </LinearLayout>
+        </sg.searchhouse.agentconnect.view.widget.common.AppCardView>
+    </FrameLayout>
+</layout>
